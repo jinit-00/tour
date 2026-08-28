@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background: linear-gradient(135deg, #E8E3D5 0%, #E1DBC9 50%, #D5CEBA 100%);
+    background-attachment: fixed;
+    color: #3C3C3C;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+}
+
+/* Custom Beige Sand & Dark Pine scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #D5CEBA;
+}
+::-webkit-scrollbar-thumb {
+  background: #2D4530;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3A563E;
+}
+
+/* Beige Sand Glassmorphism Panels & Nav */
+.glass-panel {
+  background: linear-gradient(145deg, rgba(232, 227, 213, 0.88), rgba(213, 206, 186, 0.92));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(60, 60, 60, 0.12);
+}
+
+.glass-nav {
+  background: linear-gradient(180deg, rgba(232, 227, 213, 0.95) 0%, rgba(225, 219, 201, 0.90) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(60, 60, 60, 0.10);
+}

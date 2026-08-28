@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
+
+model User {
+  id           String        @id @default(uuid())
+  name         String
+  email        String        @unique
+  passwordHash String?
+  googleId     String?       @unique
+  role         Role          @default(USER)
+  isVerified   Boolean       @default(false)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  bookings     Booking[]
+  otpCodes     OtpCode[]
+}
+
+model OtpCode {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  code      String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model Tour {
+  id          String        @id @default(uuid())
+  title       String
+  slug        String        @unique
+  description String        @db.Text
+  location    String
+  basePrice   Float
+  duration    String
+  imagesJson  String        @db.Text
+  isFeatured  Boolean       @default(false)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  packages    TourPackage[]
+  bookings    Booking[]
+}
+
+model TourPackage {
+  id          String    @id @default(uuid())
+  tourId      String
+  tour        Tour      @relation(fields: [tourId], references: [id], onDelete: Cascade)
+  name        String
+  price       Float
+  description String    @db.Text
+  createdAt   DateTime  @default(now())
+  bookings    Booking[]
+}
+
+model Booking {
+  id          String        @id @default(uuid())
+  userId      String
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tourId      String
+  tour        Tour          @relation(fields: [tourId], references: [id], onDelete: Cascade)
+  packageId   String?
+  tourPackage TourPackage?  @relation(fields: [packageId], references: [id], onDelete: SetNull)
+  bookingDate DateTime
+  numPeople   Int           @default(1)
+  totalAmount Float
+  status      BookingStatus @default(PENDING)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  message   String   @db.Text
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model BlogPost {
+  id         String   @id @default(uuid())
+  title      String
+  slug       String   @unique
+  summary    String   @db.Text
+  content    String   @db.Text
+  coverImage String
+  category   String   @default("Photography Guide")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model GalleryItem {
+  id        String   @id @default(uuid())
+  title     String
+  category  String   @default("Wildlife")
+  imageUrl  String
+  aspect    String   @default("vertical")
+  createdAt DateTime @default(now())
+}
