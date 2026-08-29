@@ -1,63 +1,198 @@
 import axios from 'axios';
 
-// Static Fallback Safaris Data for Client-Side Deployments (Vercel / Static Hosting)
+// 11 Unique Signature Safaris Dataset for Client-Side & Vercel Fallback
 const FALLBACK_TOURS = [
   {
     id: '1',
-    title: 'Royal Ranthambore Bengal Tiger Safari',
-    slug: 'ranthambore-tiger-safari',
-    description: 'Journey into ancient banyan ruins and bamboo forests of Rajasthan to photograph wild Bengal Tigers. Low-seat open Gypsies, lake-side tracking, and expert naturalist guidance.',
-    location: 'Ranthambore National Park, India',
-    basePrice: 2950,
-    duration: '6 Days / 5 Nights',
-    isFeatured: true,
-    images: [
-      'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80'
-    ],
-    packages: [
-      { id: 'p1', name: 'Jungle Explorer Pack', price: 0, description: 'Heritage jungle lodge stay, all park safari permits, expert local spotter escort.' },
-      { id: 'p2', name: 'Private Low-Seat Gypsy Access', price: 500, description: 'Exclusive 4-seater open Gypsy for unobstructed water-level tiger photography.' }
-    ]
-  },
-  {
-    id: '2',
-    title: 'Greater Kruger Rhino Conservation & Big 5 Safari',
-    slug: 'kruger-rhino-safari',
-    description: 'An exclusive tracking expedition into Greater Kruger. Photograph wild White & Black Rhinos alongside anti-poaching rangers, Sabie river luxury lodges, and bush walking encounters.',
-    location: 'Kruger National Park, South Africa',
-    basePrice: 3750,
-    duration: '7 Days / 6 Nights',
-    isFeatured: true,
-    images: [
-      'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1540573133985-778788170485?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1504006833117-8886a355efbf?auto=format&fit=crop&w=1600&q=80'
-    ],
-    packages: [
-      { id: 'p3', name: 'Conservation Explorer', price: 0, description: 'Luxury Sabie river eco-lodge stay, open 4x4 game drives, ranger bush walks.' },
-      { id: 'p4', name: 'Thermal Night Patrol & Anti-Poaching Ride-Along', price: 400, description: 'Special night tracking access using thermal scopes alongside K9 anti-poaching units.' }
-    ]
-  },
-  {
-    id: '3',
     title: 'Serengeti Lion & Great Migration Masterclass',
     slug: 'serengeti-lion-safari',
-    description: 'Experience Africa’s iconic lion prides during the dramatic Mara River crossings. Custom open 4x4 vehicles with swivel lens mounts, private tented bush camps, and daily post-processing critiques under the stars.',
-    location: 'Serengeti National Park, Tanzania',
+    description: 'Experience Africa’s iconic lion prides during the dramatic Mara River crossings in Serengeti.',
+    location: 'Serengeti, Tanzania',
+    region: 'Tanzania',
     basePrice: 4850,
     duration: '8 Days / 7 Nights',
     isFeatured: true,
     images: [
       'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=1600&q=80',
       'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1547970810-dc0eac25ee85?auto=format&fit=crop&w=1600&q=80'
     ],
     packages: [
-      { id: 'p5', name: 'Standard Expedition', price: 0, description: 'Shared 4x4 vehicle (max 3 photographers per vehicle), luxury safari tented camp, all park permits & meals included.' },
-      { id: 'p6', name: 'Pro Telephoto Lens Kit Rental', price: 450, description: 'Includes 600mm f/4 prime lens + carbon fiber tripod with Gimbal head for the entire duration.' },
-      { id: 'p7', name: 'Private SUV & Dedicated Photo Guide', price: 1200, description: 'Exclusive vehicle for ultimate framing flexibility, custom tracking of lion packs, and 1-on-1 Lightroom coaching.' }
+      { id: 'p1', name: 'Standard Expedition', price: 0, description: 'Luxury safari tented camp & permits included.' },
+      { id: 'p2', name: 'Pro Lens Kit Rental', price: 450, description: '600mm f/4 prime lens rental for the trip.' }
+    ]
+  },
+  {
+    id: '2',
+    title: 'Ngorongoro Crater Big Game Expedition',
+    slug: 'ngorongoro-safari',
+    description: 'Photograph massive bull elephants and black rhinos inside the pristine caldera of Ngorongoro.',
+    location: 'Ngorongoro, Tanzania',
+    region: 'Tanzania',
+    basePrice: 4200,
+    duration: '7 Days / 6 Nights',
+    isFeatured: false,
+    images: [
+      'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=1600&q=80',
+    ],
+    packages: [
+      { id: 'p3', name: 'Crater Rim Lodge Package', price: 0, description: 'Panoramic rim luxury suite stay.' }
+    ]
+  },
+  {
+    id: '3',
+    title: 'Tarangire Ancient Baobab & Wildlife Safari',
+    slug: 'tarangire-safari',
+    description: 'Track massive elephant herds roaming beneath thousand-year-old baobab trees.',
+    location: 'Tarangire, Tanzania',
+    region: 'Tanzania',
+    basePrice: 3500,
+    duration: '6 Days / 5 Nights',
+    isFeatured: false,
+    images: [
+      'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1600&q=80',
+    ],
+    packages: [
+      { id: 'p4', name: 'Treehouse Lodge Stay', price: 0, description: 'Elevated treehouse suite overlooking the riverbed.' }
+    ]
+  },
+  {
+    id: '4',
+    title: 'Royal Ranthambore Bengal Tiger Safari',
+    slug: 'ranthambore-tiger-safari',
+    description: 'Journey into ancient banyan ruins and bamboo forests to photograph wild Bengal Tigers.',
+    location: 'Ranthambore, India',
+    region: 'India',
+    basePrice: 2950,
+    duration: '6 Days / 5 Nights',
+    isFeatured: true,
+    images: [
+      'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80',
+    ],
+    packages: [
+      { id: 'p5', name: 'Jungle Explorer Pack', price: 0, description: 'Heritage jungle lodge stay & all permits.' },
+      { id: 'p6', name: 'Private Low-Seat Gypsy', price: 500, description: 'Exclusive 4x4 open Gypsy for low-angle shots.' }
+    ]
+  },
+  {
+    id: '5',
+    title: 'Bandhavgarh High-Density Tiger Tracking',
+    slug: 'bandhavgarh-safari',
+    description: 'Explore the highest tiger density forests in Central India with legendary native spotters.',
+    location: 'Bandhavgarh, India',
+    region: 'India',
+    basePrice: 3200,
+    duration: '7 Days / 6 Nights',
+    isFeatured: false,
+    images: [
+      'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80',
+    ],
+    packages: [
+      { id: 'p7', name: 'Fortress View Pack', price: 0, description: 'Luxury eco-villa near the park gates.' }
+    ]
+  },
+  {
+    id: '6',
+    title: 'Kanha Jungle & Barasingha Sanctuary',
+    slug: 'kanha-safari',
+    description: 'Immerse in the sal forests that inspired Kipling’s Jungle Book to capture barasingha deer and tigers.',
+    location: 'Kanha, India',
+    region: 'India',
+    basePrice: 2800,
+    duration: '6 Days / 5 Nights',
+    isFeatured: false,
+    images: [
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80',
+    ],
+    packages: [
+      { id: 'p8', name: 'Sal Forest Lodge', price: 0, description: 'Private cottage near Kanha meadow zone.' }
+    ]
+  },
+  {
+    id: '7',
+    title: 'Masai Mara Predator Migration Expedition',
+    slug: 'masai-mara-safari',
+    description: 'Track cheetah sprints and large lion prides across Kenya’s endless savanna grasslands.',
+    location: 'Masai Mara, Kenya',
+    region: 'Kenya',
+    basePrice: 4600,
+    duration: '8 Days / 7 Nights',
+    isFeatured: false,
+    images: [
+      'https://images.unsplash.com/photo-1547970810-dc0eac25ee85?auto=format&fit=crop&w=1600&q=80',
+    ],
+    packages: [
+      { id: 'p9', name: 'Riverfront Tented Camp', price: 0, description: 'Luxury canvas tent along the Mara River.' }
+    ]
+  },
+  {
+    id: '8',
+    title: 'Greater Kruger Rhino Conservation & Big 5 Safari',
+    slug: 'kruger-rhino-safari',
+    description: 'Photograph wild White & Black Rhinos alongside anti-poaching rangers in private reserves.',
+    location: 'Kruger, South Africa',
+    region: 'South Africa',
+    basePrice: 3750,
+    duration: '7 Days / 6 Nights',
+    isFeatured: true,
+    images: [
+      'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1540573133985-778788170485?auto=format&fit=crop&w=1600&q=80',
+    ],
+    packages: [
+      { id: 'p10', name: 'Conservation Explorer', price: 0, description: 'Sabie river eco-lodge & bush walks.' },
+      { id: 'p11', name: 'Thermal Night Patrol', price: 400, description: 'Night thermal imaging tracking access.' }
+    ]
+  },
+  {
+    id: '9',
+    title: 'Sabi Sands Private Leopard Tracking',
+    slug: 'sabi-sands-safari',
+    description: 'World renowned for intimate, off-road leopard encounters in private game reserves.',
+    location: 'Sabi Sands, South Africa',
+    region: 'South Africa',
+    basePrice: 5100,
+    duration: '6 Days / 5 Nights',
+    isFeatured: false,
+    images: [
+      'https://images.unsplash.com/photo-1540573133985-778788170485?auto=format&fit=crop&w=1600&q=80',
+    ],
+    packages: [
+      { id: 'p12', name: 'Ultra Luxury Suite', price: 0, description: 'Private plunge pool villa with personal tracker.' }
+    ]
+  },
+  {
+    id: '10',
+    title: 'Amboseli Kilimanjaro Elephant Gathering',
+    slug: 'amboseli-safari',
+    description: 'Photograph giant tusker elephants wading through swamps with snow-capped Mt. Kilimanjaro in the backdrop.',
+    location: 'Amboseli, Kenya',
+    region: 'Kenya',
+    basePrice: 3900,
+    duration: '6 Days / 5 Nights',
+    isFeatured: false,
+    images: [
+      'https://images.unsplash.com/photo-1504006833117-8886a355efbf?auto=format&fit=crop&w=1600&q=80',
+    ],
+    packages: [
+      { id: 'p13', name: 'Kilimanjaro View Suite', price: 0, description: 'Direct mountain view luxury tent.' }
+    ]
+  },
+  {
+    id: '11',
+    title: 'South Luangwa Walking & Leopard Safari',
+    slug: 'south-luangwa-safari',
+    description: 'Experience Africa’s premier walking safaris along the Luangwa River, famous for leopards and hippo pods.',
+    location: 'South Luangwa, Zambia',
+    region: 'Zambia',
+    basePrice: 4100,
+    duration: '7 Days / 6 Nights',
+    isFeatured: false,
+    images: [
+      'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80',
+    ],
+    packages: [
+      { id: 'p14', name: 'Riverbank Camp Package', price: 0, description: 'Rustic luxury river camp with private guide.' }
     ]
   }
 ];
@@ -95,27 +230,39 @@ export const resendOtp = (data) => API.post('/auth/resend-otp', data);
 export const loginUser = (data) => API.post('/auth/login', data);
 export const getCurrentUser = () => API.get('/auth/me');
 
-// Tours API with Fallback Guarantees for Vercel
+// Tours API with 11 Safaris Fallback Guarantees
 export const getTours = async (params) => {
   try {
     const res = await API.get('/tours', { params });
     if (Array.isArray(res.data) && res.data.length > 0) {
       return res;
     }
-    return { data: FALLBACK_TOURS };
+    return { data: filterFallbackTours(params) };
   } catch (err) {
-    console.warn('API unavailable, returning fallback safaris:', err.message);
-    let filtered = FALLBACK_TOURS;
-    if (params?.location && params.location !== 'All') {
-      filtered = filtered.filter(t => t.location.toLowerCase().includes(params.location.toLowerCase()));
-    }
-    if (params?.search) {
-      const q = params.search.toLowerCase();
-      filtered = filtered.filter(t => t.title.toLowerCase().includes(q) || t.description.toLowerCase().includes(q));
-    }
-    return { data: filtered };
+    console.warn('API unavailable, returning 11 fallback safaris:', err.message);
+    return { data: filterFallbackTours(params) };
   }
 };
+
+function filterFallbackTours(params) {
+  let filtered = FALLBACK_TOURS;
+  if (params?.location && params.location !== 'All') {
+    const locQuery = params.location.toLowerCase();
+    filtered = filtered.filter(t => 
+      t.location.toLowerCase().includes(locQuery) || 
+      (t.region && t.region.toLowerCase().includes(locQuery))
+    );
+  }
+  if (params?.search) {
+    const q = params.search.toLowerCase();
+    filtered = filtered.filter(t => 
+      t.title.toLowerCase().includes(q) || 
+      t.location.toLowerCase().includes(q) ||
+      t.description.toLowerCase().includes(q)
+    );
+  }
+  return filtered;
+}
 
 export const getTourDetail = async (slugOrId) => {
   try {

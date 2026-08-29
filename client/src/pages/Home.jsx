@@ -48,16 +48,6 @@ export default function Home() {
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-6 pt-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pine-800 text-sand-950 text-xs font-mono tracking-widest uppercase shadow-xl"
-          >
-            <Camera className="w-3.5 h-3.5" />
-            <span>World-Class Wildlife Photography Expeditions</span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
