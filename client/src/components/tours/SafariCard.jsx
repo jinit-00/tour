@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRight, Plus } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Plus } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function SafariCard({ tour, index = 0 }) {
@@ -53,18 +53,8 @@ export default function SafariCard({ tour, index = 0 }) {
         </p>
       </div>
 
-      {/* 4. Bottom Row: Left Learn More Text & Right Circular '+' Button */}
-      <div className="relative z-10 flex items-end justify-between pt-12">
-        {/* Bottom-Left Minimal Learn More Link */}
-        <Link
-          to={`/tours/${tour.slug}/story`}
-          onClick={(e) => e.stopPropagation()}
-          className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-wider text-sand-900 hover:text-sand-950 transition-colors py-2 group/link"
-        >
-          <span>LEARN MORE</span>
-          <ArrowRight className="w-4 h-4 text-pine-800 group-hover/link:translate-x-1 transition-transform" />
-        </Link>
-
+      {/* 4. Bottom Row: Right 56px Circular '+' Button */}
+      <div className="relative z-10 flex items-center justify-end pt-12">
         {/* Bottom-Right 56px Circular '+' Button */}
         <motion.div
           whileHover={{ scale: 1.08, rotate: 15 }}

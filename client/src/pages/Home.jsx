@@ -17,12 +17,12 @@ export default function Home() {
   useEffect(() => {
     getTours()
       .then((res) => {
-        // Sort safaris in exact requested order: Tiger -> Rhino -> Lion
+        // Sort safaris in exact requested order: Tiger -> Rhino -> Lion, and keep ONLY top 3 on Home page
         const sorted = [...res.data].sort((a, b) => {
           const order = { 'ranthambore-tiger-safari': 1, 'kruger-rhino-safari': 2, 'serengeti-lion-safari': 3 };
           return (order[a.slug] || 99) - (order[b.slug] || 99);
         });
-        setTours(sorted);
+        setTours(sorted.slice(0, 3));
       })
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
@@ -92,7 +92,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. FEATURED EXPEDITIONS: 3 LARGE FULL-PAGE-WIDTH HORIZONTAL BLOCKS */}
+      {/* 2. FEATURED EXPEDITIONS: EXACTLY 3 LARGE FULL-PAGE-WIDTH HORIZONTAL BLOCKS */}
       <section className="py-24 relative bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
