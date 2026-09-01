@@ -31,7 +31,7 @@ export default function Tours() {
   const locations = ['All', 'India', 'Kenya', 'Uganda', 'South Africa', 'France'];
 
   return (
-    <div className="pt-28 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-sand-gradient min-h-screen">
+    <div className="pt-36 sm:pt-40 lg:pt-44 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-sand-gradient min-h-screen">
       {/* Editorial Header */}
       <div className="text-center space-y-4 mb-14">
         <span className="text-xs font-mono uppercase tracking-[0.25em] text-pine-800 font-bold">

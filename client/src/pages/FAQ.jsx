@@ -28,7 +28,7 @@ export default function FAQ() {
   const [openIdx, setOpenIdx] = useState(0);
 
   return (
-    <div className="pt-28 pb-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-sand-gradient min-h-screen space-y-12">
+    <div className="pt-36 sm:pt-40 lg:pt-44 pb-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-sand-gradient min-h-screen space-y-12">
       
       <div className="text-center space-y-3">
         <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Clear Answers</span>

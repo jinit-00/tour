@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <div className="overflow-hidden bg-sand-gradient">
       {/* 1. Full-Bleed Parallax Hero Section */}
-      <section className="relative h-screen min-h-[750px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
         {/* Parallax Background Image */}
         <motion.div
           style={{ y: yHero, opacity: opacityHero }}
@@ -47,7 +47,7 @@ export default function Home() {
         </motion.div>
 
         {/* Hero Content */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-6 pt-16 flex flex-col items-center">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-6 pt-28 sm:pt-36 lg:pt-40 flex flex-col items-center">
           
           {/* 3x Large Prominent Brand Logo */}
           <motion.div
