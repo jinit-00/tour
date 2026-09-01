@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <div className="overflow-hidden bg-sand-gradient">
       {/* 1. Full-Bleed Parallax Hero Section */}
-      <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen min-h-[750px] flex items-center justify-center overflow-hidden">
         {/* Parallax Background Image */}
         <motion.div
           style={{ y: yHero, opacity: opacityHero }}
@@ -47,7 +47,22 @@ export default function Home() {
         </motion.div>
 
         {/* Hero Content */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-6 pt-20">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-6 pt-16 flex flex-col items-center">
+          
+          {/* 3x Large Prominent Brand Logo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden border-4 border-sand-700/80 shadow-2xl bg-sand-950 hover:scale-105 transition-transform"
+          >
+            <img
+              src="/logo.webp"
+              alt="JungleE Wildlife Expeditions Official Logo"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -73,7 +88,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2"
           >
             <Link
               to="/tours"
