@@ -28,7 +28,7 @@ export default function Tours() {
     }
   };
 
-  const locations = ['All', 'Tanzania', 'India', 'Kenya', 'South Africa', 'Zambia'];
+  const locations = ['All', 'India', 'Kenya', 'Uganda', 'South Africa', 'France'];
 
   return (
     <div className="pt-28 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-sand-gradient min-h-screen">
@@ -41,7 +41,7 @@ export default function Tours() {
           Wildlife Photography Safaris
         </h1>
         <p className="text-sm sm:text-base text-charcoal-700 max-w-2xl mx-auto font-normal">
-          Explore our 11 signature small-group departures across Earth's sacred wilderness habitats. Select any expedition card or click the circular button to enter full-screen scroll storytelling.
+          Explore our 11 signature small-group departures featuring Gir, Sanjay Dubri, Jawai, Ranthambore, Velavadar, Masai Mara, Uganda, Kruger, Kaziranga, Camargue, and Amboseli. Select any safari card or click the circular button to enter full-screen scroll storytelling.
         </p>
       </div>
 
@@ -84,7 +84,7 @@ export default function Tours() {
       ) : tours.length === 0 ? (
         <div className="glass-panel p-12 rounded-3xl text-center space-y-3 max-w-md mx-auto my-12 border border-sand-700">
           <p className="text-lg font-bold text-charcoal-900">No safaris match your criteria.</p>
-          <p className="text-xs text-charcoal-700">Try searching for Serengeti, Tiger, Rhino, or Leopard.</p>
+          <p className="text-xs text-charcoal-700">Try searching for Gir, Leopard, Tiger, Rhino, Buffalo, or Horse.</p>
           <button
             onClick={() => { setSearch(''); setSelectedLocation('All'); }}
             className="px-5 py-2 bg-pine-800 text-sand-950 rounded-full text-xs font-bold shadow-md"

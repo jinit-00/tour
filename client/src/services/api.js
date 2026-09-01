@@ -1,168 +1,179 @@
 import axios from 'axios';
 
-// 11 Unique Signature Safaris Dataset for Client-Side & Vercel Fallback
+// 11 Exact Signature Safaris Dataset for Client-Side & Vercel Fallback
 const FALLBACK_TOURS = [
   {
     id: '1',
-    title: 'Serengeti Lion & Great Migration Masterclass',
-    slug: 'serengeti-lion-safari',
-    description: 'Experience Africa’s iconic lion prides during the dramatic Mara River crossings in Serengeti.',
-    location: 'Serengeti, Tanzania',
-    region: 'Tanzania',
-    basePrice: 4850,
-    duration: '8 Days / 7 Nights',
+    title: 'Gir Asiatic Lion Sanctuary Masterclass',
+    slug: 'gir-lion-safari',
+    description: 'Track and photograph the world’s last remaining wild Asiatic Lions in the dry deciduous forests of Gir.',
+    location: 'Gir, India',
+    region: 'India',
+    basePrice: 3100,
+    duration: '6 Days / 5 Nights',
     isFeatured: true,
     images: [
-      'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
-      { id: 'p1', name: 'Standard Expedition', price: 0, description: 'Luxury safari tented camp & permits included.' },
-      { id: 'p2', name: 'Pro Lens Kit Rental', price: 450, description: '600mm f/4 prime lens rental for the trip.' }
+      { id: 'p1', name: 'Gir Jungle Lodge', price: 0, description: 'Eco-lodge stay & all safari permits.' }
     ]
   },
   {
     id: '2',
-    title: 'Ngorongoro Crater Big Game Expedition',
-    slug: 'ngorongoro-safari',
-    description: 'Photograph massive bull elephants and black rhinos inside the pristine caldera of Ngorongoro.',
-    location: 'Ngorongoro, Tanzania',
-    region: 'Tanzania',
-    basePrice: 4200,
-    duration: '7 Days / 6 Nights',
+    title: 'Sanjay Dubri Tiger Reserve Expedition',
+    slug: 'sanjay-dubri-tiger-safari',
+    description: 'Explore the pristine, untamed tiger corridors of Sanjay Dubri National Park in Central India.',
+    location: 'Sanjay Dubri, India',
+    region: 'India',
+    basePrice: 2900,
+    duration: '6 Days / 5 Nights',
     isFeatured: false,
     images: [
-      'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
-      { id: 'p3', name: 'Crater Rim Lodge Package', price: 0, description: 'Panoramic rim luxury suite stay.' }
+      { id: 'p2', name: 'Forest Villa Suite', price: 0, description: 'Luxury cottage near park entry gates.' }
     ]
   },
   {
     id: '3',
-    title: 'Tarangire Ancient Baobab & Wildlife Safari',
-    slug: 'tarangire-safari',
-    description: 'Track massive elephant herds roaming beneath thousand-year-old baobab trees.',
-    location: 'Tarangire, Tanzania',
-    region: 'Tanzania',
-    basePrice: 3500,
-    duration: '6 Days / 5 Nights',
+    title: 'Jawai Granite Hills Leopard Tracking',
+    slug: 'jawai-leopard-safari',
+    description: 'Photograph the legendary leopards of Jawai living in harmony among ancient granite rock formations.',
+    location: 'Jawai, India',
+    region: 'India',
+    basePrice: 3400,
+    duration: '5 Days / 4 Nights',
     isFeatured: false,
     images: [
-      'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1540573133985-778788170485?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
-      { id: 'p4', name: 'Treehouse Lodge Stay', price: 0, description: 'Elevated treehouse suite overlooking the riverbed.' }
+      { id: 'p3', name: 'Granite Rock Camp', price: 0, description: 'Private luxury tented suite with open 4x4.' }
     ]
   },
   {
     id: '4',
-    title: 'Royal Ranthambore Bengal Tiger Safari',
+    title: 'Royal Ranthambore Bengal Tiger Portrait',
     slug: 'ranthambore-tiger-safari',
-    description: 'Journey into ancient banyan ruins and bamboo forests to photograph wild Bengal Tigers.',
+    description: 'Capture intimate, low-angle facial portraits of royal Bengal Tigers among ancient fort ruins.',
     location: 'Ranthambore, India',
     region: 'India',
     basePrice: 2950,
     duration: '6 Days / 5 Nights',
     isFeatured: true,
     images: [
-      'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80',
       'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
-      { id: 'p5', name: 'Jungle Explorer Pack', price: 0, description: 'Heritage jungle lodge stay & all permits.' },
-      { id: 'p6', name: 'Private Low-Seat Gypsy', price: 500, description: 'Exclusive 4x4 open Gypsy for low-angle shots.' }
+      { id: 'p4', name: 'Heritage Jungle Lodge', price: 0, description: 'Royal suite & open Gypsy 4x4 safaris.' }
     ]
   },
   {
     id: '5',
-    title: 'Bandhavgarh High-Density Tiger Tracking',
-    slug: 'bandhavgarh-safari',
-    description: 'Explore the highest tiger density forests in Central India with legendary native spotters.',
-    location: 'Bandhavgarh, India',
+    title: 'Velavadar Blackbuck & Deer Grasslands',
+    slug: 'velavadar-deer-safari',
+    description: 'Immerse in golden savannas to photograph leaping blackbuck antelopes, deer, and wolves.',
+    location: 'Velavadar, India',
     region: 'India',
-    basePrice: 3200,
-    duration: '7 Days / 6 Nights',
+    basePrice: 2700,
+    duration: '5 Days / 4 Nights',
     isFeatured: false,
     images: [
-      'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1484406566174-9da000fda645?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
-      { id: 'p7', name: 'Fortress View Pack', price: 0, description: 'Luxury eco-villa near the park gates.' }
+      { id: 'p5', name: 'Savanna Eco Resort', price: 0, description: 'Grassland cottage near sanctuary boundary.' }
     ]
   },
   {
     id: '6',
-    title: 'Kanha Jungle & Barasingha Sanctuary',
-    slug: 'kanha-safari',
-    description: 'Immerse in the sal forests that inspired Kipling’s Jungle Book to capture barasingha deer and tigers.',
-    location: 'Kanha, India',
-    region: 'India',
-    basePrice: 2800,
-    duration: '6 Days / 5 Nights',
-    isFeatured: false,
+    title: 'Masai Mara Lion Pride & Predator Masterclass',
+    slug: 'masai-mara-safari',
+    description: 'Witness intense predator action and lion prides feeding in Kenya’s Mara ecosystem.',
+    location: 'Masai Mara, Kenya',
+    region: 'Kenya',
+    basePrice: 4800,
+    duration: '8 Days / 7 Nights',
+    isFeatured: true,
     images: [
-      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
-      { id: 'p8', name: 'Sal Forest Lodge', price: 0, description: 'Private cottage near Kanha meadow zone.' }
+      { id: 'p6', name: 'Riverfront Luxury Camp', price: 0, description: 'Canvas suite along the Mara River.' }
     ]
   },
   {
     id: '7',
-    title: 'Masai Mara Predator Migration Expedition',
-    slug: 'masai-mara-safari',
-    description: 'Track cheetah sprints and large lion prides across Kenya’s endless savanna grasslands.',
-    location: 'Masai Mara, Kenya',
-    region: 'Kenya',
-    basePrice: 4600,
-    duration: '8 Days / 7 Nights',
+    title: 'Uganda Savanna Elephant & Primate Expedition',
+    slug: 'uganda-elephant-safari',
+    description: 'Photograph massive savanna elephant herds along the Kazinga Channel and Murchison Falls.',
+    location: 'Uganda',
+    region: 'Uganda',
+    basePrice: 4300,
+    duration: '7 Days / 6 Nights',
     isFeatured: false,
     images: [
-      'https://images.unsplash.com/photo-1547970810-dc0eac25ee85?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
-      { id: 'p9', name: 'Riverfront Tented Camp', price: 0, description: 'Luxury canvas tent along the Mara River.' }
+      { id: 'p7', name: 'River Cruise & Safari Pack', price: 0, description: 'Boat safaris & crater lake lodge.' }
     ]
   },
   {
     id: '8',
-    title: 'Greater Kruger Rhino Conservation & Big 5 Safari',
+    title: 'Greater Kruger Rhino Conservation Expedition',
     slug: 'kruger-rhino-safari',
-    description: 'Photograph wild White & Black Rhinos alongside anti-poaching rangers in private reserves.',
+    description: 'Photograph wild White and Black Rhinos alongside anti-poaching units in private reserves.',
     location: 'Kruger, South Africa',
     region: 'South Africa',
     basePrice: 3750,
     duration: '7 Days / 6 Nights',
-    isFeatured: true,
+    isFeatured: false,
     images: [
       'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1540573133985-778788170485?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
-      { id: 'p10', name: 'Conservation Explorer', price: 0, description: 'Sabie river eco-lodge & bush walks.' },
-      { id: 'p11', name: 'Thermal Night Patrol', price: 400, description: 'Night thermal imaging tracking access.' }
+      { id: 'p8', name: 'Sabie River Lodge', price: 0, description: 'Private villa & bush walking safaris.' }
     ]
   },
   {
     id: '9',
-    title: 'Sabi Sands Private Leopard Tracking',
-    slug: 'sabi-sands-safari',
-    description: 'World renowned for intimate, off-road leopard encounters in private game reserves.',
-    location: 'Sabi Sands, South Africa',
-    region: 'South Africa',
-    basePrice: 5100,
+    title: 'Kaziranga Wild Buffalo & Wetland Safari',
+    slug: 'kaziranga-buffalo-safari',
+    description: 'Track massive wild water buffalo herds roaming the lush tall elephant grasslands of Kaziranga.',
+    location: 'Kaziranga, India',
+    region: 'India',
+    basePrice: 3000,
     duration: '6 Days / 5 Nights',
     isFeatured: false,
     images: [
-      'https://images.unsplash.com/photo-1540573133985-778788170485?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
-      { id: 'p12', name: 'Ultra Luxury Suite', price: 0, description: 'Private plunge pool villa with personal tracker.' }
+      { id: 'p9', name: 'Tea Garden Resort', price: 0, description: 'Boutique estate stay & 4x4 safaris.' }
     ]
   },
   {
     id: '10',
+    title: 'Camargue Wild Horse & Wetland Expedition',
+    slug: 'camargue-horse-safari',
+    description: 'Capture iconic galloping white horses charging through shallow coastal salt marshes.',
+    location: 'Camargue, France',
+    region: 'France',
+    basePrice: 3600,
+    duration: '5 Days / 4 Nights',
+    isFeatured: false,
+    images: [
+      'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=1600&q=80',
+    ],
+    packages: [
+      { id: 'p10', name: 'Provençal Mas Stay', price: 0, description: 'Traditional estate stay & equestrian photo guide.' }
+    ]
+  },
+  {
+    id: '11',
     title: 'Amboseli Kilimanjaro Elephant Gathering',
     slug: 'amboseli-safari',
     description: 'Photograph giant tusker elephants wading through swamps with snow-capped Mt. Kilimanjaro in the backdrop.',
@@ -175,24 +186,7 @@ const FALLBACK_TOURS = [
       'https://images.unsplash.com/photo-1504006833117-8886a355efbf?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
-      { id: 'p13', name: 'Kilimanjaro View Suite', price: 0, description: 'Direct mountain view luxury tent.' }
-    ]
-  },
-  {
-    id: '11',
-    title: 'South Luangwa Walking & Leopard Safari',
-    slug: 'south-luangwa-safari',
-    description: 'Experience Africa’s premier walking safaris along the Luangwa River, famous for leopards and hippo pods.',
-    location: 'South Luangwa, Zambia',
-    region: 'Zambia',
-    basePrice: 4100,
-    duration: '7 Days / 6 Nights',
-    isFeatured: false,
-    images: [
-      'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80',
-    ],
-    packages: [
-      { id: 'p14', name: 'Riverbank Camp Package', price: 0, description: 'Rustic luxury river camp with private guide.' }
+      { id: 'p11', name: 'Kilimanjaro View Suite', price: 0, description: 'Direct mountain view luxury tent.' }
     ]
   }
 ];

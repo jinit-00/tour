@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🌱 Starting database seed with 11 flagship safaris...');
+  console.log('🌱 Starting database seed with 11 exact wildlife safari templates...');
 
   // Clean existing tables
   await prisma.booking.deleteMany();
@@ -23,7 +23,7 @@ async function main() {
   const admin = await prisma.user.create({
     data: {
       name: 'Elena Rostova (Admin)',
-      email: 'admin@silvantours.com',
+      email: 'admin@junglee.com',
       passwordHash: adminPasswordHash,
       role: 'ADMIN',
       isVerified: true,
@@ -42,24 +42,83 @@ async function main() {
 
   const safarisData = [
     {
-      title: 'Serengeti Lion & Great Migration Masterclass',
-      slug: 'serengeti-lion-safari',
-      description: 'Experience Africa’s iconic lion prides during the dramatic Mara River crossings in Serengeti.',
-      location: 'Serengeti, Tanzania',
-      basePrice: 4850,
-      duration: '8 Days / 7 Nights',
+      title: 'Gir Asiatic Lion Sanctuary Masterclass',
+      slug: 'gir-lion-safari',
+      description: 'Track and photograph the world’s last remaining wild Asiatic Lions in the dry deciduous forests of Gir.',
+      location: 'Gir, India',
+      basePrice: 3100,
+      duration: '6 Days / 5 Nights',
       isFeatured: true,
       imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=1600&q=80',
-        'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1600&q=80'
+        'https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?auto=format&fit=crop&w=1600&q=80'
       ])
     },
     {
-      title: 'Ngorongoro Crater Big Game Expedition',
-      slug: 'ngorongoro-safari',
-      description: 'Photograph massive bull elephants and black rhinos inside the pristine caldera of Ngorongoro.',
-      location: 'Ngorongoro, Tanzania',
-      basePrice: 4200,
+      title: 'Sanjay Dubri Tiger Reserve Expedition',
+      slug: 'sanjay-dubri-tiger-safari',
+      description: 'Explore the pristine, untamed tiger corridors of Sanjay Dubri National Park in Central India.',
+      location: 'Sanjay Dubri, India',
+      basePrice: 2900,
+      duration: '6 Days / 5 Nights',
+      isFeatured: false,
+      imagesJson: JSON.stringify([
+        'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80'
+      ])
+    },
+    {
+      title: 'Jawai Granite Hills Leopard Tracking',
+      slug: 'jawai-leopard-safari',
+      description: 'Photograph the legendary leopards of Jawai living in harmony among ancient granite rock formations.',
+      location: 'Jawai, India',
+      basePrice: 3400,
+      duration: '5 Days / 4 Nights',
+      isFeatured: false,
+      imagesJson: JSON.stringify([
+        'https://images.unsplash.com/photo-1540573133985-778788170485?auto=format&fit=crop&w=1600&q=80'
+      ])
+    },
+    {
+      title: 'Royal Ranthambore Bengal Tiger Portrait',
+      slug: 'ranthambore-tiger-safari',
+      description: 'Capture intimate, low-angle facial portraits of royal Bengal Tigers among ancient fort ruins.',
+      location: 'Ranthambore, India',
+      basePrice: 2950,
+      duration: '6 Days / 5 Nights',
+      isFeatured: true,
+      imagesJson: JSON.stringify([
+        'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80'
+      ])
+    },
+    {
+      title: 'Velavadar Blackbuck & Deer Grasslands',
+      slug: 'velavadar-deer-safari',
+      description: 'Immerse in golden savannas to photograph leaping blackbuck antelopes, deer, and wolves.',
+      location: 'Velavadar, India',
+      basePrice: 2700,
+      duration: '5 Days / 4 Nights',
+      isFeatured: false,
+      imagesJson: JSON.stringify([
+        'https://images.unsplash.com/photo-1484406566174-9da000fda645?auto=format&fit=crop&w=1600&q=80'
+      ])
+    },
+    {
+      title: 'Masai Mara Lion Pride & Predator Masterclass',
+      slug: 'masai-mara-safari',
+      description: 'Witness intense predator action and lion prides feeding in Kenya’s Mara ecosystem.',
+      location: 'Masai Mara, Kenya',
+      basePrice: 4800,
+      duration: '8 Days / 7 Nights',
+      isFeatured: true,
+      imagesJson: JSON.stringify([
+        'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=1600&q=80'
+      ])
+    },
+    {
+      title: 'Uganda Savanna Elephant & Primate Expedition',
+      slug: 'uganda-elephant-safari',
+      description: 'Photograph massive savanna elephant herds along the Kazinga Channel and Murchison Falls.',
+      location: 'Uganda',
+      basePrice: 4300,
       duration: '7 Days / 6 Nights',
       isFeatured: false,
       imagesJson: JSON.stringify([
@@ -67,89 +126,39 @@ async function main() {
       ])
     },
     {
-      title: 'Tarangire Ancient Baobab & Wildlife Safari',
-      slug: 'tarangire-safari',
-      description: 'Track massive elephant herds roaming beneath thousand-year-old baobab trees.',
-      location: 'Tarangire, Tanzania',
-      basePrice: 3500,
-      duration: '6 Days / 5 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1600&q=80'
-      ])
-    },
-    {
-      title: 'Royal Ranthambore Bengal Tiger Safari',
-      slug: 'ranthambore-tiger-safari',
-      description: 'Journey into ancient banyan ruins and bamboo forests to photograph wild Bengal Tigers.',
-      location: 'Ranthambore, India',
-      basePrice: 2950,
-      duration: '6 Days / 5 Nights',
-      isFeatured: true,
-      imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80',
-        'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80'
-      ])
-    },
-    {
-      title: 'Bandhavgarh High-Density Tiger Tracking',
-      slug: 'bandhavgarh-safari',
-      description: 'Explore the highest tiger density forests in Central India with legendary native spotters.',
-      location: 'Bandhavgarh, India',
-      basePrice: 3200,
-      duration: '7 Days / 6 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80'
-      ])
-    },
-    {
-      title: 'Kanha Jungle & Barasingha Sanctuary',
-      slug: 'kanha-safari',
-      description: 'Immerse in the sal forests that inspired Kipling’s Jungle Book to capture barasingha deer and tigers.',
-      location: 'Kanha, India',
-      basePrice: 2800,
-      duration: '6 Days / 5 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80'
-      ])
-    },
-    {
-      title: 'Masai Mara Predator Migration Expedition',
-      slug: 'masai-mara-safari',
-      description: 'Track cheetah sprints and large lion prides across Kenya’s endless savanna grasslands.',
-      location: 'Masai Mara, Kenya',
-      basePrice: 4600,
-      duration: '8 Days / 7 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1547970810-dc0eac25ee85?auto=format&fit=crop&w=1600&q=80'
-      ])
-    },
-    {
-      title: 'Greater Kruger Rhino Conservation & Big 5 Safari',
+      title: 'Greater Kruger Rhino Conservation Expedition',
       slug: 'kruger-rhino-safari',
-      description: 'Photograph wild White & Black Rhinos alongside anti-poaching rangers in private reserves.',
+      description: 'Photograph wild White and Black Rhinos alongside anti-poaching units in private reserves.',
       location: 'Kruger, South Africa',
       basePrice: 3750,
       duration: '7 Days / 6 Nights',
-      isFeatured: true,
+      isFeatured: false,
       imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=1600&q=80',
-        'https://images.unsplash.com/photo-1540573133985-778788170485?auto=format&fit=crop&w=1600&q=80'
+        'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=1600&q=80'
       ])
     },
     {
-      title: 'Sabi Sands Private Leopard Tracking',
-      slug: 'sabi-sands-safari',
-      description: 'World renowned for intimate, off-road leopard encounters in private game reserves.',
-      location: 'Sabi Sands, South Africa',
-      basePrice: 5100,
+      title: 'Kaziranga Wild Buffalo & Wetland Safari',
+      slug: 'kaziranga-buffalo-safari',
+      description: 'Track massive wild water buffalo herds roaming the lush tall elephant grasslands of Kaziranga.',
+      location: 'Kaziranga, India',
+      basePrice: 3000,
       duration: '6 Days / 5 Nights',
       isFeatured: false,
       imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1540573133985-778788170485?auto=format&fit=crop&w=1600&q=80'
+        'https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1600&q=80'
+      ])
+    },
+    {
+      title: 'Camargue Wild Horse & Wetland Expedition',
+      slug: 'camargue-horse-safari',
+      description: 'Capture iconic galloping white horses charging through shallow coastal salt marshes.',
+      location: 'Camargue, France',
+      basePrice: 3600,
+      duration: '5 Days / 4 Nights',
+      isFeatured: false,
+      imagesJson: JSON.stringify([
+        'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=1600&q=80'
       ])
     },
     {
@@ -163,18 +172,6 @@ async function main() {
       imagesJson: JSON.stringify([
         'https://images.unsplash.com/photo-1504006833117-8886a355efbf?auto=format&fit=crop&w=1600&q=80'
       ])
-    },
-    {
-      title: 'South Luangwa Walking & Leopard Safari',
-      slug: 'south-luangwa-safari',
-      description: 'Experience Africa’s premier walking safaris along the Luangwa River, famous for leopards and hippo pods.',
-      location: 'South Luangwa, Zambia',
-      basePrice: 4100,
-      duration: '7 Days / 6 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80'
-      ])
     }
   ];
 
@@ -182,7 +179,7 @@ async function main() {
     await prisma.tour.create({ data: safari });
   }
 
-  console.log('✅ 11 Flagship Safaris seeded successfully!');
+  console.log('✅ 11 Exact Wildlife Safari templates seeded successfully!');
 }
 
 main()

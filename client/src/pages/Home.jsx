@@ -17,9 +17,9 @@ export default function Home() {
   useEffect(() => {
     getTours()
       .then((res) => {
-        // Sort safaris in exact requested order: Tiger -> Rhino -> Lion, and keep ONLY top 3 on Home page
+        // Sort safaris: Gir (Lion) -> Ranthambore (Tiger Face) -> Masai Mara (Lion prey), and keep top 3 on Home page
         const sorted = [...res.data].sort((a, b) => {
-          const order = { 'ranthambore-tiger-safari': 1, 'kruger-rhino-safari': 2, 'serengeti-lion-safari': 3 };
+          const order = { 'gir-lion-safari': 1, 'ranthambore-tiger-safari': 2, 'masai-mara-safari': 3 };
           return (order[a.slug] || 99) - (order[b.slug] || 99);
         });
         setTours(sorted.slice(0, 3));
