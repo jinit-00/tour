@@ -41,19 +41,19 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || !isHome
-          ? 'glass-nav py-2 sm:py-3 shadow-md'
-          : 'bg-gradient-to-b from-sand-900/90 via-sand-800/60 to-transparent py-3 sm:py-4'
+          ? 'glass-nav py-2.5 sm:py-3 shadow-md'
+          : 'bg-gradient-to-b from-sand-900/95 via-sand-800/70 to-transparent py-3 sm:py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
         {/* 3x Enlarged Brand Logo & Name */}
         <Link to="/" className="flex items-center gap-3.5 group">
-          <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-sand-700/80 shadow-2xl group-hover:scale-105 transition-all shrink-0 bg-sand-950">
+          <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-2 border-sand-700/80 shadow-2xl group-hover:scale-105 transition-all shrink-0 bg-sand-950">
             <img src="/logo.webp" alt="JungleE Wildlife Expeditions Logo" className="w-full h-full object-cover" />
           </div>
           <div className="flex flex-col">
-            <span className="font-sans font-black tracking-wider text-xl sm:text-2xl text-charcoal-900 uppercase group-hover:text-pine-800 transition-colors leading-none">
+            <span className="font-sans font-black tracking-wider text-xl sm:text-2xl text-charcoal-950 uppercase group-hover:text-pine-800 transition-colors leading-none">
               JungleE
             </span>
             <span className="text-[10px] sm:text-xs tracking-[0.2em] uppercase text-pine-800 font-mono font-bold pt-1">
@@ -62,16 +62,18 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-7">
+        {/* Large Prominent Desktop Navigation Links */}
+        <nav className="hidden lg:flex items-center gap-7 xl:gap-8">
           {navLinks.map((link) => {
             const isActive = location.pathname === link.path;
             return (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium tracking-wide transition-colors hover:text-pine-800 ${
-                  isActive ? 'text-pine-800 font-semibold border-b-2 border-pine-800 pb-0.5' : 'text-charcoal-700'
+                className={`text-base font-extrabold tracking-wide transition-colors hover:text-pine-800 ${
+                  isActive
+                    ? 'text-pine-800 font-black border-b-2 border-pine-800 pb-0.5'
+                    : 'text-charcoal-950 hover:text-pine-800'
                 }`}
               >
                 {link.name}
@@ -81,17 +83,17 @@ export default function Navbar() {
         </nav>
 
         {/* Desktop Right Action Buttons */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-4">
           {user ? (
             <div className="relative">
               <button
                 onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand-900 border border-sand-700 hover:border-pine-800/50 transition-all text-sm font-medium text-charcoal-900"
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-sand-900 border border-sand-700 hover:border-pine-800/50 transition-all text-sm font-bold text-charcoal-950 shadow-sm"
               >
                 <div className="w-6 h-6 rounded-full bg-pine-800 text-sand-950 flex items-center justify-center text-xs font-bold uppercase">
                   {user.name ? user.name[0] : 'U'}
                 </div>
-                <span className="max-w-[100px] truncate text-charcoal-900 font-semibold">{user.name}</span>
+                <span className="max-w-[120px] truncate text-charcoal-950 font-bold">{user.name}</span>
               </button>
 
               <AnimatePresence>
@@ -115,7 +117,7 @@ export default function Navbar() {
 
                     <Link
                       to="/dashboard"
-                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-charcoal-800 hover:bg-sand-900 hover:text-pine-800 transition-colors"
+                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-charcoal-800 hover:bg-sand-900 hover:text-pine-800 transition-colors font-medium"
                     >
                       <User className="w-4 h-4" />
                       <span>My Bookings</span>
@@ -124,7 +126,7 @@ export default function Navbar() {
                     {user.role === 'ADMIN' && (
                       <Link
                         to="/admin"
-                        className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-amber-700 hover:bg-sand-900 transition-colors"
+                        className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-amber-700 hover:bg-sand-900 transition-colors font-medium"
                       >
                         <Shield className="w-4 h-4" />
                         <span>Admin Dashboard</span>
@@ -133,7 +135,7 @@ export default function Navbar() {
 
                     <button
                       onClick={logout}
-                      className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-rose-700 hover:bg-rose-100/50 transition-colors border-t border-sand-700 mt-1"
+                      className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-rose-700 hover:bg-rose-100/50 transition-colors border-t border-sand-700 mt-1 font-medium"
                     >
                       <LogOut className="w-4 h-4" />
                       <span>Sign Out</span>
@@ -145,7 +147,7 @@ export default function Navbar() {
           ) : (
             <button
               onClick={() => openAuthModal('login')}
-              className="text-sm font-medium text-charcoal-800 hover:text-pine-800 transition-colors px-3 py-1.5"
+              className="text-base font-extrabold text-charcoal-950 hover:text-pine-800 transition-colors px-3 py-1.5"
             >
               Sign In
             </button>
@@ -153,7 +155,7 @@ export default function Navbar() {
 
           <Link
             to="/tours"
-            className="px-5 py-2 rounded-full bg-pine-800 hover:bg-pine-700 text-sand-950 font-bold text-sm transition-all duration-200 shadow-md flex items-center gap-1.5 group"
+            className="px-6 py-2.5 rounded-full bg-pine-800 hover:bg-pine-700 text-sand-950 font-extrabold text-base transition-all duration-200 shadow-md flex items-center gap-1.5 group"
           >
             <span>Book a Tour</span>
             <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -163,9 +165,9 @@ export default function Navbar() {
         {/* Mobile Hamburger Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-charcoal-900 hover:text-pine-800 focus:outline-none"
+          className="lg:hidden p-2.5 text-charcoal-950 hover:text-pine-800 focus:outline-none"
         >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
         </button>
       </div>
 
@@ -176,52 +178,52 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-panel border-b border-sand-700 px-4 pt-3 pb-6"
+            className="lg:hidden glass-panel border-b border-sand-700 px-5 pt-4 pb-6 shadow-2xl"
           >
             <nav className="flex flex-col gap-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className="text-base font-medium text-charcoal-800 hover:text-pine-800 py-1.5 border-b border-sand-700/60"
+                  className="text-lg font-extrabold text-charcoal-950 hover:text-pine-800 py-2 border-b border-sand-700/60"
                 >
                   {link.name}
                 </Link>
               ))}
 
-              <div className="pt-2 flex flex-col gap-3">
+              <div className="pt-3 flex flex-col gap-3">
                 {user ? (
                   <>
                     <Link
                       to="/dashboard"
-                      className="flex items-center gap-2 py-2 text-pine-800 font-medium"
+                      className="flex items-center gap-2 py-2 text-pine-800 font-bold text-base"
                     >
-                      <User className="w-4 h-4" />
+                      <User className="w-5 h-5" />
                       <span>My Dashboard ({user.name})</span>
                     </Link>
 
                     {user.role === 'ADMIN' && (
                       <Link
                         to="/admin"
-                        className="flex items-center gap-2 py-2 text-amber-700 font-medium"
+                        className="flex items-center gap-2 py-2 text-amber-700 font-bold text-base"
                       >
-                        <Shield className="w-4 h-4" />
+                        <Shield className="w-5 h-5" />
                         <span>Admin Dashboard</span>
                       </Link>
                     )}
 
                     <button
                       onClick={logout}
-                      className="flex items-center gap-2 py-2 text-rose-700 text-sm font-medium"
+                      className="flex items-center gap-2 py-2 text-rose-700 text-base font-bold"
                     >
-                      <LogOut className="w-4 h-4" />
+                      <LogOut className="w-5 h-5" />
                       <span>Sign Out</span>
                     </button>
                   </>
                 ) : (
                   <button
                     onClick={() => openAuthModal('login')}
-                    className="w-full text-center py-2.5 rounded-lg border border-sand-700 text-charcoal-900 font-medium hover:bg-sand-900"
+                    className="w-full text-center py-3 rounded-xl border border-sand-700 text-charcoal-950 font-bold text-base hover:bg-sand-900"
                   >
                     Sign In / Register
                   </button>
@@ -229,7 +231,7 @@ export default function Navbar() {
 
                 <Link
                   to="/tours"
-                  className="w-full text-center py-3 rounded-lg bg-pine-800 text-sand-950 font-bold text-sm shadow-md"
+                  className="w-full text-center py-3.5 rounded-xl bg-pine-800 text-sand-950 font-extrabold text-base shadow-md"
                 >
                   Book a Tour Now
                 </Link>

@@ -224,11 +224,11 @@ export const resendOtp = (data) => API.post('/auth/resend-otp', data);
 export const loginUser = (data) => API.post('/auth/login', data);
 export const getCurrentUser = () => API.get('/auth/me');
 
-// Tours API with 11 Safaris Fallback Guarantees
+// Tours API with Guaranteed 11 Safaris Output
 export const getTours = async (params) => {
   try {
     const res = await API.get('/tours', { params });
-    if (Array.isArray(res.data) && res.data.length > 0) {
+    if (Array.isArray(res.data) && res.data.length >= 11) {
       return res;
     }
     return { data: filterFallbackTours(params) };
