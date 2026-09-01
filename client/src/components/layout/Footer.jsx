@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Youtube, Camera, Mail, Phone, MapPin } from 'lucide-react';
+import { Instagram, Facebook, Youtube, Camera, Mail, Phone, MapPin, User } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -54,33 +54,42 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Featured Regions */}
+          {/* Featured Destinations */}
           <div className="space-y-3">
             <h4 className="text-xs uppercase font-mono text-pine-800 font-bold tracking-widest">Destinations</h4>
             <ul className="space-y-2 text-sm text-charcoal-700">
-              <li>Ranthambore, India</li>
-              <li>Greater Kruger, South Africa</li>
-              <li>Serengeti, Tanzania</li>
+              <li>Gir National Park, India</li>
+              <li>Sanjay Dubri, India</li>
+              <li>Jawai Granite Hills, India</li>
+              <li>Ranthambore Fort, India</li>
               <li>Masai Mara, Kenya</li>
-              <li>South Luangwa, Zambia</li>
             </ul>
           </div>
 
           {/* Contact Details */}
           <div className="space-y-3">
             <h4 className="text-xs uppercase font-mono text-pine-800 font-bold tracking-widest">Basecamp Contact</h4>
-            <ul className="space-y-2.5 text-sm text-charcoal-700">
+            <ul className="space-y-3 text-sm text-charcoal-700">
               <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-pine-800 shrink-0 mt-0.5" />
-                <span>104 Wildwood Ridge, Aspen, CO 81611</span>
+                <MapPin className="w-4 h-4 text-pine-800 shrink-0 mt-1" />
+                <span className="leading-snug">A-803, Money Plant High Street, Gota, Ahmedabad, Gujarat, India</span>
               </li>
-              <li className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-pine-800 shrink-0" />
-                <span>+1 (800) 555-JUNGLEE</span>
+              <li className="flex items-start gap-2.5">
+                <Phone className="w-4 h-4 text-pine-800 shrink-0 mt-1" />
+                <div className="flex flex-col gap-1 text-xs">
+                  <div>
+                    <span className="font-bold text-charcoal-900">Vatsal Dangi: </span>
+                    <a href="tel:+919665129435" className="hover:text-pine-800 font-mono">+91-9665129435</a>
+                  </div>
+                  <div>
+                    <span className="font-bold text-charcoal-900">Harsh Barad: </span>
+                    <a href="tel:+917096392919" className="hover:text-pine-800 font-mono">+91-7096392919</a>
+                  </div>
+                </div>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-pine-800 shrink-0" />
-                <span>expeditions@junglee.com</span>
+                <a href="mailto:safari@jungleewildlife.co.in" className="hover:text-pine-800 text-xs font-mono font-bold">safari@jungleewildlife.co.in</a>
               </li>
             </ul>
           </div>
@@ -89,7 +98,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-charcoal-600 gap-4">
-          <p>© {new Date().getFullYear()} JungleE Wildlife Expeditions LLC. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} JungleE Wildlife Expeditions. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-charcoal-900">Privacy Policy</a>
             <a href="#" className="hover:text-charcoal-900">Terms of Service</a>

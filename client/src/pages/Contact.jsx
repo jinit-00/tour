@@ -17,7 +17,7 @@ export default function Contact() {
         <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Get in Touch</span>
         <h1 className="text-4xl sm:text-6xl font-extrabold text-charcoal-900">Contact Expedition Basecamp</h1>
         <p className="text-sm sm:text-base text-charcoal-700 font-normal">
-          Have questions about trip dates, lens recommendations, or custom private departures? Reach out to our expedition naturalists directly.
+          Have questions about trip dates, lens recommendations, or custom private departures? Reach out to our expedition team directly.
         </p>
       </div>
 
@@ -32,27 +32,38 @@ export default function Contact() {
               <MapPin className="w-5 h-5 text-pine-800 shrink-0 mt-0.5" />
               <div>
                 <span className="text-xs font-mono text-charcoal-500 block uppercase font-bold">Address</span>
-                <span>104 Wildwood Ridge, Aspen, CO 81611</span>
+                <span className="leading-snug block pt-0.5">A-803, Money Plant High Street, Gota, Ahmedabad, Gujarat, India</span>
               </div>
             </li>
             <li className="flex items-start gap-3">
               <Phone className="w-5 h-5 text-pine-800 shrink-0 mt-0.5" />
               <div>
-                <span className="text-xs font-mono text-charcoal-500 block uppercase font-bold">Phone</span>
-                <span>+1 (800) 555-JUNGLEE</span>
+                <span className="text-xs font-mono text-charcoal-500 block uppercase font-bold">Expedition Directors</span>
+                <div className="pt-1 space-y-1 text-sm font-mono">
+                  <div>
+                    <span className="font-sans font-bold text-charcoal-900">Vatsal Dangi: </span>
+                    <a href="tel:+919665129435" className="hover:text-pine-800 font-bold">+91-9665129435</a>
+                  </div>
+                  <div>
+                    <span className="font-sans font-bold text-charcoal-900">Harsh Barad: </span>
+                    <a href="tel:+917096392919" className="hover:text-pine-800 font-bold">+91-7096392919</a>
+                  </div>
+                </div>
               </div>
             </li>
             <li className="flex items-start gap-3">
               <Mail className="w-5 h-5 text-pine-800 shrink-0 mt-0.5" />
               <div>
                 <span className="text-xs font-mono text-charcoal-500 block uppercase font-bold">Email</span>
-                <span>expeditions@junglee.com</span>
+                <a href="mailto:safari@jungleewildlife.co.in" className="hover:text-pine-800 text-sm font-mono font-bold pt-0.5 block">
+                  safari@jungleewildlife.co.in
+                </a>
               </div>
             </li>
           </ul>
 
           <div className="pt-4 border-t border-sand-700 text-xs text-charcoal-600 font-mono">
-            ⏱️ Office hours: Monday – Friday, 8:00 AM – 6:00 PM MST
+            ⏱️ Office hours: Monday – Saturday, 9:00 AM – 7:00 PM IST
           </div>
         </div>
 
@@ -63,7 +74,7 @@ export default function Contact() {
               <CheckCircle2 className="w-12 h-12 text-pine-800 mx-auto" />
               <h3 className="text-2xl font-bold text-charcoal-900">Message Received!</h3>
               <p className="text-sm text-charcoal-700 max-w-md mx-auto">
-                Thank you for reaching out. One of our lead naturalists will get back to you within 24 business hours.
+                Thank you for reaching out. Vatsal Dangi & Harsh Barad will get back to you within 24 business hours.
               </p>
             </div>
           ) : (
@@ -101,9 +112,12 @@ export default function Contact() {
                   className="w-full bg-sand-950 border border-sand-700 rounded-xl py-3 px-4 text-sm text-charcoal-900 focus:outline-none focus:border-pine-800"
                 >
                   <option value="General Inquiry">General Inquiry</option>
-                  <option value="Royal Ranthambore Bengal Tiger Safari">Royal Ranthambore Bengal Tiger Safari</option>
-                  <option value="Greater Kruger Rhino Conservation & Big 5 Safari">Greater Kruger Rhino Conservation & Big 5 Safari</option>
-                  <option value="Serengeti Lion & Great Migration Masterclass">Serengeti Lion & Great Migration Masterclass</option>
+                  <option value="Gir Asiatic Lion Sanctuary Masterclass">Gir Asiatic Lion Sanctuary Masterclass</option>
+                  <option value="Sanjay Dubri Tiger Reserve Expedition">Sanjay Dubri Tiger Reserve Expedition</option>
+                  <option value="Jawai Granite Hills Leopard Tracking">Jawai Granite Hills Leopard Tracking</option>
+                  <option value="Royal Ranthambore Bengal Tiger Portrait">Royal Ranthambore Bengal Tiger Portrait</option>
+                  <option value="Velavadar Blackbuck & Deer Grasslands">Velavadar Blackbuck & Deer Grasslands</option>
+                  <option value="Masai Mara Lion Pride & Predator Masterclass">Masai Mara Lion Pride & Predator Masterclass</option>
                   <option value="Custom Private Charter">Custom Private Charter</option>
                 </select>
               </div>
@@ -124,7 +138,7 @@ export default function Contact() {
                 type="submit"
                 className="w-full sm:w-auto px-8 py-4 rounded-xl bg-pine-800 hover:bg-pine-700 text-sand-950 font-bold text-sm shadow-xl transition-all flex items-center justify-center gap-2"
               >
-                <span>Send Message to Naturalist Team</span>
+                <span>Send Message to JungleE Team</span>
                 <Send className="w-4 h-4" />
               </button>
             </form>
