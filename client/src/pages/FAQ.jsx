@@ -34,7 +34,7 @@ export default function FAQ() {
         <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Clear Answers</span>
         <h1 className="text-4xl sm:text-6xl font-extrabold text-charcoal-900">Frequently Asked Questions</h1>
         <p className="text-sm text-charcoal-700 font-normal">
-          Everything you need to know about preparing for a Silvan wildlife photography expedition.
+          Everything you need to know about preparing for a JungleE wildlife photography expedition.
         </p>
       </div>
 

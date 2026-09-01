@@ -125,7 +125,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. Why Choose Silvan Section */}
+      {/* 3. Why Choose JungleE Section */}
       <section className="py-24 relative bg-sand-900/80 border-y border-sand-700 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -135,7 +135,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center space-y-3 mb-16"
           >
-            <p className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">The Silvan Difference</p>
+            <p className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">The JungleE Difference</p>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-charcoal-900">Designed for Serious Photographers</h2>
           </motion.div>
 

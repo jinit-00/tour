@@ -32,7 +32,7 @@ export default function About() {
         <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Our Ethos & Story</span>
         <h1 className="text-4xl sm:text-6xl font-extrabold text-charcoal-900">Guiding Serious Wildlife Photographers</h1>
         <p className="text-base text-charcoal-700 leading-relaxed font-normal">
-          Silvan Tours was founded to eliminate tourist compromises. We design expeditions specifically tailored for telephoto lens positioning, patience in the field, and ethical conservation focus.
+          JungleE Wildlife Expeditions was founded to eliminate tourist compromises. We design expeditions specifically tailored for telephoto lens positioning, patience in the field, and ethical conservation focus.
         </p>
       </div>
 

@@ -28,7 +28,7 @@ app.use(passport.initialize());
 
 // Health Check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', name: 'Silvan Tours API', time: new Date() });
+  res.json({ status: 'ok', name: 'JungleE Wildlife Expeditions API', time: new Date() });
 });
 
 // API Routes
@@ -44,5 +44,5 @@ app.use('/api/admin', adminRoutes);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`🌲 Silvan Tours Backend Server listening on http://localhost:${PORT}`);
+  console.log(`🌲 JungleE Wildlife Expeditions Backend Server listening on http://localhost:${PORT}`);
 });

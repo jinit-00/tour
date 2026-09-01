@@ -1,12 +1,12 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
 const router = express.Router();
+const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-// Submit contact form
-router.post('/', async (req, res) => {
+// POST /api/contact - Submit contact query
+router.post('/', async (req, res, next) => {
   try {
-    const { name, email, message } = req.body;
+    const { name, email, tourInterest, message } = req.body;
 
     if (!name || !email || !message) {
       return res.status(400).json({ error: 'Name, email, and message are required.' });
@@ -15,18 +15,18 @@ router.post('/', async (req, res) => {
     const contactMsg = await prisma.contactMessage.create({
       data: {
         name,
-        email: email.toLowerCase().trim(),
+        email,
+        tourInterest: tourInterest || 'General Inquiry',
         message,
       },
     });
 
     res.status(201).json({
-      message: 'Thank you for contacting Silvan Tours! Our expedition team will respond within 24 hours.',
+      message: 'Thank you for contacting JungleE Wildlife Expeditions! Our expedition team will respond within 24 hours.',
       contactMsg,
     });
-  } catch (error) {
-    console.error('Error submitting contact form:', error);
-    res.status(500).json({ error: 'Failed to send message.' });
+  } catch (err) {
+    next(err);
   }
 });
 

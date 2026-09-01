@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Compass as TreeIcon, Instagram, Facebook, Youtube, Camera, Mail, Phone, MapPin } from 'lucide-react';
+import { Instagram, Facebook, Youtube, Camera, Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -10,21 +10,21 @@ export default function Footer() {
           
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <Link to="/" className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-full bg-pine-800 border border-pine-700 flex items-center justify-center text-sand-950">
-                <TreeIcon className="w-5 h-5" />
+            <Link to="/" className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-full overflow-hidden border border-sand-700 shadow-md shrink-0 bg-sand-950">
+                <img src="/logo.webp" alt="JungleE Wildlife Expeditions Logo" className="w-full h-full object-cover" />
               </div>
               <div className="flex flex-col">
-                <span className="font-sans font-bold tracking-widest text-lg text-charcoal-900 uppercase">
-                  SILVAN TOURS
+                <span className="font-sans font-black tracking-wider text-lg text-charcoal-900 uppercase">
+                  JungleE
                 </span>
-                <span className="text-[10px] tracking-widest uppercase text-charcoal-600 font-mono">
+                <span className="text-[10px] tracking-widest uppercase text-pine-800 font-mono font-bold">
                   WILDLIFE EXPEDITIONS
                 </span>
               </div>
             </Link>
             <p className="text-sm text-charcoal-700 leading-relaxed max-w-sm">
-              Crafting immersive, small-group wildlife photography safaris to Earth's most breathtaking untamed frontiers. Guided by world-renowned naturalists and wildlife photographers.
+              Crafting immersive, small-group wildlife photography safaris to Earth's most breathtaking untamed frontiers. Guided by world-renowned naturalists and wildlife photographers at JungleE Wildlife Expeditions.
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a href="#" className="w-9 h-9 rounded-full bg-sand-800 border border-sand-700 hover:bg-pine-800 hover:text-sand-950 transition-colors flex items-center justify-center text-charcoal-800">
@@ -61,8 +61,8 @@ export default function Footer() {
               <li>Ranthambore, India</li>
               <li>Greater Kruger, South Africa</li>
               <li>Serengeti, Tanzania</li>
-              <li>Pantanal, Brazil</li>
-              <li>Tromsø & Senja, Norway</li>
+              <li>Masai Mara, Kenya</li>
+              <li>South Luangwa, Zambia</li>
             </ul>
           </div>
 
@@ -76,11 +76,11 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-pine-800 shrink-0" />
-                <span>+1 (800) 555-SILVAN</span>
+                <span>+1 (800) 555-JUNGLEE</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-pine-800 shrink-0" />
-                <span>expeditions@silvantours.com</span>
+                <span>expeditions@junglee.com</span>
               </li>
             </ul>
           </div>
@@ -89,7 +89,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-charcoal-600 gap-4">
-          <p>© {new Date().getFullYear()} Silvan Tours LLC. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} JungleE Wildlife Expeditions LLC. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-charcoal-900">Privacy Policy</a>
             <a href="#" className="hover:text-charcoal-900">Terms of Service</a>

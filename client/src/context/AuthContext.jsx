@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [pendingEmail, setPendingEmail] = useState('');
 
   const fetchUser = async () => {
-    const token = localStorage.getItem('silvan_token');
+    const token = localStorage.getItem('junglee_token') || localStorage.getItem('silvan_token');
     if (!token) {
       setUser(null);
       setLoading(false);
@@ -22,6 +22,7 @@ export const AuthProvider = ({ children }) => {
       setUser(res.data.user);
     } catch (err) {
       console.error('Failed to fetch user:', err);
+      localStorage.removeItem('junglee_token');
       localStorage.removeItem('silvan_token');
       setUser(null);
     } finally {
@@ -37,7 +38,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await loginUser({ email, password });
       if (res.data.token) {
-        localStorage.setItem('silvan_token', res.data.token);
+        localStorage.setItem('junglee_token', res.data.token);
         setUser(res.data.user);
         setIsAuthModalOpen(false);
         return { success: true };
@@ -62,7 +63,7 @@ export const AuthProvider = ({ children }) => {
   const verify = async (code) => {
     const res = await verifyOtp({ email: pendingEmail, code });
     if (res.data.token) {
-      localStorage.setItem('silvan_token', res.data.token);
+      localStorage.setItem('junglee_token', res.data.token);
       setUser(res.data.user);
       setIsAuthModalOpen(false);
       return res.data;
@@ -74,12 +75,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   const handleOAuthToken = (token) => {
-    localStorage.setItem('silvan_token', token);
+    localStorage.setItem('junglee_token', token);
     fetchUser();
     setIsAuthModalOpen(false);
   };
 
   const logout = () => {
+    localStorage.removeItem('junglee_token');
     localStorage.removeItem('silvan_token');
     setUser(null);
   };

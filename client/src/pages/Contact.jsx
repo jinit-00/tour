@@ -39,14 +39,14 @@ export default function Contact() {
               <Phone className="w-5 h-5 text-pine-800 shrink-0 mt-0.5" />
               <div>
                 <span className="text-xs font-mono text-charcoal-500 block uppercase font-bold">Phone</span>
-                <span>+1 (800) 555-SILVAN</span>
+                <span>+1 (800) 555-JUNGLEE</span>
               </div>
             </li>
             <li className="flex items-start gap-3">
               <Mail className="w-5 h-5 text-pine-800 shrink-0 mt-0.5" />
               <div>
                 <span className="text-xs font-mono text-charcoal-500 block uppercase font-bold">Email</span>
-                <span>expeditions@silvantours.com</span>
+                <span>expeditions@junglee.com</span>
               </div>
             </li>
           </ul>

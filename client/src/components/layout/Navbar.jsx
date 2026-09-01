@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { User, LogOut, Shield, Menu, X, Compass as TreeIcon, ChevronRight } from 'lucide-react';
+import { User, LogOut, Shield, Menu, X, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
@@ -41,21 +41,21 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || !isHome
-          ? 'glass-nav py-3.5 shadow-md'
-          : 'bg-gradient-to-b from-sand-900/90 via-sand-800/50 to-transparent py-5'
+          ? 'glass-nav py-3 shadow-md'
+          : 'bg-gradient-to-b from-sand-900/90 via-sand-800/50 to-transparent py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Logo */}
-        <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="w-10 h-10 rounded-full bg-pine-800 border border-pine-700 flex items-center justify-center text-sand-950 group-hover:scale-105 transition-all shadow-md">
-            <TreeIcon className="w-5 h-5" />
+        {/* Brand Logo & Name */}
+        <Link to="/" className="flex items-center gap-3 group">
+          <div className="w-11 h-11 rounded-full overflow-hidden border border-sand-700 shadow-md group-hover:scale-105 transition-all shrink-0 bg-sand-950">
+            <img src="/logo.webp" alt="JungleE Wildlife Expeditions Logo" className="w-full h-full object-cover" />
           </div>
           <div className="flex flex-col">
-            <span className="font-sans font-bold tracking-widest text-lg text-charcoal-900 uppercase group-hover:text-pine-800 transition-colors">
-              SILVAN TOURS
+            <span className="font-sans font-black tracking-wider text-base sm:text-lg text-charcoal-900 uppercase group-hover:text-pine-800 transition-colors leading-tight">
+              JungleE
             </span>
-            <span className="text-[10px] tracking-widest uppercase text-charcoal-700 font-mono">
+            <span className="text-[10px] tracking-widest uppercase text-pine-800 font-mono font-bold">
               WILDLIFE EXPEDITIONS
             </span>
           </div>
