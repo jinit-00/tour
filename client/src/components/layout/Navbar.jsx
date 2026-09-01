@@ -41,21 +41,22 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || !isHome
-          ? 'glass-nav py-3 shadow-md'
-          : 'bg-gradient-to-b from-sand-900/90 via-sand-800/50 to-transparent py-4'
+          ? 'glass-nav py-2 sm:py-3 shadow-md'
+          : 'bg-gradient-to-b from-sand-900/90 via-sand-800/60 to-transparent py-3 sm:py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Logo & Name */}
-        <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-11 h-11 rounded-full overflow-hidden border border-sand-700 shadow-md group-hover:scale-105 transition-all shrink-0 bg-sand-950">
+        
+        {/* 3x Enlarged Brand Logo & Name */}
+        <Link to="/" className="flex items-center gap-3.5 group">
+          <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-sand-700/80 shadow-2xl group-hover:scale-105 transition-all shrink-0 bg-sand-950">
             <img src="/logo.webp" alt="JungleE Wildlife Expeditions Logo" className="w-full h-full object-cover" />
           </div>
           <div className="flex flex-col">
-            <span className="font-sans font-black tracking-wider text-base sm:text-lg text-charcoal-900 uppercase group-hover:text-pine-800 transition-colors leading-tight">
+            <span className="font-sans font-black tracking-wider text-xl sm:text-2xl text-charcoal-900 uppercase group-hover:text-pine-800 transition-colors leading-none">
               JungleE
             </span>
-            <span className="text-[10px] tracking-widest uppercase text-pine-800 font-mono font-bold">
+            <span className="text-[10px] sm:text-xs tracking-[0.2em] uppercase text-pine-800 font-mono font-bold pt-1">
               WILDLIFE EXPEDITIONS
             </span>
           </div>
