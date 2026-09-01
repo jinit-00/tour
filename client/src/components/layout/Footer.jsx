@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Youtube, Camera, Mail, Phone, MapPin, User } from 'lucide-react';
+import { Instagram, Facebook, Youtube, Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -27,17 +27,32 @@ export default function Footer() {
               Crafting immersive, small-group wildlife photography safaris to Earth's most breathtaking untamed frontiers. Guided by world-renowned naturalists and wildlife photographers at JungleE Wildlife Expeditions.
             </p>
             <div className="flex items-center gap-3 pt-2">
-              <a href="#" className="w-9 h-9 rounded-full bg-sand-800 border border-sand-700 hover:bg-pine-800 hover:text-sand-950 transition-colors flex items-center justify-center text-charcoal-800">
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a href="#" className="w-9 h-9 rounded-full bg-sand-800 border border-sand-700 hover:bg-pine-800 hover:text-sand-950 transition-colors flex items-center justify-center text-charcoal-800">
+              <a
+                href="https://www.facebook.com/Jungleewildlifeexpeditions"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Facebook"
+                className="w-9 h-9 rounded-full bg-sand-800 border border-sand-700 hover:bg-pine-800 hover:text-sand-950 transition-colors flex items-center justify-center text-charcoal-800"
+              >
                 <Facebook className="w-4 h-4" />
               </a>
-              <a href="#" className="w-9 h-9 rounded-full bg-sand-800 border border-sand-700 hover:bg-pine-800 hover:text-sand-950 transition-colors flex items-center justify-center text-charcoal-800">
-                <Youtube className="w-4 h-4" />
+              <a
+                href="https://www.instagram.com/junglee.wildlife.expeditions"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Instagram"
+                className="w-9 h-9 rounded-full bg-sand-800 border border-sand-700 hover:bg-pine-800 hover:text-sand-950 transition-colors flex items-center justify-center text-charcoal-800"
+              >
+                <Instagram className="w-4 h-4" />
               </a>
-              <a href="#" className="w-9 h-9 rounded-full bg-sand-800 border border-sand-700 hover:bg-pine-800 hover:text-sand-950 transition-colors flex items-center justify-center text-charcoal-800">
-                <Camera className="w-4 h-4" />
+              <a
+                href="https://www.youtube.com/@JungleEWildlifeExpeditions"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="YouTube"
+                className="w-9 h-9 rounded-full bg-sand-800 border border-sand-700 hover:bg-pine-800 hover:text-sand-950 transition-colors flex items-center justify-center text-charcoal-800"
+              >
+                <Youtube className="w-4 h-4" />
               </a>
             </div>
           </div>
