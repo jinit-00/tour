@@ -9,16 +9,16 @@ export default function FullWidthSafariBlock({ tour, index = 0 }) {
 
   return (
     <section 
-      className="w-full min-h-0 rounded-3xl bg-block-sand-gradient border border-sand-700/80 hover:border-pine-800/40 transition-all duration-500 shadow-xl overflow-hidden mb-12 p-6 sm:p-8 md:p-10 relative flex flex-col justify-between group"
+      className="w-full h-[620px] sm:h-[660px] md:h-[700px] rounded-3xl bg-block-sand-gradient border border-sand-700/80 hover:border-pine-800/40 transition-all duration-500 shadow-xl overflow-hidden mb-12 p-6 sm:p-8 md:p-10 relative flex flex-col justify-between group"
     >
       {/* Ambient Sand Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-sand-900/40 via-sand-800/30 to-sand-700/40 pointer-events-none" />
 
-      {/* TOP HEADER ROW: Metadata & Location */}
-      <div className="relative z-10 space-y-3">
+      {/* TOP HEADER ROW: Fixed Height Header for 100% Equal Alignment */}
+      <div className="relative z-10 h-32 sm:h-36 md:h-40 flex flex-col justify-start space-y-2 shrink-0 overflow-hidden">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <span className="bg-pine-800 text-sand-950 px-4 py-1.5 rounded-full text-xs font-mono font-semibold tracking-wider uppercase shadow-md">
+            <span className="bg-pine-800 text-sand-950 px-4 py-1 rounded-full text-xs font-mono font-semibold tracking-wider uppercase shadow-md">
               {tour.duration}
             </span>
             <div className="flex items-center gap-1.5 text-xs text-charcoal-700 font-mono">
@@ -31,17 +31,17 @@ export default function FullWidthSafariBlock({ tour, index = 0 }) {
           </span>
         </div>
 
-        <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-charcoal-900 tracking-tight uppercase leading-tight group-hover:text-pine-800 transition-colors">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-charcoal-900 tracking-tight uppercase leading-tight line-clamp-1 group-hover:text-pine-800 transition-colors">
           {tour.title}
         </h2>
 
-        <p className="text-xs sm:text-sm text-charcoal-700 max-w-3xl font-normal leading-relaxed">
+        <p className="text-xs sm:text-sm text-charcoal-700 max-w-3xl font-normal leading-relaxed line-clamp-2">
           {tour.description}
         </p>
       </div>
 
-      {/* CENTER: REDUCED HEIGHT COMPACT ANIMAL PHOTOGRAPHY CONTAINER */}
-      <div className="relative z-10 my-6 h-64 sm:h-80 md:h-96 w-full bg-sand-900/90 rounded-2xl overflow-hidden flex items-center justify-center border border-sand-700/80 shadow-lg">
+      {/* CENTER: FLEXIBLE IMAGE CONTAINER OCCUPYING EXACT EQUAL HEIGHT */}
+      <div className="relative z-10 my-4 flex-1 w-full bg-sand-900/90 rounded-2xl overflow-hidden flex items-center justify-center border border-sand-700/80 shadow-lg min-h-0">
         <img
           src={imageUrl}
           alt={tour.title}
@@ -51,7 +51,7 @@ export default function FullWidthSafariBlock({ tour, index = 0 }) {
       </div>
 
       {/* BOTTOM FOOTER & FULL-WIDTH DUAL ACTION BAR */}
-      <div className="relative z-10 pt-4 border-t border-sand-700/80 space-y-5">
+      <div className="relative z-10 pt-3 border-t border-sand-700/80 space-y-4 shrink-0">
         
         <div className="flex items-center justify-between gap-4 text-xs font-mono text-charcoal-700">
           <div className="flex items-center gap-2">
