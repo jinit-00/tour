@@ -47,30 +47,30 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
-        {/* 3x Enlarged Brand Logo & Name */}
-        <Link to="/" className="flex items-center gap-3.5 group">
-          <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-2 border-sand-700/80 shadow-2xl group-hover:scale-105 transition-all shrink-0 bg-sand-950">
+        {/* Brand Logo & Name */}
+        <Link to="/" className="flex items-center gap-3 shrink-0 group">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-sand-700/80 shadow-2xl group-hover:scale-105 transition-all shrink-0 bg-sand-950">
             <img src="/logo.webp" alt="JungleE Wildlife Expeditions Logo" className="w-full h-full object-cover" />
           </div>
-          <div className="flex flex-col">
-            <span className="font-sans font-black tracking-wider text-xl sm:text-2xl text-charcoal-950 uppercase group-hover:text-pine-800 transition-colors leading-none">
+          <div className="flex flex-col shrink-0">
+            <span className="font-sans font-black tracking-wider text-lg sm:text-2xl text-charcoal-950 uppercase group-hover:text-pine-800 transition-colors leading-none">
               JungleE
             </span>
-            <span className="text-[10px] sm:text-xs tracking-[0.2em] uppercase text-pine-800 font-mono font-bold pt-1">
+            <span className="text-[9px] sm:text-xs tracking-[0.18em] uppercase text-pine-800 font-mono font-bold pt-1">
               WILDLIFE EXPEDITIONS
             </span>
           </div>
         </Link>
 
-        {/* Large Prominent Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-7 xl:gap-8">
+        {/* Large Single-Line Desktop Navigation Links */}
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-6 2xl:gap-8 shrink-0">
           {navLinks.map((link) => {
             const isActive = location.pathname === link.path;
             return (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-base font-extrabold tracking-wide transition-colors hover:text-pine-800 ${
+                className={`whitespace-nowrap text-sm xl:text-base font-extrabold tracking-wide transition-colors hover:text-pine-800 ${
                   isActive
                     ? 'text-pine-800 font-black border-b-2 border-pine-800 pb-0.5'
                     : 'text-charcoal-950 hover:text-pine-800'
@@ -83,17 +83,17 @@ export default function Navbar() {
         </nav>
 
         {/* Desktop Right Action Buttons */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-3 shrink-0">
           {user ? (
-            <div className="relative">
+            <div className="relative shrink-0">
               <button
                 onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-sand-900 border border-sand-700 hover:border-pine-800/50 transition-all text-sm font-bold text-charcoal-950 shadow-sm"
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand-900 border border-sand-700 hover:border-pine-800/50 transition-all text-xs font-bold text-charcoal-950 shadow-sm"
               >
-                <div className="w-6 h-6 rounded-full bg-pine-800 text-sand-950 flex items-center justify-center text-xs font-bold uppercase">
+                <div className="w-5 h-5 rounded-full bg-pine-800 text-sand-950 flex items-center justify-center text-[10px] font-bold uppercase shrink-0">
                   {user.name ? user.name[0] : 'U'}
                 </div>
-                <span className="max-w-[120px] truncate text-charcoal-950 font-bold">{user.name}</span>
+                <span className="max-w-[90px] xl:max-w-[120px] truncate text-charcoal-950 font-bold">{user.name}</span>
               </button>
 
               <AnimatePresence>
@@ -147,7 +147,7 @@ export default function Navbar() {
           ) : (
             <button
               onClick={() => openAuthModal('login')}
-              className="text-base font-extrabold text-charcoal-950 hover:text-pine-800 transition-colors px-3 py-1.5"
+              className="text-sm xl:text-base font-extrabold text-charcoal-950 hover:text-pine-800 transition-colors px-2.5 py-1.5 whitespace-nowrap"
             >
               Sign In
             </button>
@@ -155,7 +155,7 @@ export default function Navbar() {
 
           <Link
             to="/tours"
-            className="px-6 py-2.5 rounded-full bg-pine-800 hover:bg-pine-700 text-sand-950 font-extrabold text-base transition-all duration-200 shadow-md flex items-center gap-1.5 group"
+            className="px-5 xl:px-6 py-2 rounded-full bg-pine-800 hover:bg-pine-700 text-sand-950 font-extrabold text-xs xl:text-sm transition-all duration-200 shadow-md flex items-center gap-1.5 whitespace-nowrap shrink-0 group"
           >
             <span>Book a Tour</span>
             <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
