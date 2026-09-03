@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import {
   LayoutDashboard,
@@ -14,9 +14,8 @@ import {
 } from 'lucide-react';
 
 export default function AdminLayout({ children }) {
-  const { user, logout } = useAuth();
+  const { user, logout, openAuthModal } = useAuth();
   const location = useLocation();
-  const navigate = useNavigate();
 
   if (!user || user.role !== 'ADMIN') {
     return (
@@ -31,7 +30,7 @@ export default function AdminLayout({ children }) {
           </p>
           <div className="pt-2 flex flex-col gap-2">
             <button
-              onClick={() => navigate('/login')}
+              onClick={() => openAuthModal('login')}
               className="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-lg transition-colors"
             >
               Sign In as Admin
@@ -65,7 +64,7 @@ export default function AdminLayout({ children }) {
           <div className="p-6 border-b border-slate-100 flex items-center justify-between">
             <div>
               <span className="font-extrabold tracking-tight text-lg text-slate-900 block">
-                SILVAN ADMIN
+                JUNGLEE ADMIN
               </span>
               <span className="text-xs text-emerald-600 font-medium">Control Center v1.0</span>
             </div>
@@ -119,7 +118,7 @@ export default function AdminLayout({ children }) {
         {/* Top Navbar */}
         <header className="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between shadow-xs">
           <div>
-            <h1 className="text-xl font-bold text-slate-900">Silvan Tours Admin Panel</h1>
+            <h1 className="text-xl font-bold text-slate-900">JungleE Wildlife Expeditions Admin Panel</h1>
             <p className="text-xs text-slate-500">Live operational & inventory control</p>
           </div>
 
