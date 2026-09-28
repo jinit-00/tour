@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, MapPin, Star, Wifi, Coffee, Utensils, Tv, 
-  ExternalLink, CheckCircle2, ShieldCheck, Clock, Award 
+  CheckCircle2, ShieldCheck, Clock, Award, Building, Sparkles 
 } from 'lucide-react';
 
 export default function HotelDetailModal({ hotel, isOpen, onClose }) {
@@ -10,11 +10,13 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
 
   if (!isOpen || !hotel) return null;
 
-  const images = hotel.images && hotel.images.length > 0 ? hotel.images : [
+  const images = hotel.images && hotel.images.length >= 4 ? hotel.images : [
     'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
     'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
     'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80'
+    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80',
+    'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
+    'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80'
   ];
 
   return (
@@ -39,12 +41,12 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
           {/* Header Bar */}
           <div className="flex items-center justify-between p-6 border-b border-sand-700/80 bg-sand-900/90 shrink-0">
             <div className="flex items-center gap-3">
-              <span className="bg-pine-800 text-sand-950 text-xs font-mono font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+              <span className="bg-pine-800 text-sand-950 text-xs font-mono font-bold px-3.5 py-1 rounded-full uppercase tracking-wider">
                 Official Safari Stay
               </span>
               <span className="text-xs text-amber-600 font-bold flex items-center gap-1 font-mono">
                 <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
-                4.5 / 5.0 (MakeMyTrip Verified)
+                4.5 / 5.0 Premium Resort Rating
               </span>
             </div>
 
@@ -63,7 +65,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-pine-800 font-mono text-xs font-bold uppercase tracking-widest">
                 <MapPin className="w-4 h-4" />
-                <span>{hotel.address || 'Borvav, Sasan Gir, Gir Somnath, Gujarat, India'}</span>
+                <span>{hotel.address || 'Plot No 2, Survey No 10/1, Borvav Gir, Borvav Dhava Road, Gir Somnath, Gujarat, India'}</span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-black tracking-tight uppercase text-charcoal-950">
                 {hotel.name}
@@ -87,12 +89,12 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
               </div>
 
               {/* Thumbnail Bar */}
-              <div className="grid grid-cols-4 gap-3">
+              <div className="grid grid-cols-6 gap-2.5">
                 {images.map((img, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveImageIndex(idx)}
-                    className={`h-16 sm:h-20 rounded-xl overflow-hidden border-2 transition-all ${
+                    className={`h-14 sm:h-16 rounded-xl overflow-hidden border-2 transition-all ${
                       activeImageIndex === idx
                         ? 'border-pine-800 scale-105 shadow-md'
                         : 'border-sand-700 opacity-60 hover:opacity-100'
@@ -108,7 +110,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
             <div className="glass-panel p-6 rounded-2xl border border-sand-700/80 space-y-3">
               <h3 className="text-lg font-bold text-charcoal-950 flex items-center gap-2">
                 <Award className="w-5 h-5 text-pine-800" />
-                <span>About Le Casa Lion Resort</span>
+                <span>Resort Description & Wilderness Setting</span>
               </h3>
               <p className="text-xs sm:text-sm leading-relaxed text-charcoal-700 font-normal">
                 {hotel.description || 'Set in the tranquil greenery of Borvav village near the entry gate of Gir Asiatic Lion Sanctuary, Le Casa Lion Resort features 54 luxury rooms, private pool villas, and forest-view cottages. Designed specifically to cater to wildlife photographers, safari explorers, and families seeking high-end luxury in the Gir jungle.'}
@@ -117,7 +119,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
 
             {/* Premium Amenities Grid */}
             <div className="space-y-4">
-              <h3 className="text-lg font-bold text-charcoal-950">Resort Amenities & Features</h3>
+              <h3 className="text-lg font-bold text-charcoal-950">Resort Amenities & Facilities</h3>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-medium text-charcoal-800">
                 <div className="p-3.5 rounded-xl bg-sand-900 border border-sand-700 flex items-center gap-3">
                   <div className="w-8 h-8 rounded-lg bg-pine-800/10 text-pine-800 flex items-center justify-center shrink-0">
@@ -172,7 +174,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
 
             {/* Room Categories */}
             <div className="space-y-4">
-              <h3 className="text-lg font-bold text-charcoal-950">Featured Room Tiers</h3>
+              <h3 className="text-lg font-bold text-charcoal-950">Room & Cottage Categories</h3>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="p-4 rounded-xl bg-sand-900 border border-sand-700 space-y-1.5">
                   <span className="text-xs font-mono text-pine-800 font-bold block">Standard Room</span>
@@ -206,22 +208,19 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
 
           </div>
 
-          {/* Modal Footer Bar with MakeMyTrip Action */}
+          {/* Modal Footer Bar */}
           <div className="p-6 border-t border-sand-700/80 bg-sand-900/90 flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0">
-            <div>
-              <span className="text-xs font-mono text-charcoal-600 block">Verified Hotel Source</span>
-              <span className="text-sm font-bold text-charcoal-900">MakeMyTrip Featured Property</span>
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-pine-800" />
+              <span className="text-xs font-bold text-charcoal-900">Official Accommodation included with JungleE Gir Safari Departure</span>
             </div>
 
-            <a
-              href={hotel.mmtUrl || 'https://www.makemytrip.com/hotels/le_casa_lion_resort_a_premium_resort_in_sasan_gir-details-sasan_gir.html'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-pine-800 hover:bg-pine-700 text-sand-950 font-bold text-xs shadow-xl transition-all flex items-center justify-center gap-2"
+            <button
+              onClick={onClose}
+              className="w-full sm:w-auto px-8 py-3 rounded-xl bg-pine-800 hover:bg-pine-700 text-sand-950 font-bold text-xs shadow-xl transition-all"
             >
-              <span>View Live Rates on MakeMyTrip</span>
-              <ExternalLink className="w-4 h-4" />
-            </a>
+              Close Details
+            </button>
           </div>
 
         </motion.div>
