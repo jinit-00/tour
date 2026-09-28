@@ -1,52 +1,40 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
-import { ArrowRight, MapPin, Calendar, Camera, ShieldCheck, Sun, Compass, Sparkles, CheckCircle2, ChevronDown } from 'lucide-react';
 import { getTourDetail } from '../services/api';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { 
+  Camera, ShieldCheck, Sun, Compass, ArrowRight, ChevronDown, 
+  MapPin, CheckCircle2, Sparkles, ExternalLink, Hotel, Star 
+} from 'lucide-react';
+import HotelDetailModal from '../components/tours/HotelDetailModal';
 
 export default function SafariStory() {
   const { slug } = useParams();
-  const shouldReduceMotion = useReducedMotion();
-  
-  // Track ref for the compact 135vh scroll container
-  const storyTrackRef = useRef(null);
-
   const [tour, setTour] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  // 1. FORCE ABSOLUTE TOP SCROLL POSITION ON ROUTE MOUNT & PREVENT BROWSER SCROLL RESTORATION SHIFTS
-  useEffect(() => {
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
-    }
-    window.scrollTo(0, 0);
-  }, [slug]);
+  const [hotelModalOpen, setHotelModalOpen] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
     getTourDetail(slug)
       .then((res) => setTour(res.data))
       .catch((err) => console.error(err))
-      .finally(() => {
-        setLoading(false);
-        // Force scroll top once data is ready
-        setTimeout(() => window.scrollTo(0, 0), 10);
-      });
+      .finally(() => setLoading(false));
   }, [slug]);
 
-  // 2. FULL-SCREEN 100VW x 100VH CINEMATIC SCROLL ENGINE (135vh track ref)
+  // Framer Motion Scroll Progress for Fullscreen Story Track
+  const storyTrackRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: storyTrackRef,
-    offset: ["start start", "end end"]
+    offset: ['start start', 'end start']
   });
 
-  // Full-Screen Image Zooming/Transforming: scale 1.0 -> 1.18 over initial [0.0 -> 0.50] scroll progress
-  const bgScale = useTransform(scrollYProgress, [0.0, 0.50], shouldReduceMotion ? [1, 1] : [1.0, 1.18]);
-  const bgOpacity = useTransform(scrollYProgress, [0.45, 0.70], [1, 0.45]);
-
-  // Overlaid Title text fades out as user scrolls
-  const heroTitleOpacity = useTransform(scrollYProgress, [0.0, 0.22], [1, 0]);
-  const heroTitleY = useTransform(scrollYProgress, [0.0, 0.22], [0, -35]);
+  // Phase 1: Full-Screen Background Zoom & Opacity Fade
+  const bgScale = useTransform(scrollYProgress, [0, 0.45], [1, 1.15]);
+  const bgOpacity = useTransform(scrollYProgress, [0.3, 0.55], [1, 0.85]);
+  
+  // Floating Title Parallax
+  const heroTitleOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
+  const heroTitleY = useTransform(scrollYProgress, [0, 0.25], [0, -60]);
 
   // Story Unlocked Indicator overlay
   const completionOverlayOpacity = useTransform(scrollYProgress, [0.35, 0.55], [0, 1]);
@@ -60,11 +48,29 @@ export default function SafariStory() {
     );
   }
 
+  const isGir = slug.includes('gir');
   const isTiger = slug.includes('tiger') || slug.includes('ranthambore');
   const isRhino = slug.includes('rhino') || slug.includes('kruger');
-  const isLion = slug.includes('lion') || slug.includes('serengeti');
 
-  const storyData = isTiger
+  const storyData = isGir
+    ? {
+        animalName: 'Asiatic Lion',
+        tagline: 'The Last Monarchs of Gir Sanctuary',
+        photo: 'https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?auto=format&fit=crop&w=2400&q=90',
+        highlights: [
+          'Track wild Asiatic Lion prides in Gir’s dry deciduous teak forests',
+          'Photograph leopards, spotted deer, chinkara antelopes & 300+ bird species',
+          'Exclusive open-top 4x4 safari access with expert native trackers'
+        ],
+        bestSeason: 'November – April (Optimal Daylight & High Wildlife Movement)',
+        accommodation: 'Le Casa Lion Resort, Sasan Gir (A Premium Resort in Sasan Gir near Gir National Park)',
+        activities: [
+          'Morning & Afternoon Open 4x4 Gir Lion Safari Drives',
+          '1-on-1 Daily Telephoto Framing & Histogram Workshops',
+          'Evening Wildlife Conservation Discussions at Le Casa Resort'
+        ]
+      }
+    : isTiger
     ? {
         animalName: 'Royal Bengal Tiger',
         tagline: 'The Shadow Prowler of Ranthambore',
@@ -117,6 +123,21 @@ export default function SafariStory() {
           'Evening Fireside Portfolio Critiques Under Starry Skies'
         ]
       };
+
+  const hotelInfo = (isGir || tour?.hotelDetails) ? {
+    name: 'Le Casa Lion Resort, Sasan Gir',
+    tagline: 'A Premium Resort in Sasan Gir near Gir National Park Sanctuary',
+    address: 'Plot No 2, Survey No 10/1, Borvav Gir, Borvav Dhava Road, Gir Somnath, Gujarat, India',
+    rating: '4.5 ★ Premium Wildlife Resort',
+    mmtUrl: 'https://www.makemytrip.com/hotels/le_casa_lion_resort_a_premium_resort_in_sasan_gir-details-sasan_gir.html',
+    description: 'Set in the tranquil greenery of Borvav village near the entry gate of Gir Asiatic Lion Sanctuary, Le Casa Lion Resort features 54 luxury rooms, private pool villas, and forest-view cottages. Designed specifically to cater to wildlife photographers, safari explorers, and families seeking high-end luxury in the Gir jungle.',
+    images: [
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80'
+    ]
+  } : null;
 
   return (
     <div className="bg-sand-gradient text-charcoal-900 min-h-screen selection:bg-pine-800 selection:text-sand-950 overflow-x-hidden pt-16">
@@ -183,51 +204,36 @@ export default function SafariStory() {
         </div>
       </div>
 
-      {/* 2. REVEALED SAFARI SPECIFICATIONS (NO PRICES DISPLAYED) */}
-      <section className="relative py-20 bg-sand-gradient border-t border-sand-700 z-30">
+      {/* 2. PHASE 2: DEEP FIELD EXPEDITION DETAILS & ITINERARY (NO PRICES DISPLAYED) */}
+      <section className="relative z-30 py-20 bg-sand-gradient border-t border-sand-700">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           
-          <div className="space-y-6 text-center max-w-3xl mx-auto">
-            <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Field Specifications</span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-charcoal-900">
-              Expedition Overview
+          {/* Header */}
+          <div className="text-center space-y-3 max-w-3xl mx-auto">
+            <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Field Dossier</span>
+            <h2 className="text-3xl sm:text-5xl font-black text-charcoal-900 uppercase tracking-tight">
+              Expedition Overview & Masterclass Highlights
             </h2>
-            <p className="text-sm sm:text-base text-charcoal-700 leading-relaxed font-normal">
-              {tour?.description}
+            <p className="text-sm text-charcoal-700 font-normal">
+              Designed for wildlife photographers seeking prime positioning, ethical tracking, and high-end field instruction.
             </p>
-
-            <div className="grid grid-cols-2 gap-4 pt-6 border-t border-sand-700 max-w-lg mx-auto">
-              <div className="glass-panel p-4 rounded-xl border border-sand-700 text-center">
-                <MapPin className="w-4 h-4 text-pine-800 mx-auto mb-1" />
-                <span className="text-[10px] font-mono text-charcoal-600 uppercase block">Location</span>
-                <p className="text-xs font-bold text-charcoal-900">{tour?.location}</p>
-              </div>
-
-              <div className="glass-panel p-4 rounded-xl border border-sand-700 text-center">
-                <Calendar className="w-4 h-4 text-pine-800 mx-auto mb-1" />
-                <span className="text-[10px] font-mono text-charcoal-600 uppercase block">Duration</span>
-                <p className="text-xs font-bold text-charcoal-900">{tour?.duration}</p>
-              </div>
-            </div>
           </div>
 
-          {/* SAFARI HIGHLIGHTS GRID */}
+          {/* Masterclass Key Highlights Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="glass-panel p-8 rounded-2xl border border-sand-700 space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center shadow-md">
-                <Camera className="w-6 h-6" />
+            {storyData.highlights.map((item, idx) => (
+              <div key={idx} className="glass-panel p-8 rounded-2xl border border-sand-700 space-y-4">
+                <div className="w-10 h-10 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-sm shadow-md">
+                  0{idx + 1}
+                </div>
+                <h3 className="text-lg font-bold text-charcoal-900">{item}</h3>
               </div>
-              <h3 className="text-xl font-bold text-charcoal-900">Wildlife Highlights</h3>
-              <ul className="space-y-2 text-xs text-charcoal-700 leading-relaxed font-normal">
-                {storyData.highlights.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-pine-800 shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            ))}
+          </div>
 
+          {/* Season & Lodging Info */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
             <div className="glass-panel p-8 rounded-2xl border border-sand-700 space-y-4">
               <div className="w-12 h-12 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center shadow-md">
                 <Sun className="w-6 h-6" />
@@ -243,11 +249,19 @@ export default function SafariStory() {
               <div className="w-12 h-12 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center shadow-md">
                 <ShieldCheck className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-charcoal-900">Luxury Lodging</h3>
+              <h3 className="text-xl font-bold text-charcoal-900">Luxury Safari Stay</h3>
               <p className="text-xs text-charcoal-700 leading-relaxed font-normal">{storyData.accommodation}</p>
-              <p className="text-[11px] text-charcoal-600 font-mono">
-                ✓ 24/7 Power Charging Stations for Camera Batteries & Laptops.
-              </p>
+              
+              {hotelInfo && (
+                <button
+                  onClick={() => setHotelModalOpen(true)}
+                  className="px-4 py-2 rounded-xl bg-pine-800 hover:bg-pine-700 text-sand-950 text-xs font-bold shadow-md transition-all inline-flex items-center gap-2 mt-2"
+                >
+                  <Hotel className="w-4 h-4" />
+                  <span>View Hotel Details ({hotelInfo.name})</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </button>
+              )}
             </div>
           </div>
 
@@ -301,6 +315,15 @@ export default function SafariStory() {
           </div>
         </div>
       </section>
+
+      {/* Hotel Details Modal */}
+      {hotelInfo && (
+        <HotelDetailModal
+          hotel={hotelInfo}
+          isOpen={hotelModalOpen}
+          onClose={() => setHotelModalOpen(false)}
+        />
+      )}
 
     </div>
   );

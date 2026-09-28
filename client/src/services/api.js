@@ -16,8 +16,22 @@ const FALLBACK_TOURS = [
       'https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
-      { id: 'p1', name: 'Gir Jungle Lodge', price: 0, description: 'Eco-lodge stay & all safari permits.' }
-    ]
+      { id: 'p1', name: 'Le Casa Lion Resort Package', price: 0, description: 'Luxury stay at Le Casa Lion Resort (Sasan Gir) & all safari permits.' }
+    ],
+    hotelDetails: {
+      name: 'Le Casa Lion Resort, Sasan Gir',
+      tagline: 'A Premium Resort in Sasan Gir near Gir National Park Sanctuary',
+      address: 'Plot No 2, Survey No 10/1, Borvav Gir, Borvav Dhava Road, Gir Somnath, Gujarat, India',
+      rating: '4.5 ★ Premium Wildlife Resort',
+      mmtUrl: 'https://www.makemytrip.com/hotels/le_casa_lion_resort_a_premium_resort_in_sasan_gir-details-sasan_gir.html',
+      description: 'Set in the tranquil greenery of Borvav village near the entry gate of Gir Asiatic Lion Sanctuary, Le Casa Lion Resort features 54 luxury rooms, private pool villas, and forest-view cottages. Designed specifically to cater to wildlife photographers, safari explorers, and families seeking high-end luxury in the Gir jungle.',
+      images: [
+        'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+        'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
+        'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
+        'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80'
+      ]
+    }
   },
   {
     id: '2',

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getTourDetail, createBooking } from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, ExternalLink, Star, Hotel } from 'lucide-react';
+import HotelDetailModal from '../components/tours/HotelDetailModal';
 
 export default function TourDetail() {
   const { slug } = useParams();
@@ -17,6 +17,7 @@ export default function TourDetail() {
   const [bookingLoading, setBookingLoading] = useState(false);
   const [bookingSuccess, setBookingSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [hotelModalOpen, setHotelModalOpen] = useState(false);
 
   useEffect(() => {
     getTourDetail(slug)
@@ -79,6 +80,22 @@ export default function TourDetail() {
   const images = tour.images && tour.images.length > 0 
     ? tour.images 
     : ['https://images.unsplash.com/photo-1516426122078-c23e76319801'];
+
+  // Gir Safari Hotel Data (Le Casa Lion Resort, Sasan Gir)
+  const hotelInfo = tour.hotelDetails || (tour.slug === 'gir-lion-safari' ? {
+    name: 'Le Casa Lion Resort, Sasan Gir',
+    tagline: 'A Premium Resort in Sasan Gir near Gir National Park Sanctuary',
+    address: 'Plot No 2, Survey No 10/1, Borvav Gir, Borvav Dhava Road, Gir Somnath, Gujarat, India',
+    rating: '4.5 ★ Premium Wildlife Resort',
+    mmtUrl: 'https://www.makemytrip.com/hotels/le_casa_lion_resort_a_premium_resort_in_sasan_gir-details-sasan_gir.html',
+    description: 'Set in the tranquil greenery of Borvav village near the entry gate of Gir Asiatic Lion Sanctuary, Le Casa Lion Resort features 54 luxury rooms, private pool villas, and forest-view cottages. Designed specifically to cater to wildlife photographers, safari explorers, and families seeking high-end luxury in the Gir jungle.',
+    images: [
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80'
+    ]
+  } : null);
 
   return (
     <div className="pt-36 sm:pt-40 lg:pt-44 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-sand-gradient min-h-screen">
@@ -156,6 +173,60 @@ export default function TourDetail() {
               </div>
             </div>
           </div>
+
+          {/* Featured Hotel Accommodation Section for Gir Safari */}
+          {hotelInfo && (
+            <div className="glass-panel p-8 rounded-3xl border border-sand-700/80 shadow-xl space-y-6 bg-sand-900/60">
+              <div className="flex items-center justify-between flex-wrap gap-2">
+                <div className="space-y-1">
+                  <span className="text-xs font-mono uppercase text-pine-800 font-bold tracking-widest flex items-center gap-1.5">
+                    <Hotel className="w-4 h-4 text-pine-800" />
+                    Official Safari Resort Accommodation
+                  </span>
+                  <h3 className="text-2xl font-black text-charcoal-950 uppercase">
+                    {hotelInfo.name}
+                  </h3>
+                </div>
+                <span className="px-3 py-1 rounded-full bg-pine-800/10 text-pine-800 border border-pine-800/20 text-xs font-mono font-bold flex items-center gap-1">
+                  <Star className="w-3.5 h-3.5 fill-pine-800 text-pine-800" />
+                  MakeMyTrip Verified
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-center">
+                <div 
+                  onClick={() => setHotelModalOpen(true)}
+                  className="sm:col-span-1 h-44 rounded-2xl overflow-hidden bg-sand-900 border border-sand-700 shadow-md cursor-pointer group relative"
+                >
+                  <img src={hotelInfo.images[0]} alt={hotelInfo.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-charcoal-950/30 group-hover:bg-charcoal-950/10 transition-colors flex items-center justify-center">
+                    <span className="bg-charcoal-950/80 text-sand-950 text-[10px] font-mono font-bold px-2.5 py-1 rounded-full backdrop-blur-sm border border-sand-700">
+                      Click to View Photos
+                    </span>
+                  </div>
+                </div>
+
+                <div className="sm:col-span-2 space-y-3">
+                  <p className="text-xs text-charcoal-700 leading-relaxed font-normal">
+                    {hotelInfo.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 text-xs font-mono text-charcoal-800">
+                    <span className="px-2.5 py-1 rounded-lg bg-sand-950 border border-sand-700">🏊 Swimming Pool</span>
+                    <span className="px-2.5 py-1 rounded-lg bg-sand-950 border border-sand-700">🏡 Pool Villas</span>
+                    <span className="px-2.5 py-1 rounded-lg bg-sand-950 border border-sand-700">🍽️ Fine Dining</span>
+                    <span className="px-2.5 py-1 rounded-lg bg-sand-950 border border-sand-700">🛜 Free Wi-Fi</span>
+                  </div>
+                  <button
+                    onClick={() => setHotelModalOpen(true)}
+                    className="px-5 py-2.5 rounded-xl bg-pine-800 hover:bg-pine-700 text-sand-950 text-xs font-bold shadow-md transition-all flex items-center gap-2 mt-2"
+                  >
+                    <span>View Hotel Details & Photos ({hotelInfo.name})</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
 
         </div>
 
@@ -278,6 +349,15 @@ export default function TourDetail() {
         </div>
 
       </div>
+
+      {/* Hotel Details Modal */}
+      {hotelInfo && (
+        <HotelDetailModal
+          hotel={hotelInfo}
+          isOpen={hotelModalOpen}
+          onClose={() => setHotelModalOpen(false)}
+        />
+      )}
 
     </div>
   );
