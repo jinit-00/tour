@@ -89,7 +89,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
               </div>
 
               {/* Thumbnail Bar */}
-              <div className="grid grid-cols-4 sm:grid-cols-6 gap-2.5">
+              <div className="grid grid-cols-5 sm:grid-cols-10 gap-2">
                 {images.map((img, idx) => (
                   <button
                     key={idx}
