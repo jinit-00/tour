@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getTourDetail, createBooking } from '../services/api';
+import { getTourDetail, createBooking, GIR_HOTELS } from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, Star, Hotel } from 'lucide-react';
+import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, Star, Hotel, Eye } from 'lucide-react';
 import HotelDetailModal from '../components/tours/HotelDetailModal';
 
 export default function TourDetail() {
@@ -18,19 +18,55 @@ export default function TourDetail() {
   const [bookingSuccess, setBookingSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [hotelModalOpen, setHotelModalOpen] = useState(false);
+  const [modalHotel, setModalHotel] = useState(null);
+  const [selectedHotel, setSelectedHotel] = useState(null);
+
+  const isGir = slug === 'gir-lion-safari' || slug?.includes('gir');
+  const availableHotels = isGir ? GIR_HOTELS : (tour?.hotels || []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     getTourDetail(slug)
       .then((res) => {
         setTour(res.data);
+        const hotels = (slug === 'gir-lion-safari' || slug?.includes('gir')) 
+          ? GIR_HOTELS 
+          : (res.data.hotels || []);
+        
+        if (hotels.length > 0) {
+          setSelectedHotel(hotels[0]);
+          setModalHotel(hotels[0]);
+        }
+
         if (res.data.packages && res.data.packages.length > 0) {
           setSelectedPackage(res.data.packages[0]);
+        } else if (hotels.length > 0) {
+          setSelectedPackage({
+            id: hotels[0].id,
+            name: `${hotels[0].name} (${hotels[0].price === 0 ? 'Standard' : `+$${hotels[0].price}`})`,
+            price: hotels[0].price || 0,
+            description: hotels[0].tagline
+          });
         }
       })
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
   }, [slug]);
+
+  const handleSelectHotel = (hotel) => {
+    setSelectedHotel(hotel);
+    setSelectedPackage({
+      id: hotel.id,
+      name: `${hotel.name} (${hotel.price === 0 ? 'Standard Package' : `+$${hotel.price}`})`,
+      price: hotel.price || 0,
+      description: hotel.tagline
+    });
+  };
+
+  const handleOpenHotelDetails = (hotel) => {
+    setModalHotel(hotel);
+    setHotelModalOpen(true);
+  };
 
   const handleBookingSubmit = async (e) => {
     e.preventDefault();
@@ -80,22 +116,7 @@ export default function TourDetail() {
 
   const images = tour.images && tour.images.length > 0 
     ? tour.images 
-    : ['https://images.unsplash.com/photo-1516426122078-c23e76319801'];
-
-  // Gir Safari Hotel Data (Le Casa Lion Resort, Sasan Gir)
-  const hotelInfo = tour.hotelDetails || (tour.slug === 'gir-lion-safari' ? {
-    name: 'Le Casa Lion Resort, Sasan Gir',
-    tagline: 'A Premium Resort in Sasan Gir near Gir National Park Sanctuary',
-    address: 'Plot No 2, Survey No 10/1, Borvav Gir, Borvav Dhava Road, Gir Somnath, Gujarat, India',
-    rating: '4.5 ★ Premium Wildlife Resort',
-    description: 'Set in the tranquil greenery of Borvav village near the entry gate of Gir Asiatic Lion Sanctuary, Le Casa Lion Resort features 54 luxury rooms, private pool villas, and forest-view cottages. Designed specifically to cater to wildlife photographers, safari explorers, and families seeking high-end luxury in the Gir jungle.',
-    images: [
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80'
-    ]
-  } : null);
+    : ['https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80'];
 
   return (
     <div className="pt-24 sm:pt-28 pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-sand-gradient min-h-screen">
@@ -119,7 +140,7 @@ export default function TourDetail() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
-        {/* Left Column: Gallery & Itinerary */}
+        {/* Left Column: Gallery, Itinerary & Partner Hotels */}
         <div className="lg:col-span-2 space-y-6">
           
           {/* Main Hero Gallery Image */}
@@ -182,70 +203,147 @@ export default function TourDetail() {
             </div>
           </div>
 
-          {/* Featured Hotel Accommodation Section for Gir Safari */}
-          {hotelInfo && (
-            <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700/80 shadow-xl space-y-5 bg-sand-900/60">
+          {/* 10 MakeMyTrip Partner Safari Resorts Section for Gir */}
+          {availableHotels.length > 0 && (
+            <div className="space-y-5">
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <div className="space-y-1">
                   <span className="text-xs font-mono uppercase text-pine-800 font-bold tracking-widest flex items-center gap-1.5">
                     <Hotel className="w-4 h-4 text-pine-800" />
-                    Official Safari Resort Accommodation
+                    Available Safari Accommodations ({availableHotels.length} Partner Resorts)
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-black text-charcoal-950 uppercase">
-                    {hotelInfo.name}
+                  <h3 className="text-2xl sm:text-3xl font-black text-charcoal-950 uppercase tracking-tight">
+                    Choose Your Gir Safari Stay
                   </h3>
                 </div>
-                <span className="px-3 py-1 rounded-full bg-pine-800/10 text-pine-800 border border-pine-800/20 text-xs font-mono font-bold flex items-center gap-1">
+                <span className="px-3.5 py-1 rounded-full bg-pine-800/10 text-pine-800 border border-pine-800/20 text-xs font-mono font-bold flex items-center gap-1">
                   <Star className="w-3.5 h-3.5 fill-pine-800 text-pine-800" />
-                  MakeMyTrip Verified
+                  MakeMyTrip Verified Resorts
                 </span>
               </div>
+              <p className="text-xs sm:text-sm text-charcoal-700">
+                Select your preferred wildlife resort for this expedition. Click any photo or "Details" to view the full photo gallery, amenities, and resort details.
+              </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 items-center">
-                <div 
-                  onClick={() => setHotelModalOpen(true)}
-                  className="sm:col-span-1 h-40 rounded-2xl overflow-hidden bg-sand-900 border border-sand-700 shadow-md cursor-pointer group relative"
-                >
-                  <img src={hotelInfo.images[0]} alt={hotelInfo.name} className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-charcoal-950/30 group-hover:bg-charcoal-950/10 transition-colors flex items-center justify-center">
-                    <span className="bg-charcoal-950/80 text-sand-950 text-[10px] font-mono font-bold px-2.5 py-1 rounded-full backdrop-blur-sm border border-sand-700">
-                      Click to View Photos
-                    </span>
-                  </div>
-                </div>
+              {/* Grid of 10 Hotel Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {availableHotels.map((hotel) => {
+                  const isSelected = selectedHotel?.id === hotel.id || selectedPackage?.id === hotel.id;
+                  return (
+                    <div
+                      key={hotel.id}
+                      className={`glass-panel rounded-3xl border overflow-hidden transition-all duration-300 flex flex-col justify-between ${
+                        isSelected 
+                          ? 'border-pine-800 ring-2 ring-pine-800/30 bg-sand-900/90 shadow-xl' 
+                          : 'border-sand-700/80 hover:border-sand-600 bg-sand-900/50 hover:shadow-lg'
+                      }`}
+                    >
+                      <div>
+                        {/* Thumbnail photo with click to open full gallery */}
+                        <div 
+                          onClick={() => handleOpenHotelDetails(hotel)}
+                          className="h-48 w-full bg-sand-950 overflow-hidden relative cursor-pointer group"
+                        >
+                          <img
+                            src={hotel.images[0]}
+                            alt={hotel.name}
+                            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-charcoal-950/25 group-hover:bg-charcoal-950/10 transition-colors flex items-center justify-center">
+                            <span className="bg-charcoal-950/80 text-sand-950 text-[11px] font-mono font-bold px-3 py-1.5 rounded-full backdrop-blur-md border border-sand-700 flex items-center gap-1.5 shadow-lg">
+                              <Eye className="w-3.5 h-3.5 text-pine-800" />
+                              View Photos ({hotel.images.length})
+                            </span>
+                          </div>
+                          <div className="absolute top-3 right-3 bg-charcoal-950/85 backdrop-blur-md text-sand-950 text-[10px] font-mono font-bold px-2.5 py-1 rounded-full border border-sand-700 flex items-center gap-1">
+                            <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
+                            {hotel.rating.split(' ')[0]}
+                          </div>
+                        </div>
 
-                <div className="sm:col-span-2 space-y-2.5">
-                  <p className="text-xs text-charcoal-700 leading-relaxed font-normal">
-                    {hotelInfo.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 text-xs font-mono text-charcoal-800">
-                    <span className="px-2.5 py-1 rounded-lg bg-sand-950 border border-sand-700">🏊 Swimming Pool</span>
-                    <span className="px-2.5 py-1 rounded-lg bg-sand-950 border border-sand-700">🏡 Pool Villas</span>
-                    <span className="px-2.5 py-1 rounded-lg bg-sand-950 border border-sand-700">🍽️ Fine Dining</span>
-                    <span className="px-2.5 py-1 rounded-lg bg-sand-950 border border-sand-700">🛜 Free Wi-Fi</span>
-                  </div>
-                  <button
-                    onClick={() => setHotelModalOpen(true)}
-                    className="px-5 py-2.5 rounded-xl bg-pine-800 hover:bg-pine-700 text-sand-950 text-xs font-bold shadow-md transition-all flex items-center gap-2 mt-2"
-                  >
-                    <span>View Hotel Details & Photos ({hotelInfo.name})</span>
-                  </button>
-                </div>
+                        {/* Card Info Content */}
+                        <div className="p-5 space-y-3">
+                          <div>
+                            <span className="text-[10px] font-mono uppercase text-pine-800 font-bold tracking-wider block">
+                              {hotel.rating}
+                            </span>
+                            <h4 className="text-base sm:text-lg font-bold text-charcoal-950 leading-snug pt-0.5">
+                              {hotel.name}
+                            </h4>
+                            <p className="text-xs text-pine-800 font-medium font-mono pt-0.5">
+                              {hotel.tagline}
+                            </p>
+                          </div>
+
+                          <div className="flex items-start gap-1.5 text-[11px] text-charcoal-600 font-mono">
+                            <MapPin className="w-3.5 h-3.5 text-pine-800 shrink-0 mt-0.5" />
+                            <span className="line-clamp-1">{hotel.address}</span>
+                          </div>
+
+                          <p className="text-xs text-charcoal-700 font-normal leading-relaxed line-clamp-2">
+                            {hotel.description}
+                          </p>
+
+                          {/* Amenity tags */}
+                          <div className="flex flex-wrap gap-1.5 pt-1">
+                            {hotel.amenities.slice(0, 3).map((amenity, i) => (
+                              <span key={i} className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-sand-950 border border-sand-700 text-charcoal-800">
+                                {amenity}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Card Bottom Actions */}
+                      <div className="p-5 pt-0 flex items-center justify-between gap-2.5 border-t border-sand-700/60 mt-3 pt-3">
+                        <button
+                          type="button"
+                          onClick={() => handleOpenHotelDetails(hotel)}
+                          className="px-3.5 py-2 rounded-xl text-xs font-bold text-charcoal-900 hover:text-pine-800 hover:bg-sand-800 transition-colors flex items-center gap-1"
+                        >
+                          <Eye className="w-3.5 h-3.5" />
+                          <span>View Details</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => handleSelectHotel(hotel)}
+                          className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md flex items-center gap-1.5 ${
+                            isSelected
+                              ? 'bg-pine-800 text-sand-950 ring-2 ring-pine-800/50'
+                              : 'bg-sand-950 hover:bg-pine-800 hover:text-sand-950 text-charcoal-900 border border-sand-700'
+                          }`}
+                        >
+                          {isSelected ? (
+                            <>
+                              <CheckCircle2 className="w-3.5 h-3.5" />
+                              <span>Selected</span>
+                            </>
+                          ) : (
+                            <span>Select ({hotel.price === 0 ? 'Included' : `+$${hotel.price}`})</span>
+                          )}
+                        </button>
+                      </div>
+
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}
 
         </div>
 
-        {/* Right Column: Reservation Engine */}
+        {/* Right Column: Reservation Engine with dynamic Hotel Accommodation selection */}
         <div className="lg:col-span-1">
           <div className="sticky top-28 glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 shadow-2xl space-y-5">
             
             <div>
               <span className="text-xs font-mono uppercase text-pine-800 font-bold block">Reserve Your Seat</span>
               <div className="flex items-baseline gap-2 pt-1">
-                <span className="text-3xl sm:text-4xl font-black text-charcoal-900">${basePrice.toLocaleString()}</span>
-                <span className="text-xs font-mono text-charcoal-600">/ guest base</span>
+                <span className="text-3xl sm:text-4xl font-black text-charcoal-900">${(basePrice + packagePrice).toLocaleString()}</span>
+                <span className="text-xs font-mono text-charcoal-600">/ guest</span>
               </div>
             </div>
 
@@ -254,7 +352,7 @@ export default function TourDetail() {
                 <CheckCircle2 className="w-12 h-12 text-pine-800 mx-auto" />
                 <h4 className="text-xl font-bold text-charcoal-900">Reservation Confirmed!</h4>
                 <p className="text-xs text-charcoal-700">
-                  Your seat has been reserved. Check your email for expedition preparation details.
+                  Your seat and selected hotel accommodation have been reserved. Check your email for preparation details.
                 </p>
                 <Link to="/dashboard" className="inline-block px-6 py-2.5 bg-pine-800 text-sand-950 rounded-full text-xs font-bold mt-2">
                   View My Dashboard
@@ -269,8 +367,56 @@ export default function TourDetail() {
                   </div>
                 )}
 
-                {/* Package Options */}
-                {tour.packages && tour.packages.length > 0 && (
+                {/* Hotel / Package Selector */}
+                {availableHotels.length > 0 ? (
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <label className="block text-xs font-mono uppercase text-charcoal-700 font-bold">
+                        Selected Resort Stay
+                      </label>
+                      {selectedHotel && (
+                        <button
+                          type="button"
+                          onClick={() => handleOpenHotelDetails(selectedHotel)}
+                          className="text-[11px] font-mono text-pine-800 hover:underline font-bold"
+                        >
+                          View Photos →
+                        </button>
+                      )}
+                    </div>
+                    <select
+                      value={selectedHotel?.id || ''}
+                      onChange={(e) => {
+                        const h = availableHotels.find(item => item.id === e.target.value);
+                        if (h) handleSelectHotel(h);
+                      }}
+                      className="w-full bg-sand-950 border border-sand-700 rounded-xl py-2.5 px-3 text-xs text-charcoal-900 focus:outline-none focus:border-pine-800 font-medium"
+                    >
+                      {availableHotels.map((h) => (
+                        <option key={h.id} value={h.id}>
+                          {h.name} ({h.price === 0 ? 'Standard Package' : `+$${h.price} / guest`})
+                        </option>
+                      ))}
+                    </select>
+
+                    {selectedHotel && (
+                      <div 
+                        onClick={() => handleOpenHotelDetails(selectedHotel)}
+                        className="p-2.5 rounded-xl bg-sand-900 border border-sand-700 flex items-center gap-3 cursor-pointer hover:border-pine-800/50 transition-colors"
+                      >
+                        <img 
+                          src={selectedHotel.images[0]} 
+                          alt={selectedHotel.name} 
+                          className="w-12 h-12 rounded-lg object-cover shrink-0" 
+                        />
+                        <div className="min-w-0 flex-1">
+                          <p className="text-xs font-bold text-charcoal-900 truncate">{selectedHotel.name}</p>
+                          <p className="text-[10px] text-pine-800 font-mono truncate">{selectedHotel.rating} · Click to view details</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : tour.packages && tour.packages.length > 0 ? (
                   <div className="space-y-1.5">
                     <label className="block text-xs font-mono uppercase text-charcoal-700 font-bold">Select Accommodation Tier</label>
                     <div className="space-y-2">
@@ -293,7 +439,7 @@ export default function TourDetail() {
                       ))}
                     </div>
                   </div>
-                )}
+                ) : null}
 
                 {/* Departure Date */}
                 <div className="space-y-1">
@@ -357,14 +503,12 @@ export default function TourDetail() {
 
       </div>
 
-      {/* Hotel Details Modal */}
-      {hotelInfo && (
-        <HotelDetailModal
-          hotel={hotelInfo}
-          isOpen={hotelModalOpen}
-          onClose={() => setHotelModalOpen(false)}
-        />
-      )}
+      {/* Hotel Details Modal (Dynamically displays full photos & info for any selected hotel) */}
+      <HotelDetailModal
+        hotel={modalHotel || selectedHotel}
+        isOpen={hotelModalOpen}
+        onClose={() => setHotelModalOpen(false)}
+      />
 
     </div>
   );

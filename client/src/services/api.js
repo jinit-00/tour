@@ -1,5 +1,189 @@
 import axios from 'axios';
 
+// 10 Official MakeMyTrip Partner Resorts for Gir Lion Safari
+export const GIR_HOTELS = [
+  {
+    id: 'amber-resort',
+    name: 'Amber Resort',
+    tagline: 'Tranquil Mango Orchard Retreat near Sinh Sadan Gate',
+    address: 'Sasan Mendarda Road, Near Bhalchhel Helipad, Sasan Gir, Gujarat, 362135',
+    rating: '4.0 ★ Mango Farm Retreat',
+    mmtUrl: 'https://www.makemytrip.com/hotels/amber_resort-details-sasan_gir.html',
+    description: 'Nestled in lush mango orchards just 4 minutes from Sinh Sadan Safari Gate, Amber Resort features Deluxe Swiss AC tents and stone cottages, an outdoor swimming pool, pure vegetarian organic dining, and personalized wildlife guide assistance.',
+    images: [
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80'
+    ],
+    amenities: ['Outdoor Swimming Pool', 'Pure Veg Dining', 'Mango Orchard Setting', 'Deluxe Swiss AC Tents', 'Free Wi-Fi', '24/7 Front Desk'],
+    price: 0,
+    priceNote: 'Included with Safari Package'
+  },
+  {
+    id: 'gir-garjna',
+    name: 'Gir Garjna - The Cottage',
+    tagline: 'Luxury Orchard Cottages & Lawn Bonfires',
+    address: 'Talala Road, Sasan Gir, Gujarat, 362135',
+    rating: '4.3 ★ Luxury Orchard Cottages',
+    mmtUrl: 'https://www.makemytrip.com/hotels/gir_garjna_a_luxury_resort-details-sasan_gir.html',
+    description: 'Set amidst sprawling mango groves, Gir Garjna offers private stone cottages with lush manicured lawns, an open-air swimming pool, authentic Kathiyawadi dining, and evening starlit bonfire sessions.',
+    images: [
+      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80'
+    ],
+    amenities: ['Swimming Pool', 'Private Lawn Cottages', 'Kathiyawadi Cuisine', 'Evening Bonfires', 'Free Parking', "Children's Play Area"],
+    price: 60,
+    priceNote: '+$60 / guest upgrade'
+  },
+  {
+    id: 'madhuvan-resort',
+    name: 'Madhuvan Resort',
+    tagline: 'Nature & Heritage Resort with Rooftop Star-Gazing',
+    address: 'Sasan Junagadh Highway, Borvav, Sasan Gir, Gujarat',
+    rating: '4.1 ★ Nature & Heritage Resort',
+    mmtUrl: 'https://www.makemytrip.com/hotels/madhuvan_resort-details-sasan_gir.html',
+    description: 'Experience warm Gujarati hospitality with contemporary comforts. Madhuvan Resort features outdoor swimming pools, expansive gardens, rooftop stargazing decks, and nightly Saurashtra folk music performances.',
+    images: [
+      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80'
+    ],
+    amenities: ['Rooftop Stargazing Terrace', 'Outdoor Pool', 'Folk Music Nights', 'Organic Garden Dining', 'Free Wi-Fi', 'Spacious Suites'],
+    price: 80,
+    priceNote: '+$80 / guest upgrade'
+  },
+  {
+    id: 'fern-gir-forest',
+    name: 'The Fern Gir Forest Resort',
+    tagline: '5-Star Eco-Luxury by Marriott on the Hiran Riverbank',
+    address: 'Sasan Gir, Junagadh District, Gujarat, 362135',
+    rating: '4.5 ★ 5-Star Eco-Luxury Resort',
+    mmtUrl: 'https://www.makemytrip.com/hotels/address-of-the_fern_gir_forest_resort_sasan_gir_series_by_marriott-details-sasan_gir.html',
+    description: 'Perched right along the serene Hiran River, The Fern features riverfront villas, luxury tents with private Jacuzzis, an expansive river-view infinity pool, holistic spa treatments, and fine dining under jungle canopy trees.',
+    images: [
+      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80'
+    ],
+    amenities: ['Hiran River View', 'River-view Infinity Pool', 'Ayurvedic Spa & Jacuzzi', 'Riverfront Villas', 'Tribal Folk Evenings', 'Gym & Multi-Cuisine'],
+    price: 250,
+    priceNote: '+$250 / guest upgrade'
+  },
+  {
+    id: 'clarks-inn',
+    name: 'The Clarke Inn (Gir Aatithya Clarks Inn)',
+    tagline: 'Contemporary Wilderness Haven with Infinity Pool',
+    address: 'Sasan - Talala Road, Near Malanka, Sasan Gir, Gujarat',
+    rating: '4.4 ★ Clarks Inn Safari Haven',
+    mmtUrl: 'https://www.makemytrip.com/hotels/gir_aatithya_clarks_inn-details-sasan_gir.html',
+    description: 'Combining modern hotel luxury with wilderness aesthetics, Clarks Inn offers infinity pool views of teak hills, premium executive rooms, multi-cuisine gourmet dining, and seamless safari coordination.',
+    images: [
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80'
+    ],
+    amenities: ['Infinity Swimming Pool', 'Fitness & Yoga Pavilion', 'Pure Veg & Jain Meals', 'Wheelchair Accessible', 'Banquet Hall', '24/7 Concierge'],
+    price: 130,
+    priceNote: '+$130 / guest upgrade'
+  },
+  {
+    id: 'aramness-gir',
+    name: 'Aramness Gir National Park',
+    tagline: 'Ultra-Luxury Safari Lodge & Private Plunge Pool Kothis',
+    address: 'Sasan Gir Sanctuary Border, Haripur, Gujarat',
+    rating: '4.9 ★ Ultra-Luxury Village Lodge',
+    mmtUrl: 'https://www.makemytrip.com/hotels/aramness_gir_national_park-details-sasan_gir.html',
+    description: 'The pinnacle of safari luxury in India. Designed like a traditional Gujarati village, Aramness features bespoke 2-storey standalone Kothis with private plunge pools, dedicated butler service, and field-to-fork dining right on the edge of the lion sanctuary.',
+    images: [
+      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80'
+    ],
+    amenities: ['Private Plunge Pool Kothis', 'Personal Safari Butler', 'Field-to-Fork Dining', 'Ayurvedic Spa & Yoga', 'Private 4x4 Tracking', 'Forest Edge Location'],
+    price: 580,
+    priceNote: '+$580 / guest upgrade'
+  },
+  {
+    id: 'aqua-terra',
+    name: 'Aqua Terra Resort',
+    tagline: 'Freeform Lagoon Pools & Sun Terrace Sanctuary',
+    address: 'Chitrod Road, Sasan Gir, Gujarat',
+    rating: '4.2 ★ Water-Lover\'s Jungle Retreat',
+    mmtUrl: 'https://www.makemytrip.com/hotels/aqua_terra_resort-details-sasan_gir.html',
+    description: 'Centering around expansive lagoon-style pools and sun terraces, Aqua Terra Resort features open-air baths, pool-facing luxury cottages, landscaped grounds, and open barbecue dinners.',
+    images: [
+      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80'
+    ],
+    amenities: ['Freeform Lagoon Pool', 'Open-Air Sun Terraces', 'Poolside BBQ Lounge', 'Cottage Suites', "Children's Play Zone", 'Free High-Speed Wi-Fi'],
+    price: 95,
+    priceNote: '+$95 / guest upgrade'
+  },
+  {
+    id: 'wild-calm',
+    name: 'Wild Calm - Opulent Oasis (Wild Calm Resort)',
+    tagline: 'Secluded Luxury Oasis & Orchard Sanctuary',
+    address: 'Bhalchhel Road, Near Forest Checkpost, Sasan Gir, Gujarat',
+    rating: '4.3 ★ Opulent Oasis & Orchard Sanctuary',
+    mmtUrl: 'https://www.makemytrip.com/hotels/address-of-wild_calm_resort-details-sasan_gir.html',
+    description: 'An oasis of tranquility surrounded by wilderness. Wild Calm features suites with private balconies overlooking mango groves, hot tubs, cycling trails, game pavilions, and starlit bonfire dinners.',
+    images: [
+      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80'
+    ],
+    amenities: ['Private Balcony Suites', 'Outdoor Swimming Pool', 'Hot Tubs & Spa', 'Games Pavilion (Billiards/TT)', 'Complimentary Bicycles', 'Bonfire Dinners'],
+    price: 110,
+    priceNote: '+$110 / guest upgrade'
+  },
+  {
+    id: 'woods-at-sasan',
+    name: 'Woods at Sasan',
+    tagline: 'Premier Biophilic Wellness Retreat in 8-Acre Orchard',
+    address: 'Sasan Gir Village, Talala Road, Sasan Gir, Gujarat',
+    rating: '4.6 ★ Biophilic Wellness Retreat',
+    mmtUrl: 'https://www.makemytrip.com/hotels/woods_at_sasan-details-sasan_gir.html',
+    description: 'Set inside an 8-acre mango orchard, Woods at Sasan is an award-winning biophilic retreat emphasizing holistic wellness, organic architecture, Som Ayurvedic therapies, and farm-to-table culinary experiences.',
+    images: [
+      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80'
+    ],
+    amenities: ['8-Acre Mango Orchard', 'Som Ayurvedic Spa & Yoga', 'Swimming Pool & Library', 'Farm-to-Table Dining', 'Biophilic Architecture', 'Naturalist Escapes'],
+    price: 320,
+    priceNote: '+$320 / guest upgrade'
+  },
+  {
+    id: 'asiatic-lion-lodge',
+    name: 'Asiatic Lion Lodge',
+    tagline: 'Authentic Eco-Wildlife Lodge with Naturalist Library',
+    address: 'Haripur Main Road, Sasan Gir, Gujarat',
+    rating: '4.5 ★ Wildlife Naturalist Lodge',
+    mmtUrl: 'https://www.makemytrip.com/hotels/address-of-asiatic_lion_lodge-details-sasan_gir.html',
+    description: 'Designed for wildlife purists, Asiatic Lion Lodge offers eco-friendly cottages, an outdoor swimming pool, \'Flavours of Forest\' dining, campfire gatherings, and expert-led wildlife orientation lectures.',
+    images: [
+      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80'
+    ],
+    amenities: ['Outdoor Swimming Pool', "'Flavours of Forest' Restaurant", 'Naturalist Library & Talks', 'Eco Cottages', 'Campfire Evenings', 'Safari Jeep Stand'],
+    price: 85,
+    priceNote: '+$85 / guest upgrade'
+  }
+];
+
 // 11 Exact Signature Safaris Dataset for Client-Side & Vercel Fallback
 const FALLBACK_TOURS = [
   {
@@ -15,23 +199,14 @@ const FALLBACK_TOURS = [
     images: [
       'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80',
     ],
-    packages: [
-      { id: 'p1', name: 'Le Casa Lion Resort Package', price: 0, description: 'Luxury stay at Le Casa Lion Resort (Sasan Gir) & all safari permits.' }
-    ],
-    hotelDetails: {
-      name: 'Le Casa Lion Resort, Sasan Gir',
-      tagline: 'A Premium Resort in Sasan Gir near Gir National Park Sanctuary',
-      address: 'Plot No 2, Survey No 10/1, Borvav Gir, Borvav Dhava Road, Gir Somnath, Gujarat, India',
-      rating: '4.5 ★ Premium Wildlife Resort',
-      mmtUrl: 'https://www.makemytrip.com/hotels/le_casa_lion_resort_a_premium_resort_in_sasan_gir-details-sasan_gir.html',
-      description: 'Set in the tranquil greenery of Borvav village near the entry gate of Gir Asiatic Lion Sanctuary, Le Casa Lion Resort features 54 luxury rooms, private pool villas, and forest-view cottages. Designed specifically to cater to wildlife photographers, safari explorers, and families seeking high-end luxury in the Gir jungle.',
-      images: [
-        'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-        'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-        'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-        'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80'
-      ]
-    }
+    packages: GIR_HOTELS.map(h => ({
+      id: h.id,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      price: h.price,
+      description: h.tagline
+    })),
+    hotels: GIR_HOTELS,
+    hotelDetails: GIR_HOTELS[0]
   },
   {
     id: '2',

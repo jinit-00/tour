@@ -46,7 +46,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
               </span>
               <span className="text-xs text-amber-600 font-bold flex items-center gap-1 font-mono">
                 <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
-                4.5 / 5.0 Premium Resort Rating
+                {hotel.rating || '4.5 ★ Verified Safari Resort'}
               </span>
             </div>
 
@@ -64,8 +64,8 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
             {/* Title & Location Header */}
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-pine-800 font-mono text-xs font-bold uppercase tracking-widest">
-                <MapPin className="w-4 h-4" />
-                <span>{hotel.address || 'Plot No 2, Survey No 10/1, Borvav Gir, Borvav Dhava Road, Gir Somnath, Gujarat, India'}</span>
+                <MapPin className="w-4 h-4 shrink-0" />
+                <span>{hotel.address || 'Sasan Gir, Gujarat, India'}</span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-black tracking-tight uppercase text-charcoal-950">
                 {hotel.name}
@@ -79,7 +79,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
             <div className="space-y-3">
               <div className="h-64 sm:h-96 w-full rounded-2xl overflow-hidden bg-sand-900 relative shadow-xl border border-sand-700">
                 <img
-                  src={images[activeImageIndex]}
+                  src={images[activeImageIndex] || images[0]}
                   alt={`${hotel.name} Photo ${activeImageIndex + 1}`}
                   className="w-full h-full object-cover transition-all duration-500"
                 />
@@ -89,7 +89,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
               </div>
 
               {/* Thumbnail Bar */}
-              <div className="grid grid-cols-6 gap-2.5">
+              <div className="grid grid-cols-4 sm:grid-cols-6 gap-2.5">
                 {images.map((img, idx) => (
                   <button
                     key={idx}
@@ -113,84 +113,27 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
                 <span>Resort Description & Wilderness Setting</span>
               </h3>
               <p className="text-xs sm:text-sm leading-relaxed text-charcoal-700 font-normal">
-                {hotel.description || 'Set in the tranquil greenery of Borvav village near the entry gate of Gir Asiatic Lion Sanctuary, Le Casa Lion Resort features 54 luxury rooms, private pool villas, and forest-view cottages. Designed specifically to cater to wildlife photographers, safari explorers, and families seeking high-end luxury in the Gir jungle.'}
+                {hotel.description || 'Set in the tranquil greenery near the entry gate of Gir Asiatic Lion Sanctuary. Designed specifically to cater to wildlife photographers, safari explorers, and families seeking luxury in the Gir jungle.'}
               </p>
             </div>
 
             {/* Premium Amenities Grid */}
             <div className="space-y-4">
               <h3 className="text-lg font-bold text-charcoal-950">Resort Amenities & Facilities</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-medium text-charcoal-800">
-                <div className="p-3.5 rounded-xl bg-sand-900 border border-sand-700 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-pine-800/10 text-pine-800 flex items-center justify-center shrink-0">
-                    🏊
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5 text-xs font-medium text-charcoal-800">
+                {(hotel.amenities || [
+                  'Outdoor Swimming Pool',
+                  'Fine Dining Restaurant',
+                  'Free High-Speed Wi-Fi',
+                  'Private Cottages & Suites',
+                  '24/7 Power Backup',
+                  'Free Private Parking'
+                ]).map((amenity, i) => (
+                  <div key={i} className="p-3.5 rounded-xl bg-sand-900 border border-sand-700 flex items-center gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-pine-800 shrink-0" />
+                    <span className="font-semibold">{amenity}</span>
                   </div>
-                  <span>Outdoor Swimming Pool</span>
-                </div>
-                <div className="p-3.5 rounded-xl bg-sand-900 border border-sand-700 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-pine-800/10 text-pine-800 flex items-center justify-center shrink-0">
-                    <Utensils className="w-4 h-4 text-pine-800" />
-                  </div>
-                  <span>Fine Dining Restaurant</span>
-                </div>
-                <div className="p-3.5 rounded-xl bg-sand-900 border border-sand-700 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-pine-800/10 text-pine-800 flex items-center justify-center shrink-0">
-                    <Wifi className="w-4 h-4 text-pine-800" />
-                  </div>
-                  <span>Free High-Speed Wi-Fi</span>
-                </div>
-                <div className="p-3.5 rounded-xl bg-sand-900 border border-sand-700 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-pine-800/10 text-pine-800 flex items-center justify-center shrink-0">
-                    🏡
-                  </div>
-                  <span>Private Pool Villas</span>
-                </div>
-                <div className="p-3.5 rounded-xl bg-sand-900 border border-sand-700 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-pine-800/10 text-pine-800 flex items-center justify-center shrink-0">
-                    <Coffee className="w-4 h-4 text-pine-800" />
-                  </div>
-                  <span>In-Room Tea/Coffee Maker</span>
-                </div>
-                <div className="p-3.5 rounded-xl bg-sand-900 border border-sand-700 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-pine-800/10 text-pine-800 flex items-center justify-center shrink-0">
-                    <Tv className="w-4 h-4 text-pine-800" />
-                  </div>
-                  <span>AC & Smart TV</span>
-                </div>
-                <div className="p-3.5 rounded-xl bg-sand-900 border border-sand-700 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-pine-800/10 text-pine-800 flex items-center justify-center shrink-0">
-                    <ShieldCheck className="w-4 h-4 text-pine-800" />
-                  </div>
-                  <span>24/7 Power Backup</span>
-                </div>
-                <div className="p-3.5 rounded-xl bg-sand-900 border border-sand-700 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-pine-800/10 text-pine-800 flex items-center justify-center shrink-0">
-                    🚗
-                  </div>
-                  <span>Free Private Parking</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Room Categories */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-bold text-charcoal-950">Room & Cottage Categories</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="p-4 rounded-xl bg-sand-900 border border-sand-700 space-y-1.5">
-                  <span className="text-xs font-mono text-pine-800 font-bold block">Standard Room</span>
-                  <h4 className="text-sm font-bold text-charcoal-950">Le Casa Forest View Room</h4>
-                  <p className="text-[11px] text-charcoal-600 font-normal">King bed, forest balcony view, electric kettle & rain shower.</p>
-                </div>
-                <div className="p-4 rounded-xl bg-sand-900 border border-sand-700 space-y-1.5">
-                  <span className="text-xs font-mono text-pine-800 font-bold block">Luxury Stay</span>
-                  <h4 className="text-sm font-bold text-charcoal-950">Heritage Forest Cottage</h4>
-                  <p className="text-[11px] text-charcoal-600 font-normal">Independent eco-cottage with private garden terrace & minibar.</p>
-                </div>
-                <div className="p-4 rounded-xl bg-sand-900 border border-sand-700 space-y-1.5 border-pine-800/50">
-                  <span className="text-xs font-mono text-pine-800 font-bold block">Premium Suite</span>
-                  <h4 className="text-sm font-bold text-charcoal-950">Private Pool Villa</h4>
-                  <p className="text-[11px] text-charcoal-600 font-normal">Exclusive villa featuring a private dip pool, lounge & butler service.</p>
-                </div>
+                ))}
               </div>
             </div>
 
@@ -212,7 +155,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
           <div className="p-6 border-t border-sand-700/80 bg-sand-900/90 flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0">
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-pine-800" />
-              <span className="text-xs font-bold text-charcoal-900">Official Accommodation included with JungleE Gir Safari Departure</span>
+              <span className="text-xs font-bold text-charcoal-900">Official Partner Hotel for JungleE Gir Lion Safari</span>
             </div>
 
             <button
