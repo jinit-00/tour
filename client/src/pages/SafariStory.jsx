@@ -13,6 +13,7 @@ export default function SafariStory() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getTourDetail(slug)
       .then((res) => setTour(res.data))
       .catch((err) => console.error(err))

@@ -20,6 +20,7 @@ export default function TourDetail() {
   const [hotelModalOpen, setHotelModalOpen] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getTourDetail(slug)
       .then((res) => {
         setTour(res.data);
@@ -122,7 +123,7 @@ export default function TourDetail() {
         <div className="lg:col-span-2 space-y-6">
           
           {/* Main Hero Gallery Image */}
-          <div className="rounded-3xl overflow-hidden shadow-2xl h-80 sm:h-[460px] bg-sand-900 relative">
+          <div className="rounded-3xl overflow-hidden shadow-2xl h-80 sm:h-[460px] bg-sand-900 relative group">
             <img
               src={images[0]}
               alt={tour.title}
@@ -131,10 +132,15 @@ export default function TourDetail() {
               }}
               className="w-full h-full object-cover object-center"
             />
+            {/* Small gradient overlay at bottom of photo */}
+            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
             <div className="absolute top-4 left-4 bg-pine-800 text-sand-950 px-4 py-1.5 rounded-full text-xs font-mono font-bold shadow-md">
               {tour.duration}
             </div>
           </div>
+
+          {/* Small subtle gradient divider between photo and white/sand details space */}
+          <div className="h-1 w-full bg-gradient-to-r from-transparent via-sand-700/50 to-transparent rounded-full" />
 
           {/* Expedition Details */}
           <div className="space-y-3">

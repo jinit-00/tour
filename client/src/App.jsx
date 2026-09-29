@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import AuthModal from './components/ui/AuthModal';
+
+// Auto scroll to top helper on every page navigation
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 // Pages
 import Home from './pages/Home';
@@ -30,6 +41,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-sand-gradient text-charcoal-900 selection:bg-pine-800 selection:text-sand-900">
+      <ScrollToTop />
       {!isAdminRoute && <Navbar />}
 
       <main className="flex-1">
