@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getTourDetail } from '../services/api';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { 
-  Camera, ShieldCheck, Sun, Compass, ArrowRight, ChevronDown, 
+  Camera, ShieldCheck, Sun, ArrowRight, ChevronDown, 
   MapPin, CheckCircle2, Sparkles, ExternalLink, Hotel, Star 
 } from 'lucide-react';
 import HotelDetailModal from '../components/tours/HotelDetailModal';
@@ -63,12 +63,7 @@ export default function SafariStory() {
           'Exclusive open-top 4x4 safari access with expert native trackers'
         ],
         bestSeason: 'November – April (Optimal Daylight & High Wildlife Movement)',
-        accommodation: 'Le Casa Lion Resort, Sasan Gir (A Premium Resort in Sasan Gir near Gir National Park)',
-        activities: [
-          'Morning & Afternoon Open 4x4 Gir Lion Safari Drives',
-          '1-on-1 Daily Telephoto Framing & Histogram Workshops',
-          'Evening Wildlife Conservation Discussions at Le Casa Resort'
-        ]
+        accommodation: 'Le Casa Lion Resort, Sasan Gir (A Premium Resort in Sasan Gir near Gir National Park)'
       }
     : isTiger
     ? {
@@ -81,12 +76,7 @@ export default function SafariStory() {
           'Lake-Side Golden Hour Water Sightings'
         ],
         bestSeason: 'October – April (Crisp Morning Light & Waterhole Sightings)',
-        accommodation: 'Heritage Jungle Lodge with Private Plunge Pools & Naturalist Library',
-        activities: [
-          'Exclusive Low-Seat Maruti Gypsy Safari Access',
-          'Banyan Ruins & Fortress Overlook Landscape Shoots',
-          'Macro & Bird Photography Workshops in Wetland Zones'
-        ]
+        accommodation: 'Heritage Jungle Lodge with Private Plunge Pools & Naturalist Library'
       }
     : isRhino
     ? {
@@ -99,12 +89,7 @@ export default function SafariStory() {
           'Sabie River Big 5 Waterhole Crossings'
         ],
         bestSeason: 'May – September (Dry Winter Season with Optimal Vegetation Clarity)',
-        accommodation: 'Sabie River Eco-Lodge with Timber Decks Overlooking Riverbeds',
-        activities: [
-          'Open 4x4 Tracking & Ranger Bush Walking Safaris',
-          'Thermal Imaging Night Patrol Access alongside Anti-Poaching Rangers',
-          'Wildlife Telephoto Pan & Action Framing Tutorials'
-        ]
+        accommodation: 'Sabie River Eco-Lodge with Timber Decks Overlooking Riverbeds'
       }
     : {
         animalName: 'African Lion',
@@ -116,12 +101,7 @@ export default function SafariStory() {
           'Tree-Climbing Leopard Spotting in Seronera Valley'
         ],
         bestSeason: 'July – October (Great Migration & Dry Season)',
-        accommodation: 'Luxury Canvas Tented Camp with Private Decks & Solar Power',
-        activities: [
-          'Sunrise & Sunset 4x4 Game Drives with Swivel Lens Mounts',
-          'Midday Lightroom & Photoshop Post-Processing Workshops',
-          'Evening Fireside Portfolio Critiques Under Starry Skies'
-        ]
+        accommodation: 'Luxury Canvas Tented Camp with Private Decks & Solar Power'
       };
 
   const hotelInfo = (isGir || tour?.hotelDetails) ? {
@@ -262,22 +242,6 @@ export default function SafariStory() {
                   <ExternalLink className="w-3.5 h-3.5" />
                 </button>
               )}
-            </div>
-          </div>
-
-          {/* Daily Field Activities */}
-          <div className="glass-panel p-8 sm:p-10 rounded-3xl border border-sand-700 space-y-6">
-            <h3 className="text-2xl font-bold text-charcoal-900 flex items-center gap-2">
-              <Compass className="w-6 h-6 text-pine-800" />
-              <span>Safari Activities & Photography Workshops</span>
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {storyData.activities.map((act, idx) => (
-                <div key={idx} className="p-4 bg-sand-900/80 rounded-xl border border-sand-700 space-y-2">
-                  <span className="text-[10px] font-mono text-pine-800 uppercase font-bold">Activity 0{idx + 1}</span>
-                  <p className="text-xs font-semibold text-charcoal-900">{act}</p>
-                </div>
-              ))}
             </div>
           </div>
 
