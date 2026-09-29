@@ -4,15 +4,13 @@ import { getTourDetail } from '../services/api';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { 
   Camera, ShieldCheck, Sun, ArrowRight, ChevronDown, 
-  MapPin, CheckCircle2, Sparkles, ExternalLink, Hotel, Star 
+  MapPin, CheckCircle2, Sparkles 
 } from 'lucide-react';
-import HotelDetailModal from '../components/tours/HotelDetailModal';
 
 export default function SafariStory() {
   const { slug } = useParams();
   const [tour, setTour] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [hotelModalOpen, setHotelModalOpen] = useState(false);
 
   useEffect(() => {
     getTourDetail(slug)
@@ -62,8 +60,7 @@ export default function SafariStory() {
           'Photograph leopards, spotted deer, chinkara antelopes & 300+ bird species',
           'Exclusive open-top 4x4 safari access with expert native trackers'
         ],
-        bestSeason: 'November – April (Optimal Daylight & High Wildlife Movement)',
-        accommodation: 'Le Casa Lion Resort, Sasan Gir (A Premium Resort in Sasan Gir near Gir National Park)'
+        bestSeason: 'November – April (Optimal Daylight & High Wildlife Movement)'
       }
     : isTiger
     ? {
@@ -103,21 +100,6 @@ export default function SafariStory() {
         bestSeason: 'July – October (Great Migration & Dry Season)',
         accommodation: 'Luxury Canvas Tented Camp with Private Decks & Solar Power'
       };
-
-  const hotelInfo = (isGir || tour?.hotelDetails) ? {
-    name: 'Le Casa Lion Resort, Sasan Gir',
-    tagline: 'A Premium Resort in Sasan Gir near Gir National Park Sanctuary',
-    address: 'Plot No 2, Survey No 10/1, Borvav Gir, Borvav Dhava Road, Gir Somnath, Gujarat, India',
-    rating: '4.5 ★ Premium Wildlife Resort',
-    mmtUrl: 'https://www.makemytrip.com/hotels/le_casa_lion_resort_a_premium_resort_in_sasan_gir-details-sasan_gir.html',
-    description: 'Set in the tranquil greenery of Borvav village near the entry gate of Gir Asiatic Lion Sanctuary, Le Casa Lion Resort features 54 luxury rooms, private pool villas, and forest-view cottages. Designed specifically to cater to wildlife photographers, safari explorers, and families seeking high-end luxury in the Gir jungle.',
-    images: [
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80'
-    ]
-  } : null;
 
   return (
     <div className="bg-sand-gradient text-charcoal-900 min-h-screen selection:bg-pine-800 selection:text-sand-950 overflow-x-hidden pt-16">
@@ -212,7 +194,7 @@ export default function SafariStory() {
           </div>
 
           {/* Season & Lodging Info */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className={`grid grid-cols-1 ${!isGir && storyData.accommodation ? 'md:grid-cols-2' : 'max-w-2xl mx-auto'} gap-8`}>
             
             <div className="glass-panel p-8 rounded-2xl border border-sand-700 space-y-4">
               <div className="w-12 h-12 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center shadow-md">
@@ -225,24 +207,15 @@ export default function SafariStory() {
               </p>
             </div>
 
-            <div className="glass-panel p-8 rounded-2xl border border-sand-700 space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center shadow-md">
-                <ShieldCheck className="w-6 h-6" />
+            {!isGir && storyData.accommodation && (
+              <div className="glass-panel p-8 rounded-2xl border border-sand-700 space-y-4">
+                <div className="w-12 h-12 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center shadow-md">
+                  <ShieldCheck className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-charcoal-900">Luxury Safari Stay</h3>
+                <p className="text-xs text-charcoal-700 leading-relaxed font-normal">{storyData.accommodation}</p>
               </div>
-              <h3 className="text-xl font-bold text-charcoal-900">Luxury Safari Stay</h3>
-              <p className="text-xs text-charcoal-700 leading-relaxed font-normal">{storyData.accommodation}</p>
-              
-              {hotelInfo && (
-                <button
-                  onClick={() => setHotelModalOpen(true)}
-                  className="px-4 py-2 rounded-xl bg-pine-800 hover:bg-pine-700 text-sand-950 text-xs font-bold shadow-md transition-all inline-flex items-center gap-2 mt-2"
-                >
-                  <Hotel className="w-4 h-4" />
-                  <span>View Hotel Details ({hotelInfo.name})</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </button>
-              )}
-            </div>
+            )}
           </div>
 
         </div>
@@ -279,15 +252,6 @@ export default function SafariStory() {
           </div>
         </div>
       </section>
-
-      {/* Hotel Details Modal */}
-      {hotelInfo && (
-        <HotelDetailModal
-          hotel={hotelInfo}
-          isOpen={hotelModalOpen}
-          onClose={() => setHotelModalOpen(false)}
-        />
-      )}
 
     </div>
   );
