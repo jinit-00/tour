@@ -58,12 +58,12 @@ export default function TourDetail() {
   };
 
   if (loading) {
-    return <div className="pt-40 text-center py-20 font-mono text-charcoal-700">Loading expedition details...</div>;
+    return <div className="pt-28 text-center py-20 font-mono text-charcoal-700">Loading expedition details...</div>;
   }
 
   if (!tour) {
     return (
-      <div className="pt-40 max-w-md mx-auto text-center space-y-4 py-20 px-4">
+      <div className="pt-28 max-w-md mx-auto text-center space-y-4 py-20 px-4">
         <h2 className="text-2xl font-bold text-charcoal-900">Expedition Not Found</h2>
         <p className="text-sm text-charcoal-700">The requested safari departure could not be found.</p>
         <Link to="/tours" className="inline-block px-6 py-2.5 bg-pine-800 text-sand-950 rounded-full text-xs font-bold">
@@ -87,7 +87,6 @@ export default function TourDetail() {
     tagline: 'A Premium Resort in Sasan Gir near Gir National Park Sanctuary',
     address: 'Plot No 2, Survey No 10/1, Borvav Gir, Borvav Dhava Road, Gir Somnath, Gujarat, India',
     rating: '4.5 ★ Premium Wildlife Resort',
-    mmtUrl: 'https://www.makemytrip.com/hotels/le_casa_lion_resort_a_premium_resort_in_sasan_gir-details-sasan_gir.html',
     description: 'Set in the tranquil greenery of Borvav village near the entry gate of Gir Asiatic Lion Sanctuary, Le Casa Lion Resort features 54 luxury rooms, private pool villas, and forest-view cottages. Designed specifically to cater to wildlife photographers, safari explorers, and families seeking high-end luxury in the Gir jungle.',
     images: [
       'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
@@ -98,10 +97,10 @@ export default function TourDetail() {
   } : null);
 
   return (
-    <div className="pt-36 sm:pt-40 lg:pt-44 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-sand-gradient min-h-screen">
+    <div className="pt-24 sm:pt-28 pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-sand-gradient min-h-screen">
       
       {/* Top Storytelling Banner */}
-      <div className="mb-8 p-4 rounded-2xl glass-panel border border-sand-700 flex items-center justify-between gap-4">
+      <div className="mb-5 p-3.5 rounded-2xl glass-panel border border-sand-700 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <BookOpen className="w-5 h-5 text-pine-800 shrink-0" />
           <span className="text-xs sm:text-sm text-charcoal-800 font-medium">
@@ -117,13 +116,13 @@ export default function TourDetail() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
         {/* Left Column: Gallery & Itinerary */}
-        <div className="lg:col-span-2 space-y-8">
+        <div className="lg:col-span-2 space-y-6">
           
           {/* Main Hero Gallery Image */}
-          <div className="rounded-3xl overflow-hidden shadow-2xl h-96 sm:h-[480px] bg-sand-900 relative">
+          <div className="rounded-3xl overflow-hidden shadow-2xl h-80 sm:h-[420px] bg-sand-900 relative">
             <img
               src={images[0]}
               alt={tour.title}
@@ -135,26 +134,26 @@ export default function TourDetail() {
           </div>
 
           {/* Expedition Details */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div className="flex items-center gap-2 text-xs font-mono text-pine-800 uppercase tracking-widest font-bold">
               <MapPin className="w-4 h-4 shrink-0" />
               <span>{tour.location}</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-black text-charcoal-900 leading-tight">
+            <h1 className="text-3xl sm:text-4xl font-black text-charcoal-900 leading-tight">
               {tour.title}
             </h1>
 
-            <p className="text-base text-charcoal-700 leading-relaxed font-normal">
+            <p className="text-sm text-charcoal-700 leading-relaxed font-normal">
               {tour.description}
             </p>
           </div>
 
           {/* Masterclass Highlights */}
-          <div className="glass-panel p-8 rounded-3xl space-y-6 border border-sand-700">
-            <h3 className="text-xl font-bold text-charcoal-900">Included Masterclass Perks</h3>
+          <div className="glass-panel p-6 sm:p-8 rounded-3xl space-y-5 border border-sand-700">
+            <h3 className="text-lg font-bold text-charcoal-900">Included Masterclass Perks</h3>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-charcoal-800">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm text-charcoal-800">
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-pine-800 shrink-0 mt-0.5" />
                 <span>Dedicated 4x4 row & 360° lens mount per photographer</span>
@@ -176,14 +175,14 @@ export default function TourDetail() {
 
           {/* Featured Hotel Accommodation Section for Gir Safari */}
           {hotelInfo && (
-            <div className="glass-panel p-8 rounded-3xl border border-sand-700/80 shadow-xl space-y-6 bg-sand-900/60">
+            <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700/80 shadow-xl space-y-5 bg-sand-900/60">
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <div className="space-y-1">
                   <span className="text-xs font-mono uppercase text-pine-800 font-bold tracking-widest flex items-center gap-1.5">
                     <Hotel className="w-4 h-4 text-pine-800" />
                     Official Safari Resort Accommodation
                   </span>
-                  <h3 className="text-2xl font-black text-charcoal-950 uppercase">
+                  <h3 className="text-xl sm:text-2xl font-black text-charcoal-950 uppercase">
                     {hotelInfo.name}
                   </h3>
                 </div>
@@ -193,10 +192,10 @@ export default function TourDetail() {
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-center">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 items-center">
                 <div 
                   onClick={() => setHotelModalOpen(true)}
-                  className="sm:col-span-1 h-44 rounded-2xl overflow-hidden bg-sand-900 border border-sand-700 shadow-md cursor-pointer group relative"
+                  className="sm:col-span-1 h-40 rounded-2xl overflow-hidden bg-sand-900 border border-sand-700 shadow-md cursor-pointer group relative"
                 >
                   <img src={hotelInfo.images[0]} alt={hotelInfo.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-charcoal-950/30 group-hover:bg-charcoal-950/10 transition-colors flex items-center justify-center">
@@ -206,7 +205,7 @@ export default function TourDetail() {
                   </div>
                 </div>
 
-                <div className="sm:col-span-2 space-y-3">
+                <div className="sm:col-span-2 space-y-2.5">
                   <p className="text-xs text-charcoal-700 leading-relaxed font-normal">
                     {hotelInfo.description}
                   </p>
@@ -221,7 +220,6 @@ export default function TourDetail() {
                     className="px-5 py-2.5 rounded-xl bg-pine-800 hover:bg-pine-700 text-sand-950 text-xs font-bold shadow-md transition-all flex items-center gap-2 mt-2"
                   >
                     <span>View Hotel Details & Photos ({hotelInfo.name})</span>
-                    <ExternalLink className="w-4 h-4" />
                   </button>
                 </div>
               </div>
@@ -232,12 +230,12 @@ export default function TourDetail() {
 
         {/* Right Column: Reservation Engine */}
         <div className="lg:col-span-1">
-          <div className="sticky top-32 glass-panel p-8 rounded-3xl border border-sand-700 shadow-2xl space-y-6">
+          <div className="sticky top-28 glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 shadow-2xl space-y-5">
             
             <div>
               <span className="text-xs font-mono uppercase text-pine-800 font-bold block">Reserve Your Seat</span>
               <div className="flex items-baseline gap-2 pt-1">
-                <span className="text-4xl font-black text-charcoal-900">${basePrice.toLocaleString()}</span>
+                <span className="text-3xl sm:text-4xl font-black text-charcoal-900">${basePrice.toLocaleString()}</span>
                 <span className="text-xs font-mono text-charcoal-600">/ guest base</span>
               </div>
             </div>
@@ -254,7 +252,7 @@ export default function TourDetail() {
                 </Link>
               </div>
             ) : (
-              <form onSubmit={handleBookingSubmit} className="space-y-5">
+              <form onSubmit={handleBookingSubmit} className="space-y-4">
                 
                 {errorMsg && (
                   <div className="p-3 bg-rose-100/80 border border-rose-300 text-rose-800 rounded-xl text-xs">
@@ -264,14 +262,14 @@ export default function TourDetail() {
 
                 {/* Package Options */}
                 {tour.packages && tour.packages.length > 0 && (
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     <label className="block text-xs font-mono uppercase text-charcoal-700 font-bold">Select Accommodation Tier</label>
                     <div className="space-y-2">
                       {tour.packages.map((pkg) => (
                         <div
                           key={pkg.id}
                           onClick={() => setSelectedPackage(pkg)}
-                          className={`p-3.5 rounded-xl border text-xs cursor-pointer transition-all ${
+                          className={`p-3 rounded-xl border text-xs cursor-pointer transition-all ${
                             selectedPackage?.id === pkg.id
                               ? 'border-pine-800 bg-sand-900/90 shadow-sm'
                               : 'border-sand-700 hover:bg-sand-900/50'
@@ -281,7 +279,7 @@ export default function TourDetail() {
                             <span>{pkg.name}</span>
                             <span>{pkg.price > 0 ? `+$${pkg.price}` : 'Included'}</span>
                           </div>
-                          <p className="text-[11px] text-charcoal-700 pt-1 font-normal">{pkg.description}</p>
+                          <p className="text-[11px] text-charcoal-700 pt-0.5 font-normal">{pkg.description}</p>
                         </div>
                       ))}
                     </div>
@@ -294,7 +292,7 @@ export default function TourDetail() {
                   <select
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
-                    className="w-full bg-sand-950 border border-sand-700 rounded-xl py-2.5 px-3 text-xs text-charcoal-900 focus:outline-none focus:border-pine-800"
+                    className="w-full bg-sand-950 border border-sand-700 rounded-xl py-2 px-3 text-xs text-charcoal-900 focus:outline-none focus:border-pine-800"
                   >
                     <option value="2026-10-15">October 15, 2026 (Peak Season)</option>
                     <option value="2026-11-20">November 20, 2026</option>
@@ -308,7 +306,7 @@ export default function TourDetail() {
                   <select
                     value={guests}
                     onChange={(e) => setGuests(e.target.value)}
-                    className="w-full bg-sand-950 border border-sand-700 rounded-xl py-2.5 px-3 text-xs text-charcoal-900 focus:outline-none focus:border-pine-800"
+                    className="w-full bg-sand-950 border border-sand-700 rounded-xl py-2 px-3 text-xs text-charcoal-900 focus:outline-none focus:border-pine-800"
                   >
                     <option value="1">1 Photographer</option>
                     <option value="2">2 Photographers</option>
@@ -317,7 +315,7 @@ export default function TourDetail() {
                 </div>
 
                 {/* Price Summary Breakdown */}
-                <div className="pt-3 border-t border-sand-700 space-y-1.5 text-xs text-charcoal-700">
+                <div className="pt-2.5 border-t border-sand-700 space-y-1 text-xs text-charcoal-700">
                   <div className="flex justify-between">
                     <span>Base (${basePrice} × {guests})</span>
                     <span>${basePrice * guests}</span>
@@ -328,7 +326,7 @@ export default function TourDetail() {
                       <span>+${packagePrice * guests}</span>
                     </div>
                   )}
-                  <div className="flex justify-between font-bold text-charcoal-900 text-sm pt-2 border-t border-sand-700">
+                  <div className="flex justify-between font-bold text-charcoal-900 text-sm pt-1.5 border-t border-sand-700">
                     <span>Total Cost</span>
                     <span className="text-pine-800">${totalPrice.toLocaleString()}</span>
                   </div>
@@ -337,7 +335,7 @@ export default function TourDetail() {
                 <button
                   type="submit"
                   disabled={bookingLoading}
-                  className="w-full py-3.5 rounded-xl bg-pine-800 hover:bg-pine-700 text-sand-950 font-bold text-xs shadow-xl transition-all flex items-center justify-center gap-2"
+                  className="w-full py-3 rounded-xl bg-pine-800 hover:bg-pine-700 text-sand-950 font-bold text-xs shadow-xl transition-all flex items-center justify-center gap-2"
                 >
                   <span>{bookingLoading ? 'Processing...' : user ? 'Book Expedition Now' : 'Sign In to Reserve'}</span>
                   <ArrowRight className="w-4 h-4" />

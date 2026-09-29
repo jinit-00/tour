@@ -31,22 +31,22 @@ export default function Tours() {
   const locations = ['All', 'India', 'Kenya', 'Uganda', 'South Africa', 'France'];
 
   return (
-    <div className="pt-36 sm:pt-40 lg:pt-44 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-sand-gradient min-h-screen">
+    <div className="pt-24 sm:pt-28 pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-sand-gradient min-h-screen">
       {/* Editorial Header */}
-      <div className="text-center space-y-4 mb-14">
+      <div className="text-center space-y-3 mb-8">
         <span className="text-xs font-mono uppercase tracking-[0.25em] text-pine-800 font-bold">
           Masterclass Expeditions
         </span>
-        <h1 className="text-4xl sm:text-6xl font-black text-charcoal-900 tracking-tight uppercase">
+        <h1 className="text-3xl sm:text-5xl font-black text-charcoal-900 tracking-tight uppercase">
           Wildlife Photography Safaris
         </h1>
-        <p className="text-sm sm:text-base text-charcoal-700 max-w-2xl mx-auto font-normal">
+        <p className="text-xs sm:text-sm text-charcoal-700 max-w-2xl mx-auto font-normal">
           Explore our 11 signature small-group departures featuring Gir, Sanjay Dubri, Jawai, Ranthambore, Velavadar, Masai Mara, Uganda, Kruger, Kaziranga, Camargue, and Amboseli. Select any safari card or click the circular button to enter full-screen scroll storytelling.
         </p>
       </div>
 
       {/* Apple-Style Minimal Filter & Search Bar */}
-      <div className="glass-panel p-4 rounded-2xl mb-14 border border-sand-700/80 flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
+      <div className="glass-panel p-3.5 rounded-2xl mb-8 border border-sand-700/80 flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
         {/* Search Box */}
         <div className="relative w-full md:w-80">
           <Search className="absolute left-3.5 top-3 w-4 h-4 text-charcoal-500" />
@@ -80,7 +80,7 @@ export default function Tours() {
 
       {/* Large 2-Column Editorial Grid */}
       {loading ? (
-        <div className="text-center py-24 text-charcoal-700 font-mono">Loading 11 signature safaris...</div>
+        <div className="text-center py-20 text-charcoal-700 font-mono">Loading 11 signature safaris...</div>
       ) : tours.length === 0 ? (
         <div className="glass-panel p-12 rounded-3xl text-center space-y-3 max-w-md mx-auto my-12 border border-sand-700">
           <p className="text-lg font-bold text-charcoal-900">No safaris match your criteria.</p>

@@ -102,10 +102,10 @@ export default function SafariStory() {
       };
 
   return (
-    <div className="bg-sand-gradient text-charcoal-900 min-h-screen selection:bg-pine-800 selection:text-sand-950 overflow-x-hidden pt-16">
+    <div className="bg-sand-gradient text-charcoal-900 min-h-screen selection:bg-pine-800 selection:text-sand-950 overflow-x-hidden">
       
-      {/* 1. FULL-SCREEN 100VW x 100VH CINEMATIC PHOTO HERO & SCROLL TRACK (135vh height) */}
-      <div ref={storyTrackRef} className="relative h-[135vh] bg-sand-900">
+      {/* 1. FULL-SCREEN 100VW x 100VH CINEMATIC PHOTO HERO & SCROLL TRACK */}
+      <div ref={storyTrackRef} className="relative h-[115vh] bg-sand-900">
         
         {/* STICKY FULLSCREEN VIEWPORT (100vw x 100vh) */}
         <div className="sticky top-0 h-screen w-screen overflow-hidden bg-sand-900 z-10">
@@ -128,7 +128,7 @@ export default function SafariStory() {
           {/* Floating Overlaid Hero Title */}
           <motion.div
             style={{ opacity: heroTitleOpacity, y: heroTitleY }}
-            className="relative z-10 max-w-5xl mx-auto px-4 h-full flex flex-col justify-center items-center text-center space-y-5 pointer-events-none pt-12"
+            className="relative z-10 max-w-5xl mx-auto px-4 h-full flex flex-col justify-center items-center text-center space-y-5 pointer-events-none pt-8"
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pine-800 text-sand-950 text-xs font-mono tracking-widest uppercase shadow-2xl">
               <Sparkles className="w-3.5 h-3.5" />
@@ -143,7 +143,7 @@ export default function SafariStory() {
               {storyData.tagline}
             </p>
 
-            <div className="pt-8 flex flex-col items-center gap-2 text-xs font-mono text-sand-900">
+            <div className="pt-6 flex flex-col items-center gap-2 text-xs font-mono text-sand-900">
               <span>SCROLL DOWN — PHOTO TRANSFORMS INTO STORY</span>
               <ChevronDown className="w-5 h-5 text-sand-950 animate-bounce" />
             </div>
@@ -152,7 +152,7 @@ export default function SafariStory() {
           {/* Phase 1 Completion Overlay (Fades in as scale completes) */}
           <motion.div
             style={{ opacity: completionOverlayOpacity, y: completionOverlayY }}
-            className="absolute bottom-8 left-4 right-4 sm:left-12 sm:right-12 z-20 glass-panel p-5 sm:p-6 rounded-2xl border border-pine-800/40 shadow-2xl backdrop-blur-xl max-w-3xl mx-auto pointer-events-none"
+            className="absolute bottom-6 left-4 right-4 sm:left-12 sm:right-12 z-20 glass-panel p-4 sm:p-5 rounded-2xl border border-pine-800/40 shadow-2xl backdrop-blur-xl max-w-3xl mx-auto pointer-events-none"
           >
             <div className="flex items-center justify-between text-xs font-mono text-pine-800 font-bold">
               <span className="uppercase tracking-wider">{storyData.animalName} Expedition</span>
@@ -167,40 +167,40 @@ export default function SafariStory() {
       </div>
 
       {/* 2. PHASE 2: DEEP FIELD EXPEDITION DETAILS & ITINERARY (NO PRICES DISPLAYED) */}
-      <section className="relative z-30 py-20 bg-sand-gradient border-t border-sand-700">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <section className="relative z-30 py-12 bg-sand-gradient border-t border-sand-700">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           
           {/* Header */}
-          <div className="text-center space-y-3 max-w-3xl mx-auto">
+          <div className="text-center space-y-2.5 max-w-3xl mx-auto">
             <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Field Dossier</span>
-            <h2 className="text-3xl sm:text-5xl font-black text-charcoal-900 uppercase tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-charcoal-900 uppercase tracking-tight">
               Expedition Overview & Masterclass Highlights
             </h2>
-            <p className="text-sm text-charcoal-700 font-normal">
+            <p className="text-xs sm:text-sm text-charcoal-700 font-normal">
               Designed for wildlife photographers seeking prime positioning, ethical tracking, and high-end field instruction.
             </p>
           </div>
 
           {/* Masterclass Key Highlights Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {storyData.highlights.map((item, idx) => (
-              <div key={idx} className="glass-panel p-8 rounded-2xl border border-sand-700 space-y-4">
+              <div key={idx} className="glass-panel p-6 sm:p-8 rounded-2xl border border-sand-700 space-y-3">
                 <div className="w-10 h-10 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-sm shadow-md">
                   0{idx + 1}
                 </div>
-                <h3 className="text-lg font-bold text-charcoal-900">{item}</h3>
+                <h3 className="text-base sm:text-lg font-bold text-charcoal-900">{item}</h3>
               </div>
             ))}
           </div>
 
           {/* Season & Lodging Info */}
-          <div className={`grid grid-cols-1 ${!isGir && storyData.accommodation ? 'md:grid-cols-2' : 'max-w-2xl mx-auto'} gap-8`}>
+          <div className={`grid grid-cols-1 ${!isGir && storyData.accommodation ? 'md:grid-cols-2' : 'max-w-2xl mx-auto'} gap-6`}>
             
-            <div className="glass-panel p-8 rounded-2xl border border-sand-700 space-y-4">
+            <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-sand-700 space-y-3">
               <div className="w-12 h-12 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center shadow-md">
                 <Sun className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-charcoal-900">Best Time to Visit</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-charcoal-900">Best Time to Visit</h3>
               <p className="text-sm font-mono text-pine-800 font-bold">{storyData.bestSeason}</p>
               <p className="text-xs text-charcoal-700 leading-relaxed font-normal">
                 Optimized for maximum daylight, clear tracking conditions, and predictable animal behavior around key water sources.
@@ -208,11 +208,11 @@ export default function SafariStory() {
             </div>
 
             {!isGir && storyData.accommodation && (
-              <div className="glass-panel p-8 rounded-2xl border border-sand-700 space-y-4">
+              <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-sand-700 space-y-3">
                 <div className="w-12 h-12 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center shadow-md">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-charcoal-900">Luxury Safari Stay</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-charcoal-900">Luxury Safari Stay</h3>
                 <p className="text-xs text-charcoal-700 leading-relaxed font-normal">{storyData.accommodation}</p>
               </div>
             )}
@@ -222,29 +222,29 @@ export default function SafariStory() {
       </section>
 
       {/* 3. FINAL PROMINENT BOOK NOW CTA (NO PRICES DISPLAYED) */}
-      <section className="py-24 bg-sand-gradient relative border-t border-sand-700 z-30">
-        <div className="max-w-4xl mx-auto px-4 text-center glass-panel p-12 sm:p-16 rounded-3xl border-2 border-pine-800/40 shadow-2xl space-y-8">
-          <div className="space-y-3">
+      <section className="py-16 bg-sand-gradient relative border-t border-sand-700 z-30">
+        <div className="max-w-4xl mx-auto px-4 text-center glass-panel p-10 sm:p-14 rounded-3xl border-2 border-pine-800/40 shadow-2xl space-y-6">
+          <div className="space-y-2">
             <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Secure Your Departure</span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-charcoal-900">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-charcoal-900">
               Ready to Join the {storyData.animalName} Expedition?
             </h2>
-            <p className="text-sm text-charcoal-700 max-w-lg mx-auto font-normal">
+            <p className="text-xs sm:text-sm text-charcoal-700 max-w-lg mx-auto font-normal">
               Limited to 6 photographers per departure for maximum vehicle access and personalized photo instruction.
             </p>
           </div>
 
-          <div className="inline-flex items-center justify-center gap-6 bg-sand-900 px-8 py-4 rounded-2xl border border-sand-700">
+          <div className="inline-flex items-center justify-center gap-6 bg-sand-900 px-6 py-3 rounded-2xl border border-sand-700">
             <div className="text-center">
               <span className="text-[10px] font-mono text-charcoal-600 uppercase block">Expedition Length</span>
-              <span className="text-base font-bold text-charcoal-900">{tour?.duration} · {tour?.location}</span>
+              <span className="text-sm sm:text-base font-bold text-charcoal-900">{tour?.duration} · {tour?.location}</span>
             </div>
           </div>
 
           <div>
             <Link
               to={`/tours/${tour?.slug}`}
-              className="inline-flex items-center gap-2 px-10 py-5 rounded-full bg-pine-800 hover:bg-pine-700 text-sand-950 font-black text-lg shadow-2xl transition-all hover:scale-105"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-pine-800 hover:bg-pine-700 text-sand-950 font-black text-base shadow-2xl transition-all hover:scale-105"
             >
               <span>BOOK THIS SAFARI NOW</span>
               <ArrowRight className="w-5 h-5" />
