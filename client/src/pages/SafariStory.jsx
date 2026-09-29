@@ -104,11 +104,11 @@ export default function SafariStory() {
   return (
     <div className="bg-sand-gradient text-charcoal-900 min-h-screen selection:bg-pine-800 selection:text-sand-950 overflow-x-hidden">
       
-      {/* 1. FULL-SCREEN 100VW x 100VH CINEMATIC PHOTO HERO & SCROLL TRACK */}
-      <div ref={storyTrackRef} className="relative h-[115vh] bg-sand-900">
+      {/* 1. FULL-SCREEN 100VW x 100VH CINEMATIC PHOTO HERO */}
+      <div ref={storyTrackRef} className="relative h-screen bg-black">
         
-        {/* STICKY FULLSCREEN VIEWPORT (100vw x 100vh) */}
-        <div className="sticky top-0 h-screen w-screen overflow-hidden bg-sand-900 z-10">
+        {/* FULLSCREEN VIEWPORT */}
+        <div className="relative h-screen w-screen overflow-hidden bg-black z-10">
           
           {/* 100vw x 100vh Full-Screen Background Photo */}
           <motion.div
@@ -125,8 +125,8 @@ export default function SafariStory() {
             />
           </motion.div>
 
-          {/* Sand/Charcoal Overlay Gradient for Text Readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-charcoal-900/80 via-charcoal-900/30 to-sand-800 z-0 pointer-events-none" />
+          {/* Cinematic Dark Gradient Overlay (Preserves full animal visibility, zero white wash) */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-black/75 z-0 pointer-events-none" />
 
           {/* Floating Overlaid Hero Title */}
           <motion.div
@@ -149,20 +149,6 @@ export default function SafariStory() {
             <div className="pt-6 flex flex-col items-center gap-2 text-xs font-mono text-sand-900">
               <span>SCROLL DOWN — PHOTO TRANSFORMS INTO STORY</span>
               <ChevronDown className="w-5 h-5 text-sand-950 animate-bounce" />
-            </div>
-          </motion.div>
-
-          {/* Phase 1 Completion Overlay (Fades in as scale completes) */}
-          <motion.div
-            style={{ opacity: completionOverlayOpacity, y: completionOverlayY }}
-            className="absolute bottom-6 left-4 right-4 sm:left-12 sm:right-12 z-20 glass-panel p-4 sm:p-5 rounded-2xl border border-pine-800/40 shadow-2xl backdrop-blur-xl max-w-3xl mx-auto pointer-events-none"
-          >
-            <div className="flex items-center justify-between text-xs font-mono text-pine-800 font-bold">
-              <span className="uppercase tracking-wider">{storyData.animalName} Expedition</span>
-              <div className="flex items-center gap-1 text-charcoal-900 font-bold">
-                <span>Scroll to explore safari experience</span>
-                <ChevronDown className="w-4 h-4 text-pine-800 animate-bounce" />
-              </div>
             </div>
           </motion.div>
 
