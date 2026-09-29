@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getTourDetail, createBooking } from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, ExternalLink, Star, Hotel } from 'lucide-react';
+import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, Star, Hotel } from 'lucide-react';
 import HotelDetailModal from '../components/tours/HotelDetailModal';
 
 export default function TourDetail() {
@@ -121,12 +121,12 @@ export default function TourDetail() {
         {/* Left Column: Gallery & Itinerary */}
         <div className="lg:col-span-2 space-y-6">
           
-          {/* Main Hero Gallery Image */}
-          <div className="rounded-3xl overflow-hidden shadow-2xl h-80 sm:h-[420px] bg-sand-900 relative">
+          {/* Main Hero Gallery Image - Positioned to show full animal head without top cropping */}
+          <div className="rounded-3xl overflow-hidden shadow-2xl h-80 sm:h-[460px] bg-sand-900 relative">
             <img
               src={images[0]}
               alt={tour.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-[center_12%] sm:object-[center_top]"
             />
             <div className="absolute top-4 left-4 bg-pine-800 text-sand-950 px-4 py-1.5 rounded-full text-xs font-mono font-bold shadow-md">
               {tour.duration}
@@ -197,7 +197,7 @@ export default function TourDetail() {
                   onClick={() => setHotelModalOpen(true)}
                   className="sm:col-span-1 h-40 rounded-2xl overflow-hidden bg-sand-900 border border-sand-700 shadow-md cursor-pointer group relative"
                 >
-                  <img src={hotelInfo.images[0]} alt={hotelInfo.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <img src={hotelInfo.images[0]} alt={hotelInfo.name} className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-charcoal-950/30 group-hover:bg-charcoal-950/10 transition-colors flex items-center justify-center">
                     <span className="bg-charcoal-950/80 text-sand-950 text-[10px] font-mono font-bold px-2.5 py-1 rounded-full backdrop-blur-sm border border-sand-700">
                       Click to View Photos

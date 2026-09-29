@@ -110,7 +110,7 @@ export default function SafariStory() {
         {/* STICKY FULLSCREEN VIEWPORT (100vw x 100vh) */}
         <div className="sticky top-0 h-screen w-screen overflow-hidden bg-sand-900 z-10">
           
-          {/* 100vw x 100vh Full-Screen Background Photo scaling subtly as user scrolls */}
+          {/* 100vw x 100vh Full-Screen Background Photo - Dragged Down to avoid cutting from above */}
           <motion.div
             style={{ scale: bgScale, opacity: bgOpacity }}
             className="absolute inset-0 w-full h-full z-0"
@@ -118,7 +118,7 @@ export default function SafariStory() {
             <img
               src={storyData.photo}
               alt={storyData.animalName}
-              className="w-full h-full object-cover filter contrast-105"
+              className="w-full h-full object-cover object-[center_10%] sm:object-[center_top] filter contrast-105"
             />
           </motion.div>
 
