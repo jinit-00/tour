@@ -54,7 +54,7 @@ export default function SafariStory() {
     ? {
         animalName: 'Asiatic Lion',
         tagline: 'The Last Monarchs of Gir Sanctuary',
-        photo: 'https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?auto=format&fit=crop&w=2400&q=90',
+        photo: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=2400&q=85',
         highlights: [
           'Track wild Asiatic Lion prides in Gir’s dry deciduous teak forests',
           'Photograph leopards, spotted deer, chinkara antelopes & 300+ bird species',
@@ -66,7 +66,7 @@ export default function SafariStory() {
     ? {
         animalName: 'Royal Bengal Tiger',
         tagline: 'The Shadow Prowler of Ranthambore',
-        photo: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=2400&q=90',
+        photo: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=2400&q=85',
         highlights: [
           'High-Density Territorial Tigress Tracking Near Banyan Ruins',
           'Sambar & Axis Deer Alarm Call Tracking in Bamboo Thickets',
@@ -79,7 +79,7 @@ export default function SafariStory() {
     ? {
         animalName: 'White & Black Rhino',
         tagline: 'The Prehistoric Giants of Greater Kruger',
-        photo: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=2400&q=90',
+        photo: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=2400&q=85',
         highlights: [
           'White & Black Rhino Tracking in Private Conservation Reserves',
           'K9 Anti-Poaching Unit Field Ride-Alongs & Satellite Collar Monitoring',
@@ -91,7 +91,7 @@ export default function SafariStory() {
     : {
         animalName: 'African Lion',
         tagline: 'The Apex Monarch of the Savanna',
-        photo: 'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=2400&q=90',
+        photo: 'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=2400&q=85',
         highlights: [
           'Mara River Wildebeest Crossings & Lion Ambush Dynamics',
           'Cheetah Sprint Tracking in Open Grasslands',
@@ -110,7 +110,7 @@ export default function SafariStory() {
         {/* STICKY FULLSCREEN VIEWPORT (100vw x 100vh) */}
         <div className="sticky top-0 h-screen w-screen overflow-hidden bg-sand-900 z-10">
           
-          {/* 100vw x 100vh Full-Screen Background Photo - Dragged Down to avoid cutting from above */}
+          {/* 100vw x 100vh Full-Screen Background Photo */}
           <motion.div
             style={{ scale: bgScale, opacity: bgOpacity }}
             className="absolute inset-0 w-full h-full z-0"
@@ -118,7 +118,10 @@ export default function SafariStory() {
             <img
               src={storyData.photo}
               alt={storyData.animalName}
-              className="w-full h-full object-cover object-[center_10%] sm:object-[center_top] filter contrast-105"
+              onError={(e) => {
+                e.target.src = 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=2400&q=85';
+              }}
+              className="w-full h-full object-cover object-center filter contrast-105"
             />
           </motion.div>
 

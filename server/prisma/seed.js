@@ -50,7 +50,7 @@ async function main() {
       duration: '6 Days / 5 Nights',
       isFeatured: true,
       imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?auto=format&fit=crop&w=1600&q=80'
+        'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80'
       ])
     },
     {
@@ -86,7 +86,7 @@ async function main() {
       duration: '6 Days / 5 Nights',
       isFeatured: true,
       imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80'
+        'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?auto=format&fit=crop&w=1600&q=80'
       ])
     },
     {

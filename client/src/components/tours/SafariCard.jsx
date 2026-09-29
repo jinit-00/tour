@@ -27,14 +27,17 @@ export default function SafariCard({ tour, index = 0 }) {
       onClick={handleCardClick}
       className="group relative min-h-[640px] rounded-[32px] overflow-hidden bg-[#141414] shadow-2xl cursor-pointer flex flex-col justify-between p-8 sm:p-10 select-none border-0"
     >
-      {/* 1. Full-Card Background Wildlife Image - Positioned to show complete animal face */}
+      {/* 1. Full-Card Background Wildlife Image */}
       <motion.img
         src={imageUrl}
         alt={tour.title}
         loading="lazy"
+        onError={(e) => {
+          e.target.src = 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80';
+        }}
         whileHover={{ scale: 1.04 }}
         transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
-        className="absolute inset-0 w-full h-full object-cover object-[center_12%] sm:object-[center_top] filter contrast-105 pointer-events-none"
+        className="absolute inset-0 w-full h-full object-cover object-center filter contrast-105 pointer-events-none"
       />
 
       {/* 2. Apple-Style Subtle Dark Gradient Overlays for Readability */}

@@ -121,12 +121,15 @@ export default function TourDetail() {
         {/* Left Column: Gallery & Itinerary */}
         <div className="lg:col-span-2 space-y-6">
           
-          {/* Main Hero Gallery Image - Positioned to show full animal head without top cropping */}
+          {/* Main Hero Gallery Image */}
           <div className="rounded-3xl overflow-hidden shadow-2xl h-80 sm:h-[460px] bg-sand-900 relative">
             <img
               src={images[0]}
               alt={tour.title}
-              className="w-full h-full object-cover object-[center_12%] sm:object-[center_top]"
+              onError={(e) => {
+                e.target.src = 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80';
+              }}
+              className="w-full h-full object-cover object-center"
             />
             <div className="absolute top-4 left-4 bg-pine-800 text-sand-950 px-4 py-1.5 rounded-full text-xs font-mono font-bold shadow-md">
               {tour.duration}

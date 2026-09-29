@@ -13,7 +13,7 @@ const FALLBACK_TOURS = [
     duration: '6 Days / 5 Nights',
     isFeatured: true,
     images: [
-      'https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
       { id: 'p1', name: 'Le Casa Lion Resort Package', price: 0, description: 'Luxury stay at Le Casa Lion Resort (Sasan Gir) & all safari permits.' }
@@ -78,7 +78,7 @@ const FALLBACK_TOURS = [
     duration: '6 Days / 5 Nights',
     isFeatured: true,
     images: [
-      'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
       { id: 'p4', name: 'Heritage Jungle Lodge', price: 0, description: 'Royal suite & open Gypsy 4x4 safaris.' }
