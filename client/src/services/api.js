@@ -1089,7 +1089,10 @@ export const JAWAI_HOTELS = [
         "description": "Luxury Tent with Balcony featuring air conditioning, private sit-out deck, attached modern bathroom, and scenic garden views.",
         "images": [
           "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-85cf13b8-f2bc-48a7-9c32-db7c0e041b97.jpg",
-          "https://r1imghtlak.mmtcdn.com/aa22116c-228b-4ca4-9a21-537271b9ba48.jpg"
+          "https://r1imghtlak.mmtcdn.com/aa22116c-228b-4ca4-9a21-537271b9ba48.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-da754501-aa85-45dc-b094-f89b7a2b5d16.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-8e9cf35e-ca74-4119-99bb-c5f7347d4f77.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-db2ce723-3296-4deb-8866-9674f44953ac.jpg"
         ]
       },
       {
@@ -1102,7 +1105,10 @@ export const JAWAI_HOTELS = [
         "description": "Premium Cottage with balcony featuring air conditioning, private scenic balcony, tea/coffee maker, and attached bathroom.",
         "images": [
           "https://r1imghtlak.mmtcdn.com/b88129cd-b3f0-4e20-945b-1930d5c74cc8.jpg",
-          "https://r1imghtlak.mmtcdn.com/3f76611a-72b4-4c92-81b0-98f91a03bfcc.jpg"
+          "https://r1imghtlak.mmtcdn.com/3f76611a-72b4-4c92-81b0-98f91a03bfcc.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-df54c534-46eb-48fd-97cc-506acab20ade.jpg",
+          "https://r1imghtlak.mmtcdn.com/3929b632-b6e0-4ee4-9d5f-a09b678aae5d.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-b0840ef9-2439-435f-b6be-da74f10559c5.jpg"
         ]
       },
       {
@@ -1115,7 +1121,10 @@ export const JAWAI_HOTELS = [
         "description": "Premium Cottage With Plunge Pool featuring your own private swimming pool, sun deck loungers, premium bathroom, and air conditioning.",
         "images": [
           "https://r1imghtlak.mmtcdn.com/3442e20b-13c9-42e5-bf61-9cf8e0418390.jpeg",
-          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-d77a0f9d-2c45-47a5-a8b5-a184d5f10de0.jpg"
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-d77a0f9d-2c45-47a5-a8b5-a184d5f10de0.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-d6e74607-ae06-42b9-bf50-a3db05fe5be7.jpg",
+          "https://r1imghtlak.mmtcdn.com/bbd9ec95-8c2b-4a70-80d2-455c005de08d.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-b19efa4c-c002-4d12-9dd8-999bf46d30aa.jpg"
         ]
       },
       {
@@ -1128,7 +1137,10 @@ export const JAWAI_HOTELS = [
         "description": "2 Room Villa with Plunge Pool featuring 2 master bedrooms, private swimming pool, spacious living area, private lawn, and dedicated service.",
         "images": [
           "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-6eeada87-b7cc-41ab-8046-111878f82792.jpg",
-          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-52192003-22dc-4b78-9dcc-3cd807fdc0ba.jpg"
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-52192003-22dc-4b78-9dcc-3cd807fdc0ba.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-6dcfba1f-2e4c-456a-8a80-f9c00275db68.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-5c5f0aa9-f489-45dd-9c13-6a326bab0615.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-87ba6701-ada7-478f-967d-2dfe95f4e826.jpg"
         ]
       }
     ]
@@ -1172,7 +1184,10 @@ export const JAWAI_HOTELS = [
         "description": "Shikar Luxury Tent featuring traditional royal canvas craftsmanship, air conditioning, en-suite bathroom, and private verandah.",
         "images": [
           "https://r1imghtlak.mmtcdn.com/3650e8e9-3be6-4dac-933f-d9acee3b3bc1.png",
-          "https://r1imghtlak.mmtcdn.com/1127c06c-b258-42d1-9bac-dfd877564db7.jpg"
+          "https://r1imghtlak.mmtcdn.com/1127c06c-b258-42d1-9bac-dfd877564db7.jpg",
+          "https://r1imghtlak.mmtcdn.com/31d13e3e-93d2-48bd-91ed-823fa38f4f3b.jpg",
+          "https://r1imghtlak.mmtcdn.com/2d376ea1-a997-42b5-96ff-aeccb245cf13.jpg",
+          "https://r1imghtlak.mmtcdn.com/5e6bebd5-6ace-4625-a019-2cc7565bb8f9.jpg"
         ]
       },
       {
@@ -1185,7 +1200,10 @@ export const JAWAI_HOTELS = [
         "description": "Royal Jungle Cottage featuring solid stone walls, plush bedding, air conditioning, modern bathroom, tea/coffee maker, and private garden patio.",
         "images": [
           "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/202504171348262193-2145167731-bc4feb03-0693-448f-a744-8c9dbfb03f3f.jpg",
-          "https://r1imghtlak.mmtcdn.com/46cc16c8-749c-4899-9fb9-a0ebf512e253.jpg"
+          "https://r1imghtlak.mmtcdn.com/46cc16c8-749c-4899-9fb9-a0ebf512e253.jpg",
+          "https://r1imghtlak.mmtcdn.com/0450137c-7dbb-4713-aa75-7d7c380acf62.jpg",
+          "https://r1imghtlak.mmtcdn.com/89c6067c-bf5d-42c0-8e47-0a116d19ae51.JPG",
+          "https://r1imghtlak.mmtcdn.com/443265ea-15ed-4c55-8287-96cbd33472bf.JPG"
         ]
       }
     ]
