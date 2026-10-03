@@ -134,11 +134,6 @@ export default function SafariStory() {
             style={{ opacity: heroTitleOpacity, y: heroTitleY }}
             className="relative z-10 max-w-5xl mx-auto px-4 h-full flex flex-col justify-center items-center text-center space-y-5 pointer-events-none pt-8"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pine-800 text-sand-950 text-xs font-mono tracking-widest uppercase shadow-2xl">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Cinematic Full-Screen Photography</span>
-            </span>
-
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-sand-950 tracking-tight uppercase leading-none drop-shadow-2xl">
               {tour?.title || storyData.animalName}
             </h1>
@@ -148,7 +143,6 @@ export default function SafariStory() {
             </p>
 
             <div className="pt-6 flex flex-col items-center gap-2 text-xs font-mono text-sand-900">
-              <span>SCROLL DOWN — PHOTO TRANSFORMS INTO STORY</span>
               <ChevronDown className="w-5 h-5 text-sand-950 animate-bounce" />
             </div>
           </motion.div>
