@@ -313,19 +313,12 @@ export default function TourDetail() {
                               View Photos ({hotel.images.length})
                             </span>
                           </div>
-                          <div className="absolute top-3 right-3 bg-charcoal-950/85 backdrop-blur-md text-sand-950 text-[10px] font-mono font-bold px-2.5 py-1 rounded-full border border-sand-700 flex items-center gap-1">
-                            <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
-                            {hotel.rating.split(' ')[0]}
-                          </div>
                         </div>
 
                         {/* Card Info Content */}
                         <div className="p-5 space-y-3">
                           <div>
-                            <span className="text-[10px] font-mono uppercase text-pine-800 font-bold tracking-wider block">
-                              {hotel.rating}
-                            </span>
-                            <h4 className="text-base sm:text-lg font-bold text-charcoal-950 leading-snug pt-0.5">
+                            <h4 className="text-base sm:text-lg font-bold text-charcoal-950 leading-snug">
                               {hotel.name}
                             </h4>
                             <p className="text-xs text-pine-800 font-medium font-mono pt-0.5">
@@ -464,7 +457,7 @@ export default function TourDetail() {
                         />
                         <div className="min-w-0 flex-1">
                           <p className="text-xs font-bold text-charcoal-900 truncate">{selectedHotel.name}</p>
-                          <p className="text-[10px] text-pine-800 font-mono truncate">{selectedHotel.rating} · Click to view details</p>
+                          <p className="text-[10px] text-pine-800 font-mono truncate">Click to view details</p>
                         </div>
                       </div>
                     )}
