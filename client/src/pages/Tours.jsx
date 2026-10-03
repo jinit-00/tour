@@ -41,7 +41,7 @@ export default function Tours() {
           Wildlife Photography Safaris
         </h1>
         <p className="text-xs sm:text-sm text-charcoal-700 max-w-2xl mx-auto font-normal">
-          Explore our 11 signature small-group departures featuring Gir, Sanjay Dubri, Jawai, Ranthambore, Velavadar, Masai Mara, Uganda, Kruger, Kaziranga, Camargue, and Amboseli. Select any safari card or click the circular button to enter full-screen scroll storytelling.
+          Explore our 11 signature small-group departures featuring Gir, Sanjay Dubri, Jawai, Ranthambore, Velavadar, Masai Mara, Uganda, Kruger, Kaziranga, Camargue, and Amboseli. Select any safari card to explore each destination.
         </p>
       </div>
 

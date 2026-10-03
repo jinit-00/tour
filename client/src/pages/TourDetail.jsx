@@ -195,7 +195,7 @@ export default function TourDetail() {
         <div className="flex items-center gap-3">
           <BookOpen className="w-5 h-5 text-pine-800 shrink-0" />
           <span className="text-xs sm:text-sm text-charcoal-800 font-medium">
-            Looking for full-screen scroll storytelling? Explore the interactive field journey.
+            Explore the wildlife story and masterclass journey for this expedition.
           </span>
         </div>
         <Link

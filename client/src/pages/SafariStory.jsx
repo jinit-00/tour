@@ -42,14 +42,15 @@ export default function SafariStory() {
   if (loading) {
     return (
       <div className="min-h-screen bg-sand-gradient flex items-center justify-center text-charcoal-700 font-mono">
-        Initializing full-screen cinematic safari...
+        Initializing safari story...
       </div>
     );
   }
 
-  const isGir = slug.includes('gir');
-  const isTiger = slug.includes('tiger') || slug.includes('ranthambore');
-  const isRhino = slug.includes('rhino') || slug.includes('kruger');
+  const isGir = slug?.includes('gir');
+  const isJawai = slug?.includes('jawai');
+  const isTiger = slug?.includes('tiger') || slug?.includes('ranthambore');
+  const isRhino = slug?.includes('rhino') || slug?.includes('kruger');
 
   const storyData = isGir
     ? {
@@ -62,6 +63,18 @@ export default function SafariStory() {
           'Exclusive open-top 4x4 safari access with expert native trackers'
         ],
         bestSeason: 'November – April (Optimal Daylight & High Wildlife Movement)'
+      }
+    : isJawai
+    ? {
+        animalName: 'Jawai Leopard',
+        tagline: 'The Granite Hill Predators of Rajasthan',
+        photo: 'https://images.unsplash.com/photo-1456926631375-92c8ce872def?auto=format&fit=crop&w=2400&q=85',
+        highlights: [
+          'Track wild leopards roaming ancient granite rock formations and cave shelters',
+          'Photograph crocodiles, flamingos, migratory birds & wildlife around Jawai Dam',
+          'Exclusive open 4x4 gypsies with experienced local trackers and naturalist guides'
+        ],
+        bestSeason: 'October – April (Pleasant Weather & Excellent Leopard Sightings)'
       }
     : isTiger
     ? {
@@ -186,6 +199,27 @@ export default function SafariStory() {
             </div>
           )}
 
+          {/* Jawai Granite Hills Narrative */}
+          {isJawai && (
+            <div className="glass-panel p-6 sm:p-10 rounded-3xl border border-sand-700/80 space-y-4 max-w-4xl mx-auto shadow-xl bg-sand-900/40">
+              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">
+                <Sparkles className="w-4 h-4 text-pine-800" />
+                <span>The Sanctuary Narrative</span>
+              </div>
+              <div className="space-y-4 text-xs sm:text-sm text-charcoal-800 leading-relaxed font-normal">
+                <p>
+                  Jawai, located in Rajasthan, is a unique wildlife destination known for its leopards living among dramatic granite hills and rocky landscapes. Unlike dense forests, Jawai’s open terrain makes it possible to observe wildlife against a striking natural backdrop.
+                </p>
+                <p>
+                  The region is home to <strong className="text-charcoal-950 font-bold">leopards, crocodiles, hyenas, jackals, flamingos, migratory birds, and other wildlife</strong>. Its rocky caves and hills provide natural shelter for leopards, while the surrounding grasslands and Jawai Dam support a diverse ecosystem.
+                </p>
+                <p>
+                  Jawai is especially famous for its leopard sightings and distinctive landscape, offering photographers an experience very different from traditional forest safaris. The combination of wildlife, open terrain, local villages, and massive granite formations makes Jawai a remarkable destination for wildlife photography.
+                </p>
+              </div>
+            </div>
+          )}
+
           {/* Masterclass Key Highlights Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {storyData.highlights.map((item, idx) => (
@@ -199,7 +233,7 @@ export default function SafariStory() {
           </div>
 
           {/* Season & Lodging Info */}
-          <div className={`grid grid-cols-1 ${!isGir && storyData.accommodation ? 'md:grid-cols-2' : 'max-w-2xl mx-auto'} gap-6`}>
+          <div className={`grid grid-cols-1 ${!isGir && !isJawai && storyData.accommodation ? 'md:grid-cols-2' : 'max-w-2xl mx-auto'} gap-6`}>
             
             <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-sand-700 space-y-3">
               <div className="w-12 h-12 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center shadow-md">
@@ -212,7 +246,7 @@ export default function SafariStory() {
               </p>
             </div>
 
-            {!isGir && storyData.accommodation && (
+            {!isGir && !isJawai && storyData.accommodation && (
               <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-sand-700 space-y-3">
                 <div className="w-12 h-12 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center shadow-md">
                   <ShieldCheck className="w-6 h-6" />
