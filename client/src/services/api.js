@@ -1048,6 +1048,150 @@ export const GIR_HOTELS = [
   }
 ];
 
+// Official Partner Resorts for Jawai Leopard Safari (10 Photos & MMT Room Categories Each)
+export const JAWAI_HOTELS = [
+  {
+    "id": "jawai-greens",
+    "name": "Jawai Greens",
+    "tagline": "Luxury Wilderness Retreat in the Granite Hills of Jawai",
+    "rating": "4.6 \u2605",
+    "price": 0,
+    "description": "Jawai Greens offers luxury tented suites and cottages amidst the rugged granite hills of Jawai, featuring private plunge pool villas, landscaped gardens, and authentic Rajputana safari hospitality.",
+    "amenities": [
+      "Swimming Pool",
+      "Private Plunge Pool Villas",
+      "Luxury Tented Accommodations",
+      "Multi-Cuisine Dining",
+      "Lush Garden Lawns",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-1468785c-37bf-4494-bd37-c494375ca5bb.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-6eeada87-b7cc-41ab-8046-111878f82792.jpg",
+      "https://r1imghtlak.mmtcdn.com/b6cf0de2-701c-4a0b-a719-f1cc3b1125e7.jpeg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-b176ee14-2896-49f1-9da2-34158f72d75e.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-6ff7ff90-f747-44b1-aeb9-89d3bc80126d.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-f7aa13a1-fade-447c-9655-893595245f1d.jpg",
+      "https://r1imghtlak.mmtcdn.com/b88129cd-b3f0-4e20-945b-1930d5c74cc8.jpg",
+      "https://r1imghtlak.mmtcdn.com/3f76611a-72b4-4c92-81b0-98f91a03bfcc.jpg",
+      "https://r1imghtlak.mmtcdn.com/3442e20b-13c9-42e5-bf61-9cf8e0418390.jpeg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-85cf13b8-f2bc-48a7-9c32-db7c0e041b97.jpg"
+    ],
+    "roomCategories": [
+      {
+        "id": "jawai-greens-luxury-tent",
+        "name": "Luxury Tent with Balcony",
+        "price": 0,
+        "bedType": "1 King Bed",
+        "view": "Nature & Garden View",
+        "roomSize": "360 sq.ft",
+        "description": "Luxury Tent with Balcony featuring air conditioning, private sit-out deck, attached modern bathroom, and scenic garden views.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-85cf13b8-f2bc-48a7-9c32-db7c0e041b97.jpg",
+          "https://r1imghtlak.mmtcdn.com/aa22116c-228b-4ca4-9a21-537271b9ba48.jpg"
+        ]
+      },
+      {
+        "id": "jawai-greens-prem-cottage-balcony",
+        "name": "Premium Cottage with balcony",
+        "price": 40,
+        "bedType": "1 King Bed",
+        "view": "Hills & Garden View",
+        "roomSize": "450 sq.ft",
+        "description": "Premium Cottage with balcony featuring air conditioning, private scenic balcony, tea/coffee maker, and attached bathroom.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/b88129cd-b3f0-4e20-945b-1930d5c74cc8.jpg",
+          "https://r1imghtlak.mmtcdn.com/3f76611a-72b4-4c92-81b0-98f91a03bfcc.jpg"
+        ]
+      },
+      {
+        "id": "jawai-greens-prem-cottage-plunge-pool",
+        "name": "Premium Cottage With Plunge Pool",
+        "price": 80,
+        "bedType": "1 King Bed",
+        "view": "Private Pool & Garden View",
+        "roomSize": "520 sq.ft",
+        "description": "Premium Cottage With Plunge Pool featuring your own private swimming pool, sun deck loungers, premium bathroom, and air conditioning.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/3442e20b-13c9-42e5-bf61-9cf8e0418390.jpeg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-d77a0f9d-2c45-47a5-a8b5-a184d5f10de0.jpg"
+        ]
+      },
+      {
+        "id": "jawai-greens-2room-villa-plunge-pool",
+        "name": "2 Room Villa with Plunge Pool",
+        "price": 140,
+        "bedType": "2 King Beds",
+        "view": "Panoramic Jawai Hills & Private Pool View",
+        "roomSize": "950 sq.ft",
+        "description": "2 Room Villa with Plunge Pool featuring 2 master bedrooms, private swimming pool, spacious living area, private lawn, and dedicated service.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-6eeada87-b7cc-41ab-8046-111878f82792.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201902011852246519-52192003-22dc-4b78-9dcc-3cd807fdc0ba.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "atithi-leopard-camp",
+    "name": "Atithi Leopard Camp",
+    "tagline": "Authentic Safari Camp with Shikar Tents & Royal Cottages",
+    "rating": "4.7 \u2605",
+    "price": 60,
+    "description": "Atithi Leopard Camp provides an authentic leopard safari camp experience at the foothills of Jawai granite hills, offering Shikar luxury tents, royal cottages, campfire courtyards, and open-air safari dining.",
+    "amenities": [
+      "Swimming Pool",
+      "Shikar Luxury Tents",
+      "Royal Jungle Cottages",
+      "Safari Dining & Lounge",
+      "Campfire Courtyard",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/e9bc0c78-2b8e-459f-825a-d1deb73c0653.png",
+      "https://r1imghtlak.mmtcdn.com/39504494-2a3b-4680-8df6-693db6214e7e.png",
+      "https://r1imghtlak.mmtcdn.com/c7741163-66b5-4db4-8fa0-9d7edddc2e4c.png",
+      "https://r1imghtlak.mmtcdn.com/3650e8e9-3be6-4dac-933f-d9acee3b3bc1.png",
+      "https://r1imghtlak.mmtcdn.com/1127c06c-b258-42d1-9bac-dfd877564db7.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/202504171348262193-2145167731-bc4feb03-0693-448f-a744-8c9dbfb03f3f.jpg",
+      "https://r1imghtlak.mmtcdn.com/46cc16c8-749c-4899-9fb9-a0ebf512e253.jpg",
+      "https://r1imghtlak.mmtcdn.com/1e517c58-0460-4045-b9a1-dac5dc5a0883.jpg",
+      "https://r1imghtlak.mmtcdn.com/ce3d1166-ef05-4c40-8586-ffaef6f372fb.jpg",
+      "https://r1imghtlak.mmtcdn.com/068968c9-1ad0-4597-974e-91be7fffee24.jpg"
+    ],
+    "roomCategories": [
+      {
+        "id": "atithi-leopard-camp-shikar-luxury-tent",
+        "name": "Shikar Luxury Tent",
+        "price": 0,
+        "bedType": "1 King Bed",
+        "view": "Wilderness & Hill View",
+        "roomSize": "380 sq.ft",
+        "description": "Shikar Luxury Tent featuring traditional royal canvas craftsmanship, air conditioning, en-suite bathroom, and private verandah.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/3650e8e9-3be6-4dac-933f-d9acee3b3bc1.png",
+          "https://r1imghtlak.mmtcdn.com/1127c06c-b258-42d1-9bac-dfd877564db7.jpg"
+        ]
+      },
+      {
+        "id": "atithi-leopard-camp-royal-jungle-cottage",
+        "name": "Royal Jungle Cottage",
+        "price": 50,
+        "bedType": "1 King Bed + Sitting Area",
+        "view": "Safari Camp & Mountain View",
+        "roomSize": "480 sq.ft",
+        "description": "Royal Jungle Cottage featuring solid stone walls, plush bedding, air conditioning, modern bathroom, tea/coffee maker, and private garden patio.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/202504171348262193-2145167731-bc4feb03-0693-448f-a744-8c9dbfb03f3f.jpg",
+          "https://r1imghtlak.mmtcdn.com/46cc16c8-749c-4899-9fb9-a0ebf512e253.jpg"
+        ]
+      }
+    ]
+  }
+];
+
 const FALLBACK_TOURS = [
   {
     id: '1',
@@ -1101,9 +1245,14 @@ const FALLBACK_TOURS = [
     images: [
       'https://images.unsplash.com/photo-1456926631375-92c8ce872def?auto=format&fit=crop&w=1600&q=80',
     ],
-    packages: [
-      { id: 'p3', name: 'Granite Rock Camp', price: 0, description: 'Private luxury tented suite with open 4x4.' }
-    ]
+    packages: JAWAI_HOTELS.map(h => ({
+      id: h.id,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      price: h.price,
+      description: h.tagline
+    })),
+    hotels: JAWAI_HOTELS,
+    hotelDetails: JAWAI_HOTELS[0]
   },
   {
     id: '4',

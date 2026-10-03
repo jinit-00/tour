@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getTourDetail, createBooking, GIR_HOTELS } from '../services/api';
+import { getTourDetail, createBooking, GIR_HOTELS, JAWAI_HOTELS } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, Star, Hotel, Eye, Plus, Minus, ChevronDown, Clock } from 'lucide-react';
 import HotelDetailModal from '../components/tours/HotelDetailModal';
@@ -26,7 +26,8 @@ export default function TourDetail() {
   const [selectedRoomCategory, setSelectedRoomCategory] = useState(null);
 
   const isGir = slug === 'gir-lion-safari' || slug?.includes('gir');
-  const availableHotels = isGir ? GIR_HOTELS : (tour?.hotels || []);
+  const isJawai = slug === 'jawai-leopard-safari' || slug?.includes('jawai');
+  const availableHotels = isGir ? GIR_HOTELS : isJawai ? JAWAI_HOTELS : (tour?.hotels || []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -35,6 +36,8 @@ export default function TourDetail() {
         setTour(res.data);
         const hotels = (slug === 'gir-lion-safari' || slug?.includes('gir')) 
           ? GIR_HOTELS 
+          : (slug === 'jawai-leopard-safari' || slug?.includes('jawai'))
+          ? JAWAI_HOTELS
           : (res.data.hotels || []);
         
         if (hotels.length > 0) {
@@ -275,7 +278,7 @@ export default function TourDetail() {
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <div>
                   <h3 className="text-2xl sm:text-3xl font-black text-charcoal-950 uppercase tracking-tight">
-                    Choose Your Gir Stay
+                    {isGir ? 'Choose Your Gir Stay' : isJawai ? 'Choose Your Jawai Stay' : 'Choose Your Stay'}
                   </h3>
                 </div>
               </div>
