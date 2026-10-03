@@ -24,7 +24,123 @@ export const GIR_HOTELS = [
     ],
     amenities: ['Outdoor Swimming Pool', 'Pure Veg Dining', 'Mango Orchard Setting', 'Deluxe Swiss AC Tents', 'Free Wi-Fi', '24/7 Front Desk'],
     price: 0,
-    priceNote: 'Included with Safari Package'
+    priceNote: 'Included with Safari Package',
+    roomCategories: [
+      {
+        id: 'deluxe-non-ac-cottage-tent',
+        name: 'Deluxe Non AC Cottage Tent',
+        roomType: 'Deluxe Non Ac Cottage Tent',
+        bedType: '1 Queen Bed',
+        roomSize: '2906 sq.ft (270 sq.mt)',
+        view: 'Garden View & Attached Balcony',
+        description: 'Spacious cottage tent with peaceful garden views, private attached bathroom, and serene mango orchard surroundings.',
+        price: 0,
+        priceNote: 'Included in Base Package',
+        images: [
+          'https://r1imghtlak.mmtcdn.com/10718a55-b9be-4968-8f59-f42d8d2a3fee.JPG',
+          'https://r1imghtlak.mmtcdn.com/b6da424d-b334-40a9-9f27-bc95e5cd05f0.JPG',
+          'https://r1imghtlak.mmtcdn.com/a84030d9-09db-41e5-b94c-bf59da89d57e.JPG',
+          'https://r1imghtlak.mmtcdn.com/94131af6-7aeb-4a58-a50f-89310a2e241b.JPG',
+          'https://r1imghtlak.mmtcdn.com/9c399646-59ec-47ab-b10a-3b20cbb86b50.JPG',
+          'https://r1imghtlak.mmtcdn.com/bdf0c6dc-3f84-42da-8435-f1607bf8787b.JPG',
+          'https://r1imghtlak.mmtcdn.com/52b8853d-90af-42b1-a71e-9acf7e4a453c.JPG',
+          'https://r1imghtlak.mmtcdn.com/877cf8d6-1213-4e5a-aa69-f9c173c0e51e.jpg'
+        ]
+      },
+      {
+        id: 'super-deluxe-ac-cottage-tent',
+        name: 'Super Deluxe AC Cottage Tent',
+        roomType: 'Super Deluxe Ac Cottage Tent',
+        bedType: '1 Queen Bed',
+        roomSize: '2906 sq.ft (270 sq.mt)',
+        view: 'Garden View & Attached Balcony',
+        description: 'Air-conditioned luxury cottage tent featuring climate control, attached modern bathroom, veranda, and garden views.',
+        price: 25,
+        priceNote: '+$25 / guest upgrade',
+        images: [
+          'https://r1imghtlak.mmtcdn.com/f36ed913-b9fb-4947-8ad1-b5fa07755c82.JPG',
+          'https://r1imghtlak.mmtcdn.com/ebef8e90-3684-470b-a5eb-65ff4215f28a.JPG',
+          'https://r1imghtlak.mmtcdn.com/faeaa168-4c48-491b-8718-6899b0c286dd.JPG',
+          'https://r1imghtlak.mmtcdn.com/fdb7fe1b-ed39-44a4-ab78-4c0ec5eb770c.JPG',
+          'https://r1imghtlak.mmtcdn.com/78a9e765-790a-4b4a-b37e-535bebf952ad.JPG',
+          'https://r1imghtlak.mmtcdn.com/53cb84ca-4116-417d-9a4d-5c68cc4c50ef.JPG',
+          'https://r1imghtlak.mmtcdn.com/f3f98352-db13-4d11-9221-5e17664645b1.JPG',
+          'https://r1imghtlak.mmtcdn.com/2b1d9de4-061a-41c6-a303-f5e8c79bb2c7.jpg'
+        ]
+      },
+      {
+        id: 'superior-ac-swiss-tent',
+        name: 'Superior AC Swiss Tent',
+        roomType: 'Superior Ac Swiss Tent',
+        bedType: '1 Queen Bed (+2 Mattresses available)',
+        roomSize: '2906 sq.ft (270 sq.mt)',
+        view: 'Garden & Mango Grove View',
+        description: 'Premium Swiss-style safari tent with handcrafted furnishings, powerful air conditioning, dedicated outdoor patio, and attached bathroom.',
+        price: 40,
+        priceNote: '+$40 / guest upgrade',
+        images: [
+          'https://r1imghtlak.mmtcdn.com/3e4b89c2-7760-4e24-aa31-e469d96f6005.png',
+          'https://r1imghtlak.mmtcdn.com/0a6cd63f-41f4-40c4-941f-771a6c625f56.jpg',
+          'https://r1imghtlak.mmtcdn.com/55b26095-8668-4584-9e80-02432ce64322.jpg',
+          'https://r1imghtlak.mmtcdn.com/180b53c8-813f-4ca2-b1dc-64258fa386b9.jpg',
+          'https://r1imghtlak.mmtcdn.com/6b9a2676-9ac2-4f63-a6b7-1d55c8224915.jpg',
+          'https://r1imghtlak.mmtcdn.com/8ba4117c-5ee4-4d93-9116-f4e64b021151.jpg',
+          'https://r1imghtlak.mmtcdn.com/42142305-aedd-4a83-9e95-e62559295e71.png',
+          'https://r1imghtlak.mmtcdn.com/4546ce9e-ca5b-487d-9601-0968a1622b2c.png',
+          'https://r1imghtlak.mmtcdn.com/1d1efd02-f0e9-4d23-a461-37380ec0901b.png',
+          'https://r1imghtlak.mmtcdn.com/b30c11d2-3bf5-4e18-8588-c0396fe8441e.png',
+          'https://r1imghtlak.mmtcdn.com/cac34778-c4c9-4058-9c87-661349e11611.png',
+          'https://r1imghtlak.mmtcdn.com/89a37b40-43a7-4a00-b33b-8efcf46ba33e.png'
+        ]
+      },
+      {
+        id: 'forest-view-ac-room',
+        name: 'Forest View AC Room',
+        roomType: 'Forest view Ac Room',
+        bedType: '1 King/Queen Bed',
+        roomSize: '3229 sq.ft (300 sq.mt)',
+        view: 'Swimming Pool & Forest View',
+        description: 'Spacious solid-structure guest room overlooking the swimming pool and forest fringe with luxury bedding and attached modern washroom.',
+        price: 55,
+        priceNote: '+$55 / guest upgrade',
+        images: [
+          'https://r1imghtlak.mmtcdn.com/b995119f-6fbd-4a3d-97f1-eb9eee7a27a2.jpg',
+          'https://r1imghtlak.mmtcdn.com/c1da9bcb-d9a0-4289-888e-0c70337ad578.jpg',
+          'https://r1imghtlak.mmtcdn.com/11dd5c44-e9ce-429c-b500-100e5eac5dad.jpg',
+          'https://r1imghtlak.mmtcdn.com/10c1c1b5-da1d-4b34-803c-dcaa4e7b9731.jpg',
+          'https://r1imghtlak.mmtcdn.com/a91c9a15-26a8-4dbc-ae60-e75eb9ca3ce4.jpg',
+          'https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202312191526017157-9f92bec6-4be4-4da3-a3ad-8a4b457fa6f0.jpg',
+          'https://r1imghtlak.mmtcdn.com/49aafc01-de00-4c9a-9f89-d1fa95eef978.jpg',
+          'https://r1imghtlak.mmtcdn.com/2e56db68-553d-48a5-bb23-9c7051e83d4e.jpg',
+          'https://r1imghtlak.mmtcdn.com/ebc27ffe-4ca2-4869-b7b4-f670b12d2550.jpg',
+          'https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202312191526017157-4fa1a501-0583-48b3-9517-9fd9b06a2fcc.jpg',
+          'https://r1imghtlak.mmtcdn.com/1e4aad7e-6091-4c3f-bafe-db3ef1c89792.jpg'
+        ]
+      },
+      {
+        id: 'stonecrest-family-cottage',
+        name: 'Stonecrest Family Cottage',
+        roomType: 'Stonecrest Family Cottage',
+        bedType: '9 Single Beds (+2 Mattresses available)',
+        roomSize: '646 sq.ft (60 sq.mt)',
+        view: 'Garden & Lawn View',
+        description: 'Expansive private stone cottage designed for family and photographer groups, with private veranda, multiple comfortable beds, and attached bathroom.',
+        price: 80,
+        priceNote: '+$80 / guest upgrade',
+        images: [
+          'https://r1imghtlak.mmtcdn.com/fa0f67d7-5c27-4e41-abe7-0f45cdc2c0df.png',
+          'https://r1imghtlak.mmtcdn.com/5f67623c-bfc5-4698-b604-ad91f02f3195.png',
+          'https://r1imghtlak.mmtcdn.com/e6841be3-7144-4b3a-bf5f-02c995da1145.png',
+          'https://r1imghtlak.mmtcdn.com/808d3c8b-8bdb-426d-94d1-bc5575f3da92.png',
+          'https://r1imghtlak.mmtcdn.com/60ced555-6686-4504-afcb-601d1e65cbe3.png',
+          'https://r1imghtlak.mmtcdn.com/f577f0c5-0077-4224-92d8-4dfbb1fb1cd0.png',
+          'https://r1imghtlak.mmtcdn.com/648c515f-361c-49dd-bbc0-b03f5e48055c.png',
+          'https://r1imghtlak.mmtcdn.com/f0c24c5c-66e1-48c4-9165-be9736b162e6.png',
+          'https://r1imghtlak.mmtcdn.com/33b2811d-cdd6-43b8-8340-5b56ed7d8c8e.png',
+          'https://r1imghtlak.mmtcdn.com/e92000f2-9ba2-4ca4-b57f-ff64b0ff7440.png'
+        ]
+      }
+    ]
   },
   {
     id: 'gir-garjna',

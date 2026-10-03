@@ -20,6 +20,7 @@ export default function TourDetail() {
   const [hotelModalOpen, setHotelModalOpen] = useState(false);
   const [modalHotel, setModalHotel] = useState(null);
   const [selectedHotel, setSelectedHotel] = useState(null);
+  const [selectedAmberRoomCategory, setSelectedAmberRoomCategory] = useState(null);
 
   const isGir = slug === 'gir-lion-safari' || slug?.includes('gir');
   const availableHotels = isGir ? GIR_HOTELS : (tour?.hotels || []);
@@ -34,19 +35,31 @@ export default function TourDetail() {
           : (res.data.hotels || []);
         
         if (hotels.length > 0) {
-          setSelectedHotel(hotels[0]);
-          setModalHotel(hotels[0]);
-        }
+          const firstHotel = hotels[0];
+          setSelectedHotel(firstHotel);
+          setModalHotel(firstHotel);
 
-        if (res.data.packages && res.data.packages.length > 0) {
+          if (firstHotel.id === 'amber-resort' && firstHotel.roomCategories?.length > 0) {
+            const defaultRoom = firstHotel.roomCategories[0];
+            setSelectedAmberRoomCategory(defaultRoom);
+            setSelectedPackage({
+              id: `amber-resort-${defaultRoom.id}`,
+              name: `Amber Resort - ${defaultRoom.name}`,
+              price: defaultRoom.price || 0,
+              description: `${defaultRoom.bedType} · ${defaultRoom.view}`
+            });
+          } else if (res.data.packages && res.data.packages.length > 0) {
+            setSelectedPackage(res.data.packages[0]);
+          } else {
+            setSelectedPackage({
+              id: firstHotel.id,
+              name: `${firstHotel.name} (${firstHotel.price === 0 ? 'Standard' : `+$${firstHotel.price}`})`,
+              price: firstHotel.price || 0,
+              description: firstHotel.tagline
+            });
+          }
+        } else if (res.data.packages && res.data.packages.length > 0) {
           setSelectedPackage(res.data.packages[0]);
-        } else if (hotels.length > 0) {
-          setSelectedPackage({
-            id: hotels[0].id,
-            name: `${hotels[0].name} (${hotels[0].price === 0 ? 'Standard' : `+$${hotels[0].price}`})`,
-            price: hotels[0].price || 0,
-            description: hotels[0].tagline
-          });
         }
       })
       .catch((err) => console.error(err))
@@ -55,12 +68,53 @@ export default function TourDetail() {
 
   const handleSelectHotel = (hotel) => {
     setSelectedHotel(hotel);
+    if (hotel.id === 'amber-resort' && hotel.roomCategories?.length > 0) {
+      const activeRoom = selectedAmberRoomCategory || hotel.roomCategories[0];
+      setSelectedAmberRoomCategory(activeRoom);
+      setSelectedPackage({
+        id: `amber-resort-${activeRoom.id}`,
+        name: `Amber Resort - ${activeRoom.name}`,
+        price: activeRoom.price || 0,
+        description: `${activeRoom.bedType} · ${activeRoom.view}`
+      });
+    } else {
+      setSelectedPackage({
+        id: hotel.id,
+        name: `${hotel.name} (${hotel.price === 0 ? 'Standard Package' : `+$${hotel.price}`})`,
+        price: hotel.price || 0,
+        description: hotel.tagline
+      });
+    }
+  };
+
+  const handleSelectAmberRoom = (roomCat) => {
+    setSelectedAmberRoomCategory(roomCat);
     setSelectedPackage({
-      id: hotel.id,
-      name: `${hotel.name} (${hotel.price === 0 ? 'Standard Package' : `+$${hotel.price}`})`,
-      price: hotel.price || 0,
-      description: hotel.tagline
+      id: `amber-resort-${roomCat.id}`,
+      name: `Amber Resort - ${roomCat.name}`,
+      price: roomCat.price || 0,
+      description: `${roomCat.bedType} · ${roomCat.view}`
     });
+  };
+
+  const handleOpenRoomGallery = (roomCat) => {
+    setModalHotel({
+      name: `Amber Resort - ${roomCat.name}`,
+      tagline: `${roomCat.bedType} · ${roomCat.view} (${roomCat.roomSize})`,
+      address: 'Sasan Mendarda Road, Near Bhalchhel Helipad, Sasan Gir, Gujarat',
+      rating: 'MakeMyTrip Verified Room Category',
+      description: roomCat.description,
+      images: roomCat.images,
+      amenities: [
+        roomCat.bedType,
+        roomCat.roomSize,
+        roomCat.view,
+        'Attached Modern Bathroom',
+        'Private Balcony / Veranda',
+        'Garden / Orchard View'
+      ]
+    });
+    setHotelModalOpen(true);
   };
 
   const handleOpenHotelDetails = (hotel) => {
@@ -82,7 +136,10 @@ export default function TourDetail() {
       const bookingData = {
         tourId: tour.id,
         packageId: selectedPackage?.id,
+        roomCategory: selectedHotel?.id === 'amber-resort' ? selectedAmberRoomCategory?.name : undefined,
+        bookingDate: startDate,
         startDate,
+        numPeople: Number(guests),
         guests: Number(guests),
       };
       await createBooking(bookingData);
@@ -412,6 +469,94 @@ export default function TourDetail() {
                         <div className="min-w-0 flex-1">
                           <p className="text-xs font-bold text-charcoal-900 truncate">{selectedHotel.name}</p>
                           <p className="text-[10px] text-pine-800 font-mono truncate">{selectedHotel.rating} · Click to view details</p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* MakeMyTrip Room Categories for Amber Resort ONLY */}
+                    {selectedHotel?.id === 'amber-resort' && selectedHotel.roomCategories && (
+                      <div className="space-y-2 pt-2 border-t border-sand-700/80">
+                        <div className="flex items-center justify-between">
+                          <label className="block text-xs font-mono uppercase text-pine-800 font-bold tracking-wider">
+                            Amber Resort Room Category
+                          </label>
+                          <span className="text-[10px] font-mono text-charcoal-600 font-bold">
+                            MakeMyTrip Verified
+                          </span>
+                        </div>
+
+                        <div className="space-y-2 max-h-[320px] overflow-y-auto pr-0.5">
+                          {selectedHotel.roomCategories.map((cat) => {
+                            const isCatSelected = selectedAmberRoomCategory?.id === cat.id;
+                            return (
+                              <div
+                                key={cat.id}
+                                onClick={() => handleSelectAmberRoom(cat)}
+                                className={`p-2.5 rounded-2xl border transition-all cursor-pointer flex gap-3 items-center ${
+                                  isCatSelected
+                                    ? 'border-pine-800 bg-sand-900 ring-2 ring-pine-800/30 shadow-md'
+                                    : 'border-sand-700/80 bg-sand-950/60 hover:border-sand-600 hover:bg-sand-900/40'
+                                }`}
+                              >
+                                {/* MakeMyTrip Room Photo Thumbnail with click to view gallery */}
+                                <div 
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleOpenRoomGallery(cat);
+                                  }}
+                                  className="w-16 h-16 rounded-xl overflow-hidden bg-sand-900 relative shrink-0 group"
+                                  title="Click to view all MakeMyTrip room photos"
+                                >
+                                  <img
+                                    src={cat.images[0]}
+                                    alt={cat.name}
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                  />
+                                  <div className="absolute inset-0 bg-charcoal-950/30 group-hover:bg-charcoal-950/10 transition-colors flex items-center justify-center">
+                                    <span className="bg-charcoal-950/80 text-sand-950 text-[9px] font-mono px-1 py-0.5 rounded font-bold">
+                                      {cat.images.length} 📷
+                                    </span>
+                                  </div>
+                                </div>
+
+                                {/* Room Category Details */}
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-start justify-between gap-1">
+                                    <h5 className="text-xs font-bold text-charcoal-950 leading-tight truncate">
+                                      {cat.name}
+                                    </h5>
+                                    <span className={`text-[10px] font-mono font-bold shrink-0 ${
+                                      cat.price === 0 ? 'text-pine-800' : 'text-amber-600'
+                                    }`}>
+                                      {cat.price === 0 ? 'Included' : `+$${cat.price}`}
+                                    </span>
+                                  </div>
+
+                                  <p className="text-[10px] text-charcoal-600 font-mono truncate pt-0.5">
+                                    {cat.bedType} · {cat.view}
+                                  </p>
+
+                                  <div className="flex items-center justify-between pt-1">
+                                    <span className="text-[9px] font-mono text-pine-800 bg-pine-800/10 px-1.5 py-0.5 rounded border border-pine-800/20 font-bold">
+                                      {cat.roomSize}
+                                    </span>
+                                    <button
+                                      type="button"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleOpenRoomGallery(cat);
+                                      }}
+                                      className="text-pine-800 hover:underline font-mono text-[10px] font-bold flex items-center gap-0.5"
+                                    >
+                                      <Eye className="w-2.5 h-2.5" />
+                                      View Photos ({cat.images.length})
+                                    </button>
+                                  </div>
+                                </div>
+
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
                     )}
