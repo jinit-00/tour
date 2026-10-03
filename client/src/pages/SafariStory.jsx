@@ -171,6 +171,27 @@ export default function SafariStory() {
             </p>
           </div>
 
+          {/* Gir National Park Narrative */}
+          {isGir && (
+            <div className="glass-panel p-6 sm:p-10 rounded-3xl border border-sand-700/80 space-y-4 max-w-4xl mx-auto shadow-xl bg-sand-900/40">
+              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">
+                <Sparkles className="w-4 h-4 text-pine-800" />
+                <span>The Sanctuary Narrative</span>
+              </div>
+              <div className="space-y-4 text-xs sm:text-sm text-charcoal-800 leading-relaxed font-normal">
+                <p>
+                  Gir National Park, located in Gujarat, is the <strong className="text-charcoal-950 font-bold">last natural home of the Asiatic Lion</strong> and one of India’s most iconic wildlife destinations. Its dry deciduous forests, grasslands, rocky hills, and seasonal rivers create a unique habitat for a remarkable variety of wildlife.
+                </p>
+                <p>
+                  Along with Asiatic lions, Gir is home to <strong className="text-charcoal-950 font-bold">leopards, chital, sambar, nilgai, wild boar, striped hyenas, crocodiles, and numerous bird species</strong>. The changing landscapes and rich biodiversity make every safari different.
+                </p>
+                <p>
+                  Gir is famous not only for its lions but for the experience of exploring a thriving wild ecosystem. For wildlife enthusiasts and photographers, it offers a rare opportunity to witness <strong className="text-charcoal-950 font-bold">Asiatic lions in their natural habitat</strong> and capture the character of Gujarat’s wilderness.
+                </p>
+              </div>
+            </div>
+          )}
+
           {/* Masterclass Key Highlights Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {storyData.highlights.map((item, idx) => (
