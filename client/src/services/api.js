@@ -1,14 +1,14 @@
 import axios from 'axios';
 
-// 11 Official MakeMyTrip Partner Resorts for Gir Lion Safari (10 Photos & MMT Room Categories Each)
+// 11 Official Partner Resorts for Gir Lion Safari (10 Photos & MMT Room Categories Each)
 export const GIR_HOTELS = [
   {
     "id": "le-casa-lion",
     "name": "La Casa Lion Resort",
     "tagline": "4-Star Premium Forest Resort in Sasan Gir",
-    "rating": "4.6 \u2605 (MakeMyTrip Verified)",
+    "rating": "4.6 \u2605 ★ Verified Safari Stay",
     "price": 0,
-    "address": "PLOT NO 2, SERVEY NO-10 by 1, BORVAV GIR, BORVAV DHAVA ROAD, BORVAV GIR, Gir Somnath, Gujarat, 362150, PLOT NO 2, SERVEY NO 10 by 1, BORVAV GIR, BORVAV DHAVA ROAD, BORVAV GIR, Gir Somnath, Gujarat, 362150",
+    "address": "Sasan Gir, Gujarat",
     "description": "Le Casa Lion Resort - A Premium Resort In Sasan Gir offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
     "amenities": [
       "Swimming Pool",
@@ -123,9 +123,9 @@ export const GIR_HOTELS = [
     "id": "amber-resort",
     "name": "Amber Resort",
     "tagline": "Nature Retreat with Luxury Swiss & Cottage Tents",
-    "rating": "4.5 \u2605 (MakeMyTrip Verified)",
+    "rating": "4.5 \u2605 ★ Verified Safari Stay",
     "price": 40,
-    "address": "Amber Resort, Sasan Mendrda Road, Near Bhalchhel  Helipad , Sasan Gir, Gujarat ,362135, Sasan Mendrda Road",
+    "address": "Sasan Gir, Gujarat",
     "description": "Amber Resort offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
     "amenities": [
       "Garden Courtyard",
@@ -240,9 +240,9 @@ export const GIR_HOTELS = [
     "id": "gir-garjna",
     "name": "Gir Garjna - The Cottage",
     "tagline": "Luxury Wooden Cottages & Family Suites with Private Sitouts",
-    "rating": "4.4 \u2605 (MakeMyTrip Verified)",
+    "rating": "4.4 \u2605 ★ Verified Safari Stay",
     "price": 60,
-    "address": "SURVEY NO 30/1/2/2, GIR GARJNA THE COTTAGE,\r\nCHITROD ROAD, CHITROD / TALALA, Gir Somnath, Gujarat,\r\n362135",
+    "address": "Sasan Gir, Gujarat",
     "description": "Gir Garjna - A Luxury Resort offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
     "amenities": [
       "Private Sitout Verandas",
@@ -338,9 +338,9 @@ export const GIR_HOTELS = [
     "id": "madhuvan-resort",
     "name": "Madhuvan Resort",
     "tagline": "Villas with Private Pools & Balcony Forest Views",
-    "rating": "4.5 \u2605 (MakeMyTrip Verified)",
+    "rating": "4.5 \u2605 ★ Verified Safari Stay",
     "price": 80,
-    "address": "Survey No 99/P1/P1, Nr. Royal Park, Shribai Ashram Road, Near Ramarechi Bus Stop, Ramarechi, Gir Somnath, Gujarat- 362150",
+    "address": "Sasan Gir, Gujarat",
     "description": "Madhuvan Resort offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
     "amenities": [
       "Private Pool Villas",
@@ -421,9 +421,9 @@ export const GIR_HOTELS = [
     "id": "fern-gir-forest",
     "name": "The Fern Gir Forest Resort",
     "tagline": "5-Star Eco-Luxury Sanctuary (Series by Marriott)",
-    "rating": "4.8 \u2605 (MakeMyTrip Verified)",
+    "rating": "4.8 \u2605 ★ Verified Safari Stay",
     "price": 150,
-    "address": "Sasan Gir, Dist. Junagadh",
+    "address": "Sasan Gir, Gujarat",
     "description": "The Fern Gir Forest Resort Sasan Gir, Series by Marriott offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
     "amenities": [
       "5-Star Luxury Villas",
@@ -504,9 +504,9 @@ export const GIR_HOTELS = [
     "id": "clarks-inn",
     "name": "The Clarke Inn (Gir Aatithya Clarks Inn)",
     "tagline": "Contemporary Boutique Comfort on Talala-Virpur Road",
-    "rating": "4.3 \u2605 (MakeMyTrip Verified)",
+    "rating": "4.3 \u2605 ★ Verified Safari Stay",
     "price": 70,
-    "address": "Railway Crossings GF SR NO 102/PEKI1, GIR AATITHYA RESORTS, Talala Virpur Road Near Indian Gas Agency Talala Gir Somnath, Gujarat - 362150, Railway Crossings GF SR NO 102/PEKI1, GIR AATITHYA RESORTS, Talala Virpur Road Near Indian Gas Agency Talala Gir Somnath, Gujarat - 362150",
+    "address": "Sasan Gir, Gujarat",
     "description": "Gir Aatithya Clarks Inn offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
     "amenities": [
       "Modern AC Rooms",
@@ -570,9 +570,9 @@ export const GIR_HOTELS = [
     "id": "aramness-gir",
     "name": "Aramness Gir National Park",
     "tagline": "Ultra-Luxury Village Lodge with Private Heated Plunge Pools",
-    "rating": "4.9 \u2605 (MakeMyTrip Verified)",
+    "rating": "4.9 \u2605 ★ Verified Safari Stay",
     "price": 350,
-    "address": "Haripur Gam NA.R.S.NO 177/P.2 NI SQ MTR 15377 AND  NA.R.S.NO 177/P.3  SQ MTR/ 08094",
+    "address": "Sasan Gir, Gujarat",
     "description": "ARAMNESS GIR NATIONAL PARK offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
     "amenities": [
       "Private Heated Plunge Pools",
@@ -636,9 +636,9 @@ export const GIR_HOTELS = [
     "id": "aqua-terra",
     "name": "Aqua Terra Resort",
     "tagline": "Serene Waterfront Villas with Open-to-Sky Bathrooms",
-    "rating": "4.5 \u2605 (MakeMyTrip Verified)",
+    "rating": "4.5 \u2605 ★ Verified Safari Stay",
     "price": 90,
-    "address": "flat door block no behind zagira resort name of premises building chitrod road village town sangodra block near jagira resort road street lane talala city talala state gujarat district gir somnath pin 362150",
+    "address": "Sasan Gir, Gujarat",
     "description": "AQUA TERRA RESORT offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
     "amenities": [
       "Open-to-Sky Baths",
@@ -702,9 +702,9 @@ export const GIR_HOTELS = [
     "id": "wild-calm",
     "name": "Wild Calm - Opulent Oasis",
     "tagline": "Opulent Oasis with Private Pool & Jacuzzi Suites",
-    "rating": "4.7 \u2605 (MakeMyTrip Verified)",
+    "rating": "4.7 \u2605 ★ Verified Safari Stay",
     "price": 130,
-    "address": "WILD CALM RESORT,NEAR MANSA DEVI TAMPLE, HP Petrol Pump, 59/P1,Borvav, Gir Somnath, Gujarat, 362150, Sasan Gir",
+    "address": "Sasan Gir, Gujarat",
     "description": "Wild Calm, Sasan Gir offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
     "amenities": [
       "Private Pool Suites",
@@ -870,9 +870,9 @@ export const GIR_HOTELS = [
     "id": "woods-at-sasan",
     "name": "Woods at Sasan",
     "tagline": "Premier Biophilic & Sustainable Luxury Wilderness Resort",
-    "rating": "4.8 \u2605 (MakeMyTrip Verified)",
+    "rating": "4.8 \u2605 ★ Verified Safari Stay",
     "price": 220,
-    "address": "Sasan - Talala Road\r\nGir Forest\r\nGujarat, India",
+    "address": "Sasan Gir, Gujarat",
     "description": "WOODS AT SASAN offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
     "amenities": [
       "Biophilic Architecture",
@@ -1001,9 +1001,9 @@ export const GIR_HOTELS = [
     "id": "asiatic-lion-lodge",
     "name": "Asiatic Lion Lodge",
     "tagline": "Eco-Friendly Wilderness Lodge in Haripur Gir",
-    "rating": "4.6 \u2605 (MakeMyTrip Verified)",
+    "rating": "4.6 \u2605 ★ Verified Safari Stay",
     "price": 65,
-    "address": "SASAN GIR- BHALCHHEL- HARIPUR ROAD,AT- HARIPUR(GIR) TA- MENDARDA DIST. JUNAGADH",
+    "address": "Sasan Gir, Gujarat",
     "description": "ASIATIC LION LODGE offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
     "amenities": [
       "Eco-Luxury Cottages",

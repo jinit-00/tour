@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getTourDetail, createBooking, GIR_HOTELS } from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, Star, Hotel, Eye } from 'lucide-react';
+import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, Star, Hotel, Eye, Plus, Minus, ChevronDown, Clock } from 'lucide-react';
 import HotelDetailModal from '../components/tours/HotelDetailModal';
 
 export default function TourDetail() {
@@ -12,8 +12,11 @@ export default function TourDetail() {
   const [tour, setTour] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedPackage, setSelectedPackage] = useState(null);
-  const [guests, setGuests] = useState(1);
-  const [startDate, setStartDate] = useState('2026-10-15');
+  const [adults, setAdults] = useState(1);
+  const [kids, setKids] = useState(0);
+  const [passengerMenuOpen, setPassengerMenuOpen] = useState(false);
+  const [checkInDate, setCheckInDate] = useState('2026-10-15');
+  const [checkOutDate, setCheckOutDate] = useState('2026-10-18');
   const [bookingLoading, setBookingLoading] = useState(false);
   const [bookingSuccess, setBookingSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -102,7 +105,7 @@ export default function TourDetail() {
       name: `${hotel.name} - ${roomCat.name}`,
       tagline: `${roomCat.bedType} · ${roomCat.view} (${roomCat.roomSize})`,
       address: hotel.address || 'Sasan Gir, Gujarat, India',
-      rating: `${hotel.name} · MakeMyTrip Verified Room Category`,
+      rating: `${hotel.name} · Verified Room Category`,
       description: roomCat.description,
       images: roomCat.images && roomCat.images.length > 0 ? roomCat.images : hotel.images,
       amenities: [
@@ -133,14 +136,19 @@ export default function TourDetail() {
 
     try {
       setBookingLoading(true);
+      const totalGuests = adults + kids;
       const bookingData = {
         tourId: tour.id,
         packageId: selectedPackage?.id,
         roomCategory: selectedRoomCategory ? `${selectedHotel?.name} - ${selectedRoomCategory.name}` : undefined,
-        bookingDate: startDate,
-        startDate,
-        numPeople: Number(guests),
-        guests: Number(guests),
+        bookingDate: checkInDate,
+        startDate: checkInDate,
+        checkInDate,
+        checkOutDate,
+        adults,
+        kids,
+        numPeople: totalGuests,
+        guests: totalGuests,
       };
       await createBooking(bookingData);
       setBookingSuccess(true);
@@ -169,7 +177,8 @@ export default function TourDetail() {
 
   const basePrice = tour.basePrice || 0;
   const packagePrice = selectedPackage?.price || 0;
-  const totalPrice = (basePrice + packagePrice) * guests;
+  const totalGuests = adults + kids;
+  const totalPrice = (basePrice + packagePrice) * totalGuests;
 
   const images = tour.images && tour.images.length > 0 
     ? tour.images 
@@ -260,7 +269,7 @@ export default function TourDetail() {
             </div>
           </div>
 
-          {/* 10 MakeMyTrip Partner Safari Resorts Section for Gir */}
+          {/* Partner Safari Resorts Section for Gir */}
           {availableHotels.length > 0 && (
             <div className="space-y-5">
               <div className="flex items-center justify-between flex-wrap gap-2">
@@ -275,14 +284,14 @@ export default function TourDetail() {
                 </div>
                 <span className="px-3.5 py-1 rounded-full bg-pine-800/10 text-pine-800 border border-pine-800/20 text-xs font-mono font-bold flex items-center gap-1">
                   <Star className="w-3.5 h-3.5 fill-pine-800 text-pine-800" />
-                  MakeMyTrip Verified Resorts
+                  Verified Wilderness Resorts
                 </span>
               </div>
               <p className="text-xs sm:text-sm text-charcoal-700">
                 Select your preferred wildlife resort for this expedition. Click any photo or "Details" to view the full photo gallery, amenities, and resort details.
               </p>
 
-              {/* Grid of 10 Hotel Cards */}
+              {/* Grid of Hotel Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {availableHotels.map((hotel) => {
                   const isSelected = selectedHotel?.id === hotel.id || selectedPackage?.id === hotel.id;
@@ -330,11 +339,6 @@ export default function TourDetail() {
                             <p className="text-xs text-pine-800 font-medium font-mono pt-0.5">
                               {hotel.tagline}
                             </p>
-                          </div>
-
-                          <div className="flex items-start gap-1.5 text-[11px] text-charcoal-600 font-mono">
-                            <MapPin className="w-3.5 h-3.5 text-pine-800 shrink-0 mt-0.5" />
-                            <span className="line-clamp-1">{hotel.address}</span>
                           </div>
 
                           <p className="text-xs text-charcoal-700 font-normal leading-relaxed line-clamp-2">
@@ -473,7 +477,7 @@ export default function TourDetail() {
                       </div>
                     )}
 
-                    {/* MakeMyTrip Room Categories for Selected Resort */}
+                    {/* Room Categories for Selected Resort */}
                     {selectedHotel?.roomCategories && selectedHotel.roomCategories.length > 0 && (
                       <div className="space-y-2 pt-2 border-t border-sand-700/80">
                         <div className="flex items-center justify-between">
@@ -481,7 +485,7 @@ export default function TourDetail() {
                             {selectedHotel.name} Room Category
                           </label>
                           <span className="text-[10px] font-mono text-charcoal-600 font-bold">
-                            MakeMyTrip Verified
+                            Available ({selectedHotel.roomCategories.length})
                           </span>
                         </div>
 
@@ -498,14 +502,14 @@ export default function TourDetail() {
                                     : 'border-sand-700/80 bg-sand-950/60 hover:border-sand-600 hover:bg-sand-900/40'
                                 }`}
                               >
-                                {/* MakeMyTrip Room Photo Thumbnail with click to view gallery */}
+                                {/* Room Photo Thumbnail with click to view gallery */}
                                 <div 
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     handleOpenRoomGallery(cat);
                                   }}
                                   className="w-16 h-16 rounded-xl overflow-hidden bg-sand-900 relative shrink-0 group"
-                                  title="Click to view all MakeMyTrip room photos"
+                                  title="Click to view room photos"
                                 >
                                   <img
                                     src={cat.images[0]}
@@ -586,49 +590,168 @@ export default function TourDetail() {
                   </div>
                 ) : null}
 
-                {/* Departure Date */}
-                <div className="space-y-1">
-                  <label className="block text-xs font-mono uppercase text-charcoal-700 font-bold">Departure Date</label>
-                  <select
-                    value={startDate}
-                    onChange={(e) => setStartDate(e.target.value)}
-                    className="w-full bg-sand-950 border border-sand-700 rounded-xl py-2 px-3 text-xs text-charcoal-900 focus:outline-none focus:border-pine-800"
-                  >
-                    <option value="2026-10-15">October 15, 2026 (Peak Season)</option>
-                    <option value="2026-11-20">November 20, 2026</option>
-                    <option value="2027-01-10">January 10, 2027</option>
-                  </select>
+                {/* Calendar Date Selection: Check-in & Check-out */}
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2.5">
+                    <div className="space-y-1">
+                      <div className="flex items-center justify-between">
+                        <label className="block text-[11px] font-mono uppercase text-charcoal-700 font-bold">
+                          Check-in Date
+                        </label>
+                        <span className="text-[9px] font-mono text-pine-800 font-bold">12:00 PM</span>
+                      </div>
+                      <div className="relative">
+                        <Calendar className="w-3.5 h-3.5 text-pine-800 absolute left-2.5 top-2.5 pointer-events-none" />
+                        <input
+                          type="date"
+                          value={checkInDate}
+                          onChange={(e) => {
+                            setCheckInDate(e.target.value);
+                            if (e.target.value >= checkOutDate) {
+                              const nextDate = new Date(e.target.value);
+                              nextDate.setDate(nextDate.getDate() + 1);
+                              setCheckOutDate(nextDate.toISOString().split('T')[0]);
+                            }
+                          }}
+                          className="w-full bg-sand-950 border border-sand-700 rounded-xl pl-8 pr-2 py-2 text-xs text-charcoal-900 focus:outline-none focus:border-pine-800 font-mono font-medium"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-1">
+                      <div className="flex items-center justify-between">
+                        <label className="block text-[11px] font-mono uppercase text-charcoal-700 font-bold">
+                          Check-out Date
+                        </label>
+                        <span className="text-[9px] font-mono text-charcoal-500 font-bold">10:00 AM</span>
+                      </div>
+                      <div className="relative">
+                        <Calendar className="w-3.5 h-3.5 text-pine-800 absolute left-2.5 top-2.5 pointer-events-none" />
+                        <input
+                          type="date"
+                          min={checkInDate}
+                          value={checkOutDate}
+                          onChange={(e) => setCheckOutDate(e.target.value)}
+                          className="w-full bg-sand-950 border border-sand-700 rounded-xl pl-8 pr-2 py-2 text-xs text-charcoal-900 focus:outline-none focus:border-pine-800 font-mono font-medium"
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                {/* Guests */}
-                <div className="space-y-1">
-                  <label className="block text-xs font-mono uppercase text-charcoal-700 font-bold">Number of Guests</label>
-                  <select
-                    value={guests}
-                    onChange={(e) => setGuests(e.target.value)}
-                    className="w-full bg-sand-950 border border-sand-700 rounded-xl py-2 px-3 text-xs text-charcoal-900 focus:outline-none focus:border-pine-800"
-                  >
-                    <option value="1">1 Photographer</option>
-                    <option value="2">2 Photographers</option>
-                    <option value="3">3 Photographers (Small Group)</option>
-                  </select>
+                {/* Interactive Number of Passengers Menu (Adults min 1, Kids min 0) */}
+                <div className="space-y-1 relative">
+                  <label className="block text-xs font-mono uppercase text-charcoal-700 font-bold">
+                    Number of Passengers
+                  </label>
+                  <div className="relative">
+                    <button
+                      type="button"
+                      onClick={() => setPassengerMenuOpen(!passengerMenuOpen)}
+                      className="w-full bg-sand-950 border border-sand-700 rounded-xl py-2 px-3 text-xs text-charcoal-900 flex items-center justify-between hover:border-pine-800/60 transition-colors focus:outline-none focus:border-pine-800"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4 text-pine-800 shrink-0" />
+                        <span className="font-semibold text-charcoal-950">
+                          {adults} {adults === 1 ? 'Adult' : 'Adults'}
+                          {kids > 0 ? `, ${kids} ${kids === 1 ? 'Kid' : 'Kids'}` : ''}
+                        </span>
+                      </div>
+                      <ChevronDown className={`w-4 h-4 text-charcoal-500 transition-transform duration-200 ${passengerMenuOpen ? 'rotate-180' : ''}`} />
+                    </button>
+
+                    {passengerMenuOpen && (
+                      <>
+                        <div 
+                          className="fixed inset-0 z-20" 
+                          onClick={() => setPassengerMenuOpen(false)}
+                        />
+                        <div className="absolute left-0 right-0 top-full mt-1.5 z-30 p-4 rounded-2xl bg-sand-950 border border-sand-700 shadow-2xl space-y-3.5">
+                          {/* Adults Row (min 1) */}
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <p className="text-xs font-bold text-charcoal-950">Adults</p>
+                              <p className="text-[10px] text-charcoal-500 font-mono">Age 12+ years</p>
+                            </div>
+                            <div className="flex items-center gap-3">
+                              <button
+                                type="button"
+                                disabled={adults <= 1}
+                                onClick={() => setAdults(Math.max(1, adults - 1))}
+                                className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 disabled:opacity-30 disabled:cursor-not-allowed text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
+                              >
+                                <Minus className="w-3.5 h-3.5" />
+                              </button>
+                              <span className="w-5 text-center font-mono font-bold text-xs text-charcoal-950">
+                                {adults}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => setAdults(adults + 1)}
+                                className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
+                              >
+                                <Plus className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          </div>
+
+                          {/* Kids Row (min 0) */}
+                          <div className="flex items-center justify-between pt-2 border-t border-sand-700/60">
+                            <div>
+                              <p className="text-xs font-bold text-charcoal-950">Kids</p>
+                              <p className="text-[10px] text-charcoal-500 font-mono">Age 0 - 11 years</p>
+                            </div>
+                            <div className="flex items-center gap-3">
+                              <button
+                                type="button"
+                                disabled={kids <= 0}
+                                onClick={() => setKids(Math.max(0, kids - 1))}
+                                className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 disabled:opacity-30 disabled:cursor-not-allowed text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
+                              >
+                                <Minus className="w-3.5 h-3.5" />
+                              </button>
+                              <span className="w-5 text-center font-mono font-bold text-xs text-charcoal-950">
+                                {kids}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => setKids(kids + 1)}
+                                className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
+                              >
+                                <Plus className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          </div>
+
+                          {/* Done button */}
+                          <button
+                            type="button"
+                            onClick={() => setPassengerMenuOpen(false)}
+                            className="w-full py-1.5 rounded-lg bg-pine-800 hover:bg-pine-700 text-sand-950 font-bold text-[11px] font-mono tracking-wider uppercase transition-colors"
+                          >
+                            Done
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </div>
 
                 {/* Price Summary Breakdown */}
                 <div className="pt-2.5 border-t border-sand-700 space-y-1 text-xs text-charcoal-700">
                   <div className="flex justify-between">
-                    <span>Base (${basePrice} × {guests})</span>
-                    <span>${basePrice * guests}</span>
+                    <span>Base (${basePrice} × {adults + kids} {adults + kids === 1 ? 'Guest' : 'Guests'})</span>
+                    <span>${basePrice * (adults + kids)}</span>
                   </div>
                   {packagePrice > 0 && (
                     <div className="flex justify-between">
                       <span>{selectedPackage.name}</span>
-                      <span>+${packagePrice * guests}</span>
+                      <span>+${packagePrice * (adults + kids)}</span>
                     </div>
                   )}
                   <div className="flex justify-between font-bold text-charcoal-900 text-sm pt-1.5 border-t border-sand-700">
                     <span>Total Cost</span>
-                    <span className="text-pine-800">${totalPrice.toLocaleString()}</span>
+                    <span className="text-pine-800">${((basePrice + packagePrice) * (adults + kids)).toLocaleString()}</span>
                   </div>
                 </div>
 

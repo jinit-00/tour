@@ -54,12 +54,11 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
           {/* Modal Content Scroll Area */}
           <div className="overflow-y-auto p-6 sm:p-8 space-y-8 text-charcoal-900">
             
-            {/* Title & Location Header */}
+            {/* Title & Header */}
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-pine-800 font-mono text-xs font-bold uppercase tracking-widest">
-                <MapPin className="w-4 h-4 shrink-0" />
-                <span>{hotel.address || 'Sasan Gir, Gujarat, India'}</span>
-              </div>
+              <span className="text-xs font-mono font-bold text-pine-800 uppercase tracking-widest block">
+                Sasan Gir, Gujarat
+              </span>
               <h2 className="text-2xl sm:text-4xl font-black tracking-tight uppercase text-charcoal-950">
                 {hotel.name}
               </h2>
@@ -134,7 +133,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
             <div className="p-4 rounded-xl bg-sand-900 border border-sand-700 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-charcoal-700">
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-pine-800" />
-                <span>Check-in: <strong>1:00 PM</strong> | Check-out: <strong>10:00 AM</strong></span>
+                <span>Check-in: <strong>12:00 PM</strong> | Check-out: <strong>10:00 AM</strong></span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-pine-800" />
