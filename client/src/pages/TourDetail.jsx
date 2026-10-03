@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getTourDetail, createBooking, GIR_HOTELS, JAWAI_HOTELS } from '../services/api';
+import { getTourDetail, createBooking, GIR_HOTELS, JAWAI_HOTELS, SANJAY_DUBRI_HOTELS } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, Star, Hotel, Eye, Plus, Minus, ChevronDown, Clock } from 'lucide-react';
 import HotelDetailModal from '../components/tours/HotelDetailModal';
@@ -27,7 +27,8 @@ export default function TourDetail() {
 
   const isGir = slug === 'gir-lion-safari' || slug?.includes('gir');
   const isJawai = slug === 'jawai-leopard-safari' || slug?.includes('jawai');
-  const availableHotels = isGir ? GIR_HOTELS : isJawai ? JAWAI_HOTELS : (tour?.hotels || []);
+  const isSanjay = slug === 'sanjay-dubri-tiger-safari' || slug?.includes('sanjay');
+  const availableHotels = isGir ? GIR_HOTELS : isJawai ? JAWAI_HOTELS : isSanjay ? SANJAY_DUBRI_HOTELS : (tour?.hotels || []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -38,6 +39,8 @@ export default function TourDetail() {
           ? GIR_HOTELS 
           : (slug === 'jawai-leopard-safari' || slug?.includes('jawai'))
           ? JAWAI_HOTELS
+          : (slug === 'sanjay-dubri-tiger-safari' || slug?.includes('sanjay'))
+          ? SANJAY_DUBRI_HOTELS
           : (res.data.hotels || []);
         
         if (hotels.length > 0) {
@@ -278,7 +281,7 @@ export default function TourDetail() {
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <div>
                   <h3 className="text-2xl sm:text-3xl font-black text-charcoal-950 uppercase tracking-tight">
-                    {isGir ? 'Choose Your Gir Stay' : isJawai ? 'Choose Your Jawai Stay' : 'Choose Your Stay'}
+                    {isGir ? 'Choose Your Gir Stay' : isJawai ? 'Choose Your Jawai Stay' : isSanjay ? 'Choose Your Sanjay Dubri Stay' : 'Choose Your Stay'}
                   </h3>
                 </div>
               </div>

@@ -1210,6 +1210,192 @@ export const JAWAI_HOTELS = [
   }
 ];
 
+// Official Partner Resorts for Sanjay Dubri Tiger Reserve (10 Photos & MMT Room Categories Each)
+export const SANJAY_DUBRI_HOTELS = [
+  {
+    "id": "sanjay-heritage",
+    "name": "Sanjay Heritage",
+    "tagline": "Heritage Jungle Resort near Sanjay Dubri National Park",
+    "rating": "4.3 \u2605",
+    "price": 0,
+    "description": "Sanjay Heritage (Sanjay Resort) provides comfortable wildlife accommodations and warm hospitality situated near the entrance to Sanjay Dubri Tiger Reserve in Sidhi, Madhya Pradesh.",
+    "amenities": [
+      "Multi-Cuisine Restaurant",
+      "Spacious Garden Lawns",
+      "Attached Modern Bathrooms",
+      "Air Conditioning",
+      "Free Wi-Fi",
+      "24/7 Front Desk",
+      "Travel Desk & Safari Assistance"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/1144c655-ad13-4342-bde3-4c906e6cca0d.jpeg",
+      "https://r1imghtlak.mmtcdn.com/31d6fc5ce33a11edaed30a58a9feac02.png",
+      "https://r1imghtlak.mmtcdn.com/469cd798e33911ed85420a58a9feac02.png",
+      "https://r1imghtlak.mmtcdn.com/354d2942e33a11eda0860a58a9feac02.png",
+      "https://r1imghtlak.mmtcdn.com/3309ab4ce33a11eda86d0a58a9feac02.png",
+      "https://r1imghtlak.mmtcdn.com/6522e242e33a11eda86d0a58a9feac02.png",
+      "https://r1imghtlak.mmtcdn.com/8853ea14-8c93-4a9f-b093-4f949cefb553.jpeg",
+      "https://r1imghtlak.mmtcdn.com/6c572bb8-d3a9-42da-9b40-26a7763c30a6.jpeg",
+      "https://r1imghtlak.mmtcdn.com/b6dddbaa-75c8-487b-a899-18744a8d5440.jpeg",
+      "https://r1imghtlak.mmtcdn.com/1bee4429-70d8-4183-9374-a9900ac4de19.jpeg"
+    ],
+    "roomCategories": [
+      {
+        "id": "sanjay-heritage-quadruple-room",
+        "name": "Quadruple Room",
+        "price": 0,
+        "bedType": "2 Double Beds",
+        "view": "Garden View",
+        "roomSize": "280 sq.ft",
+        "description": "Quadruple Room featuring air conditioning, comfortable bedding, attached bathroom, free Wi-Fi, and garden view.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/8853ea14-8c93-4a9f-b093-4f949cefb553.jpeg",
+          "https://r1imghtlak.mmtcdn.com/0a128ed2-ca09-41f4-a64b-2b0baa8d78ec.jpeg",
+          "https://r1imghtlak.mmtcdn.com/121bb22a-1c0f-4a2d-ad67-420ceec74b12.jpeg",
+          "https://r1imghtlak.mmtcdn.com/1bee4429-70d8-4183-9374-a9900ac4de19.jpeg"
+        ]
+      },
+      {
+        "id": "sanjay-heritage-double-room",
+        "name": "Double Room",
+        "price": 20,
+        "bedType": "1 Double Bed",
+        "view": "Courtyard View",
+        "roomSize": "220 sq.ft",
+        "description": "Double Room featuring comfortable double bed, air conditioning, private bathroom, and prompt room service.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/6c572bb8-d3a9-42da-9b40-26a7763c30a6.jpeg",
+          "https://r1imghtlak.mmtcdn.com/1ba44c83-406a-408c-a8b2-9c7ba07c896b.jpeg",
+          "https://r1imghtlak.mmtcdn.com/3da1f431-91d0-4f50-b6b8-eec2b88071e6.jpeg",
+          "https://r1imghtlak.mmtcdn.com/5bd49c97-c09c-4a8f-9c55-12071c7510d7.jpeg"
+        ]
+      },
+      {
+        "id": "sanjay-heritage-triple-room",
+        "name": "Triple Room",
+        "price": 35,
+        "bedType": "1 Double Bed + 1 Single Bed",
+        "view": "Garden View",
+        "roomSize": "260 sq.ft",
+        "description": "Triple Room featuring 3-guest sleeping capacity, air conditioning, private bathroom, and TV.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/b6dddbaa-75c8-487b-a899-18744a8d5440.jpeg",
+          "https://r1imghtlak.mmtcdn.com/8c872ba6-3960-43d6-b0f8-bf1bfb859a9d.jpeg",
+          "https://r1imghtlak.mmtcdn.com/89d867fb-79ba-430e-a019-0f74d7c39bcd.jpeg",
+          "https://r1imghtlak.mmtcdn.com/82e8cc78-84f4-420a-a5b1-e8ea9c32f970.jpeg"
+        ]
+      },
+      {
+        "id": "sanjay-heritage-family-room",
+        "name": "Family Room",
+        "price": 50,
+        "bedType": "2 King Beds",
+        "view": "Resort Lawn View",
+        "roomSize": "340 sq.ft",
+        "description": "Spacious Family Room designed for groups and families exploring Sanjay Dubri National Park.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/63269b82e33a11edb5630a58a9feac02.png",
+          "https://r1imghtlak.mmtcdn.com/3696038ce33a11edbe800a58a9feac02.png",
+          "https://r1imghtlak.mmtcdn.com/6522e242e33a11eda86d0a58a9feac02.png",
+          "https://r1imghtlak.mmtcdn.com/3309ab4ce33a11eda86d0a58a9feac02.png"
+        ]
+      },
+      {
+        "id": "sanjay-heritage-suite-room",
+        "name": "Suite Room",
+        "price": 75,
+        "bedType": "1 King Bed + Living Area",
+        "view": "Panoramic Forest & Lawn View",
+        "roomSize": "400 sq.ft",
+        "description": "Premium Suite Room featuring a dedicated sitting lounge, plush master bedroom, and premium amenities.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/63f53050e33a11eda2c30a58a9feac02.png",
+          "https://r1imghtlak.mmtcdn.com/31d6fc5ce33a11edaed30a58a9feac02.png",
+          "https://r1imghtlak.mmtcdn.com/469cd798e33911ed85420a58a9feac02.png",
+          "https://r1imghtlak.mmtcdn.com/8853ea14-8c93-4a9f-b093-4f949cefb553.jpeg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tiger-safari-camp-parsili",
+    "name": "Tiger Safari Camp Resort",
+    "tagline": "Scenic Riverside Jungle Lodge in Parsili, Sanjay Dubri",
+    "rating": "4.5 \u2605",
+    "price": 40,
+    "description": "Tiger Safari Camp Resort in Parsili is situated along the pristine Banas riverbed and Sanjay Dubri forest fringes, offering tranquil AC cottages, open-air wilderness dining, and barefoot river walks.",
+    "amenities": [
+      "Riverside Cottage Accommodations",
+      "Open-Air Safari Restaurant",
+      "Landscaped Forest Grounds",
+      "En-suite Bathrooms",
+      "Air Conditioning",
+      "Nature & River Walks",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-8a76ece6-d516-4ca7-a9b0-cbbbe60889cc.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-a83541e2-4616-4392-8b78-50b46fbfe27f.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-f69c0fea-e54c-4645-8aa3-ac29ec354e14.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-e522e0f2-f706-460f-a7fd-eec74b499a0b.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-b30a208a-4ac3-4af1-9132-c4351232efdc.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-46354120-243a-4df3-bdd3-d95d3b04370e.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-a4bc7943-759e-4e90-b169-13ccc96cdafd.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-18136d60-6124-4fdb-b25a-4d4322f4eacf.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-84db7b91-33bc-4c63-b73f-93be7b3301ef.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-fa296a69-21cd-4439-a6f9-f87900cc1a70.jpg"
+    ],
+    "roomCategories": [
+      {
+        "id": "tiger-safari-camp-deluxe-ac-room",
+        "name": "Deluxe AC Room",
+        "price": 0,
+        "bedType": "1 King Bed",
+        "view": "Forest & Garden View",
+        "roomSize": "280 sq.ft",
+        "description": "Deluxe AC Room featuring air conditioning, comfortable king bed, private en-suite bathroom, and garden views.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-e522e0f2-f706-460f-a7fd-eec74b499a0b.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-7ff289fa-1195-4a0c-a628-eb9dc201c000.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-b86cddd3-a02b-462c-a444-5b7ea74dd1ca.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-84db7b91-33bc-4c63-b73f-93be7b3301ef.jpg"
+        ]
+      },
+      {
+        "id": "tiger-safari-camp-super-deluxe-ac-room",
+        "name": "Super Deluxe AC Room",
+        "price": 35,
+        "bedType": "1 King Bed + Sit-out",
+        "view": "Riverbed & Jungle View",
+        "roomSize": "350 sq.ft",
+        "description": "Super Deluxe AC Room featuring extra spacious bedroom, private sit-out verandah, air conditioning, and tea/coffee maker.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-b30a208a-4ac3-4af1-9132-c4351232efdc.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-613a4318-8046-4893-9936-43ff7811feb0.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-9ff70723-e26e-4192-b59d-ee17b5bd8cc7.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-34fd87e1-c509-4045-805b-9ca62ffad208.jpg"
+        ]
+      },
+      {
+        "id": "tiger-safari-camp-family-ac-room",
+        "name": "Family AC Room",
+        "price": 60,
+        "bedType": "2 Double Beds",
+        "view": "Parsili Forest View",
+        "roomSize": "450 sq.ft",
+        "description": "Family AC Room with multiple beds, large living space, attached modern bathroom, and direct access to park trails.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-46354120-243a-4df3-bdd3-d95d3b04370e.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-a4bc7943-759e-4e90-b169-13ccc96cdafd.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-013b7a82-3baa-4643-b718-ab9ce499f4d2.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202411070804098571-0fd0f0b0-c592-4d08-9674-dfff51253a7a.jpg"
+        ]
+      }
+    ]
+  }
+];
+
 const FALLBACK_TOURS = [
   {
     id: '1',
@@ -1246,9 +1432,14 @@ const FALLBACK_TOURS = [
     images: [
       'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80',
     ],
-    packages: [
-      { id: 'p2', name: 'Forest Villa Suite', price: 0, description: 'Luxury cottage near park entry gates.' }
-    ]
+    packages: SANJAY_DUBRI_HOTELS.map(h => ({
+      id: h.id,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      price: h.price,
+      description: h.tagline
+    })),
+    hotels: SANJAY_DUBRI_HOTELS,
+    hotelDetails: SANJAY_DUBRI_HOTELS[0]
   },
   {
     id: '3',
