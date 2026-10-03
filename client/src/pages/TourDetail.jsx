@@ -273,13 +273,9 @@ export default function TourDetail() {
           {availableHotels.length > 0 && (
             <div className="space-y-5">
               <div className="flex items-center justify-between flex-wrap gap-2">
-                <div className="space-y-1">
-                  <span className="text-xs font-mono uppercase text-pine-800 font-bold tracking-widest flex items-center gap-1.5">
-                    <Hotel className="w-4 h-4 text-pine-800" />
-                    Available Safari Accommodations ({availableHotels.length} Partner Resorts)
-                  </span>
+                <div>
                   <h3 className="text-2xl sm:text-3xl font-black text-charcoal-950 uppercase tracking-tight">
-                    Choose Your Gir Safari Stay
+                    Choose Your Gir Stay
                   </h3>
                 </div>
                 <span className="px-3.5 py-1 rounded-full bg-pine-800/10 text-pine-800 border border-pine-800/20 text-xs font-mono font-bold flex items-center gap-1">
