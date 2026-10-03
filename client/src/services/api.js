@@ -3,904 +3,1051 @@ import axios from 'axios';
 // 11 Official MakeMyTrip Partner Resorts for Gir Lion Safari (10 Photos & MMT Room Categories Each)
 export const GIR_HOTELS = [
   {
-    id: 'le-casa-lion',
-    name: 'La Casa Lion Resort (Le Casa Lion Resort)',
-    tagline: 'Premium Safari Resort in Borvav with Forest View Suites',
-    address: 'Plot No 2, Survey No-10/1, Borvav Dhava Road, Sasan Gir, Gujarat, 362150',
-    rating: '4.1 ★ Premium Safari Resort',
-    mmtUrl: 'https://www.makemytrip.com/hotels/le_casa_lion_resort_a_premium_resort_in_sasan_gir-details-sasan_gir.html',
-    description: 'Situated in the lush greenery of Borvav near the Gir National Park boundary, Le Casa Lion Resort features an outdoor swimming pool, forest-view air-conditioned deluxe suites, pure vegetarian and authentic multi-cuisine dining, and 24-hour safari desk assistance.',
-    images: [
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80'
+    "id": "le-casa-lion",
+    "name": "La Casa Lion Resort",
+    "tagline": "4-Star Premium Forest Resort in Sasan Gir",
+    "rating": "4.6 \u2605 (MakeMyTrip Verified)",
+    "price": 0,
+    "address": "PLOT NO 2, SERVEY NO-10 by 1, BORVAV GIR, BORVAV DHAVA ROAD, BORVAV GIR, Gir Somnath, Gujarat, 362150, PLOT NO 2, SERVEY NO 10 by 1, BORVAV GIR, BORVAV DHAVA ROAD, BORVAV GIR, Gir Somnath, Gujarat, 362150",
+    "description": "Le Casa Lion Resort - A Premium Resort In Sasan Gir offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
+    "amenities": [
+      "Swimming Pool",
+      "Multi-Cuisine Restaurant",
+      "Private Pool Villas",
+      "Lush Forest Lawns",
+      "Kids Play Zone",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
     ],
-    amenities: ['Outdoor Swimming Pool', 'Multi-Cuisine Dining', 'Forest View Suites', 'Free Wi-Fi', '24/7 Front Desk', 'Safari Desk'],
-    price: 0,
-    priceNote: 'Included with Safari Package',
-    roomCategories: [
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+      "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202408131317358222-f9b4deb3-2ede-4774-a3d5-62778ffafeb8.jpg",
+      "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+      "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png",
+      "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png",
+      "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+      "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png",
+      "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
+      "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png"
+    ],
+    "roomCategories": [
       {
-        id: 'le-casa-deluxe',
-        name: 'Le Casa Deluxe Room',
-        roomType: 'Le Casa Deluxe Room',
-        bedType: '1 King Bed',
-        roomSize: '200 sq.ft (19 sq.mt)',
-        view: 'Garden & Orchard View',
-        description: 'Comfortable air-conditioned deluxe room with modern amenities, tea/coffee maker, attached private bathroom, and garden sitout.',
-        price: 0,
-        priceNote: 'Included in Base Package',
-        images: [
-          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80'
+        "id": "le-casa-lion-92377782",
+        "name": "Le Casa Forest View Cottages",
+        "price": 0,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "250 sq.ft",
+        "description": "Le Casa Forest View Cottages featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/d9487fd3-536a-42d1-a845-f90d248ef1e8.png?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/dd395a1c-1e16-498b-be31-db96d658dea1.png?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/57a39527-03d9-458d-bccd-eb2e8c888641.png?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/4b42cbaa-4b79-4011-bd05-f4f8a784c69c.png?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/f04b9cd3-f04f-4b17-9ef1-6f07c52f82b3.png?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/4dd72fdb-0317-4abe-9cbe-5cf505d41c9c.png?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg"
         ]
       },
       {
-        id: 'le-casa-forest-view',
-        name: 'Le Casa Forest View Premium Room',
-        roomType: 'Le Casa Forest View Premium Room',
-        bedType: '1 King Bed + Extra Bed option',
-        roomSize: '250 sq.ft (23 sq.mt)',
-        view: 'Jungle & Forest Canopy View',
-        description: 'Spacious room overlooking the Gir wilderness canopy, private balcony, luxury bedding, and LED TV.',
-        price: 35,
-        priceNote: '+$35 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80'
+        "id": "le-casa-lion-213076472",
+        "name": "Le Casa Forest View Premium Room",
+        "price": 25,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "200 sq.ft",
+        "description": "Le Casa Forest View Premium Room featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+          "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png",
+          "https://r1imghtlak.mmtcdn.com/b3711454-f4a9-4096-8e3e-7c25183f7b10.png",
+          "https://r1imghtlak.mmtcdn.com/63e7b4b3-8540-44ac-9bf1-ff210318bc32.png",
+          "https://r1imghtlak.mmtcdn.com/ecaee98d-a999-413d-abfa-1c015552c443.png",
+          "https://r1imghtlak.mmtcdn.com/ba8dfd01-1d06-462c-83fc-fe711b23c75c.png"
         ]
       },
       {
-        id: 'le-casa-pool-villa',
-        name: 'Le Casa Private Pool Villa',
-        roomType: 'Le Casa Private Pool Villa',
-        bedType: '1 King Bed + Living Lounge',
-        roomSize: '400 sq.ft (37 sq.mt)',
-        view: 'Private Plunge Pool View',
-        description: 'Exclusive luxury villa with private plunge pool, outdoor shower, expansive terrace, and customized room service.',
-        price: 75,
-        priceNote: '+$75 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80'
+        "id": "le-casa-lion-797402793",
+        "name": "Le Casa Private Pool Villa",
+        "price": 50,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "800 sq.ft",
+        "description": "Le Casa Private Pool Villa featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/2cd82283-eb6d-45e6-a8b8-e543c304af5d.png?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/f8a9dafc-91e3-4e9a-9ff2-f6fe5268fdfe.png?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/90f4285b-64c7-42e4-adc6-b8af4e638bcf.png?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/7379446c-d8c0-4ee9-9510-7481eba2cf84.png?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/6da76b18-4b34-448f-a7f9-c1ab1f887902.png?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/7fe56c73-bfb9-4210-9140-e624bb703015.png?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg"
+        ]
+      },
+      {
+        "id": "le-casa-lion-1172975441",
+        "name": "Le Casa Family Room",
+        "price": 75,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "360 sq.ft",
+        "description": "Le Casa Family Room featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+          "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png",
+          "https://r1imghtlak.mmtcdn.com/b3711454-f4a9-4096-8e3e-7c25183f7b10.png",
+          "https://r1imghtlak.mmtcdn.com/63e7b4b3-8540-44ac-9bf1-ff210318bc32.png",
+          "https://r1imghtlak.mmtcdn.com/ecaee98d-a999-413d-abfa-1c015552c443.png",
+          "https://r1imghtlak.mmtcdn.com/ba8dfd01-1d06-462c-83fc-fe711b23c75c.png"
+        ]
+      },
+      {
+        "id": "le-casa-lion-1328218444",
+        "name": "Le Casa Deluxe Room",
+        "price": 100,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "200 sq.ft",
+        "description": "Le Casa Deluxe Room featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+          "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png",
+          "https://r1imghtlak.mmtcdn.com/b3711454-f4a9-4096-8e3e-7c25183f7b10.png",
+          "https://r1imghtlak.mmtcdn.com/63e7b4b3-8540-44ac-9bf1-ff210318bc32.png",
+          "https://r1imghtlak.mmtcdn.com/ecaee98d-a999-413d-abfa-1c015552c443.png",
+          "https://r1imghtlak.mmtcdn.com/ba8dfd01-1d06-462c-83fc-fe711b23c75c.png"
         ]
       }
     ]
   },
   {
-    id: 'amber-resort',
-    name: 'Amber Resort',
-    tagline: 'Tranquil Mango Orchard Retreat near Sinh Sadan Gate',
-    address: 'Sasan Mendarda Road, Near Bhalchhel Helipad, Sasan Gir, Gujarat, 362135',
-    rating: '4.0 ★ Mango Farm Retreat',
-    mmtUrl: 'https://www.makemytrip.com/hotels/amber_resort-details-sasan_gir.html',
-    description: 'Nestled in lush mango orchards just 4 minutes from Sinh Sadan Safari Gate, Amber Resort features Deluxe Swiss AC tents and stone cottages, an outdoor swimming pool, pure vegetarian organic dining, and personalized wildlife guide assistance.',
-    images: [
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80'
+    "id": "amber-resort",
+    "name": "Amber Resort",
+    "tagline": "Nature Retreat with Luxury Swiss & Cottage Tents",
+    "rating": "4.5 \u2605 (MakeMyTrip Verified)",
+    "price": 40,
+    "address": "Amber Resort, Sasan Mendrda Road, Near Bhalchhel  Helipad , Sasan Gir, Gujarat ,362135, Sasan Mendrda Road",
+    "description": "Amber Resort offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
+    "amenities": [
+      "Garden Courtyard",
+      "Swiss Tents & Cottages",
+      "Open-Air Dining",
+      "Helipad Access",
+      "Campfire Area",
+      "Doctor on Call",
+      "Travel Desk"
     ],
-    amenities: ['Outdoor Swimming Pool', 'Pure Veg Dining', 'Mango Orchard Setting', 'Deluxe Swiss AC Tents', 'Free Wi-Fi', '24/7 Front Desk'],
-    price: 0,
-    priceNote: 'Included with Safari Package',
-    roomCategories: [
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/9a5855a9-8081-46f7-a17a-236cea95cd72.jpg",
+      "https://r1imghtlak.mmtcdn.com/fa6bca2f-05d6-4295-9e32-fc24f71ba842.jpg",
+      "https://r1imghtlak.mmtcdn.com/9fef5edf-40d5-42e4-99ea-b905de21c9a5.jpg",
+      "https://r1imghtlak.mmtcdn.com/a40bd1a0-3327-4a70-8336-93d40dba435f.jpg",
+      "https://r1imghtlak.mmtcdn.com/24cd8206-53b1-4944-aab2-9a34721d3e07.jpg",
+      "https://r1imghtlak.mmtcdn.com/ccef2f72-1488-44d6-aacb-5040458a5f7c.jpg",
+      "https://r1imghtlak.mmtcdn.com/fa1b90b4-001d-436d-8fc7-ecaef989f436.jpg",
+      "https://r1imghtlak.mmtcdn.com/bc43a481-9a7e-4063-8411-b94d620ded1e.jpg",
+      "https://r1imghtlak.mmtcdn.com/10175feb-1712-4481-b54f-b062bb8f22ac.jpg",
+      "https://r1imghtlak.mmtcdn.com/559d2e2b-be74-498b-adf0-a46759decfc3.jpg"
+    ],
+    "roomCategories": [
       {
-        id: 'deluxe-non-ac-cottage-tent',
-        name: 'Deluxe Non AC Cottage Tent',
-        roomType: 'Deluxe Non Ac Cottage Tent',
-        bedType: '1 Queen Bed',
-        roomSize: '2906 sq.ft (270 sq.mt)',
-        view: 'Garden View & Attached Balcony',
-        description: 'Spacious cottage tent with peaceful garden views, private attached bathroom, and serene mango orchard surroundings.',
-        price: 0,
-        priceNote: 'Included in Base Package',
-        images: [
-          'https://r1imghtlak.mmtcdn.com/10718a55-b9be-4968-8f59-f42d8d2a3fee.JPG',
-          'https://r1imghtlak.mmtcdn.com/b6da424d-b334-40a9-9f27-bc95e5cd05f0.JPG',
-          'https://r1imghtlak.mmtcdn.com/a84030d9-09db-41e5-b94c-bf59da89d57e.JPG',
-          'https://r1imghtlak.mmtcdn.com/94131af6-7aeb-4a58-a50f-89310a2e241b.JPG',
-          'https://r1imghtlak.mmtcdn.com/9c399646-59ec-47ab-b10a-3b20cbb86b50.JPG',
-          'https://r1imghtlak.mmtcdn.com/bdf0c6dc-3f84-42da-8435-f1607bf8787b.JPG',
-          'https://r1imghtlak.mmtcdn.com/52b8853d-90af-42b1-a71e-9acf7e4a453c.JPG',
-          'https://r1imghtlak.mmtcdn.com/877cf8d6-1213-4e5a-aa69-f9c173c0e51e.jpg'
+        "id": "amber-resort-8164198",
+        "name": "Deluxe Non Ac Cottage Tent",
+        "price": 0,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "Air Conditioned Luxury Living",
+        "description": "Deluxe Non Ac Cottage Tent featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/10718a55-b9be-4968-8f59-f42d8d2a3fee.JPG",
+          "https://r1imghtlak.mmtcdn.com/b6da424d-b334-40a9-9f27-bc95e5cd05f0.JPG",
+          "https://r1imghtlak.mmtcdn.com/a84030d9-09db-41e5-b94c-bf59da89d57e.JPG",
+          "https://r1imghtlak.mmtcdn.com/94131af6-7aeb-4a58-a50f-89310a2e241b.JPG",
+          "https://r1imghtlak.mmtcdn.com/9c399646-59ec-47ab-b10a-3b20cbb86b50.JPG",
+          "https://r1imghtlak.mmtcdn.com/bdf0c6dc-3f84-42da-8435-f1607bf8787b.JPG"
         ]
       },
       {
-        id: 'super-deluxe-ac-cottage-tent',
-        name: 'Super Deluxe AC Cottage Tent',
-        roomType: 'Super Deluxe Ac Cottage Tent',
-        bedType: '1 Queen Bed',
-        roomSize: '2906 sq.ft (270 sq.mt)',
-        view: 'Garden View & Attached Balcony',
-        description: 'Air-conditioned luxury cottage tent featuring climate control, attached modern bathroom, veranda, and garden views.',
-        price: 25,
-        priceNote: '+$25 / guest upgrade',
-        images: [
-          'https://r1imghtlak.mmtcdn.com/f36ed913-b9fb-4947-8ad1-b5fa07755c82.JPG',
-          'https://r1imghtlak.mmtcdn.com/ebef8e90-3684-470b-a5eb-65ff4215f28a.JPG',
-          'https://r1imghtlak.mmtcdn.com/faeaa168-4c48-491b-8718-6899b0c286dd.JPG',
-          'https://r1imghtlak.mmtcdn.com/fdb7fe1b-ed39-44a4-ab78-4c0ec5eb770c.JPG',
-          'https://r1imghtlak.mmtcdn.com/78a9e765-790a-4b4a-b37e-535bebf952ad.JPG',
-          'https://r1imghtlak.mmtcdn.com/53cb84ca-4116-417d-9a4d-5c68cc4c50ef.JPG',
-          'https://r1imghtlak.mmtcdn.com/f3f98352-db13-4d11-9221-5e17664645b1.JPG',
-          'https://r1imghtlak.mmtcdn.com/2b1d9de4-061a-41c6-a303-f5e8c79bb2c7.jpg'
+        "id": "amber-resort-8164200",
+        "name": "Super Deluxe Ac Cottage Tent",
+        "price": 25,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "Air Conditioned Luxury Living",
+        "description": "Super Deluxe Ac Cottage Tent featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/f36ed913-b9fb-4947-8ad1-b5fa07755c82.JPG",
+          "https://r1imghtlak.mmtcdn.com/ebef8e90-3684-470b-a5eb-65ff4215f28a.JPG",
+          "https://r1imghtlak.mmtcdn.com/faeaa168-4c48-491b-8718-6899b0c286dd.JPG",
+          "https://r1imghtlak.mmtcdn.com/fdb7fe1b-ed39-44a4-ab78-4c0ec5eb770c.JPG",
+          "https://r1imghtlak.mmtcdn.com/78a9e765-790a-4b4a-b37e-535bebf952ad.JPG",
+          "https://r1imghtlak.mmtcdn.com/53cb84ca-4116-417d-9a4d-5c68cc4c50ef.JPG"
         ]
       },
       {
-        id: 'superior-ac-swiss-tent',
-        name: 'Superior AC Swiss Tent',
-        roomType: 'Superior Ac Swiss Tent',
-        bedType: '1 Queen Bed (+2 Mattresses available)',
-        roomSize: '2906 sq.ft (270 sq.mt)',
-        view: 'Garden & Mango Grove View',
-        description: 'Premium Swiss-style safari tent with handcrafted furnishings, powerful air conditioning, dedicated outdoor patio, and attached bathroom.',
-        price: 40,
-        priceNote: '+$40 / guest upgrade',
-        images: [
-          'https://r1imghtlak.mmtcdn.com/3e4b89c2-7760-4e24-aa31-e469d96f6005.png',
-          'https://r1imghtlak.mmtcdn.com/0a6cd63f-41f4-40c4-941f-771a6c625f56.jpg',
-          'https://r1imghtlak.mmtcdn.com/55b26095-8668-4584-9e80-02432ce64322.jpg',
-          'https://r1imghtlak.mmtcdn.com/180b53c8-813f-4ca2-b1dc-64258fa386b9.jpg',
-          'https://r1imghtlak.mmtcdn.com/6b9a2676-9ac2-4f63-a6b7-1d55c8224915.jpg',
-          'https://r1imghtlak.mmtcdn.com/8ba4117c-5ee4-4d93-9116-f4e64b021151.jpg',
-          'https://r1imghtlak.mmtcdn.com/42142305-aedd-4a83-9e95-e62559295e71.png',
-          'https://r1imghtlak.mmtcdn.com/4546ce9e-ca5b-487d-9601-0968a1622b2c.png',
-          'https://r1imghtlak.mmtcdn.com/1d1efd02-f0e9-4d23-a461-37380ec0901b.png',
-          'https://r1imghtlak.mmtcdn.com/b30c11d2-3bf5-4e18-8588-c0396fe8441e.png',
-          'https://r1imghtlak.mmtcdn.com/cac34778-c4c9-4058-9c87-661349e11611.png',
-          'https://r1imghtlak.mmtcdn.com/89a37b40-43a7-4a00-b33b-8efcf46ba33e.png'
+        "id": "amber-resort-8241448",
+        "name": "Superior Ac Swiss Tent",
+        "price": 50,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "Air Conditioned Luxury Living",
+        "description": "Superior Ac Swiss Tent featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/3e4b89c2-7760-4e24-aa31-e469d96f6005.png",
+          "https://r1imghtlak.mmtcdn.com/0a6cd63f-41f4-40c4-941f-771a6c625f56.jpg",
+          "https://r1imghtlak.mmtcdn.com/55b26095-8668-4584-9e80-02432ce64322.jpg",
+          "https://r1imghtlak.mmtcdn.com/180b53c8-813f-4ca2-b1dc-64258fa386b9.jpg",
+          "https://r1imghtlak.mmtcdn.com/6b9a2676-9ac2-4f63-a6b7-1d55c8224915.jpg",
+          "https://r1imghtlak.mmtcdn.com/8ba4117c-5ee4-4d93-9116-f4e64b021151.jpg"
         ]
       },
       {
-        id: 'forest-view-ac-room',
-        name: 'Forest View AC Room',
-        roomType: 'Forest view Ac Room',
-        bedType: '1 King/Queen Bed',
-        roomSize: '3229 sq.ft (300 sq.mt)',
-        view: 'Swimming Pool & Forest View',
-        description: 'Spacious solid-structure guest room overlooking the swimming pool and forest fringe with luxury bedding and attached modern washroom.',
-        price: 55,
-        priceNote: '+$55 / guest upgrade',
-        images: [
-          'https://r1imghtlak.mmtcdn.com/b995119f-6fbd-4a3d-97f1-eb9eee7a27a2.jpg',
-          'https://r1imghtlak.mmtcdn.com/c1da9bcb-d9a0-4289-888e-0c70337ad578.jpg',
-          'https://r1imghtlak.mmtcdn.com/11dd5c44-e9ce-429c-b500-100e5eac5dad.jpg',
-          'https://r1imghtlak.mmtcdn.com/10c1c1b5-da1d-4b34-803c-dcaa4e7b9731.jpg',
-          'https://r1imghtlak.mmtcdn.com/a91c9a15-26a8-4dbc-ae60-e75eb9ca3ce4.jpg',
-          'https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202312191526017157-9f92bec6-4be4-4da3-a3ad-8a4b457fa6f0.jpg',
-          'https://r1imghtlak.mmtcdn.com/49aafc01-de00-4c9a-9f89-d1fa95eef978.jpg',
-          'https://r1imghtlak.mmtcdn.com/2e56db68-553d-48a5-bb23-9c7051e83d4e.jpg',
-          'https://r1imghtlak.mmtcdn.com/ebc27ffe-4ca2-4869-b7b4-f670b12d2550.jpg',
-          'https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202312191526017157-4fa1a501-0583-48b3-9517-9fd9b06a2fcc.jpg',
-          'https://r1imghtlak.mmtcdn.com/1e4aad7e-6091-4c3f-bafe-db3ef1c89792.jpg'
+        "id": "amber-resort-8291724",
+        "name": "Forest view Ac Room",
+        "price": 75,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "Air Conditioned Luxury Living",
+        "description": "Forest view Ac Room featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/b995119f-6fbd-4a3d-97f1-eb9eee7a27a2.jpg",
+          "https://r1imghtlak.mmtcdn.com/c1da9bcb-d9a0-4289-888e-0c70337ad578.jpg",
+          "https://r1imghtlak.mmtcdn.com/11dd5c44-e9ce-429c-b500-100e5eac5dad.jpg",
+          "https://r1imghtlak.mmtcdn.com/10c1c1b5-da1d-4b34-803c-dcaa4e7b9731.jpg",
+          "https://r1imghtlak.mmtcdn.com/a91c9a15-26a8-4dbc-ae60-e75eb9ca3ce4.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202312191526017157-9f92bec6-4be4-4da3-a3ad-8a4b457fa6f0.jpg"
         ]
       },
       {
-        id: 'stonecrest-family-cottage',
-        name: 'Stonecrest Family Cottage',
-        roomType: 'Stonecrest Family Cottage',
-        bedType: '9 Single Beds (+2 Mattresses available)',
-        roomSize: '646 sq.ft (60 sq.mt)',
-        view: 'Garden & Lawn View',
-        description: 'Expansive private stone cottage designed for family and photographer groups, with private veranda, multiple comfortable beds, and attached bathroom.',
-        price: 80,
-        priceNote: '+$80 / guest upgrade',
-        images: [
-          'https://r1imghtlak.mmtcdn.com/fa0f67d7-5c27-4e41-abe7-0f45cdc2c0df.png',
-          'https://r1imghtlak.mmtcdn.com/5f67623c-bfc5-4698-b604-ad91f02f3195.png',
-          'https://r1imghtlak.mmtcdn.com/e6841be3-7144-4b3a-bf5f-02c995da1145.png',
-          'https://r1imghtlak.mmtcdn.com/808d3c8b-8bdb-426d-94d1-bc5575f3da92.png',
-          'https://r1imghtlak.mmtcdn.com/60ced555-6686-4504-afcb-601d1e65cbe3.png',
-          'https://r1imghtlak.mmtcdn.com/f577f0c5-0077-4224-92d8-4dfbb1fb1cd0.png',
-          'https://r1imghtlak.mmtcdn.com/648c515f-361c-49dd-bbc0-b03f5e48055c.png',
-          'https://r1imghtlak.mmtcdn.com/f0c24c5c-66e1-48c4-9165-be9736b162e6.png',
-          'https://r1imghtlak.mmtcdn.com/33b2811d-cdd6-43b8-8340-5b56ed7d8c8e.png',
-          'https://r1imghtlak.mmtcdn.com/e92000f2-9ba2-4ca4-b57f-ff64b0ff7440.png'
+        "id": "amber-resort-1316925830",
+        "name": "Stonecrest Family Cottage",
+        "price": 100,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "Air Conditioned Luxury Living",
+        "description": "Stonecrest Family Cottage featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/fa0f67d7-5c27-4e41-abe7-0f45cdc2c0df.png",
+          "https://r1imghtlak.mmtcdn.com/5f67623c-bfc5-4698-b604-ad91f02f3195.png",
+          "https://r1imghtlak.mmtcdn.com/e6841be3-7144-4b3a-bf5f-02c995da1145.png",
+          "https://r1imghtlak.mmtcdn.com/808d3c8b-8bdb-426d-94d1-bc5575f3da92.png",
+          "https://r1imghtlak.mmtcdn.com/60ced555-6686-4504-afcb-601d1e65cbe3.png",
+          "https://r1imghtlak.mmtcdn.com/f577f0c5-0077-4224-92d8-4dfbb1fb1cd0.png"
         ]
       }
     ]
   },
   {
-    id: 'gir-garjna',
-    name: 'Gir Garjna - The Cottage',
-    tagline: 'Luxury Orchard Cottages & Lawn Bonfires',
-    address: 'Talala Road, Chitrod, Sasan Gir, Gujarat, 362135',
-    rating: '4.3 ★ Luxury Orchard Cottages',
-    mmtUrl: 'https://www.makemytrip.com/hotels/gir_garjna_a_luxury_resort-details-sasan_gir.html',
-    description: 'Set amidst sprawling mango groves, Gir Garjna offers private stone cottages with lush manicured lawns, an open-air swimming pool, authentic Kathiyawadi dining, and evening starlit bonfire sessions.',
-    images: [
-      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80'
+    "id": "gir-garjna",
+    "name": "Gir Garjna - The Cottage",
+    "tagline": "Luxury Wooden Cottages & Family Suites with Private Sitouts",
+    "rating": "4.4 \u2605 (MakeMyTrip Verified)",
+    "price": 60,
+    "address": "SURVEY NO 30/1/2/2, GIR GARJNA THE COTTAGE,\r\nCHITROD ROAD, CHITROD / TALALA, Gir Somnath, Gujarat,\r\n362135",
+    "description": "Gir Garjna - A Luxury Resort offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
+    "amenities": [
+      "Private Sitout Verandas",
+      "Lush Mango Orchards",
+      "Organic Dining",
+      "Family Suites",
+      "Bonfire Setup",
+      "Nature Walk Path",
+      "Ample Parking"
     ],
-    amenities: ['Swimming Pool', 'Private Lawn Cottages', 'Kathiyawadi Cuisine', 'Evening Bonfires', 'Free Parking', "Children's Play Area"],
-    price: 60,
-    priceNote: '+$60 / guest upgrade',
-    roomCategories: [
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/8b598a12619d11eca3590a58a9feac02.jpg",
+      "https://r1imghtlak.mmtcdn.com/ef46b718898211ec9e9d0a58a9feac02.jpg",
+      "https://r1imghtlak.mmtcdn.com/0ba97922898311ec856c0a58a9feac02.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202112210010055091-b79a381e-62f4-46d3-9d05-d494eb5131a5.jpg",
+      "https://r1imghtlak.mmtcdn.com/ef91b3f8898211ec856c0a58a9feac02.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202112210010055091-47811b20c4d811eebe590a58a9feac02.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202112210010055091-47b11992c4d811ee8c820a58a9feac02.jpg",
+      "https://r1imghtlak.mmtcdn.com/d9d83eacd77311edba1c0a58a9feac02.png",
+      "https://r1imghtlak.mmtcdn.com/d47fdbf1-2011-4cc2-8d0d-dd97b2a1461a.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202112210010055091-71a3a08ac4d811ee9dd30a58a9feac02.jpg"
+    ],
+    "roomCategories": [
       {
-        id: 'standard-cottage-sitout',
-        name: 'Standard Cottage with Private Sitout',
-        roomType: 'Standard Cottage with Private Sitout',
-        bedType: '1 Queen Bed',
-        roomSize: '280 sq.ft (26 sq.mt)',
-        view: 'Mango Orchard View',
-        description: 'Rustic standalone stone cottage with veranda overlooking organic mango trees, air-conditioning, and attached private washroom.',
-        price: 0,
-        priceNote: 'Included with Resort',
-        images: [
-          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80'
+        "id": "gir-garjna-305",
+        "name": "Superior Cottage",
+        "price": 0,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "396 sq.ft",
+        "description": "Superior Cottage featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/2ca5e778956d11ec8ad70a58a9feac02.jpg",
+          "https://r1imghtlak.mmtcdn.com/2c900c78956d11ecbb890a58a9feac02.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/202112210010055091-8063782-e86608b6cd7011eeb8310a58a9feac02.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/202112210010055091-8063782-8f44f408cd7111eeaea50a58a9feac02.jpg",
+          "https://r1imghtlak.mmtcdn.com/3ac2da74956711ec887e0a58a9feac02.jpg",
+          "https://r1imghtlak.mmtcdn.com/3b273302956711eca40e0a58a9feac02.jpg"
         ]
       },
       {
-        id: 'deluxe-cottage-sitout',
-        name: 'Deluxe Cottage with Private Sitout',
-        roomType: 'Deluxe Cottage with Private Sitout',
-        bedType: '1 King Bed',
-        roomSize: '350 sq.ft (32 sq.mt)',
-        view: 'Manicured Lawn & Garden View',
-        description: 'Spacious deluxe cottage with premium wooden furnishings, private sit-out deck, LCD TV, and tea/coffee facilities.',
-        price: 30,
-        priceNote: '+$30 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80'
+        "id": "gir-garjna-3332840",
+        "name": "Superior Family Cottage",
+        "price": 25,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "396 sq.ft",
+        "description": "Superior Family Cottage featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/2c71e7ca956d11ec887e0a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;0,20&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/2c900c78956d11ecbb890a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;0,20&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/2ca5e778956d11ec8ad70a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;0,20&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/2cdf382a956d11ecafcf0a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;0,20&output-format=jpg"
         ]
       },
       {
-        id: 'super-deluxe-cottage-tent',
-        name: 'Super Deluxe Cottage Tent',
-        roomType: 'Super Deluxe Cottage Tent',
-        bedType: '1 King Bed',
-        roomSize: '320 sq.ft (30 sq.mt)',
-        view: 'Swimming Pool View',
-        description: 'Tented luxury cottage with insulated canvas walls, air-conditioning, direct pool access, and outdoor seating.',
-        price: 50,
-        priceNote: '+$50 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80'
+        "id": "gir-garjna-8063782",
+        "name": "Deluxe Cottages with Private Sitout",
+        "price": 50,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "225 sq.ft",
+        "description": "Deluxe Cottages with Private Sitout featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/202112210010055091-8063782-b397b750cd7111eebc190a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/3ac2da74956711ec887e0a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;0,20&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/3b273302956711eca40e0a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;0,20&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/d9f06cba956c11ecb8f70a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;0,20&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/202112210010055091-8063782-e86608b6cd7011eeb8310a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/202112210010055091-8063782-eacb5e08cd7011ee87f20a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg"
         ]
       },
       {
-        id: 'family-suite-cottage',
-        name: 'Family Suite Cottage',
-        roomType: 'Family Suite Cottage',
-        bedType: '2 Queen Beds',
-        roomSize: '500 sq.ft (46 sq.mt)',
-        view: 'Garden & Lawn View',
-        description: 'Expansive multi-bed family suite with separate lounge area, 2 bathrooms, and a private campfire patio.',
-        price: 85,
-        priceNote: '+$85 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80'
+        "id": "gir-garjna-8063784",
+        "name": "Super Deluxe Cottages with Private Sitout",
+        "price": 75,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "224 sq.ft",
+        "description": "Super Deluxe Cottages with Private Sitout featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/fa99a166956c11ecbb890a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;0,20&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/fa65f546956c11ecad920a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;0,20&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/202112210010055091-8063784-db7b128ecd7211ee86050a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/202112210010055091-8063784-a0f48baecd7211eea6cd0a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/0da40472956d11ecb8f70a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;0,20&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/202112210010055091-8063784-9ee7829ecd7211eeb6ed0a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg"
         ]
       }
     ]
   },
   {
-    id: 'madhuvan-resort',
-    name: 'Madhuvan Resort',
-    tagline: 'Nature & Heritage Resort with Rooftop Star-Gazing',
-    address: 'Sasan Junagadh Highway, Ramarechi, Borvav, Sasan Gir, Gujarat',
-    rating: '4.1 ★ Nature & Heritage Resort',
-    mmtUrl: 'https://www.makemytrip.com/hotels/madhuvan_resort-details-sasan_gir.html',
-    description: 'Experience warm Gujarati hospitality with contemporary comforts. Madhuvan Resort features outdoor swimming pools, expansive gardens, rooftop stargazing decks, and nightly Saurashtra folk music performances.',
-    images: [
-      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80'
+    "id": "madhuvan-resort",
+    "name": "Madhuvan Resort",
+    "tagline": "Villas with Private Pools & Balcony Forest Views",
+    "rating": "4.5 \u2605 (MakeMyTrip Verified)",
+    "price": 80,
+    "address": "Survey No 99/P1/P1, Nr. Royal Park, Shribai Ashram Road, Near Ramarechi Bus Stop, Ramarechi, Gir Somnath, Gujarat- 362150",
+    "description": "Madhuvan Resort offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
+    "amenities": [
+      "Private Pool Villas",
+      "Balcony Garden Views",
+      "Pure Veg Dining",
+      "Outdoor Swimming Pool",
+      "Ashram Serenity",
+      "Children Play Area",
+      "Spacious Lawn"
     ],
-    amenities: ['Rooftop Stargazing Terrace', 'Outdoor Pool', 'Folk Music Nights', 'Organic Garden Dining', 'Free Wi-Fi', 'Spacious Suites'],
-    price: 80,
-    priceNote: '+$80 / guest upgrade',
-    roomCategories: [
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/57789e6a-c213-44bc-9ea6-240275d67906.png",
+      "https://r1imghtlak.mmtcdn.com/3d84b602-971c-49df-9084-f2cc66634d39.png",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202511281142327015-3abe1e0c-d4a2-4ad8-893f-4491b13bad45.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202511281142327015-d6632c3f-2b55-4711-b9be-623703cbcb0f.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202511281142327015-90559090-52a8-422a-b4d4-291df8471599.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202511281142327015-6764cb65-c01b-4274-8078-a84bc032ee1c.jpg",
+      "https://r1imghtlak.mmtcdn.com/f5ea66b6-8ab0-4e64-85a3-bc2a47541da5.png",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202511281142327015-d8d73692-eab1-4fb9-869a-59ade6ef6377.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202511281142327015-b6f56e04-dbd6-4723-b74c-2872d51c4c0c.jpg",
+      "https://r1imghtlak.mmtcdn.com/f8cae8f1-2c37-4523-87f6-ff98ce16a416.png"
+    ],
+    "roomCategories": [
       {
-        id: 'deluxe-room-balcony',
-        name: 'Deluxe Room with Balcony & Garden View',
-        roomType: 'Deluxe Room with Balcony and Garden View',
-        bedType: '1 Double Bed',
-        roomSize: '250 sq.ft (23 sq.mt)',
-        view: 'Garden & Orchard View',
-        description: 'Elegantly appointed room with private sit-out balcony, climate control, tea maker, and soothing garden vistas.',
-        price: 0,
-        priceNote: 'Included with Resort',
-        images: [
-          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80'
+        "id": "madhuvan-resort-40717348",
+        "name": "Deluxe Room with Balcony and Garden View",
+        "price": 0,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "250 sq.ft",
+        "description": "Deluxe Room with Balcony and Garden View featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202511281142327015-ccbd1c25-db18-4f61-addc-cd7afbb8dee9.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202511281142327015-8a1a3ff0-4403-42f9-bea4-d4affda42aca.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202511281142327015-d3dac2eb-bf4f-4105-b936-0fdbdc07aebf.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202511281142327015-dcd244ed-8268-4713-8bfc-f1099e7df19d.jpg",
+          "https://r1imghtlak.mmtcdn.com/99580b3b-38a9-4bb7-b38d-910e477daaa4.jpeg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202511281142327015-f81df833-326d-4de0-bc1c-094442194746.jpg"
         ]
       },
       {
-        id: 'super-deluxe-ac-room',
-        name: 'Super Deluxe AC Room',
-        roomType: 'Super Deluxe AC Room',
-        bedType: '1 King Bed',
-        roomSize: '280 sq.ft (26 sq.mt)',
-        view: 'Pool View',
-        description: 'Modern room overlooking the central pool, ambient lighting, mini-fridge, and plush mattress.',
-        price: 25,
-        priceNote: '+$25 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80'
+        "id": "madhuvan-resort-550039927",
+        "name": "Vrindavan Cottage",
+        "price": 25,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "550 sq.ft",
+        "description": "Vrindavan Cottage featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202511281142327015-f870b9ed-44d5-47d1-9b96-e98e60585e8c.jpg?&output-quality=75&downsize=520:350&crop=520:350;30,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202511281142327015-d8634a5a-0d3a-4fd1-9138-48b03b3f913a.jpg?&output-quality=75&downsize=520:350&crop=520:350;0,215&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202511281142327015-7705551c-9979-4171-913a-14a3ade68851.jpg?&output-quality=75&downsize=520:350&crop=520:350;50,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202511281142327015-2983fbf6-7efe-4623-90df-c4a3b1a51b60.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/4612eed7-0625-4835-b512-49fef61430c0.jpeg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/7bd7d6c7-055d-48c5-99c0-73ea6dd327bd.jpeg?&output-quality=75&downsize=520:350&crop=520:350;0,171&output-format=jpg"
         ]
       },
       {
-        id: 'executive-heritage-suite',
-        name: 'Executive Heritage Suite',
-        roomType: 'Executive Heritage Suite',
-        bedType: '1 King Bed + Lounge',
-        roomSize: '380 sq.ft (35 sq.mt)',
-        view: 'Courtyard & Star Deck View',
-        description: 'Traditional Gujarati heritage suite with carved wooden furniture, large living space, and rooftop star deck access.',
-        price: 50,
-        priceNote: '+$50 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80'
+        "id": "madhuvan-resort-1565520817",
+        "name": "Kamyavan Premium Villa with Private Pool",
+        "price": 50,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "625 sq.ft",
+        "description": "Kamyavan Premium Villa with Private Pool featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/24af87f7-2b19-4202-97be-2a4471ec079c.jpeg?&output-quality=75&downsize=520:350&crop=520:350;0,20&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/bb4b4a85-2732-496b-99e3-003ac7fa5862.jpeg?&output-quality=75&downsize=520:350&crop=520:350;0,171&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/c07ad294-e699-4ae2-a599-1b233145b5f0.jpeg?&output-quality=75&downsize=520:350&crop=520:350;0,171&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/99580b3b-38a9-4bb7-b38d-910e477daaa4.jpeg?&output-quality=75&downsize=520:350&crop=520:350;0,171&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/509a5c9d-c57d-4bac-a530-3184f89c76cc.jpeg?&output-quality=75&downsize=520:350&crop=520:350;0,20&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/fe642127-d699-442b-90e5-07180b3cdff0.jpeg?&output-quality=75&downsize=520:350&crop=520:350;0,171&output-format=jpg"
         ]
       }
     ]
   },
   {
-    id: 'fern-gir-forest',
-    name: 'The Fern Gir Forest Resort',
-    tagline: '5-Star Eco-Luxury by Marriott on the Hiran Riverbank',
-    address: 'Sasan Gir, Junagadh District, Gujarat, 362135',
-    rating: '4.5 ★ 5-Star Eco-Luxury Resort',
-    mmtUrl: 'https://www.makemytrip.com/hotels/address-of-the_fern_gir_forest_resort_sasan_gir_series_by_marriott-details-sasan_gir.html',
-    description: 'Perched right along the serene Hiran River, The Fern features riverfront villas, luxury tents with private Jacuzzis, an expansive river-view infinity pool, holistic spa treatments, and fine dining under jungle canopy trees.',
-    images: [
-      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80'
+    "id": "fern-gir-forest",
+    "name": "The Fern Gir Forest Resort",
+    "tagline": "5-Star Eco-Luxury Sanctuary (Series by Marriott)",
+    "rating": "4.8 \u2605 (MakeMyTrip Verified)",
+    "price": 150,
+    "address": "Sasan Gir, Dist. Junagadh",
+    "description": "The Fern Gir Forest Resort Sasan Gir, Series by Marriott offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
+    "amenities": [
+      "5-Star Luxury Villas",
+      "River Hiran Views",
+      "Luxury Spa & Jacuzzi",
+      "Swimming Pool",
+      "Fine Dining Restaurant",
+      "Gymnasium",
+      "Concierge Safari Desk"
     ],
-    amenities: ['Hiran River View', 'River-view Infinity Pool', 'Ayurvedic Spa & Jacuzzi', 'Riverfront Villas', 'Tribal Folk Evenings', 'Gym & Multi-Cuisine'],
-    price: 250,
-    priceNote: '+$250 / guest upgrade',
-    roomCategories: [
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/c06a17da-49ac-4aa5-ae1b-6b0e5777f897.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201111261756034295-ec166f35-7267-4285-91d5-eb843e8ba05a.jpg",
+      "https://i.travelapi.com/lodging/5000000/4810000/4809200/4809176/a777bf1d_z.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201111261756034295-fe4d5601-db36-4b6d-8813-11693d81d256.jpg",
+      "https://r1imghtlak.mmtcdn.com/ae9632e2-1e2a-49bc-bd31-4276272c5806.jpg",
+      "https://r1imghtlak.mmtcdn.com/b760657d-ef3a-45f2-ab3a-7c326e47ae54.jpg",
+      "https://r1imghtlak.mmtcdn.com/32860793-f59c-4efb-9226-5b70f1254c17.jpg",
+      "https://r1imghtlak.mmtcdn.com/54356287-bedb-44f1-9081-a6876facbb2a.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201111261756034295-c28dc00a-5e70-44b4-b0d2-d5a1283c7840.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201111261756034295-4ad5258d-ba51-473c-908d-a653713b8706.jpg"
+    ],
+    "roomCategories": [
       {
-        id: 'fern-winter-green',
-        name: 'Fern Winter Green Room',
-        roomType: 'Fern Winter Green Room',
-        bedType: '1 King Bed',
-        roomSize: '350 sq.ft (32 sq.mt)',
-        view: 'Garden & Orchard View',
-        description: 'Eco-certified 5-star room with organic cotton bedding, eco-friendly toiletries, LED TV, and personal coffee machine.',
-        price: 0,
-        priceNote: 'Included with Resort',
-        images: [
-          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80'
+        "id": "fern-gir-forest-1",
+        "name": "Fern Classic Villa, 1 King Bed",
+        "price": 0,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Forest / Garden View",
+        "roomSize": "420",
+        "description": "Fern Classic Villa, 1 King Bed with premium furnishings, attached modern bath, and forest atmosphere.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201111261756034295-13086-4ac290e1-4340-4a0b-9731-a725c146e998.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201111261756034295-119bd6c7-8b68-467d-8465-a6d3844d54d6.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201111261756034295-299499-7d68f94b-bd1e-4bc0-8f0d-e4926a999926.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201111261756034295-7d3a4062-5db2-47f1-9777-871618d8c7e4.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201111261756034295-299499-5c4eb42d-00f9-4282-af80-10de19732fd6.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201111261756034295-299499-4f667beb-56d0-4e94-8cab-6298aa6e5f6d.jpg"
         ]
       },
       {
-        id: 'fern-classic-villa',
-        name: 'Fern Classic Villa',
-        roomType: 'Fern Classic Villa',
-        bedType: '1 King Bed',
-        roomSize: '420 sq.ft (39 sq.mt)',
-        view: 'Private Garden Sitout',
-        description: 'Standalone luxury villa with private lawn sitout, open sky rain shower, and spacious work/editing station.',
-        price: 60,
-        priceNote: '+$60 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80'
+        "id": "fern-gir-forest-2",
+        "name": "Fern Classic Premium Villa, 1 King Bed",
+        "price": 30,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Forest / Garden View",
+        "roomSize": "470",
+        "description": "Fern Classic Premium Villa, 1 King Bed with premium furnishings, attached modern bath, and forest atmosphere.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201111261756034295-13086-4ac290e1-4340-4a0b-9731-a725c146e998.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201111261756034295-119bd6c7-8b68-467d-8465-a6d3844d54d6.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201111261756034295-299499-7d68f94b-bd1e-4bc0-8f0d-e4926a999926.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201111261756034295-7d3a4062-5db2-47f1-9777-871618d8c7e4.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201111261756034295-299499-5c4eb42d-00f9-4282-af80-10de19732fd6.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201111261756034295-299499-4f667beb-56d0-4e94-8cab-6298aa6e5f6d.jpg"
         ]
       },
       {
-        id: 'fern-club-villa-river',
-        name: 'Fern Club Villa with River View',
-        roomType: 'Fern Club Villa with River View',
-        bedType: '1 King Bed',
-        roomSize: '480 sq.ft (45 sq.mt)',
-        view: 'Direct Hiran River View',
-        description: 'Prime riverfront villa directly overlooking the Hiran riverbank, private viewing deck, and complimentary evening snacks.',
-        price: 120,
-        priceNote: '+$120 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80'
-        ]
-      },
-      {
-        id: 'hazel-suite-jacuzzi',
-        name: 'Hazel Suite with Jacuzzi',
-        roomType: 'Hazel Suite with Jacuzzi',
-        bedType: '1 King Bed + Living Area',
-        roomSize: '650 sq.ft (60 sq.mt)',
-        view: 'River & Jungle View',
-        description: 'Presidential-grade luxury suite with private heated Jacuzzi tub, separate living room, and panoramic forest view deck.',
-        price: 190,
-        priceNote: '+$190 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80'
+        "id": "fern-gir-forest-3",
+        "name": "Fern Classic Premium Suite, 2 King Beds",
+        "price": 60,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Forest / Garden View",
+        "roomSize": "1500",
+        "description": "Fern Classic Premium Suite, 2 King Beds with premium furnishings, attached modern bath, and forest atmosphere.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201111261756034295-13086-4ac290e1-4340-4a0b-9731-a725c146e998.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201111261756034295-119bd6c7-8b68-467d-8465-a6d3844d54d6.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201111261756034295-299499-7d68f94b-bd1e-4bc0-8f0d-e4926a999926.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201111261756034295-7d3a4062-5db2-47f1-9777-871618d8c7e4.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201111261756034295-299499-5c4eb42d-00f9-4282-af80-10de19732fd6.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201111261756034295-299499-4f667beb-56d0-4e94-8cab-6298aa6e5f6d.jpg"
         ]
       }
     ]
   },
   {
-    id: 'clarks-inn',
-    name: 'The Clarke Inn (Gir Aatithya Clarks Inn)',
-    tagline: 'Contemporary Wilderness Haven with Infinity Pool',
-    address: 'Sasan - Talala Road, Near Malanka, Sasan Gir, Gujarat',
-    rating: '4.4 ★ Clarks Inn Safari Haven',
-    mmtUrl: 'https://www.makemytrip.com/hotels/gir_aatithya_clarks_inn-details-sasan_gir.html',
-    description: 'Combining modern hotel luxury with wilderness aesthetics, Clarks Inn offers infinity pool views of teak hills, premium executive rooms, multi-cuisine gourmet dining, and seamless safari coordination.',
-    images: [
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80'
+    "id": "clarks-inn",
+    "name": "The Clarke Inn (Gir Aatithya Clarks Inn)",
+    "tagline": "Contemporary Boutique Comfort on Talala-Virpur Road",
+    "rating": "4.3 \u2605 (MakeMyTrip Verified)",
+    "price": 70,
+    "address": "Railway Crossings GF SR NO 102/PEKI1, GIR AATITHYA RESORTS, Talala Virpur Road Near Indian Gas Agency Talala Gir Somnath, Gujarat - 362150, Railway Crossings GF SR NO 102/PEKI1, GIR AATITHYA RESORTS, Talala Virpur Road Near Indian Gas Agency Talala Gir Somnath, Gujarat - 362150",
+    "description": "Gir Aatithya Clarks Inn offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
+    "amenities": [
+      "Modern AC Rooms",
+      "Multi-Cuisine Restaurant",
+      "Banquet & Lawn",
+      "24h Room Service",
+      "Power Backup",
+      "Express Check-In",
+      "Valet Parking"
     ],
-    amenities: ['Infinity Swimming Pool', 'Fitness & Yoga Pavilion', 'Pure Veg & Jain Meals', 'Wheelchair Accessible', 'Banquet Hall', '24/7 Concierge'],
-    price: 130,
-    priceNote: '+$130 / guest upgrade',
-    roomCategories: [
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/7457d1bb-24dc-4e98-91b7-485acb1ceae1.jpg",
+      "https://r1imghtlak.mmtcdn.com/4edbc2ef-614b-4002-b941-59f268c52a3f.jpg",
+      "https://r1imghtlak.mmtcdn.com/c536dca2-f25e-4dbc-baa9-75c0764c2f43.jpg",
+      "https://r1imghtlak.mmtcdn.com/155df48b-bb21-434a-9f4b-544896ea78e6.jpg",
+      "https://r1imghtlak.mmtcdn.com/590b2fcf-7c51-4b98-b1ef-4db5325e7681.jpg",
+      "https://r1imghtlak.mmtcdn.com/715c9a83-07f8-4d4a-85b4-1de9726f6455.jpg",
+      "https://r1imghtlak.mmtcdn.com/68eac79a-ab3a-4838-a56f-2ff38988c1d7.jpg",
+      "https://r1imghtlak.mmtcdn.com/98be99ed-9698-430d-a74a-9d7465d86f8b.jpg",
+      "https://r1imghtlak.mmtcdn.com/056f2aaf-99c6-4bfc-a9d5-bcc5d6d7d172.jpg",
+      "https://r1imghtlak.mmtcdn.com/19801666-9f9f-461c-9a9e-ff5a03cd073d.jpg"
+    ],
+    "roomCategories": [
       {
-        id: 'deluxe-room-queen',
-        name: 'Deluxe Room Queen Bed',
-        roomType: 'Deluxe Room Queen Bed',
-        bedType: '1 Queen Bed',
-        roomSize: '260 sq.ft (24 sq.mt)',
-        view: 'Garden View',
-        description: 'Modern room equipped with air-conditioning, flat screen TV, work desk, electronic safe, and rain shower.',
-        price: 0,
-        priceNote: 'Included with Resort',
-        images: [
-          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80'
+        "id": "clarks-inn-1574222873",
+        "name": "Premium Room",
+        "price": 0,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "340 sq.ft",
+        "description": "Premium Room featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/98be99ed-9698-430d-a74a-9d7465d86f8b.jpg",
+          "https://r1imghtlak.mmtcdn.com/056f2aaf-99c6-4bfc-a9d5-bcc5d6d7d172.jpg",
+          "https://r1imghtlak.mmtcdn.com/19801666-9f9f-461c-9a9e-ff5a03cd073d.jpg",
+          "https://r1imghtlak.mmtcdn.com/7ff8ac2d-902c-45f1-8b24-715bf8fa1509.jpg",
+          "https://r1imghtlak.mmtcdn.com/82c25310-2acb-430d-9a8b-87fb8f329a1e.jpg",
+          "https://r1imghtlak.mmtcdn.com/cd6c78aa-7086-4218-ade3-bae00fd986c1.jpg"
         ]
       },
       {
-        id: 'executive-premium-room',
-        name: 'Executive Premium Room',
-        roomType: 'Executive Premium Room',
-        bedType: '1 King Bed',
-        roomSize: '320 sq.ft (30 sq.mt)',
-        view: 'Infinity Pool View',
-        description: 'Larger executive room overlooking the infinity pool with sofa seating, tea/coffee maker, and plush bathrobes.',
-        price: 35,
-        priceNote: '+$35 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80'
-        ]
-      },
-      {
-        id: 'clarks-forest-suite',
-        name: 'Clarks Forest Suite',
-        roomType: 'Clarks Forest Suite',
-        bedType: '1 King Bed + Living Room',
-        roomSize: '450 sq.ft (42 sq.mt)',
-        view: 'Panoramic Teak Forest View',
-        description: 'Luxury suite with separate living area, 2 LED TVs, panoramic forest view windows, and complimentary fruit basket.',
-        price: 70,
-        priceNote: '+$70 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80'
+        "id": "clarks-inn-2047046260",
+        "name": "Deluxe Room Queen Bed",
+        "price": 25,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "320 sq.ft",
+        "description": "Deluxe Room Queen Bed featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/98be99ed-9698-430d-a74a-9d7465d86f8b.jpg",
+          "https://r1imghtlak.mmtcdn.com/056f2aaf-99c6-4bfc-a9d5-bcc5d6d7d172.jpg",
+          "https://r1imghtlak.mmtcdn.com/19801666-9f9f-461c-9a9e-ff5a03cd073d.jpg",
+          "https://r1imghtlak.mmtcdn.com/7ff8ac2d-902c-45f1-8b24-715bf8fa1509.jpg",
+          "https://r1imghtlak.mmtcdn.com/82c25310-2acb-430d-9a8b-87fb8f329a1e.jpg",
+          "https://r1imghtlak.mmtcdn.com/cd6c78aa-7086-4218-ade3-bae00fd986c1.jpg"
         ]
       }
     ]
   },
   {
-    id: 'aramness-gir',
-    name: 'Aramness Gir National Park',
-    tagline: 'Ultra-Luxury Safari Lodge & Private Plunge Pool Kothis',
-    address: 'Sasan Gir Sanctuary Border, Haripur, Gujarat',
-    rating: '4.9 ★ Ultra-Luxury Village Lodge',
-    mmtUrl: 'https://www.makemytrip.com/hotels/aramness_gir_national_park-details-sasan_gir.html',
-    description: 'The pinnacle of safari luxury in India. Designed like a traditional Gujarati village, Aramness features bespoke 2-storey standalone Kothis with private plunge pools, dedicated butler service, and field-to-fork dining right on the edge of the lion sanctuary.',
-    images: [
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80'
+    "id": "aramness-gir",
+    "name": "Aramness Gir National Park",
+    "tagline": "Ultra-Luxury Village Lodge with Private Heated Plunge Pools",
+    "rating": "4.9 \u2605 (MakeMyTrip Verified)",
+    "price": 350,
+    "address": "Haripur Gam NA.R.S.NO 177/P.2 NI SQ MTR 15377 AND  NA.R.S.NO 177/P.3  SQ MTR/ 08094",
+    "description": "ARAMNESS GIR NATIONAL PARK offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
+    "amenities": [
+      "Private Heated Plunge Pools",
+      "Bespoke Safari Guides",
+      "Ayurvedic Spa & Wellness",
+      "Organic Farm-to-Table Dining",
+      "Star Gazing Deck",
+      "Butler Service",
+      "Forest Border Setting"
     ],
-    amenities: ['Private Plunge Pool Kothis', 'Personal Safari Butler', 'Field-to-Fork Dining', 'Ayurvedic Spa & Yoga', 'Private 4x4 Tracking', 'Forest Edge Location'],
-    price: 580,
-    priceNote: '+$580 / guest upgrade',
-    roomCategories: [
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/3a28ee760e8f11ee963a0a58a9feac02.jpg",
+      "https://r1imghtlak.mmtcdn.com/c88a8d4a-a96f-4a3a-a31d-21f0673e045d.jpg",
+      "https://r1imghtlak.mmtcdn.com/69b8bef5-3176-40d1-aa5b-2cfaeb4796eb.jpg",
+      "https://r1imghtlak.mmtcdn.com/09b343b41f1411ee8bb20a58a9feac02.jpg",
+      "https://r1imghtlak.mmtcdn.com/f1a148861eef11ed86310a58a9feac02.jpg",
+      "https://r1imghtlak.mmtcdn.com/1e8bcd8a1ef011ed85c80a58a9feac02.jpg",
+      "https://r1imghtlak.mmtcdn.com/6a02dfec1f1211ee90f00a58a9feac02.jpg",
+      "https://r1imghtlak.mmtcdn.com/33d67008504311ed8e050a58a9feac02.jpg",
+      "https://r1imghtlak.mmtcdn.com/fd2e20aa1f1311eeb6340a58a9feac02.jpg",
+      "https://r1imghtlak.mmtcdn.com/3a555ede0e8f11ee95360a58a9feac02.jpg"
+    ],
+    "roomCategories": [
       {
-        id: 'aramness-forest-kothi',
-        name: 'Aramness Forest Kothi with Private Pool',
-        roomType: 'Aramness Forest Kothi with Private Plunge Pool',
-        bedType: '1 King Bed',
-        roomSize: '1200 sq.ft (111 sq.mt)',
-        view: 'Teak Forest View & Private Stepwell Pool',
-        description: 'Double-storey handcrafted stone bungalow featuring a private stepwell-inspired plunge pool, shaded courtyard, outdoor jungle shower, and personal butler.',
-        price: 0,
-        priceNote: 'Included with Resort',
-        images: [
-          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80'
+        "id": "aramness-gir-1114202",
+        "name": "Kothi",
+        "price": 0,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "2314 sq.ft",
+        "description": "Kothi featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/ca309a681f1611ee93b20a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;51,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202208221709042730-1f96955c1ef011eda5dd0a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;10,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202208221709042730-e1646a581f7a11ed80290a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;10,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/bf71ee4c1f1611ee90d30a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;51,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/b2857f1e1f1611eea4ac0a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/7b5e5588-23b6-40e5-89ea-eef8ae6153e2.png?&output-quality=75&downsize=520:350&crop=520:350;0,5&output-format=jpg"
         ]
       },
       {
-        id: 'aramness-family-kothi',
-        name: 'Aramness Family Kothi (2-Bedroom Villa)',
-        roomType: 'Aramness Family Kothi',
-        bedType: '2 King Beds',
-        roomSize: '2400 sq.ft (223 sq.mt)',
-        view: 'Private Pool & Wilderness Deck View',
-        description: 'Ultra-exclusive 2-bedroom double-storey family sanctuary with private lap pool, large dining deck, 2 luxury marble baths, and dedicated chef service.',
-        price: 350,
-        priceNote: '+$350 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80'
+        "id": "aramness-gir-6676114",
+        "name": "Family Kothi",
+        "price": 25,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "365 sq.ft",
+        "description": "Family Kothi featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/e0650739-dce0-4b37-ae69-6c073e34c22f.png?&output-quality=75&downsize=520:350&crop=520:350;11,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/202208221709042730-6676114-01dcb9a04e0d11eda2b60a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/77f44544504311eda5b20a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;10,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/33d67008504311ed8e050a58a9feac02.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/64bc487b-ea6f-4cb5-8873-9c1a7d23668b.png?&output-quality=75&downsize=520:350&crop=520:350;3,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/521724d4-4f3a-460e-953e-4d8a8e85133a.png?&output-quality=75&downsize=520:350&crop=520:350;0,84&output-format=jpg"
         ]
       }
     ]
   },
   {
-    id: 'aqua-terra',
-    name: 'Aqua Terra Resort',
-    tagline: 'Freeform Lagoon Pools & Sun Terrace Sanctuary',
-    address: 'Chitrod Road, Sasan Gir, Gujarat',
-    rating: '4.2 ★ Water-Lover\'s Jungle Retreat',
-    mmtUrl: 'https://www.makemytrip.com/hotels/aqua_terra_resort-details-sasan_gir.html',
-    description: 'Centering around expansive lagoon-style pools and sun terraces, Aqua Terra Resort features open-air baths, pool-facing luxury cottages, landscaped grounds, and open barbecue dinners.',
-    images: [
-      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80'
+    "id": "aqua-terra",
+    "name": "Aqua Terra Resort",
+    "tagline": "Serene Waterfront Villas with Open-to-Sky Bathrooms",
+    "rating": "4.5 \u2605 (MakeMyTrip Verified)",
+    "price": 90,
+    "address": "flat door block no behind zagira resort name of premises building chitrod road village town sangodra block near jagira resort road street lane talala city talala state gujarat district gir somnath pin 362150",
+    "description": "AQUA TERRA RESORT offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
+    "amenities": [
+      "Open-to-Sky Baths",
+      "Waterfront Deck",
+      "Swimming Pool",
+      "Forest View Balconies",
+      "Outdoor Barbecue",
+      "Jogging Track",
+      "Games Room"
     ],
-    amenities: ['Freeform Lagoon Pool', 'Open-Air Sun Terraces', 'Poolside BBQ Lounge', 'Cottage Suites', "Children's Play Zone", 'Free High-Speed Wi-Fi'],
-    price: 95,
-    priceNote: '+$95 / guest upgrade',
-    roomCategories: [
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/06f432c5-014c-4391-a322-723656d1b1a6.jpg",
+      "https://r1imghtlak.mmtcdn.com/e096d66b-0862-4d4f-9c0e-cb5aa2907faa.jpg",
+      "https://r1imghtlak.mmtcdn.com/0187d2fd-ffd2-45c0-bc33-17c7fac51808.jpg",
+      "https://r1imghtlak.mmtcdn.com/ce80d2f4-48b3-4f1e-ab9e-ebb6222c0a72.jpg",
+      "https://r1imghtlak.mmtcdn.com/125c9ecb-e70f-46cb-b34b-d8e0e70bfc55.jpg",
+      "https://r1imghtlak.mmtcdn.com/bf531cbe-8f34-47f1-99ee-9df6c357790e.jpg",
+      "https://r1imghtlak.mmtcdn.com/4c51fa0f-68ba-4e25-b678-811c50655880.jpg",
+      "https://r1imghtlak.mmtcdn.com/95cd312f-7f24-476f-8898-3b6b2a87307e.jpg",
+      "https://r1imghtlak.mmtcdn.com/d14463cb-928a-418c-9c18-4f247d79ae87.jpg",
+      "https://r1imghtlak.mmtcdn.com/8cbef05e-285f-4123-85c5-35b0da77f965.jpg"
+    ],
+    "roomCategories": [
       {
-        id: 'superior-villa-garden',
-        name: 'Superior Villa with Balcony Forest View',
-        roomType: 'Superior Villa with Balcony Forest/Garden View',
-        bedType: '1 King Bed',
-        roomSize: '470 sq.ft (44 sq.mt)',
-        view: 'Forest & Garden View',
-        description: 'Large villa with expansive private balcony overlooking teak forests, modern en-suite bath, air-conditioning, and kettle.',
-        price: 0,
-        priceNote: 'Included with Resort',
-        images: [
-          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80'
+        "id": "aqua-terra-175769790",
+        "name": "Superior Villa with Balcony Forest/Garden View",
+        "price": 0,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "470 sq.ft",
+        "description": "Superior Villa with Balcony Forest/Garden View featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/287dffac-2be5-42a3-89e7-b2321f222685.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/703817ab-5c93-4bc4-a437-ce4f567084dd.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/1704d9c3-a75c-47c0-99e5-79bccbefd3f4.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/20dafb98-3b97-4923-bff9-260ca2a3a5b9.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/0b88e490-50cd-4ece-bee3-722bab004379.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/f02731f9-49f7-4e84-8d8a-43debbe5e944.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg"
         ]
       },
       {
-        id: 'deluxe-lagoon-chalet',
-        name: 'Deluxe Lagoon View Chalet',
-        roomType: 'Deluxe Lagoon View Chalet',
-        bedType: '1 King Bed',
-        roomSize: '400 sq.ft (37 sq.mt)',
-        view: 'Freeform Lagoon Pool View',
-        description: 'Chalet situated adjacent to the freeform swimming pool with direct deck access, sun loungers, and minibar.',
-        price: 35,
-        priceNote: '+$35 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80'
-        ]
-      },
-      {
-        id: 'aqua-terra-family-villa',
-        name: 'Aqua Terra Family Villa',
-        roomType: 'Aqua Terra Family Villa',
-        bedType: '2 Queen Beds',
-        roomSize: '600 sq.ft (56 sq.mt)',
-        view: 'Private Lawn & Pool View',
-        description: 'Spacious family chalet with two queen beds, private manicured garden, outdoor seating, and BBQ dining setup.',
-        price: 75,
-        priceNote: '+$75 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80'
+        "id": "aqua-terra-1172301341",
+        "name": "Premium Villa with Balcony/OTS Bath/Smoke Area",
+        "price": 25,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "470 sq.ft",
+        "description": "Premium Villa with Balcony/OTS Bath/Smoke Area featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/d14463cb-928a-418c-9c18-4f247d79ae87.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/bdeabeec-b49e-4576-ad90-8f9d9e097e62.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/8cbef05e-285f-4123-85c5-35b0da77f965.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/a8d69fdd-96a4-4295-ae71-ce67d8a72286.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/7dbdd769-0d4c-4b8b-a344-60611c48f50f.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/d9b12caf-c901-4583-8b05-6406e8ef82cb.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg"
         ]
       }
     ]
   },
   {
-    id: 'wild-calm',
-    name: 'Wild Calm - Opulent Oasis (Wild Calm Resort)',
-    tagline: 'Secluded Luxury Oasis & Orchard Sanctuary',
-    address: 'Bhalchhel Road, Near Forest Checkpost, Borvav, Sasan Gir, Gujarat',
-    rating: '4.3 ★ Opulent Oasis & Orchard Sanctuary',
-    mmtUrl: 'https://www.makemytrip.com/hotels/address-of-wild_calm_resort-details-sasan_gir.html',
-    description: 'An oasis of tranquility surrounded by wilderness. Wild Calm features suites with private balconies overlooking mango groves, hot tubs, cycling trails, game pavilions, and starlit bonfire dinners.',
-    images: [
-      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80'
+    "id": "wild-calm",
+    "name": "Wild Calm - Opulent Oasis",
+    "tagline": "Opulent Oasis with Private Pool & Jacuzzi Suites",
+    "rating": "4.7 \u2605 (MakeMyTrip Verified)",
+    "price": 130,
+    "address": "WILD CALM RESORT,NEAR MANSA DEVI TAMPLE, HP Petrol Pump, 59/P1,Borvav, Gir Somnath, Gujarat, 362150, Sasan Gir",
+    "description": "Wild Calm, Sasan Gir offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
+    "amenities": [
+      "Private Pool Suites",
+      "In-Room Jacuzzi & Board Games",
+      "Courtyard Lounge",
+      "Common Swimming Pool",
+      "Gourmet Safari Dining",
+      "Lawn Pavilion",
+      "Bicycle Tours"
     ],
-    amenities: ['Private Balcony Suites', 'Outdoor Swimming Pool', 'Hot Tubs & Spa', 'Games Pavilion (Billiards/TT)', 'Complimentary Bicycles', 'Bonfire Dinners'],
-    price: 110,
-    priceNote: '+$110 / guest upgrade',
-    roomCategories: [
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/c22c3b2c-dbe7-4b05-847d-d7292bc4a41a.jpeg",
+      "https://r1imghtlak.mmtcdn.com/f1b307d2-42c2-497d-ae90-4c90fdc6da77.jpeg",
+      "https://r1imghtlak.mmtcdn.com/9778b675-ce1c-49ff-9235-9ce6c94e2851.jpeg",
+      "https://r1imghtlak.mmtcdn.com/88a2c903-05c9-46a3-89c5-ad5c73562b4f.jpeg",
+      "https://r1imghtlak.mmtcdn.com/7fdadaff-1800-48f3-a4ba-74b3b9aa4dcd.png",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-cb89ba6f-ea76-477b-ac7d-cc6e049c21af.jpg",
+      "https://r1imghtlak.mmtcdn.com/5d6332ce-9998-4ad0-9411-dad308fe9cd7.png",
+      "https://r1imghtlak.mmtcdn.com/5aa76d9c-bcb6-4f49-9388-75dec5e59506.png",
+      "https://r1imghtlak.mmtcdn.com/22eab607-889e-4b9f-a357-033153c6c6e1.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-0de5a788-72f9-4c00-85a8-0c3bc639489b.jpg"
+    ],
+    "roomCategories": [
       {
-        id: 'courtyard-room',
-        name: 'The Courtyard Room',
-        roomType: 'The Courtyard Rooms',
-        bedType: '1 King Bed',
-        roomSize: '225 sq.ft (21 sq.mt)',
-        view: 'Courtyard & Mango Grove View',
-        description: 'Charming courtyard-facing room with minibar, electronic safe, luxury bathrobes, and private veranda.',
-        price: 0,
-        priceNote: 'Included with Resort',
-        images: [
-          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80'
+        "id": "wild-calm-1",
+        "name": "The Courtyard Rooms",
+        "price": 0,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Forest / Garden View",
+        "roomSize": "225",
+        "description": "The Courtyard Rooms with premium furnishings, attached modern bath, and forest atmosphere.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-ae7566b9-2ae6-4f50-bb79-ae6d7b514930.jpg",
+          "https://r1imghtlak.mmtcdn.com/e487896f-9d8d-4668-90ec-9755b49961e9.png",
+          "https://r1imghtlak.mmtcdn.com/e9c38970-cc28-4fcb-885c-f4555001aaf0.png",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-79cbc129-8554-4442-b611-3c1b9e213962.jpg",
+          "https://r1imghtlak.mmtcdn.com/d7051f9f-17eb-4b1d-9cc0-ddad596b21b8.png",
+          "https://r1imghtlak.mmtcdn.com/fb78cc74-7b97-4a3d-bab3-26b7ec26d5c6.png"
         ]
       },
       {
-        id: 'oasis-safari-tent',
-        name: 'Opulent Oasis Luxury Safari Tent',
-        roomType: 'Opulent Oasis Luxury Safari Tent',
-        bedType: '1 King Bed',
-        roomSize: '350 sq.ft (32 sq.mt)',
-        view: 'Forest Fringe View',
-        description: 'Luxury air-conditioned tent with outdoor rain shower, teak wood decor, private sun deck, and tea maker.',
-        price: 45,
-        priceNote: '+$45 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80'
+        "id": "wild-calm-2",
+        "name": "Calm Cub (Nature Porch Room - ground Floor)",
+        "price": 30,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Forest / Garden View",
+        "roomSize": "300",
+        "description": "Calm Cub (Nature Porch Room - ground Floor) with premium furnishings, attached modern bath, and forest atmosphere.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-ae7566b9-2ae6-4f50-bb79-ae6d7b514930.jpg",
+          "https://r1imghtlak.mmtcdn.com/e487896f-9d8d-4668-90ec-9755b49961e9.png",
+          "https://r1imghtlak.mmtcdn.com/e9c38970-cc28-4fcb-885c-f4555001aaf0.png",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-79cbc129-8554-4442-b611-3c1b9e213962.jpg",
+          "https://r1imghtlak.mmtcdn.com/d7051f9f-17eb-4b1d-9cc0-ddad596b21b8.png",
+          "https://r1imghtlak.mmtcdn.com/fb78cc74-7b97-4a3d-bab3-26b7ec26d5c6.png"
         ]
       },
       {
-        id: 'premium-forest-villa',
-        name: 'Wild Calm Premium Forest Villa',
-        roomType: 'Wild Calm Premium Forest Villa',
-        bedType: '1 King Bed + Sitting Area',
-        roomSize: '450 sq.ft (42 sq.mt)',
-        view: 'Secluded Forest View',
-        description: 'Secluded private villa with private jacuzzi, personal butler assistance, and panoramic forest sitout.',
-        price: 85,
-        priceNote: '+$85 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80'
+        "id": "wild-calm-3",
+        "name": "Wild Cub (Nature Porch Room- Ground floor)",
+        "price": 60,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Forest / Garden View",
+        "roomSize": "360",
+        "description": "Wild Cub (Nature Porch Room- Ground floor) with premium furnishings, attached modern bath, and forest atmosphere.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-ae7566b9-2ae6-4f50-bb79-ae6d7b514930.jpg",
+          "https://r1imghtlak.mmtcdn.com/e487896f-9d8d-4668-90ec-9755b49961e9.png",
+          "https://r1imghtlak.mmtcdn.com/e9c38970-cc28-4fcb-885c-f4555001aaf0.png",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-79cbc129-8554-4442-b611-3c1b9e213962.jpg",
+          "https://r1imghtlak.mmtcdn.com/d7051f9f-17eb-4b1d-9cc0-ddad596b21b8.png",
+          "https://r1imghtlak.mmtcdn.com/fb78cc74-7b97-4a3d-bab3-26b7ec26d5c6.png"
+        ]
+      },
+      {
+        "id": "wild-calm-4",
+        "name": "Calm Nest with Balcony (First Floor)",
+        "price": 90,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Forest / Garden View",
+        "roomSize": "300",
+        "description": "Calm Nest with Balcony (First Floor) with premium furnishings, attached modern bath, and forest atmosphere.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-ae7566b9-2ae6-4f50-bb79-ae6d7b514930.jpg",
+          "https://r1imghtlak.mmtcdn.com/e487896f-9d8d-4668-90ec-9755b49961e9.png",
+          "https://r1imghtlak.mmtcdn.com/e9c38970-cc28-4fcb-885c-f4555001aaf0.png",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-79cbc129-8554-4442-b611-3c1b9e213962.jpg",
+          "https://r1imghtlak.mmtcdn.com/d7051f9f-17eb-4b1d-9cc0-ddad596b21b8.png",
+          "https://r1imghtlak.mmtcdn.com/fb78cc74-7b97-4a3d-bab3-26b7ec26d5c6.png"
+        ]
+      },
+      {
+        "id": "wild-calm-5",
+        "name": "Wild Nest with Balcony (First Floor)",
+        "price": 120,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Forest / Garden View",
+        "roomSize": "360",
+        "description": "Wild Nest with Balcony (First Floor) with premium furnishings, attached modern bath, and forest atmosphere.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-ae7566b9-2ae6-4f50-bb79-ae6d7b514930.jpg",
+          "https://r1imghtlak.mmtcdn.com/e487896f-9d8d-4668-90ec-9755b49961e9.png",
+          "https://r1imghtlak.mmtcdn.com/e9c38970-cc28-4fcb-885c-f4555001aaf0.png",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-79cbc129-8554-4442-b611-3c1b9e213962.jpg",
+          "https://r1imghtlak.mmtcdn.com/d7051f9f-17eb-4b1d-9cc0-ddad596b21b8.png",
+          "https://r1imghtlak.mmtcdn.com/fb78cc74-7b97-4a3d-bab3-26b7ec26d5c6.png"
+        ]
+      },
+      {
+        "id": "wild-calm-6",
+        "name": "The Gathering Grove (Family Cottage with In-Room Broad Games &Bathtub)",
+        "price": 150,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Forest / Garden View",
+        "roomSize": "650",
+        "description": "The Gathering Grove (Family Cottage with In-Room Broad Games &Bathtub) with premium furnishings, attached modern bath, and forest atmosphere.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-ae7566b9-2ae6-4f50-bb79-ae6d7b514930.jpg",
+          "https://r1imghtlak.mmtcdn.com/e487896f-9d8d-4668-90ec-9755b49961e9.png",
+          "https://r1imghtlak.mmtcdn.com/e9c38970-cc28-4fcb-885c-f4555001aaf0.png",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-79cbc129-8554-4442-b611-3c1b9e213962.jpg",
+          "https://r1imghtlak.mmtcdn.com/d7051f9f-17eb-4b1d-9cc0-ddad596b21b8.png",
+          "https://r1imghtlak.mmtcdn.com/fb78cc74-7b97-4a3d-bab3-26b7ec26d5c6.png"
+        ]
+      },
+      {
+        "id": "wild-calm-7",
+        "name": "The Crown Pavilion ( Private Pool Room)",
+        "price": 180,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Forest / Garden View",
+        "roomSize": "550",
+        "description": "The Crown Pavilion ( Private Pool Room) with premium furnishings, attached modern bath, and forest atmosphere.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-ae7566b9-2ae6-4f50-bb79-ae6d7b514930.jpg",
+          "https://r1imghtlak.mmtcdn.com/e487896f-9d8d-4668-90ec-9755b49961e9.png",
+          "https://r1imghtlak.mmtcdn.com/e9c38970-cc28-4fcb-885c-f4555001aaf0.png",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-79cbc129-8554-4442-b611-3c1b9e213962.jpg",
+          "https://r1imghtlak.mmtcdn.com/d7051f9f-17eb-4b1d-9cc0-ddad596b21b8.png",
+          "https://r1imghtlak.mmtcdn.com/fb78cc74-7b97-4a3d-bab3-26b7ec26d5c6.png"
+        ]
+      },
+      {
+        "id": "wild-calm-8",
+        "name": "The Wild Calm Signature Room (Private Pool & Jacuzzi)",
+        "price": 210,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Forest / Garden View",
+        "roomSize": "900",
+        "description": "The Wild Calm Signature Room (Private Pool & Jacuzzi) with premium furnishings, attached modern bath, and forest atmosphere.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-ae7566b9-2ae6-4f50-bb79-ae6d7b514930.jpg",
+          "https://r1imghtlak.mmtcdn.com/e487896f-9d8d-4668-90ec-9755b49961e9.png",
+          "https://r1imghtlak.mmtcdn.com/e9c38970-cc28-4fcb-885c-f4555001aaf0.png",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202404111402083159-79cbc129-8554-4442-b611-3c1b9e213962.jpg",
+          "https://r1imghtlak.mmtcdn.com/d7051f9f-17eb-4b1d-9cc0-ddad596b21b8.png",
+          "https://r1imghtlak.mmtcdn.com/fb78cc74-7b97-4a3d-bab3-26b7ec26d5c6.png"
         ]
       }
     ]
   },
   {
-    id: 'woods-at-sasan',
-    name: 'Woods at Sasan',
-    tagline: 'Premier Biophilic Wellness Retreat in 8-Acre Orchard',
-    address: 'Sasan Gir Village, Talala Road, Sasan Gir, Gujarat',
-    rating: '4.6 ★ Biophilic Wellness Retreat',
-    mmtUrl: 'https://www.makemytrip.com/hotels/woods_at_sasan-details-sasan_gir.html',
-    description: 'Set inside an 8-acre mango orchard, Woods at Sasan is an award-winning biophilic retreat emphasizing holistic wellness, organic architecture, Som Ayurvedic therapies, and farm-to-table culinary experiences.',
-    images: [
-      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80'
+    "id": "woods-at-sasan",
+    "name": "Woods at Sasan",
+    "tagline": "Premier Biophilic & Sustainable Luxury Wilderness Resort",
+    "rating": "4.8 \u2605 (MakeMyTrip Verified)",
+    "price": 220,
+    "address": "Sasan - Talala Road\r\nGir Forest\r\nGujarat, India",
+    "description": "WOODS AT SASAN offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
+    "amenities": [
+      "Biophilic Architecture",
+      "SOM Ayurvedic Spa",
+      "Private Pool Pavilions",
+      "Terrace Studios",
+      "Holistic Organic Dining",
+      "Yoga & Meditation Pavilion",
+      "Naturalist Walks"
     ],
-    amenities: ['8-Acre Mango Orchard', 'Som Ayurvedic Spa & Yoga', 'Swimming Pool & Library', 'Farm-to-Table Dining', 'Biophilic Architecture', 'Naturalist Escapes'],
-    price: 320,
-    priceNote: '+$320 / guest upgrade',
-    roomCategories: [
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/07d67d34bedd11ebbc450242ac110003.png",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201708281327574036-04fe2b18d95311eaab5b0242ac110002.jpg",
+      "https://r1imghtlak.mmtcdn.com/1010d694ac4211ed80250a58a9feac02.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201708281327574036-af45fb0aefd011ed9f620a58a9feac02.jpg",
+      "https://r1imghtlak.mmtcdn.com/e56bab9e-b868-4bb5-b84e-256596fd7ac4.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201708281327574036-1005272841-3f0a086c-72f4-40f0-b4a1-8b3321e53c70.jpg",
+      "https://r1imghtlak.mmtcdn.com/6be166e7-dcdd-4aab-a4f3-cbe9b5ea4362.jpg",
+      "https://i.travelapi.com/lodging/20000000/19270000/19262100/19262069/306dedaf_z.jpg",
+      "https://i.travelapi.com/lodging/20000000/19270000/19262100/19262069/c568a7ac_z.jpg",
+      "https://i.travelapi.com/lodging/20000000/19270000/19262100/19262069/71f97c03_z.jpg"
+    ],
+    "roomCategories": [
       {
-        id: 'woods-studio',
-        name: 'Woods Studio',
-        roomType: 'Woods Studio',
-        bedType: '1 King Bed',
-        roomSize: '450 sq.ft (42 sq.mt)',
-        view: 'Mango Orchard View',
-        description: 'Handcrafted stone studio with private terrace overlooking organic mango trees, open shower, and Ayurvedic wellness essentials.',
-        price: 0,
-        priceNote: 'Included with Resort',
-        images: [
-          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80'
+        "id": "woods-at-sasan-310196",
+        "name": "Woods Pavilion",
+        "price": 0,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "677 sq.ft",
+        "description": "Woods Pavilion featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://i.travelapi.com/lodging/20000000/19270000/19262100/19262069/f190857f_z.jpg",
+          "https://i.travelapi.com/lodging/20000000/19270000/19262100/19262069/0e15e39c_z.jpg",
+          "https://i.travelapi.com/lodging/20000000/19270000/19262100/19262069/c79a9b44_z.jpg",
+          "https://i.travelapi.com/lodging/20000000/19270000/19262100/19262069/1104a428_z.jpg",
+          "https://i.travelapi.com/lodging/20000000/19270000/19262100/19262069/8865b726_z.jpg",
+          "https://i.travelapi.com/lodging/20000000/19270000/19262100/19262069/1ed95ea4_z.jpg"
         ]
       },
       {
-        id: 'woods-pavilion-bathtub',
-        name: 'Woods Pavilion with Outdoor Bathtub',
-        roomType: 'Woods Pavilion with Bathtub',
-        bedType: '1 King Bed',
-        roomSize: '550 sq.ft (51 sq.mt)',
-        view: 'Forest Canopy View',
-        description: 'Biophilic open pavilion featuring a sunken open-air stone bathtub, extended viewing deck, and organic tea bar.',
-        price: 80,
-        priceNote: '+$80 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80'
+        "id": "woods-at-sasan-473878",
+        "name": "The Woods Villa",
+        "price": 25,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "2550 sq.ft",
+        "description": "The Woods Villa featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201708281327574036-473878-7d7224f8d7e811eaa5a60242ac110003.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201708281327574036-473878-7d255f9cd7e811ea88880242ac110005.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201708281327574036-473878-7d5e1990d7e811eaaeeb0242ac110005.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201708281327574036-473878-7d9d723ed7e811eaa51e0242ac110005.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/a37962f2bef011eb9f5b0242ac110002.png?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201708281327574036-473878-7d183cc4-5b4f-4d60-96c1-43e9ed9347d4.jpg?&output-quality=75&downsize=520:350&crop=520:350;0,214&output-format=jpg"
         ]
       },
       {
-        id: 'woods-private-pool-villa',
-        name: 'Woods Private Pool Villa',
-        roomType: 'Woods Private Pool Villa',
-        bedType: '1 King Bed + Lounge Area',
-        roomSize: '900 sq.ft (84 sq.mt)',
-        view: 'Private Pool & Orchard View',
-        description: 'Signature pool villa featuring a private plunge pool, outdoor dining pavilion, personalized Ayurvedic wellness consultations, and butler service.',
-        price: 160,
-        priceNote: '+$160 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80'
+        "id": "woods-at-sasan-3941404",
+        "name": "Woods Studio",
+        "price": 50,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "338 sq.ft",
+        "description": "Woods Studio featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/121fe826d7e711eab1630242ac110005.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201708281327574036-3941404-8106cef6a1b011eb83500242ac110002.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201708281327574036-3941404-d2f9bc34-ae0b-4b94-864f-13adc55ad94d.jpg?&output-quality=75&downsize=520:350&crop=520:350;0,214&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201708281327574036-3941406-82dbad52d7e711eaa5a60242ac110003.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201708281327574036-3941406-72f26944d7e711eab1630242ac110005.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://i.travelapi.com/lodging/20000000/19270000/19262100/19262069/1104a428_z.jpg"
+        ]
+      },
+      {
+        "id": "woods-at-sasan-3941406",
+        "name": "Woods Studio with Private Terrace",
+        "price": 75,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "338 sq.ft",
+        "description": "Woods Studio with Private Terrace featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201708281327574036-3941406-7386a1ead7e711ea8c050242ac110003.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201708281327574036-3941406-72f26944d7e711eab1630242ac110005.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201708281327574036-3941406-82dbad52d7e711eaa5a60242ac110003.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg"
+        ]
+      },
+      {
+        "id": "woods-at-sasan-1005272841",
+        "name": "Woods Pavilion with Bathtub",
+        "price": 100,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "442 sq.ft",
+        "description": "Woods Pavilion with Bathtub featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/8f4271b4dee711ea9a360242ac110002.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201708281327574036-3941402-447d89349f6211eba2400242ac110004.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201708281327574036-3941402-c2aa15d4a1b011eb94970242ac110002.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/8edbef84dee711eab16b0242ac110003.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg",
+          "https://r1imghtlak.mmtcdn.com/af1e82c6-db92-4112-8a46-f4d48070783b.JPG?&output-quality=75&downsize=520:350&crop=520:350;0,85&output-format=jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201708281327574036-1005272841-be138b85-a49f-461f-b319-410c6c411ec6.jpg?&output-quality=75&downsize=520:350&crop=520:350;0,150&output-format=jpg"
+        ]
+      },
+      {
+        "id": "woods-at-sasan-1980549417",
+        "name": "Woods Studio with Terrace",
+        "price": 125,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Garden / Forest View",
+        "roomSize": "645 sq.ft",
+        "description": "Woods Studio with Terrace featuring comfortable beds, private attached bathroom, air conditioning, and serene nature views.",
+        "images": [
+          "https://i.travelapi.com/lodging/20000000/19270000/19262100/19262069/2e9bfd35_z.jpg",
+          "https://i.travelapi.com/lodging/20000000/19270000/19262100/19262069/1104a428_z.jpg",
+          "https://i.travelapi.com/lodging/20000000/19270000/19262100/19262069/738d2bd4_z.jpg",
+          "https://i.travelapi.com/lodging/20000000/19270000/19262100/19262069/176d080c_z.jpg",
+          "https://i.travelapi.com/lodging/20000000/19270000/19262100/19262069/a6f14435_z.jpg",
+          "https://i.travelapi.com/lodging/20000000/19270000/19262100/19262069/71f97c03_z.jpg"
         ]
       }
     ]
   },
   {
-    id: 'asiatic-lion-lodge',
-    name: 'Asiatic Lion Lodge',
-    tagline: 'Authentic Eco-Wildlife Lodge with Naturalist Library',
-    address: 'Haripur Main Road, Sasan Gir, Gujarat',
-    rating: '4.5 ★ Wildlife Naturalist Lodge',
-    mmtUrl: 'https://www.makemytrip.com/hotels/address-of-asiatic_lion_lodge-details-sasan_gir.html',
-    description: 'Designed for wildlife purists, Asiatic Lion Lodge offers eco-friendly cottages, an outdoor swimming pool, \'Flavours of Forest\' dining, campfire gatherings, and expert-led wildlife orientation lectures.',
-    images: [
-      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80'
+    "id": "asiatic-lion-lodge",
+    "name": "Asiatic Lion Lodge",
+    "tagline": "Eco-Friendly Wilderness Lodge in Haripur Gir",
+    "rating": "4.6 \u2605 (MakeMyTrip Verified)",
+    "price": 65,
+    "address": "SASAN GIR- BHALCHHEL- HARIPUR ROAD,AT- HARIPUR(GIR) TA- MENDARDA DIST. JUNAGADH",
+    "description": "ASIATIC LION LODGE offers authentic wildlife living and hospitality right in the heart of Sasan Gir.",
+    "amenities": [
+      "Eco-Luxury Cottages",
+      "Swimming Pool",
+      "Kathiawadi & Multi-Cuisine Dining",
+      "Wildlife Library & Audio-Visuals",
+      "Organic Orchard Gardens",
+      "Cycling Trails",
+      "Bird Watching Hide"
     ],
-    amenities: ['Outdoor Swimming Pool', "'Flavours of Forest' Restaurant", 'Naturalist Library & Talks', 'Eco Cottages', 'Campfire Evenings', 'Safari Jeep Stand'],
-    price: 85,
-    priceNote: '+$85 / guest upgrade',
-    roomCategories: [
+    "images": [
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/20140721172255512-3bffeb3070ff11eb982c0242ac110003.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/20140721172255512-b2451cc6b75b11ed985f0a58a9feac02.jpg",
+      "https://r1imghtlak.mmtcdn.com/c9d98c5c-df0c-4e33-942d-dcbe00c5c276.jpg",
+      "https://r1imghtlak.mmtcdn.com/df8a21fc710011eb80870242ac110002.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/20140721172255512-4041046cd02d11ebbb2d0242ac110003.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/20140721172255512-b2735726b75b11ed98840a58a9feac02.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/20140721172255512-b28d4302b75b11edb95b0a58a9feac02.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/20140721172255512-d856c810b75b11ed90df0a58a9feac02.jpg",
+      "https://r1imghtlak.mmtcdn.com/484e46e0-f8ed-4724-80ec-d3dac1aa03bc.jpeg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/20140721172255512-67596dba70ff11ebb4690242ac110002.jpg"
+    ],
+    "roomCategories": [
       {
-        id: 'deluxe-eco-cottage',
-        name: 'Deluxe Eco Cottage',
-        roomType: 'Deluxe Cottage',
-        bedType: '1 King Bed',
-        roomSize: '300 sq.ft (28 sq.mt)',
-        view: 'Forest Greenery View',
-        description: 'Eco-friendly cottage built with sustainable local materials, air-conditioning, attached bath, and quiet verandah.',
-        price: 0,
-        priceNote: 'Included with Resort',
-        images: [
-          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80'
-        ]
-      },
-      {
-        id: 'superior-eco-veranda',
-        name: 'Superior Eco Cottage with Veranda',
-        roomType: 'Superior Eco Cottage with Veranda',
-        bedType: '1 King Bed',
-        roomSize: '360 sq.ft (33 sq.mt)',
-        view: 'Forest & Garden View',
-        description: 'Spacious cottage with expanded private veranda, birdwatching guidebooks, minibar, and tea maker.',
-        price: 30,
-        priceNote: '+$30 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80'
-        ]
-      },
-      {
-        id: 'lion-lodge-family-suite',
-        name: 'Lion Lodge Family Suite',
-        roomType: 'Lion Lodge Family Suite',
-        bedType: '2 Queen Beds',
-        roomSize: '520 sq.ft (48 sq.mt)',
-        view: 'Swimming Pool & Forest View',
-        description: 'Large family suite with two bedrooms, living lounge, view of the pool and surrounding teak sanctuary.',
-        price: 65,
-        priceNote: '+$65 / guest upgrade',
-        images: [
-          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
-          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80'
+        "id": "asiatic-lion-lodge-1",
+        "name": "Deluxe Cottage",
+        "price": 0,
+        "bedType": "1 King Bed / 2 Twin Beds",
+        "view": "Forest / Garden View",
+        "roomSize": "289",
+        "description": "Deluxe Cottage with premium furnishings, attached modern bath, and forest atmosphere.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/985a159ab75c11edb4d70a58a9feac02.jpg",
+          "https://r1imghtlak.mmtcdn.com/b48b1e6218a011e49f9036cfdd80c293.jfif",
+          "https://r1imghtlak.mmtcdn.com/74114f305e0c11e48104daf4768ad8d9.jfif",
+          "https://r1imghtlak.mmtcdn.com/77404f4435de11e5b47d0022195573b9.jfif",
+          "https://r1imghtlak.mmtcdn.com/a8d201e2-7c0f-4d08-95ce-2db370b556ee.jpeg",
+          "https://r1imghtlak.mmtcdn.com/90399be6-867f-4eb7-9a83-62bb76940400.jpeg"
         ]
       }
     ]
   }
 ];
 
-// 11 Exact Signature Safaris Dataset for Client-Side & Vercel Fallback
 const FALLBACK_TOURS = [
   {
     id: '1',

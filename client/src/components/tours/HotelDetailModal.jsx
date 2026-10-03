@@ -10,14 +10,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
 
   if (!isOpen || !hotel) return null;
 
-  const images = hotel.images && hotel.images.length >= 4 ? hotel.images : [
-    'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
-    'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
-    'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
-    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80',
-    'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
-    'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80'
-  ];
+  const images = Array.isArray(hotel.images) && hotel.images.length > 0 ? hotel.images : [];
 
   return (
     <AnimatePresence>
