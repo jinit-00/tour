@@ -278,10 +278,6 @@ export default function TourDetail() {
                     Choose Your Gir Stay
                   </h3>
                 </div>
-                <span className="px-3.5 py-1 rounded-full bg-pine-800/10 text-pine-800 border border-pine-800/20 text-xs font-mono font-bold flex items-center gap-1">
-                  <Star className="w-3.5 h-3.5 fill-pine-800 text-pine-800" />
-                  Verified Wilderness Resorts
-                </span>
               </div>
               <p className="text-xs sm:text-sm text-charcoal-700">
                 Select your preferred wildlife resort for this expedition. Click any photo or "Details" to view the full photo gallery, amenities, and resort details.

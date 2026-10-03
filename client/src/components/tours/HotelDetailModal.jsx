@@ -39,7 +39,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
               </span>
               <span className="text-xs text-amber-600 font-bold flex items-center gap-1 font-mono">
                 <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
-                {hotel.rating || '4.5 ★ Verified Safari Resort'}
+                {hotel.rating || '4.5 ★'}
               </span>
             </div>
 
