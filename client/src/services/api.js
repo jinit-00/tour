@@ -1,7 +1,81 @@
 import axios from 'axios';
 
-// 10 Official MakeMyTrip Partner Resorts for Gir Lion Safari (10 Verified High-Res Photos Each)
+// 11 Official MakeMyTrip Partner Resorts for Gir Lion Safari (10 Photos & MMT Room Categories Each)
 export const GIR_HOTELS = [
+  {
+    id: 'le-casa-lion',
+    name: 'La Casa Lion Resort (Le Casa Lion Resort)',
+    tagline: 'Premium Safari Resort in Borvav with Forest View Suites',
+    address: 'Plot No 2, Survey No-10/1, Borvav Dhava Road, Sasan Gir, Gujarat, 362150',
+    rating: '4.1 ★ Premium Safari Resort',
+    mmtUrl: 'https://www.makemytrip.com/hotels/le_casa_lion_resort_a_premium_resort_in_sasan_gir-details-sasan_gir.html',
+    description: 'Situated in the lush greenery of Borvav near the Gir National Park boundary, Le Casa Lion Resort features an outdoor swimming pool, forest-view air-conditioned deluxe suites, pure vegetarian and authentic multi-cuisine dining, and 24-hour safari desk assistance.',
+    images: [
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80'
+    ],
+    amenities: ['Outdoor Swimming Pool', 'Multi-Cuisine Dining', 'Forest View Suites', 'Free Wi-Fi', '24/7 Front Desk', 'Safari Desk'],
+    price: 0,
+    priceNote: 'Included with Safari Package',
+    roomCategories: [
+      {
+        id: 'le-casa-deluxe',
+        name: 'Le Casa Deluxe Room',
+        roomType: 'Le Casa Deluxe Room',
+        bedType: '1 King Bed',
+        roomSize: '200 sq.ft (19 sq.mt)',
+        view: 'Garden & Orchard View',
+        description: 'Comfortable air-conditioned deluxe room with modern amenities, tea/coffee maker, attached private bathroom, and garden sitout.',
+        price: 0,
+        priceNote: 'Included in Base Package',
+        images: [
+          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'le-casa-forest-view',
+        name: 'Le Casa Forest View Premium Room',
+        roomType: 'Le Casa Forest View Premium Room',
+        bedType: '1 King Bed + Extra Bed option',
+        roomSize: '250 sq.ft (23 sq.mt)',
+        view: 'Jungle & Forest Canopy View',
+        description: 'Spacious room overlooking the Gir wilderness canopy, private balcony, luxury bedding, and LED TV.',
+        price: 35,
+        priceNote: '+$35 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'le-casa-pool-villa',
+        name: 'Le Casa Private Pool Villa',
+        roomType: 'Le Casa Private Pool Villa',
+        bedType: '1 King Bed + Living Lounge',
+        roomSize: '400 sq.ft (37 sq.mt)',
+        view: 'Private Plunge Pool View',
+        description: 'Exclusive luxury villa with private plunge pool, outdoor shower, expansive terrace, and customized room service.',
+        price: 75,
+        priceNote: '+$75 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80'
+        ]
+      }
+    ]
+  },
   {
     id: 'amber-resort',
     name: 'Amber Resort',
@@ -146,7 +220,7 @@ export const GIR_HOTELS = [
     id: 'gir-garjna',
     name: 'Gir Garjna - The Cottage',
     tagline: 'Luxury Orchard Cottages & Lawn Bonfires',
-    address: 'Talala Road, Sasan Gir, Gujarat, 362135',
+    address: 'Talala Road, Chitrod, Sasan Gir, Gujarat, 362135',
     rating: '4.3 ★ Luxury Orchard Cottages',
     mmtUrl: 'https://www.makemytrip.com/hotels/gir_garjna_a_luxury_resort-details-sasan_gir.html',
     description: 'Set amidst sprawling mango groves, Gir Garjna offers private stone cottages with lush manicured lawns, an open-air swimming pool, authentic Kathiyawadi dining, and evening starlit bonfire sessions.',
@@ -164,13 +238,79 @@ export const GIR_HOTELS = [
     ],
     amenities: ['Swimming Pool', 'Private Lawn Cottages', 'Kathiyawadi Cuisine', 'Evening Bonfires', 'Free Parking', "Children's Play Area"],
     price: 60,
-    priceNote: '+$60 / guest upgrade'
+    priceNote: '+$60 / guest upgrade',
+    roomCategories: [
+      {
+        id: 'standard-cottage-sitout',
+        name: 'Standard Cottage with Private Sitout',
+        roomType: 'Standard Cottage with Private Sitout',
+        bedType: '1 Queen Bed',
+        roomSize: '280 sq.ft (26 sq.mt)',
+        view: 'Mango Orchard View',
+        description: 'Rustic standalone stone cottage with veranda overlooking organic mango trees, air-conditioning, and attached private washroom.',
+        price: 0,
+        priceNote: 'Included with Resort',
+        images: [
+          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'deluxe-cottage-sitout',
+        name: 'Deluxe Cottage with Private Sitout',
+        roomType: 'Deluxe Cottage with Private Sitout',
+        bedType: '1 King Bed',
+        roomSize: '350 sq.ft (32 sq.mt)',
+        view: 'Manicured Lawn & Garden View',
+        description: 'Spacious deluxe cottage with premium wooden furnishings, private sit-out deck, LCD TV, and tea/coffee facilities.',
+        price: 30,
+        priceNote: '+$30 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'super-deluxe-cottage-tent',
+        name: 'Super Deluxe Cottage Tent',
+        roomType: 'Super Deluxe Cottage Tent',
+        bedType: '1 King Bed',
+        roomSize: '320 sq.ft (30 sq.mt)',
+        view: 'Swimming Pool View',
+        description: 'Tented luxury cottage with insulated canvas walls, air-conditioning, direct pool access, and outdoor seating.',
+        price: 50,
+        priceNote: '+$50 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'family-suite-cottage',
+        name: 'Family Suite Cottage',
+        roomType: 'Family Suite Cottage',
+        bedType: '2 Queen Beds',
+        roomSize: '500 sq.ft (46 sq.mt)',
+        view: 'Garden & Lawn View',
+        description: 'Expansive multi-bed family suite with separate lounge area, 2 bathrooms, and a private campfire patio.',
+        price: 85,
+        priceNote: '+$85 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80'
+        ]
+      }
+    ]
   },
   {
     id: 'madhuvan-resort',
     name: 'Madhuvan Resort',
     tagline: 'Nature & Heritage Resort with Rooftop Star-Gazing',
-    address: 'Sasan Junagadh Highway, Borvav, Sasan Gir, Gujarat',
+    address: 'Sasan Junagadh Highway, Ramarechi, Borvav, Sasan Gir, Gujarat',
     rating: '4.1 ★ Nature & Heritage Resort',
     mmtUrl: 'https://www.makemytrip.com/hotels/madhuvan_resort-details-sasan_gir.html',
     description: 'Experience warm Gujarati hospitality with contemporary comforts. Madhuvan Resort features outdoor swimming pools, expansive gardens, rooftop stargazing decks, and nightly Saurashtra folk music performances.',
@@ -188,7 +328,57 @@ export const GIR_HOTELS = [
     ],
     amenities: ['Rooftop Stargazing Terrace', 'Outdoor Pool', 'Folk Music Nights', 'Organic Garden Dining', 'Free Wi-Fi', 'Spacious Suites'],
     price: 80,
-    priceNote: '+$80 / guest upgrade'
+    priceNote: '+$80 / guest upgrade',
+    roomCategories: [
+      {
+        id: 'deluxe-room-balcony',
+        name: 'Deluxe Room with Balcony & Garden View',
+        roomType: 'Deluxe Room with Balcony and Garden View',
+        bedType: '1 Double Bed',
+        roomSize: '250 sq.ft (23 sq.mt)',
+        view: 'Garden & Orchard View',
+        description: 'Elegantly appointed room with private sit-out balcony, climate control, tea maker, and soothing garden vistas.',
+        price: 0,
+        priceNote: 'Included with Resort',
+        images: [
+          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'super-deluxe-ac-room',
+        name: 'Super Deluxe AC Room',
+        roomType: 'Super Deluxe AC Room',
+        bedType: '1 King Bed',
+        roomSize: '280 sq.ft (26 sq.mt)',
+        view: 'Pool View',
+        description: 'Modern room overlooking the central pool, ambient lighting, mini-fridge, and plush mattress.',
+        price: 25,
+        priceNote: '+$25 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'executive-heritage-suite',
+        name: 'Executive Heritage Suite',
+        roomType: 'Executive Heritage Suite',
+        bedType: '1 King Bed + Lounge',
+        roomSize: '380 sq.ft (35 sq.mt)',
+        view: 'Courtyard & Star Deck View',
+        description: 'Traditional Gujarati heritage suite with carved wooden furniture, large living space, and rooftop star deck access.',
+        price: 50,
+        priceNote: '+$50 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80'
+        ]
+      }
+    ]
   },
   {
     id: 'fern-gir-forest',
@@ -212,7 +402,73 @@ export const GIR_HOTELS = [
     ],
     amenities: ['Hiran River View', 'River-view Infinity Pool', 'Ayurvedic Spa & Jacuzzi', 'Riverfront Villas', 'Tribal Folk Evenings', 'Gym & Multi-Cuisine'],
     price: 250,
-    priceNote: '+$250 / guest upgrade'
+    priceNote: '+$250 / guest upgrade',
+    roomCategories: [
+      {
+        id: 'fern-winter-green',
+        name: 'Fern Winter Green Room',
+        roomType: 'Fern Winter Green Room',
+        bedType: '1 King Bed',
+        roomSize: '350 sq.ft (32 sq.mt)',
+        view: 'Garden & Orchard View',
+        description: 'Eco-certified 5-star room with organic cotton bedding, eco-friendly toiletries, LED TV, and personal coffee machine.',
+        price: 0,
+        priceNote: 'Included with Resort',
+        images: [
+          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'fern-classic-villa',
+        name: 'Fern Classic Villa',
+        roomType: 'Fern Classic Villa',
+        bedType: '1 King Bed',
+        roomSize: '420 sq.ft (39 sq.mt)',
+        view: 'Private Garden Sitout',
+        description: 'Standalone luxury villa with private lawn sitout, open sky rain shower, and spacious work/editing station.',
+        price: 60,
+        priceNote: '+$60 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'fern-club-villa-river',
+        name: 'Fern Club Villa with River View',
+        roomType: 'Fern Club Villa with River View',
+        bedType: '1 King Bed',
+        roomSize: '480 sq.ft (45 sq.mt)',
+        view: 'Direct Hiran River View',
+        description: 'Prime riverfront villa directly overlooking the Hiran riverbank, private viewing deck, and complimentary evening snacks.',
+        price: 120,
+        priceNote: '+$120 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'hazel-suite-jacuzzi',
+        name: 'Hazel Suite with Jacuzzi',
+        roomType: 'Hazel Suite with Jacuzzi',
+        bedType: '1 King Bed + Living Area',
+        roomSize: '650 sq.ft (60 sq.mt)',
+        view: 'River & Jungle View',
+        description: 'Presidential-grade luxury suite with private heated Jacuzzi tub, separate living room, and panoramic forest view deck.',
+        price: 190,
+        priceNote: '+$190 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80'
+        ]
+      }
+    ]
   },
   {
     id: 'clarks-inn',
@@ -236,7 +492,57 @@ export const GIR_HOTELS = [
     ],
     amenities: ['Infinity Swimming Pool', 'Fitness & Yoga Pavilion', 'Pure Veg & Jain Meals', 'Wheelchair Accessible', 'Banquet Hall', '24/7 Concierge'],
     price: 130,
-    priceNote: '+$130 / guest upgrade'
+    priceNote: '+$130 / guest upgrade',
+    roomCategories: [
+      {
+        id: 'deluxe-room-queen',
+        name: 'Deluxe Room Queen Bed',
+        roomType: 'Deluxe Room Queen Bed',
+        bedType: '1 Queen Bed',
+        roomSize: '260 sq.ft (24 sq.mt)',
+        view: 'Garden View',
+        description: 'Modern room equipped with air-conditioning, flat screen TV, work desk, electronic safe, and rain shower.',
+        price: 0,
+        priceNote: 'Included with Resort',
+        images: [
+          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'executive-premium-room',
+        name: 'Executive Premium Room',
+        roomType: 'Executive Premium Room',
+        bedType: '1 King Bed',
+        roomSize: '320 sq.ft (30 sq.mt)',
+        view: 'Infinity Pool View',
+        description: 'Larger executive room overlooking the infinity pool with sofa seating, tea/coffee maker, and plush bathrobes.',
+        price: 35,
+        priceNote: '+$35 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'clarks-forest-suite',
+        name: 'Clarks Forest Suite',
+        roomType: 'Clarks Forest Suite',
+        bedType: '1 King Bed + Living Room',
+        roomSize: '450 sq.ft (42 sq.mt)',
+        view: 'Panoramic Teak Forest View',
+        description: 'Luxury suite with separate living area, 2 LED TVs, panoramic forest view windows, and complimentary fruit basket.',
+        price: 70,
+        priceNote: '+$70 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80'
+        ]
+      }
+    ]
   },
   {
     id: 'aramness-gir',
@@ -260,7 +566,41 @@ export const GIR_HOTELS = [
     ],
     amenities: ['Private Plunge Pool Kothis', 'Personal Safari Butler', 'Field-to-Fork Dining', 'Ayurvedic Spa & Yoga', 'Private 4x4 Tracking', 'Forest Edge Location'],
     price: 580,
-    priceNote: '+$580 / guest upgrade'
+    priceNote: '+$580 / guest upgrade',
+    roomCategories: [
+      {
+        id: 'aramness-forest-kothi',
+        name: 'Aramness Forest Kothi with Private Pool',
+        roomType: 'Aramness Forest Kothi with Private Plunge Pool',
+        bedType: '1 King Bed',
+        roomSize: '1200 sq.ft (111 sq.mt)',
+        view: 'Teak Forest View & Private Stepwell Pool',
+        description: 'Double-storey handcrafted stone bungalow featuring a private stepwell-inspired plunge pool, shaded courtyard, outdoor jungle shower, and personal butler.',
+        price: 0,
+        priceNote: 'Included with Resort',
+        images: [
+          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'aramness-family-kothi',
+        name: 'Aramness Family Kothi (2-Bedroom Villa)',
+        roomType: 'Aramness Family Kothi',
+        bedType: '2 King Beds',
+        roomSize: '2400 sq.ft (223 sq.mt)',
+        view: 'Private Pool & Wilderness Deck View',
+        description: 'Ultra-exclusive 2-bedroom double-storey family sanctuary with private lap pool, large dining deck, 2 luxury marble baths, and dedicated chef service.',
+        price: 350,
+        priceNote: '+$350 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80'
+        ]
+      }
+    ]
   },
   {
     id: 'aqua-terra',
@@ -284,13 +624,63 @@ export const GIR_HOTELS = [
     ],
     amenities: ['Freeform Lagoon Pool', 'Open-Air Sun Terraces', 'Poolside BBQ Lounge', 'Cottage Suites', "Children's Play Zone", 'Free High-Speed Wi-Fi'],
     price: 95,
-    priceNote: '+$95 / guest upgrade'
+    priceNote: '+$95 / guest upgrade',
+    roomCategories: [
+      {
+        id: 'superior-villa-garden',
+        name: 'Superior Villa with Balcony Forest View',
+        roomType: 'Superior Villa with Balcony Forest/Garden View',
+        bedType: '1 King Bed',
+        roomSize: '470 sq.ft (44 sq.mt)',
+        view: 'Forest & Garden View',
+        description: 'Large villa with expansive private balcony overlooking teak forests, modern en-suite bath, air-conditioning, and kettle.',
+        price: 0,
+        priceNote: 'Included with Resort',
+        images: [
+          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'deluxe-lagoon-chalet',
+        name: 'Deluxe Lagoon View Chalet',
+        roomType: 'Deluxe Lagoon View Chalet',
+        bedType: '1 King Bed',
+        roomSize: '400 sq.ft (37 sq.mt)',
+        view: 'Freeform Lagoon Pool View',
+        description: 'Chalet situated adjacent to the freeform swimming pool with direct deck access, sun loungers, and minibar.',
+        price: 35,
+        priceNote: '+$35 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'aqua-terra-family-villa',
+        name: 'Aqua Terra Family Villa',
+        roomType: 'Aqua Terra Family Villa',
+        bedType: '2 Queen Beds',
+        roomSize: '600 sq.ft (56 sq.mt)',
+        view: 'Private Lawn & Pool View',
+        description: 'Spacious family chalet with two queen beds, private manicured garden, outdoor seating, and BBQ dining setup.',
+        price: 75,
+        priceNote: '+$75 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80'
+        ]
+      }
+    ]
   },
   {
     id: 'wild-calm',
     name: 'Wild Calm - Opulent Oasis (Wild Calm Resort)',
     tagline: 'Secluded Luxury Oasis & Orchard Sanctuary',
-    address: 'Bhalchhel Road, Near Forest Checkpost, Sasan Gir, Gujarat',
+    address: 'Bhalchhel Road, Near Forest Checkpost, Borvav, Sasan Gir, Gujarat',
     rating: '4.3 ★ Opulent Oasis & Orchard Sanctuary',
     mmtUrl: 'https://www.makemytrip.com/hotels/address-of-wild_calm_resort-details-sasan_gir.html',
     description: 'An oasis of tranquility surrounded by wilderness. Wild Calm features suites with private balconies overlooking mango groves, hot tubs, cycling trails, game pavilions, and starlit bonfire dinners.',
@@ -308,7 +698,57 @@ export const GIR_HOTELS = [
     ],
     amenities: ['Private Balcony Suites', 'Outdoor Swimming Pool', 'Hot Tubs & Spa', 'Games Pavilion (Billiards/TT)', 'Complimentary Bicycles', 'Bonfire Dinners'],
     price: 110,
-    priceNote: '+$110 / guest upgrade'
+    priceNote: '+$110 / guest upgrade',
+    roomCategories: [
+      {
+        id: 'courtyard-room',
+        name: 'The Courtyard Room',
+        roomType: 'The Courtyard Rooms',
+        bedType: '1 King Bed',
+        roomSize: '225 sq.ft (21 sq.mt)',
+        view: 'Courtyard & Mango Grove View',
+        description: 'Charming courtyard-facing room with minibar, electronic safe, luxury bathrobes, and private veranda.',
+        price: 0,
+        priceNote: 'Included with Resort',
+        images: [
+          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'oasis-safari-tent',
+        name: 'Opulent Oasis Luxury Safari Tent',
+        roomType: 'Opulent Oasis Luxury Safari Tent',
+        bedType: '1 King Bed',
+        roomSize: '350 sq.ft (32 sq.mt)',
+        view: 'Forest Fringe View',
+        description: 'Luxury air-conditioned tent with outdoor rain shower, teak wood decor, private sun deck, and tea maker.',
+        price: 45,
+        priceNote: '+$45 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'premium-forest-villa',
+        name: 'Wild Calm Premium Forest Villa',
+        roomType: 'Wild Calm Premium Forest Villa',
+        bedType: '1 King Bed + Sitting Area',
+        roomSize: '450 sq.ft (42 sq.mt)',
+        view: 'Secluded Forest View',
+        description: 'Secluded private villa with private jacuzzi, personal butler assistance, and panoramic forest sitout.',
+        price: 85,
+        priceNote: '+$85 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80'
+        ]
+      }
+    ]
   },
   {
     id: 'woods-at-sasan',
@@ -332,7 +772,57 @@ export const GIR_HOTELS = [
     ],
     amenities: ['8-Acre Mango Orchard', 'Som Ayurvedic Spa & Yoga', 'Swimming Pool & Library', 'Farm-to-Table Dining', 'Biophilic Architecture', 'Naturalist Escapes'],
     price: 320,
-    priceNote: '+$320 / guest upgrade'
+    priceNote: '+$320 / guest upgrade',
+    roomCategories: [
+      {
+        id: 'woods-studio',
+        name: 'Woods Studio',
+        roomType: 'Woods Studio',
+        bedType: '1 King Bed',
+        roomSize: '450 sq.ft (42 sq.mt)',
+        view: 'Mango Orchard View',
+        description: 'Handcrafted stone studio with private terrace overlooking organic mango trees, open shower, and Ayurvedic wellness essentials.',
+        price: 0,
+        priceNote: 'Included with Resort',
+        images: [
+          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'woods-pavilion-bathtub',
+        name: 'Woods Pavilion with Outdoor Bathtub',
+        roomType: 'Woods Pavilion with Bathtub',
+        bedType: '1 King Bed',
+        roomSize: '550 sq.ft (51 sq.mt)',
+        view: 'Forest Canopy View',
+        description: 'Biophilic open pavilion featuring a sunken open-air stone bathtub, extended viewing deck, and organic tea bar.',
+        price: 80,
+        priceNote: '+$80 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'woods-private-pool-villa',
+        name: 'Woods Private Pool Villa',
+        roomType: 'Woods Private Pool Villa',
+        bedType: '1 King Bed + Lounge Area',
+        roomSize: '900 sq.ft (84 sq.mt)',
+        view: 'Private Pool & Orchard View',
+        description: 'Signature pool villa featuring a private plunge pool, outdoor dining pavilion, personalized Ayurvedic wellness consultations, and butler service.',
+        price: 160,
+        priceNote: '+$160 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80'
+        ]
+      }
+    ]
   },
   {
     id: 'asiatic-lion-lodge',
@@ -356,7 +846,57 @@ export const GIR_HOTELS = [
     ],
     amenities: ['Outdoor Swimming Pool', "'Flavours of Forest' Restaurant", 'Naturalist Library & Talks', 'Eco Cottages', 'Campfire Evenings', 'Safari Jeep Stand'],
     price: 85,
-    priceNote: '+$85 / guest upgrade'
+    priceNote: '+$85 / guest upgrade',
+    roomCategories: [
+      {
+        id: 'deluxe-eco-cottage',
+        name: 'Deluxe Eco Cottage',
+        roomType: 'Deluxe Cottage',
+        bedType: '1 King Bed',
+        roomSize: '300 sq.ft (28 sq.mt)',
+        view: 'Forest Greenery View',
+        description: 'Eco-friendly cottage built with sustainable local materials, air-conditioning, attached bath, and quiet verandah.',
+        price: 0,
+        priceNote: 'Included with Resort',
+        images: [
+          'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'superior-eco-veranda',
+        name: 'Superior Eco Cottage with Veranda',
+        roomType: 'Superior Eco Cottage with Veranda',
+        bedType: '1 King Bed',
+        roomSize: '360 sq.ft (33 sq.mt)',
+        view: 'Forest & Garden View',
+        description: 'Spacious cottage with expanded private veranda, birdwatching guidebooks, minibar, and tea maker.',
+        price: 30,
+        priceNote: '+$30 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80'
+        ]
+      },
+      {
+        id: 'lion-lodge-family-suite',
+        name: 'Lion Lodge Family Suite',
+        roomType: 'Lion Lodge Family Suite',
+        bedType: '2 Queen Beds',
+        roomSize: '520 sq.ft (48 sq.mt)',
+        view: 'Swimming Pool & Forest View',
+        description: 'Large family suite with two bedrooms, living lounge, view of the pool and surrounding teak sanctuary.',
+        price: 65,
+        priceNote: '+$65 / guest upgrade',
+        images: [
+          'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
+          'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80'
+        ]
+      }
+    ]
   }
 ];
 

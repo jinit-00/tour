@@ -20,7 +20,7 @@ export default function TourDetail() {
   const [hotelModalOpen, setHotelModalOpen] = useState(false);
   const [modalHotel, setModalHotel] = useState(null);
   const [selectedHotel, setSelectedHotel] = useState(null);
-  const [selectedAmberRoomCategory, setSelectedAmberRoomCategory] = useState(null);
+  const [selectedRoomCategory, setSelectedRoomCategory] = useState(null);
 
   const isGir = slug === 'gir-lion-safari' || slug?.includes('gir');
   const availableHotels = isGir ? GIR_HOTELS : (tour?.hotels || []);
@@ -39,13 +39,13 @@ export default function TourDetail() {
           setSelectedHotel(firstHotel);
           setModalHotel(firstHotel);
 
-          if (firstHotel.id === 'amber-resort' && firstHotel.roomCategories?.length > 0) {
+          if (firstHotel.roomCategories && firstHotel.roomCategories.length > 0) {
             const defaultRoom = firstHotel.roomCategories[0];
-            setSelectedAmberRoomCategory(defaultRoom);
+            setSelectedRoomCategory(defaultRoom);
             setSelectedPackage({
-              id: `amber-resort-${defaultRoom.id}`,
-              name: `Amber Resort - ${defaultRoom.name}`,
-              price: defaultRoom.price || 0,
+              id: `${firstHotel.id}-${defaultRoom.id}`,
+              name: `${firstHotel.name} - ${defaultRoom.name}`,
+              price: (firstHotel.price || 0) + (defaultRoom.price || 0),
               description: `${defaultRoom.bedType} · ${defaultRoom.view}`
             });
           } else if (res.data.packages && res.data.packages.length > 0) {
@@ -68,13 +68,13 @@ export default function TourDetail() {
 
   const handleSelectHotel = (hotel) => {
     setSelectedHotel(hotel);
-    if (hotel.id === 'amber-resort' && hotel.roomCategories?.length > 0) {
-      const activeRoom = selectedAmberRoomCategory || hotel.roomCategories[0];
-      setSelectedAmberRoomCategory(activeRoom);
+    if (hotel.roomCategories && hotel.roomCategories.length > 0) {
+      const activeRoom = hotel.roomCategories[0];
+      setSelectedRoomCategory(activeRoom);
       setSelectedPackage({
-        id: `amber-resort-${activeRoom.id}`,
-        name: `Amber Resort - ${activeRoom.name}`,
-        price: activeRoom.price || 0,
+        id: `${hotel.id}-${activeRoom.id}`,
+        name: `${hotel.name} - ${activeRoom.name}`,
+        price: (hotel.price || 0) + (activeRoom.price || 0),
         description: `${activeRoom.bedType} · ${activeRoom.view}`
       });
     } else {
@@ -87,31 +87,31 @@ export default function TourDetail() {
     }
   };
 
-  const handleSelectAmberRoom = (roomCat) => {
-    setSelectedAmberRoomCategory(roomCat);
+  const handleSelectRoomCategory = (roomCat, hotel = selectedHotel) => {
+    setSelectedRoomCategory(roomCat);
     setSelectedPackage({
-      id: `amber-resort-${roomCat.id}`,
-      name: `Amber Resort - ${roomCat.name}`,
-      price: roomCat.price || 0,
+      id: `${hotel.id}-${roomCat.id}`,
+      name: `${hotel.name} - ${roomCat.name}`,
+      price: (hotel.price || 0) + (roomCat.price || 0),
       description: `${roomCat.bedType} · ${roomCat.view}`
     });
   };
 
-  const handleOpenRoomGallery = (roomCat) => {
+  const handleOpenRoomGallery = (roomCat, hotel = selectedHotel) => {
     setModalHotel({
-      name: `Amber Resort - ${roomCat.name}`,
+      name: `${hotel.name} - ${roomCat.name}`,
       tagline: `${roomCat.bedType} · ${roomCat.view} (${roomCat.roomSize})`,
-      address: 'Sasan Mendarda Road, Near Bhalchhel Helipad, Sasan Gir, Gujarat',
-      rating: 'MakeMyTrip Verified Room Category',
+      address: hotel.address || 'Sasan Gir, Gujarat, India',
+      rating: `${hotel.name} · MakeMyTrip Verified Room Category`,
       description: roomCat.description,
-      images: roomCat.images,
+      images: roomCat.images && roomCat.images.length > 0 ? roomCat.images : hotel.images,
       amenities: [
         roomCat.bedType,
         roomCat.roomSize,
         roomCat.view,
         'Attached Modern Bathroom',
-        'Private Balcony / Veranda',
-        'Garden / Orchard View'
+        'Air Conditioning & Heating',
+        'Private Balcony / Veranda'
       ]
     });
     setHotelModalOpen(true);
@@ -136,7 +136,7 @@ export default function TourDetail() {
       const bookingData = {
         tourId: tour.id,
         packageId: selectedPackage?.id,
-        roomCategory: selectedHotel?.id === 'amber-resort' ? selectedAmberRoomCategory?.name : undefined,
+        roomCategory: selectedRoomCategory ? `${selectedHotel?.name} - ${selectedRoomCategory.name}` : undefined,
         bookingDate: startDate,
         startDate,
         numPeople: Number(guests),
@@ -473,12 +473,12 @@ export default function TourDetail() {
                       </div>
                     )}
 
-                    {/* MakeMyTrip Room Categories for Amber Resort ONLY */}
-                    {selectedHotel?.id === 'amber-resort' && selectedHotel.roomCategories && (
+                    {/* MakeMyTrip Room Categories for Selected Resort */}
+                    {selectedHotel?.roomCategories && selectedHotel.roomCategories.length > 0 && (
                       <div className="space-y-2 pt-2 border-t border-sand-700/80">
                         <div className="flex items-center justify-between">
                           <label className="block text-xs font-mono uppercase text-pine-800 font-bold tracking-wider">
-                            Amber Resort Room Category
+                            {selectedHotel.name} Room Category
                           </label>
                           <span className="text-[10px] font-mono text-charcoal-600 font-bold">
                             MakeMyTrip Verified
@@ -487,11 +487,11 @@ export default function TourDetail() {
 
                         <div className="space-y-2 max-h-[320px] overflow-y-auto pr-0.5">
                           {selectedHotel.roomCategories.map((cat) => {
-                            const isCatSelected = selectedAmberRoomCategory?.id === cat.id;
+                            const isCatSelected = selectedRoomCategory?.id === cat.id;
                             return (
                               <div
                                 key={cat.id}
-                                onClick={() => handleSelectAmberRoom(cat)}
+                                onClick={() => handleSelectRoomCategory(cat)}
                                 className={`p-2.5 rounded-2xl border transition-all cursor-pointer flex gap-3 items-center ${
                                   isCatSelected
                                     ? 'border-pine-800 bg-sand-900 ring-2 ring-pine-800/30 shadow-md'
