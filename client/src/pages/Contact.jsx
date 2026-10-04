@@ -25,7 +25,7 @@ export default function Contact() {
         
         {/* Contact Info */}
         <div className="lg:col-span-1 glass-panel p-8 rounded-3xl border border-sand-700 space-y-8 shadow-xl">
-          <h3 className="text-2xl font-bold text-charcoal-900">Basecamp HQ</h3>
+          <h3 className="text-2xl font-bold text-charcoal-900">Connect with us</h3>
           
           <ul className="space-y-6 text-sm text-charcoal-700">
             <li className="flex items-start gap-3">
