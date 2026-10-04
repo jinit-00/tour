@@ -2892,7 +2892,7 @@ const FALLBACK_TOURS = [
     id: '5',
     title: 'Velavadar Blackbuck & Deer Grasslands',
     slug: 'velavadar-deer-safari',
-    description: 'Immerse in golden savannas to photograph leaping blackbuck antelopes, deer, and wolves.',
+    description: "Blackbuck National Park, Velavadar, located in Gujarat, is famous for its open grasslands and large populations of blackbuck and other wildlife. Unlike dense forest reserves, its wide landscapes provide excellent visibility and a completely different safari experience.\n\nThe park is home to blackbuck, nilgai, Indian wolves, striped hyenas, jackals, foxes, and a remarkable variety of birds. Its grasslands and wetlands also attract numerous migratory and resident bird species throughout the year.\n\nVelavadar is particularly special for wildlife photographers because of its open terrain, dramatic herds of blackbuck, and opportunities to observe predators in their natural environment. The combination of grassland, wildlife, and expansive skies creates a distinctive photography experience.",
     location: 'Velavadar, India',
     region: 'Gujarat',
     basePrice: 2700,
