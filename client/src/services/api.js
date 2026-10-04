@@ -2826,7 +2826,7 @@ const FALLBACK_TOURS = [
     id: '2',
     title: 'Sanjay Dubri Tiger Reserve Expedition',
     slug: 'sanjay-dubri-tiger-safari',
-    description: 'Explore the pristine, untamed tiger corridors of Sanjay Dubri National Park in Central India.',
+    description: "Sanjay-Dubri Tiger Reserve, located in Madhya Pradesh, is a lesser-explored wilderness known for its forests, hills, valleys, and rich biodiversity. The reserve forms an important part of the central Indian tiger landscape and offers a quieter safari experience away from more crowded destinations.\n\nThe reserve is home to Bengal tigers, leopards, sloth bears, chital, sambar, gaur, wild dogs, and numerous species of birds. Its diverse terrain of sal forests, grasslands, streams, and rugged hills provides an excellent habitat for wildlife.\n\nFor wildlife photographers, Sanjay-Dubri offers the chance to explore a relatively wild and peaceful landscape while searching for some of India’s most iconic species. Its remote character and natural beauty make every safari an immersive wilderness experience.",
     location: 'Sanjay Dubri, India',
     region: 'Madhya Pradesh',
     basePrice: 2900,
