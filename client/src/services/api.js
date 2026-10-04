@@ -1953,6 +1953,308 @@ export const CHITWAN_HOTELS = [
   }
 ];
 
+// Official Partner Resorts for Bandhavgarh National Park (10 MMT Photos each & exact MMT Room Categories)
+export const BANDHAVGARH_HOTELS = [
+  {
+    "id": "monsoon-forest-bandhavgarh",
+    "name": "Monsoon Forest",
+    "tagline": "Eco-Luxury Forest Retreat in the Heart of Tala Buffer Zone",
+    "price": 0,
+    "description": "Monsoon Forest is an eco-sensitive wilderness resort situated near Tala Gate in Bandhavgarh National Park, featuring handcrafted mud-and-stone Ground Nest Cottages, Luxury High Nest Cottages, a swimming pool, native wildlife tracking, and traditional organic dining.",
+    "amenities": [
+      "Swimming Pool",
+      "Ground Nest Cottages",
+      "Multi-Cuisine Restaurant",
+      "Jungle Safaris & Nature Trails",
+      "Lush Forest Lawns",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+      "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+      "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+      "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+      "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+      "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+      "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+      "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+      "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+      "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "monsoon-ground-nest-cottage",
+        "name": "Ground Nest Cottage",
+        "price": 0,
+        "bedType": "1 King Bed / 1 Double Bed",
+        "view": "Garden & Forest View",
+        "roomSize": "400 sq.ft",
+        "description": "Ground Nest Cottage featuring 400 sq.ft of handcrafted mud walls, air conditioning, private sit-out terrace, en-suite bathroom, and tranquil jungle views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+          "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg"
+        ]
+      },
+      {
+        "id": "monsoon-luxury-high-nest",
+        "name": "Luxury High Nest Cottage",
+        "price": 45,
+        "bedType": "1 King Bed",
+        "view": "Elevated Forest Canopy View",
+        "roomSize": "450 sq.ft",
+        "description": "Luxury High Nest Cottage offering elevated wooden terrace with panoramic canopy views, climate control, premium amenities, and seating lounge.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+          "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+          "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+          "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bananchal-farm-homestay",
+    "name": "Bananchal Farm Homestay",
+    "tagline": "Tranquil Eco-Homestay in the Buffer Corridors of Jamunara Taala",
+    "price": 20,
+    "description": "Bananchal Farm Jamunara Taala offers peaceful farm stay hospitality situated just 4.6 km from Tala Gate in Bandhavgarh, featuring private cottages, swimming pool, home-cooked fresh meals, organic farms, and guided tiger safaris.",
+    "amenities": [
+      "Swimming Pool",
+      "Farm-Fresh Dining",
+      "Private Balcony Cottages",
+      "Power Backup & Wi-Fi",
+      "Nature & Birding Walks",
+      "Free Parking",
+      "24/7 Caretaker Service"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png",
+      "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+      "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+      "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+      "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+      "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+      "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+      "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+      "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+      "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "bananchal-standard-cottage",
+        "name": "Standard Cottage",
+        "price": 0,
+        "bedType": "1 King Bed",
+        "view": "Buffer Forest View",
+        "roomSize": "280 sq.ft",
+        "description": "Standard Cottage featuring air conditioning, comfortable king bedding, attached private bathroom, and balcony overlooking buffer woodlands.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png",
+          "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg"
+        ]
+      },
+      {
+        "id": "bananchal-deluxe-cottage",
+        "name": "Deluxe Cottage",
+        "price": 30,
+        "bedType": "1 King Bed",
+        "view": "Farm & Forest View",
+        "roomSize": "350 sq.ft",
+        "description": "Deluxe Cottage offering spacious 350 sq.ft farm retreat living, private garden sit-out, tea/coffee station, and modern en-suite amenities.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+          "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+          "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+          "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bandhavgarh-tiger-resort",
+    "name": "Bandhavgarh Tiger Resort",
+    "tagline": "Popular Wilderness Stay Minutes from Bandhavgarh Tala Gate",
+    "price": 35,
+    "description": "Bandhavgarh Tiger Resort is located on Station Road in Tala, offering comfortable wilderness accommodations, swimming pool, open-air restaurant, bonfire lawn, and bespoke 4x4 safari adventures across Bandhavgarh's prime zones.",
+    "amenities": [
+      "Swimming Pool",
+      "Multi-Cuisine Restaurant",
+      "Indoor & Outdoor Games",
+      "Jungle Safaris & Gypsy Tracking",
+      "Free Wi-Fi",
+      "Free Parking",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+      "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png",
+      "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
+      "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png",
+      "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+      "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png",
+      "https://r1imghtlak.mmtcdn.com/b3711454-f4a9-4096-8e3e-7c25183f7b10.png",
+      "https://r1imghtlak.mmtcdn.com/63e7b4b3-8540-44ac-9bf1-ff210318bc32.png",
+      "https://r1imghtlak.mmtcdn.com/ecaee98d-a999-413d-abfa-1c015552c443.png",
+      "https://r1imghtlak.mmtcdn.com/ba8dfd01-1d06-462c-83fc-fe711b23c75c.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "btr-deluxe-ac-room",
+        "name": "Deluxe AC Room",
+        "price": 0,
+        "bedType": "1 King Bed",
+        "view": "Garden View",
+        "roomSize": "250 sq.ft",
+        "description": "Deluxe AC Room featuring air conditioning, comfortable king bedding, attached private bathroom, and direct garden access.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+          "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png",
+          "https://r1imghtlak.mmtcdn.com/b3711454-f4a9-4096-8e3e-7c25183f7b10.png",
+          "https://r1imghtlak.mmtcdn.com/63e7b4b3-8540-44ac-9bf1-ff210318bc32.png"
+        ]
+      },
+      {
+        "id": "btr-super-deluxe-ac-room",
+        "name": "Super Deluxe AC Room",
+        "price": 40,
+        "bedType": "1 King Bed",
+        "view": "Pool & Lawn View",
+        "roomSize": "320 sq.ft",
+        "description": "Super Deluxe AC Room with extra spacious living space, private sit-out overlooking the pool, and premium bathroom amenities.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
+          "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png",
+          "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+          "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tiger-trails-resort",
+    "name": "Tiger Trails Resort",
+    "tagline": "Charming Jungle Resort Nestled beside a Natural Waterbody in Tala",
+    "price": 45,
+    "description": "Tiger Trails Resort is nestled in Village Tala by Bandhavgarh National Park, featuring private cottage accommodations, swimming pool, spa treatments, bonfire dining, and naturalist-led jungle safaris.",
+    "amenities": [
+      "Swimming Pool",
+      "Spa & Wellness Center",
+      "Multi-Cuisine Restaurant & Bar",
+      "Forest Hiking & Nature Walks",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+      "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+      "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+      "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+      "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+      "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+      "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+      "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+      "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png",
+      "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "ttr-standard-cottage",
+        "name": "Standard Cottage",
+        "price": 0,
+        "bedType": "1 Double Bed",
+        "view": "Jungle Garden View",
+        "roomSize": "260 sq.ft",
+        "description": "Standard Cottage with air conditioning, private patio, attached bathroom, and peaceful garden views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+          "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg"
+        ]
+      },
+      {
+        "id": "ttr-deluxe-cottage",
+        "name": "Deluxe Cottage",
+        "price": 50,
+        "bedType": "1 King Bed",
+        "view": "Forest & Pool View",
+        "roomSize": "380 sq.ft",
+        "description": "Deluxe Cottage offering spacious 380 sq.ft living area, private sit-out verandah, en-suite bathroom, mini fridge, and pool vistas.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+          "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+          "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+          "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "aranyak-resort-bandhavgarh",
+    "name": "Aranyak Resort",
+    "tagline": "Tranquil Forest Sanctuary Situated 2.5 km from Tala Gate",
+    "price": 55,
+    "description": "Aranyak Resort Bandhavgarh is an aesthetic nature retreat located in Village Kuchwahi near Tala Gate, offering Standard AC Rooms and Luxury Cottages, swimming pool, yoga lawn, Ayurvedic spa treatments, and naturalist-guided tiger safaris.",
+    "amenities": [
+      "Swimming Pool",
+      "Ayurvedic Spa & Wellness",
+      "Multi-Cuisine Buffet Restaurant",
+      "Bonfire & Outdoor Games",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+      "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+      "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+      "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+      "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+      "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+      "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+      "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+      "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+      "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "aranyak-standard-ac-room",
+        "name": "Standard AC Room",
+        "price": 0,
+        "bedType": "1 King Bed",
+        "view": "Garden View",
+        "roomSize": "240 sq.ft",
+        "description": "Standard AC Room featuring air conditioning, comfortable king bedding, attached modern bathroom, and private veranda overlooking landscaped gardens.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+          "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg"
+        ]
+      },
+      {
+        "id": "aranyak-luxury-cottage",
+        "name": "Luxury Cottage",
+        "price": 55,
+        "bedType": "1 King Bed",
+        "view": "Forest & Lawn View",
+        "roomSize": "420 sq.ft",
+        "description": "Luxury Cottage offering 420 sq.ft of peaceful forest-edge sanctuary, private sit-out porch, tea/coffee maker, and premium bathroom amenities.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+          "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+          "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+          "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
+        ]
+      }
+    ]
+  }
+];
+
 const FALLBACK_TOURS = [
   {
     id: '1',
@@ -2133,9 +2435,14 @@ const FALLBACK_TOURS = [
     images: [
       '/bandhavgarh-safari.png',
     ],
-    packages: [
-      { id: 'p9', name: 'Bandhavgarh Fort View Retreat', price: 0, description: 'Heritage forest cottage with dedicated 4x4 tracker.' }
-    ]
+    packages: BANDHAVGARH_HOTELS.map(h => ({
+      id: h.id,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      price: h.price,
+      description: h.tagline
+    })),
+    hotels: BANDHAVGARH_HOTELS,
+    hotelDetails: BANDHAVGARH_HOTELS[0]
   },
   {
     id: '10',
