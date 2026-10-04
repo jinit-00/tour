@@ -2378,6 +2378,427 @@ export const KANHA_HOTELS = [
   }
 ];
 
+// Official Partner Resorts for Ranthambore National Park (10 MMT Photos each & exact MMT Room Categories)
+export const RANTHAMBORE_HOTELS = [
+  {
+    "id": "anantvan-ranthambore-by-greetoe",
+    "name": "Anantvan Ranthambore by Greetoe Resorts",
+    "tagline": "Eco-Serene Nature Sanctuary near Kundera & Ranthambore Gate",
+    "price": 0,
+    "description": "Anantvan Ranthambore by Greetoe Resorts is situated on MDR 111 in Village Bhadlao near Kundera, featuring Deluxe Rooms, Superior Twin Rooms, an organic farm-to-table restaurant, a swimming pool, fruit orchards, and naturalist-guided tiger safaris.",
+    "amenities": [
+      "Swimming Pool",
+      "Organic Farm-to-Table Restaurant",
+      "Kids Play Area & Club",
+      "Bonfire & Nature Walks",
+      "Jungle Safaris & Gypsy Drives",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+      "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+      "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+      "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+      "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+      "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+      "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+      "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+      "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+      "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "anantvan-deluxe-room",
+        "name": "Deluxe Room",
+        "price": 0,
+        "bedType": "1 King Bed",
+        "view": "Mountain & Garden View",
+        "roomSize": "360 sq.ft",
+        "description": "Deluxe Room featuring 360 sq.ft of serene living, king bedding, air conditioning, modern attached bathroom, and panoramic mountain views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+          "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg"
+        ]
+      },
+      {
+        "id": "anantvan-superior-twin-room",
+        "name": "Superior Twin Room",
+        "price": 35,
+        "bedType": "2 Twin Beds / 1 King Bed",
+        "view": "Garden View",
+        "roomSize": "380 sq.ft",
+        "description": "Superior Twin Room with private sit-out verandah, garden views, air conditioning, and handcrafted decor.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+          "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+          "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+          "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "brij-tara-ranthambore",
+    "name": "Brij Tara Ranthambore - A Luxury Wildlife Resort",
+    "tagline": "5-Star Ultra-Luxury Private Villa Resort in Kundera Range",
+    "price": 90,
+    "description": "Brij Tara Ranthambore is an ultra-luxury boutique sanctuary featuring 17 bespoke private villas and residences opposite Kundera Range, offering private gardens, Ayurvedic wellness therapies, stargazing, fine dining, and customized royal safaris.",
+    "amenities": [
+      "Private Plunge Pools & Gardens",
+      "Ayurvedic Wellness Spa",
+      "Fine Dining Restaurant",
+      "Cultural Programs & Stargazing",
+      "Guided Wildlife Safaris",
+      "Free Wi-Fi",
+      "24/7 Concierge Service"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png",
+      "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+      "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+      "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png",
+      "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
+      "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png",
+      "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+      "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png",
+      "https://r1imghtlak.mmtcdn.com/b3711454-f4a9-4096-8e3e-7c25183f7b10.png",
+      "https://r1imghtlak.mmtcdn.com/63e7b4b3-8540-44ac-9bf1-ff210318bc32.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "brij-tara-luxury-villa-garden",
+        "name": "Luxury Villa with Private Garden",
+        "price": 0,
+        "bedType": "1 King Bed",
+        "view": "Private Garden View",
+        "roomSize": "550 sq.ft",
+        "description": "Luxury Villa offering 550 sq.ft of private luxury, secluded landscaped garden, open-air shower, king bedding, and dedicated butler assistance.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png",
+          "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+          "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+          "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png"
+        ]
+      },
+      {
+        "id": "brij-tara-luxury-residence-villa",
+        "name": "Luxury Residence Villa",
+        "price": 110,
+        "bedType": "1 King Bed",
+        "view": "Wilderness & Courtyard View",
+        "roomSize": "750 sq.ft",
+        "description": "Luxury Residence Villa featuring 750 sq.ft opulent living area, private courtyard, clawfoot bathtub, and panoramic wilderness views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
+          "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png",
+          "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+          "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "anuraga-palace-ranthambore",
+    "name": "Anuraga Palace Ranthambore",
+    "tagline": "Heritage Haveli Architecture with Modern Royal Luxury in Sherpur",
+    "price": 50,
+    "description": "Anuraga Palace is an exquisite heritage-styled palace resort located on Sherpur Road in Sawai Madhopur, featuring intricately handcrafted Rajasthani motifs, wooden flooring, multi-cuisine dining, a lavish swimming pool, and safari excursions.",
+    "amenities": [
+      "Swimming Pool",
+      "Traditional Haveli Courtyard",
+      "Multi-Cuisine Royal Dining",
+      "Spa & Wellness Center",
+      "Free Wi-Fi",
+      "Free Parking",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/ecaee98d-a999-413d-abfa-1c015552c443.png",
+      "https://r1imghtlak.mmtcdn.com/ba8dfd01-1d06-462c-83fc-fe711b23c75c.png",
+      "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+      "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+      "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+      "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+      "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+      "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+      "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+      "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
+    ],
+    "roomCategories": [
+      {
+        "id": "anuraga-deluxe-room",
+        "name": "Deluxe Room",
+        "price": 0,
+        "bedType": "1 King Bed",
+        "view": "Haveli Courtyard View",
+        "roomSize": "350 sq.ft",
+        "description": "Deluxe Room featuring 350 sq.ft of handcrafted Rajasthani decor, wooden flooring, king bedding, air conditioning, and luxury bath fittings.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/ecaee98d-a999-413d-abfa-1c015552c443.png",
+          "https://r1imghtlak.mmtcdn.com/ba8dfd01-1d06-462c-83fc-fe711b23c75c.png",
+          "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+          "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg"
+        ]
+      },
+      {
+        "id": "anuraga-premier-room",
+        "name": "Premier Room",
+        "price": 40,
+        "bedType": "1 King Bed",
+        "view": "Palace Lawn View",
+        "roomSize": "370 sq.ft",
+        "description": "Premier Room offering 370 sq.ft of elevated royal luxury, private sit-out overlooking the palace lawns, and premium heritage touches.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+          "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+          "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "aamaghati-wildlife-resort",
+    "name": "Aamaghati Wildlife Resort Ranthambore",
+    "tagline": "Jungle-Themed Wilderness Resort near Ranthambore Road Sherpur",
+    "price": 30,
+    "description": "Aamaghati Wildlife Resort is situated on Ranthambore Road in Sherpur, Sawai Madhopur, offering jungle-themed Evoke Rooms, Deluxe Cottages, a swimming pool, open lawns, multi-cuisine dining, and daily safari excursions into Ranthambore Tiger Reserve.",
+    "amenities": [
+      "Swimming Pool",
+      "Jungle-Themed Dining",
+      "Bonfire & Lawn Games",
+      "Jungle Safaris & Nature Drives",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+      "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png",
+      "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png",
+      "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+      "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+      "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png",
+      "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
+      "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png",
+      "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+      "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "aamaghati-evoke-room",
+        "name": "Evoke Room",
+        "price": 0,
+        "bedType": "1 Queen Bed / 1 King Bed",
+        "view": "Jungle & Garden View",
+        "roomSize": "250 sq.ft",
+        "description": "Evoke Room offering 250 sq.ft of jungle-themed accommodation, air conditioning, modern bathroom, and peaceful nature views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+          "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png",
+          "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png",
+          "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png"
+        ]
+      },
+      {
+        "id": "aamaghati-deluxe-cottage",
+        "name": "Deluxe Cottage",
+        "price": 30,
+        "bedType": "1 King Bed",
+        "view": "Nature & Pool View",
+        "roomSize": "350 sq.ft",
+        "description": "Deluxe Cottage featuring 350 sq.ft of spacious cottage living, private patio, en-suite bathroom, and tea/coffee facilities.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+          "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png",
+          "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
+          "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "the-baagh-ananta-elite",
+    "name": "The Baagh Ananta Elite",
+    "tagline": "4-Star Luxury Resort with Tents & Cottages 1.8 km from Gate 1-5",
+    "price": 40,
+    "description": "The Baagh Ananta Elite is located in Sherpur just 1.8 km from Ranthambore entry gates 1-5, featuring luxury Deluxe Rooms, Deluxe Tents, a swimming pool, full-service spa, fine dining, and expert-guided safari tracking.",
+    "amenities": [
+      "Swimming Pool",
+      "Full-Service Luxury Spa",
+      "Multi-Cuisine Restaurant",
+      "Lush Garden Lawns",
+      "Jungle Safari Desk",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/b3711454-f4a9-4096-8e3e-7c25183f7b10.png",
+      "https://r1imghtlak.mmtcdn.com/63e7b4b3-8540-44ac-9bf1-ff210318bc32.png",
+      "https://r1imghtlak.mmtcdn.com/ecaee98d-a999-413d-abfa-1c015552c443.png",
+      "https://r1imghtlak.mmtcdn.com/ba8dfd01-1d06-462c-83fc-fe711b23c75c.png",
+      "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+      "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+      "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+      "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+      "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+      "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg"
+    ],
+    "roomCategories": [
+      {
+        "id": "baagh-deluxe-room",
+        "name": "Deluxe Room",
+        "price": 0,
+        "bedType": "1 King Bed",
+        "view": "Garden View",
+        "roomSize": "320 sq.ft",
+        "description": "Deluxe Room with air conditioning, comfortable king bedding, attached bathroom, and peaceful garden views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/b3711454-f4a9-4096-8e3e-7c25183f7b10.png",
+          "https://r1imghtlak.mmtcdn.com/63e7b4b3-8540-44ac-9bf1-ff210318bc32.png",
+          "https://r1imghtlak.mmtcdn.com/ecaee98d-a999-413d-abfa-1c015552c443.png",
+          "https://r1imghtlak.mmtcdn.com/ba8dfd01-1d06-462c-83fc-fe711b23c75c.png"
+        ]
+      },
+      {
+        "id": "baagh-deluxe-tent",
+        "name": "Deluxe Tent",
+        "price": 45,
+        "bedType": "1 King Bed",
+        "view": "Lawn View",
+        "roomSize": "350 sq.ft",
+        "description": "Deluxe Tent offering luxury glamping under the stars, air conditioning, private sit-out patio, and en-suite modern bathroom.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+          "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "seraibagh",
+    "name": "Seraibagh",
+    "tagline": "Wilderness Eco-Lodge with Mountain Views in Jamul Kheda",
+    "price": 25,
+    "description": "Seraibagh Ranthambore is nestled in Village Jamul Kheda, offering Mountain View Luxury Rooms, swimming pool, wildlife documentary screenings, cultural programs, multi-cuisine dining, and immersive safari expeditions.",
+    "amenities": [
+      "Swimming Pool",
+      "Multi-Cuisine Restaurant",
+      "Wildlife Documentary Screenings",
+      "Cultural Programs & Hi-Tea",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+      "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+      "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+      "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png",
+      "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png",
+      "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+      "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+      "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png",
+      "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
+      "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "seraibagh-mountain-view-luxury-room",
+        "name": "Mountain View Luxury Room",
+        "price": 0,
+        "bedType": "1 King Bed",
+        "view": "Aravalli Mountain View",
+        "roomSize": "360 sq.ft",
+        "description": "Mountain View Luxury Room featuring 360 sq.ft of comfort, private sit-out verandah, air conditioning, and serene mountain vistas.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+          "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+          "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+          "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
+        ]
+      },
+      {
+        "id": "seraibagh-luxury-suite",
+        "name": "Luxury Suite with Sit-out",
+        "price": 35,
+        "bedType": "1 King Bed",
+        "view": "Private Garden Sit-out",
+        "roomSize": "450 sq.ft",
+        "description": "Luxury Suite offering spacious living area, private garden sit-out, tea/coffee maker, and premium en-suite amenities.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png",
+          "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+          "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+          "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tiger-moon-resort",
+    "name": "Tiger Moon Resort Ranthambore - A Wildlife Resort",
+    "tagline": "Classic 4-Star Wildlife Resort at the Edge of Ranthambore Forest",
+    "price": 20,
+    "description": "Tiger Moon Resort Ranthambore offers authentic wildlife resort hospitality nestled against the Aravalli hills, featuring Deluxe Cottages, AC Deluxe Tents, swimming pool, open dining, bonfire evenings, and naturalist-led tiger safaris.",
+    "amenities": [
+      "Swimming Pool",
+      "Spa & Massage Services",
+      "Open-Air Barbeque & Dining",
+      "Bonfire & Wildlife Documentaries",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+      "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png",
+      "https://r1imghtlak.mmtcdn.com/b3711454-f4a9-4096-8e3e-7c25183f7b10.png",
+      "https://r1imghtlak.mmtcdn.com/63e7b4b3-8540-44ac-9bf1-ff210318bc32.png",
+      "https://r1imghtlak.mmtcdn.com/ecaee98d-a999-413d-abfa-1c015552c443.png",
+      "https://r1imghtlak.mmtcdn.com/ba8dfd01-1d06-462c-83fc-fe711b23c75c.png",
+      "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+      "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+      "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+      "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg"
+    ],
+    "roomCategories": [
+      {
+        "id": "tiger-moon-deluxe-cottage",
+        "name": "Deluxe Cottage",
+        "price": 0,
+        "bedType": "1 Double Bed / 1 King Bed",
+        "view": "Jungle & Garden View",
+        "roomSize": "440 sq.ft",
+        "description": "Deluxe Cottage offering 440 sq.ft of rustic wilderness accommodation, air conditioning, private porch, attached bathroom, and tranquil garden views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+          "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png",
+          "https://r1imghtlak.mmtcdn.com/b3711454-f4a9-4096-8e3e-7c25183f7b10.png",
+          "https://r1imghtlak.mmtcdn.com/63e7b4b3-8540-44ac-9bf1-ff210318bc32.png"
+        ]
+      },
+      {
+        "id": "tiger-moon-ac-deluxe-tent",
+        "name": "AC Deluxe Tent",
+        "price": 25,
+        "bedType": "1 Double Bed",
+        "view": "Garden View",
+        "roomSize": "196 sq.ft",
+        "description": "AC Deluxe Tent featuring climate control, attached private bathroom, comfortable bedding, and authentic wildlife glamping experience.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/ecaee98d-a999-413d-abfa-1c015552c443.png",
+          "https://r1imghtlak.mmtcdn.com/ba8dfd01-1d06-462c-83fc-fe711b23c75c.png",
+          "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+          "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg"
+        ]
+      }
+    ]
+  }
+];
+
 const FALLBACK_TOURS = [
   {
     id: '1',
@@ -2458,9 +2879,14 @@ const FALLBACK_TOURS = [
     images: [
       'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?auto=format&fit=crop&w=1600&q=80',
     ],
-    packages: [
-      { id: 'p4', name: 'Heritage Jungle Lodge', price: 0, description: 'Royal suite & open Gypsy 4x4 safaris.' }
-    ]
+    packages: RANTHAMBORE_HOTELS.map(h => ({
+      id: h.id,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      price: h.price,
+      description: h.tagline
+    })),
+    hotels: RANTHAMBORE_HOTELS,
+    hotelDetails: RANTHAMBORE_HOTELS[0]
   },
   {
     id: '5',
