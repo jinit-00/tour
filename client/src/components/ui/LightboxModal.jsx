@@ -51,7 +51,7 @@ export default function LightboxModal({ isOpen, onClose, images, currentIndex, o
 
           <button
             onClick={onClose}
-            title="Close (Esc)"
+            title="Close"
             className="flex items-center space-x-1 text-sand-800 hover:text-sand-950 p-2.5 sm:px-4 sm:py-2 rounded-full bg-charcoal-900/80 border border-sand-700/40 hover:bg-pine-800 hover:border-pine-800 transition-all shadow-lg group"
           >
             <span className="hidden sm:inline text-xs font-mono font-bold text-sand-800 group-hover:text-sand-950">Close</span>
@@ -63,19 +63,18 @@ export default function LightboxModal({ isOpen, onClose, images, currentIndex, o
         {images.length > 1 && (
           <button
             onClick={handlePrev}
-            title="Left arrow: Previous image"
-            aria-label="Previous image"
-            className="absolute left-3 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 text-sand-800 hover:text-sand-950 p-3 sm:p-4 rounded-full bg-charcoal-900/80 border border-sand-700/50 hover:bg-pine-800 hover:border-pine-800 hover:scale-110 active:scale-95 transition-all z-50 shadow-2xl group flex items-center gap-2"
+            title="Previous"
+            aria-label="Previous"
+            className="absolute left-3 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 text-sand-800 hover:text-sand-950 p-3 sm:p-4 rounded-full bg-charcoal-900/80 border border-sand-700/50 hover:bg-pine-800 hover:border-pine-800 hover:scale-110 active:scale-95 transition-all z-50 shadow-2xl group flex items-center justify-center"
           >
             <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 text-sand-800 group-hover:text-sand-950" />
-            <span className="hidden xl:inline text-xs font-mono font-bold pr-1 text-sand-800 group-hover:text-sand-950">Prev</span>
           </button>
         )}
 
-        {/* Center Modal Image & Minimal Navigation Bar */}
+        {/* Center Modal Image */}
         <div 
           onClick={(e) => e.stopPropagation()}
-          className="max-w-5xl w-full max-h-[88vh] flex flex-col items-center justify-center space-y-4 z-40 pointer-events-auto"
+          className="max-w-5xl w-full max-h-[90vh] flex flex-col items-center justify-center z-40 pointer-events-auto"
         >
           <motion.div
             key={currentIndex}
@@ -83,38 +82,24 @@ export default function LightboxModal({ isOpen, onClose, images, currentIndex, o
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="relative flex flex-col items-center max-h-[76vh] max-w-full"
+            className="relative flex flex-col items-center max-h-[82vh] max-w-full"
           >
             <img
               src={typeof currentImg === 'string' ? currentImg : currentImg.src}
               alt="Safari Photo"
-              className="max-h-[72vh] sm:max-h-[76vh] max-w-full object-contain rounded-2xl shadow-2xl border border-sand-700/40 bg-charcoal-950"
+              className="max-h-[80vh] sm:max-h-[82vh] max-w-full object-contain rounded-2xl shadow-2xl border border-sand-700/40 bg-charcoal-950"
             />
           </motion.div>
-
-          {/* Clean Navigation Shortcut Indicator */}
-          <div className="flex items-center justify-center gap-4 text-[11px] font-mono text-sand-700/70">
-            <span className="inline-flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 rounded bg-charcoal-800 border border-sand-700/40 text-[10px] text-sand-800">←</kbd>
-              Left arrow: Previous image
-            </span>
-            <span className="text-sand-700/40">•</span>
-            <span className="inline-flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 rounded bg-charcoal-800 border border-sand-700/40 text-[10px] text-sand-800">→</kbd>
-              Right arrow: Next image
-            </span>
-          </div>
         </div>
 
         {/* Right Arrow: Next image */}
         {images.length > 1 && (
           <button
             onClick={handleNext}
-            title="Right arrow: Next image"
-            aria-label="Next image"
-            className="absolute right-3 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 text-sand-800 hover:text-sand-950 p-3 sm:p-4 rounded-full bg-charcoal-900/80 border border-sand-700/50 hover:bg-pine-800 hover:border-pine-800 hover:scale-110 active:scale-95 transition-all z-50 shadow-2xl group flex items-center gap-2"
+            title="Next"
+            aria-label="Next"
+            className="absolute right-3 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 text-sand-800 hover:text-sand-950 p-3 sm:p-4 rounded-full bg-charcoal-900/80 border border-sand-700/50 hover:bg-pine-800 hover:border-pine-800 hover:scale-110 active:scale-95 transition-all z-50 shadow-2xl group flex items-center justify-center"
           >
-            <span className="hidden xl:inline text-xs font-mono font-bold pl-1 text-sand-800 group-hover:text-sand-950">Next</span>
             <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 text-sand-800 group-hover:text-sand-950" />
           </button>
         )}
