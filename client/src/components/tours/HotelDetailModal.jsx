@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  X, MapPin, Star, Wifi, Coffee, Utensils, Tv, 
+  X, MapPin, Wifi, Coffee, Utensils, Tv, 
   CheckCircle2, ShieldCheck, Clock, Award, Building, Sparkles 
 } from 'lucide-react';
 
@@ -36,10 +36,6 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
             <div className="flex items-center gap-3">
               <span className="bg-pine-800 text-sand-950 text-xs font-mono font-bold px-3.5 py-1 rounded-full uppercase tracking-wider">
                 Official Safari Stay
-              </span>
-              <span className="text-xs text-amber-600 font-bold flex items-center gap-1 font-mono">
-                <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
-                {hotel.rating || '4.5 ★'}
               </span>
             </div>
 

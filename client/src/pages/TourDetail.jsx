@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getTourDetail, createBooking, GIR_HOTELS, JAWAI_HOTELS, SANJAY_DUBRI_HOTELS, VELAVADAR_HOTELS, CORBETT_HOTELS, PANNA_HOTELS } from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, Star, Hotel, Eye, Plus, Minus, ChevronDown, Clock } from 'lucide-react';
+import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, Hotel, Eye, Plus, Minus, ChevronDown, Clock } from 'lucide-react';
 import HotelDetailModal from '../components/tours/HotelDetailModal';
 
 export default function TourDetail() {
@@ -119,7 +119,6 @@ export default function TourDetail() {
     setModalHotel({
       name: `${hotel.name} - ${roomCat.name}`,
       tagline: `${roomCat.bedType} · ${roomCat.view} (${roomCat.roomSize})`,
-      rating: `${hotel.name} · Verified Room Category`,
       description: roomCat.description,
       images: roomCat.images && roomCat.images.length > 0 ? roomCat.images : hotel.images,
       amenities: [
