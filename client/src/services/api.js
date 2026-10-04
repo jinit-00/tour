@@ -2811,7 +2811,7 @@ const FALLBACK_TOURS = [
     duration: '6 Days / 5 Nights',
     isFeatured: true,
     images: [
-      'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80',
+      '/gir-safari.png',
     ],
     packages: GIR_HOTELS.map(h => ({
       id: h.id,

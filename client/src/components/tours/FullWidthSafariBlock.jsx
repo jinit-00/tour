@@ -46,7 +46,7 @@ export default function FullWidthSafariBlock({ tour, index = 0 }) {
           src={imageUrl}
           alt={tour.title}
           loading="lazy"
-          className="max-h-full max-w-full w-auto h-auto object-contain filter contrast-105 drop-shadow-xl transition-transform duration-700 ease-out group-hover:scale-105"
+          className="w-full h-full object-cover filter contrast-105 drop-shadow-xl transition-transform duration-700 ease-out group-hover:scale-105"
         />
       </div>
 
