@@ -4,6 +4,7 @@ import { getTours } from '../services/api';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Camera, ArrowRight, Users, ShieldCheck } from 'lucide-react';
 import FullWidthSafariBlock from '../components/tours/FullWidthSafariBlock';
+import logoImg from '../assets/logo.png';
 
 export default function Home() {
   const [tours, setTours] = useState([]);
@@ -57,7 +58,7 @@ export default function Home() {
             className="w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden border-4 border-sand-700/80 shadow-2xl bg-sand-950 p-2 hover:scale-105 transition-transform flex items-center justify-center"
           >
             <img
-              src="/logo.webp"
+              src={logoImg}
               alt="JungleE Wildlife Expeditions Official Logo"
               className="w-full h-full object-contain"
             />
