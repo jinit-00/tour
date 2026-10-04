@@ -51,9 +51,6 @@ export default function TermsModal({ isOpen, onClose }) {
                 <h3 className="text-lg sm:text-xl font-bold text-charcoal-950">
                   Terms & Conditions
                 </h3>
-                <span className="text-xs font-mono text-pine-800 font-bold uppercase tracking-wider">
-                  Last Updated: 4 October 2026
-                </span>
               </div>
             </div>
 
