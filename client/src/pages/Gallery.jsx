@@ -57,7 +57,7 @@ export default function Gallery() {
   const filteredPhotos = selectedCat === 'All' ? photos : photos.filter(p => p.category === selectedCat);
 
   const handleOpenLightbox = (photo) => {
-    const idx = photos.findIndex(p => p.id === photo.id);
+    const idx = filteredPhotos.findIndex(p => p.id === photo.id);
     if (idx !== -1) {
       setCurrentImgIndex(idx);
       setLightboxOpen(true);
@@ -135,7 +135,7 @@ export default function Gallery() {
       <LightboxModal
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}
-        images={photos.map(p => ({
+        images={filteredPhotos.map(p => ({
           src: p.image,
           title: p.title,
           location: p.location,
