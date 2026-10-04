@@ -10,7 +10,7 @@ export default function Gallery() {
     { id: '2', title: 'Serengeti Lioness Portrait', category: 'Big Cats', image: 'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=1200&q=80', location: 'Serengeti, Tanzania' },
     { id: '3', title: 'Greater Kruger White Rhino', category: 'Rhinos', image: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=1200&q=80', location: 'Kruger, South Africa' },
     { id: '4', title: 'Royal Tiger in Banyan Ruins', category: 'Tigers', image: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1200&q=80', location: 'Ranthambore, India' },
-    { id: '5', title: 'Mara River Crossing', category: 'Big Cats', image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1200&q=80', location: 'Masai Mara, Kenya' },
+    { id: '5', title: 'Ken River Bengal Tiger', category: 'Tigers', image: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1200&q=80', location: 'Panna, India' },
     { id: '6', title: 'Leopard Tree Perch', category: 'Big Cats', image: 'https://images.unsplash.com/photo-1540573133985-778788170485?auto=format&fit=crop&w=1200&q=80', location: 'Sabi Sands, South Africa' },
     { id: '7', title: 'Ngorongoro Bull Elephant', category: 'Elephants', image: 'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=1200&q=80', location: 'Ngorongoro, Tanzania' },
     { id: '8', title: 'Amboseli Tuskers & Kilimanjaro', category: 'Elephants', image: 'https://images.unsplash.com/photo-1504006833117-8886a355efbf?auto=format&fit=crop&w=1200&q=80', location: 'Amboseli, Kenya' },

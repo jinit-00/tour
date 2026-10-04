@@ -102,15 +102,15 @@ async function main() {
       ])
     },
     {
-      title: 'Masai Mara Lion Pride & Predator Masterclass',
-      slug: 'masai-mara-safari',
-      description: 'Witness intense predator action and lion prides feeding in Kenya’s Mara ecosystem.',
-      location: 'Masai Mara, Kenya',
-      basePrice: 4800,
-      duration: '8 Days / 7 Nights',
+      title: 'Panna Tiger Reserve & Ken River Expedition',
+      slug: 'panna-tiger-safari',
+      description: 'Track thriving Bengal Tiger populations, leopards, and vultures among the pristine river canyons of Panna.',
+      location: 'Panna, India',
+      basePrice: 3200,
+      duration: '6 Days / 5 Nights',
       isFeatured: true,
       imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=1600&q=80'
+        'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80'
       ])
     },
     {

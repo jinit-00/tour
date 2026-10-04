@@ -117,7 +117,7 @@ export default function Contact() {
                   <option value="Jawai Granite Hills Leopard Tracking">Jawai Granite Hills Leopard Tracking</option>
                   <option value="Royal Ranthambore Bengal Tiger Portrait">Royal Ranthambore Bengal Tiger Portrait</option>
                   <option value="Velavadar Blackbuck & Deer Grasslands">Velavadar Blackbuck & Deer Grasslands</option>
-                  <option value="Masai Mara Lion Pride & Predator Masterclass">Masai Mara Lion Pride & Predator Masterclass</option>
+                  <option value="Panna Tiger Reserve & Ken River Expedition">Panna Tiger Reserve & Ken River Expedition</option>
                   <option value="Custom Private Charter">Custom Private Charter</option>
                 </select>
               </div>

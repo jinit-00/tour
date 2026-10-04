@@ -77,7 +77,7 @@ export default function Footer() {
               <li>Sanjay Dubri, India</li>
               <li>Jawai Granite Hills, India</li>
               <li>Ranthambore Fort, India</li>
-              <li>Masai Mara, Kenya</li>
+              <li>Panna Tiger Reserve, India</li>
             </ul>
           </div>
 
