@@ -1454,7 +1454,7 @@ const FALLBACK_TOURS = [
     slug: 'gir-lion-safari',
     description: 'Track and photograph the world’s last remaining wild Asiatic Lions in the dry deciduous forests of Gir.',
     location: 'Gir, India',
-    region: 'India',
+    region: 'Gujarat',
     basePrice: 3100,
     duration: '6 Days / 5 Nights',
     isFeatured: true,
@@ -1476,7 +1476,7 @@ const FALLBACK_TOURS = [
     slug: 'sanjay-dubri-tiger-safari',
     description: 'Explore the pristine, untamed tiger corridors of Sanjay Dubri National Park in Central India.',
     location: 'Sanjay Dubri, India',
-    region: 'India',
+    region: 'Madhya Pradesh',
     basePrice: 2900,
     duration: '6 Days / 5 Nights',
     isFeatured: false,
@@ -1498,7 +1498,7 @@ const FALLBACK_TOURS = [
     slug: 'jawai-leopard-safari',
     description: 'Photograph the legendary leopards of Jawai living in harmony among ancient granite rock formations.',
     location: 'Jawai, India',
-    region: 'India',
+    region: 'Rajasthan',
     basePrice: 3400,
     duration: '5 Days / 4 Nights',
     isFeatured: false,
@@ -1520,7 +1520,7 @@ const FALLBACK_TOURS = [
     slug: 'ranthambore-tiger-safari',
     description: 'Capture intimate, low-angle facial portraits of royal Bengal Tigers among ancient fort ruins.',
     location: 'Ranthambore, India',
-    region: 'India',
+    region: 'Rajasthan',
     basePrice: 2950,
     duration: '6 Days / 5 Nights',
     isFeatured: true,
@@ -1537,7 +1537,7 @@ const FALLBACK_TOURS = [
     slug: 'velavadar-deer-safari',
     description: 'Immerse in golden savannas to photograph leaping blackbuck antelopes, deer, and wolves.',
     location: 'Velavadar, India',
-    region: 'India',
+    region: 'Gujarat',
     basePrice: 2700,
     duration: '5 Days / 4 Nights',
     isFeatured: false,
@@ -1559,7 +1559,7 @@ const FALLBACK_TOURS = [
     slug: 'panna-tiger-safari',
     description: 'Track thriving Bengal Tiger populations, leopards, and vultures among the pristine river canyons of Panna.',
     location: 'Panna, India',
-    region: 'India',
+    region: 'Madhya Pradesh',
     basePrice: 3200,
     duration: '6 Days / 5 Nights',
     isFeatured: true,
@@ -1572,87 +1572,87 @@ const FALLBACK_TOURS = [
   },
   {
     id: '7',
-    title: 'Uganda Savanna Elephant & Primate Expedition',
-    slug: 'uganda-elephant-safari',
-    description: 'Photograph massive savanna elephant herds along the Kazinga Channel and Murchison Falls.',
-    location: 'Uganda',
-    region: 'Uganda',
-    basePrice: 4300,
-    duration: '7 Days / 6 Nights',
+    title: 'Pench Tiger Reserve & Mowgli Jungle Safari',
+    slug: 'pench-tiger-safari',
+    description: 'Track royal Bengal tigers, leopards, and dholes across the undulating teak forests that inspired The Jungle Book.',
+    location: 'Pench, India',
+    region: 'Madhya Pradesh',
+    basePrice: 3100,
+    duration: '6 Days / 5 Nights',
+    isFeatured: false,
+    images: [
+      'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80',
+    ],
+    packages: [
+      { id: 'p7', name: 'Pench Treehouse Jungle Lodge', price: 0, description: 'Luxury machan cottage with open Gypsy 4x4 safaris.' }
+    ]
+  },
+  {
+    id: '8',
+    title: 'Kanha National Park Sal Forest Tiger Expedition',
+    slug: 'kanha-tiger-safari',
+    description: 'Photograph majestic tigers, barasingha swamp deer, and Indian gaurs amidst the sprawling sal meadows of Kanha.',
+    location: 'Kanha, India',
+    region: 'Madhya Pradesh',
+    basePrice: 3300,
+    duration: '6 Days / 5 Nights',
+    isFeatured: false,
+    images: [
+      'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?auto=format&fit=crop&w=1600&q=80',
+    ],
+    packages: [
+      { id: 'p8', name: 'Kanha Meadow Jungle Lodge', price: 0, description: 'Sal forest suite with naturalist-guided morning drives.' }
+    ]
+  },
+  {
+    id: '9',
+    title: 'Bandhavgarh National Park High-Density Tiger Safari',
+    slug: 'bandhavgarh-tiger-safari',
+    description: 'Experience India’s highest tiger density among ancient cliffs, bamboo thickets, and Tala forest zones.',
+    location: 'Bandhavgarh, India',
+    region: 'Madhya Pradesh',
+    basePrice: 3400,
+    duration: '6 Days / 5 Nights',
+    isFeatured: false,
+    images: [
+      'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80',
+    ],
+    packages: [
+      { id: 'p9', name: 'Bandhavgarh Fort View Retreat', price: 0, description: 'Heritage forest cottage with dedicated 4x4 tracker.' }
+    ]
+  },
+  {
+    id: '10',
+    title: 'Tadoba National Park Bamboo Forest Tiger Safari',
+    slug: 'tadoba-tiger-safari',
+    description: 'Track the famed tigers, sloth bears, and wild dogs of Tadoba Andhari Reserve across dense teak and bamboo jungles.',
+    location: 'Tadoba, India',
+    region: 'Maharashtra',
+    basePrice: 3200,
+    duration: '6 Days / 5 Nights',
+    isFeatured: false,
+    images: [
+      'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80',
+    ],
+    packages: [
+      { id: 'p10', name: 'Tadoba Bamboo Jungle Camp', price: 0, description: 'Eco-lodge near Moharli gate with open safari gypsies.' }
+    ]
+  },
+  {
+    id: '11',
+    title: 'Jim Corbett National Park Himalayan Foothills Safari',
+    slug: 'jim-corbett-safari',
+    description: 'Photograph tigers, wild Asiatic elephants, and gharials along the Ramganga river in the foothills of the Himalayas.',
+    location: 'Jim Corbett, India',
+    region: 'Uttarakhand',
+    basePrice: 2950,
+    duration: '6 Days / 5 Nights',
     isFeatured: false,
     images: [
       'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
-      { id: 'p7', name: 'River Cruise & Safari Pack', price: 0, description: 'Boat safaris & crater lake lodge.' }
-    ]
-  },
-  {
-    id: '8',
-    title: 'Greater Kruger Rhino Conservation Expedition',
-    slug: 'kruger-rhino-safari',
-    description: 'Photograph wild White and Black Rhinos alongside anti-poaching units in private reserves.',
-    location: 'Kruger, South Africa',
-    region: 'South Africa',
-    basePrice: 3750,
-    duration: '7 Days / 6 Nights',
-    isFeatured: false,
-    images: [
-      'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=1600&q=80',
-    ],
-    packages: [
-      { id: 'p8', name: 'Sabie River Lodge', price: 0, description: 'Private villa & bush walking safaris.' }
-    ]
-  },
-  {
-    id: '9',
-    title: 'Kaziranga Wild Buffalo & Wetland Safari',
-    slug: 'kaziranga-buffalo-safari',
-    description: 'Track massive wild water buffalo herds roaming the lush tall elephant grasslands of Kaziranga.',
-    location: 'Kaziranga, India',
-    region: 'India',
-    basePrice: 3000,
-    duration: '6 Days / 5 Nights',
-    isFeatured: false,
-    images: [
-      'https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1600&q=80',
-    ],
-    packages: [
-      { id: 'p9', name: 'Tea Garden Resort', price: 0, description: 'Boutique estate stay & 4x4 safaris.' }
-    ]
-  },
-  {
-    id: '10',
-    title: 'Camargue Wild Horse & Wetland Expedition',
-    slug: 'camargue-horse-safari',
-    description: 'Capture iconic galloping white horses charging through shallow coastal salt marshes.',
-    location: 'Camargue, France',
-    region: 'France',
-    basePrice: 3600,
-    duration: '5 Days / 4 Nights',
-    isFeatured: false,
-    images: [
-      'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=1600&q=80',
-    ],
-    packages: [
-      { id: 'p10', name: 'Provençal Mas Stay', price: 0, description: 'Traditional estate stay & equestrian photo guide.' }
-    ]
-  },
-  {
-    id: '11',
-    title: 'Amboseli Kilimanjaro Elephant Gathering',
-    slug: 'amboseli-safari',
-    description: 'Photograph giant tusker elephants wading through swamps with snow-capped Mt. Kilimanjaro in the backdrop.',
-    location: 'Amboseli, Kenya',
-    region: 'Kenya',
-    basePrice: 3900,
-    duration: '6 Days / 5 Nights',
-    isFeatured: false,
-    images: [
-      'https://images.unsplash.com/photo-1504006833117-8886a355efbf?auto=format&fit=crop&w=1600&q=80',
-    ],
-    packages: [
-      { id: 'p11', name: 'Kilimanjaro View Suite', price: 0, description: 'Direct mountain view luxury tent.' }
+      { id: 'p11', name: 'Corbett Riverbank Jungle Resort', price: 0, description: 'Riverside cottage suite with Dhikala safari access.' }
     ]
   }
 ];

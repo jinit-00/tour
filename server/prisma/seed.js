@@ -114,63 +114,63 @@ async function main() {
       ])
     },
     {
-      title: 'Uganda Savanna Elephant & Primate Expedition',
-      slug: 'uganda-elephant-safari',
-      description: 'Photograph massive savanna elephant herds along the Kazinga Channel and Murchison Falls.',
-      location: 'Uganda',
-      basePrice: 4300,
-      duration: '7 Days / 6 Nights',
+      title: 'Pench Tiger Reserve & Mowgli Jungle Safari',
+      slug: 'pench-tiger-safari',
+      description: 'Track royal Bengal tigers, leopards, and dholes across the undulating teak forests that inspired The Jungle Book.',
+      location: 'Pench, India',
+      basePrice: 3100,
+      duration: '6 Days / 5 Nights',
+      isFeatured: false,
+      imagesJson: JSON.stringify([
+        'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80'
+      ])
+    },
+    {
+      title: 'Kanha National Park Sal Forest Tiger Expedition',
+      slug: 'kanha-tiger-safari',
+      description: 'Photograph majestic tigers, barasingha swamp deer, and Indian gaurs amidst the sprawling sal meadows of Kanha.',
+      location: 'Kanha, India',
+      basePrice: 3300,
+      duration: '6 Days / 5 Nights',
+      isFeatured: false,
+      imagesJson: JSON.stringify([
+        'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?auto=format&fit=crop&w=1600&q=80'
+      ])
+    },
+    {
+      title: 'Bandhavgarh National Park High-Density Tiger Safari',
+      slug: 'bandhavgarh-tiger-safari',
+      description: 'Experience India’s highest tiger density among ancient cliffs, bamboo thickets, and Tala forest zones.',
+      location: 'Bandhavgarh, India',
+      basePrice: 3400,
+      duration: '6 Days / 5 Nights',
+      isFeatured: false,
+      imagesJson: JSON.stringify([
+        'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80'
+      ])
+    },
+    {
+      title: 'Tadoba National Park Bamboo Forest Tiger Safari',
+      slug: 'tadoba-tiger-safari',
+      description: 'Track the famed tigers, sloth bears, and wild dogs of Tadoba Andhari Reserve across dense teak and bamboo jungles.',
+      location: 'Tadoba, India',
+      basePrice: 3200,
+      duration: '6 Days / 5 Nights',
+      isFeatured: false,
+      imagesJson: JSON.stringify([
+        'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80'
+      ])
+    },
+    {
+      title: 'Jim Corbett National Park Himalayan Foothills Safari',
+      slug: 'jim-corbett-safari',
+      description: 'Photograph tigers, wild Asiatic elephants, and gharials along the Ramganga river in the foothills of the Himalayas.',
+      location: 'Jim Corbett, India',
+      basePrice: 2950,
+      duration: '6 Days / 5 Nights',
       isFeatured: false,
       imagesJson: JSON.stringify([
         'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=1600&q=80'
-      ])
-    },
-    {
-      title: 'Greater Kruger Rhino Conservation Expedition',
-      slug: 'kruger-rhino-safari',
-      description: 'Photograph wild White and Black Rhinos alongside anti-poaching units in private reserves.',
-      location: 'Kruger, South Africa',
-      basePrice: 3750,
-      duration: '7 Days / 6 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=1600&q=80'
-      ])
-    },
-    {
-      title: 'Kaziranga Wild Buffalo & Wetland Safari',
-      slug: 'kaziranga-buffalo-safari',
-      description: 'Track massive wild water buffalo herds roaming the lush tall elephant grasslands of Kaziranga.',
-      location: 'Kaziranga, India',
-      basePrice: 3000,
-      duration: '6 Days / 5 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1600&q=80'
-      ])
-    },
-    {
-      title: 'Camargue Wild Horse & Wetland Expedition',
-      slug: 'camargue-horse-safari',
-      description: 'Capture iconic galloping white horses charging through shallow coastal salt marshes.',
-      location: 'Camargue, France',
-      basePrice: 3600,
-      duration: '5 Days / 4 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=1600&q=80'
-      ])
-    },
-    {
-      title: 'Amboseli Kilimanjaro Elephant Gathering',
-      slug: 'amboseli-safari',
-      description: 'Photograph giant tusker elephants wading through swamps with snow-capped Mt. Kilimanjaro in the backdrop.',
-      location: 'Amboseli, Kenya',
-      basePrice: 3900,
-      duration: '6 Days / 5 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1504006833117-8886a355efbf?auto=format&fit=crop&w=1600&q=80'
       ])
     }
   ];

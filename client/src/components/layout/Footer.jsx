@@ -73,11 +73,11 @@ export default function Footer() {
           <div className="space-y-3">
             <h4 className="text-xs uppercase font-mono text-pine-800 font-bold tracking-widest">Destinations</h4>
             <ul className="space-y-2 text-sm text-charcoal-700">
-              <li>Gir National Park, India</li>
-              <li>Sanjay Dubri, India</li>
-              <li>Jawai Granite Hills, India</li>
-              <li>Ranthambore Fort, India</li>
-              <li>Panna Tiger Reserve, India</li>
+              <li>Gir Asiatic Lion Sanctuary</li>
+              <li>Jawai Granite Hills</li>
+              <li>Bandhavgarh & Kanha</li>
+              <li>Pench & Tadoba</li>
+              <li>Jim Corbett National Park</li>
             </ul>
           </div>
 

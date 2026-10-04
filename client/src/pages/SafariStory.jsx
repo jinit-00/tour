@@ -49,8 +49,9 @@ export default function SafariStory() {
 
   const isGir = slug?.includes('gir');
   const isJawai = slug?.includes('jawai');
-  const isTiger = slug?.includes('tiger') || slug?.includes('ranthambore');
-  const isRhino = slug?.includes('rhino') || slug?.includes('kruger');
+  const isDeer = slug?.includes('deer') || slug?.includes('velavadar');
+  const isCorbett = slug?.includes('corbett');
+  const isTiger = slug?.includes('tiger') || slug?.includes('ranthambore') || slug?.includes('pench') || slug?.includes('kanha') || slug?.includes('bandhavgarh') || slug?.includes('tadoba') || slug?.includes('panna') || slug?.includes('sanjay');
 
   const storyData = isGir
     ? {
@@ -76,43 +77,43 @@ export default function SafariStory() {
         ],
         bestSeason: 'October – April (Pleasant Weather & Excellent Leopard Sightings)'
       }
-    : isTiger
+    : isDeer
     ? {
-        animalName: 'Royal Bengal Tiger',
-        tagline: 'The Shadow Prowler of Ranthambore',
-        photo: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=2400&q=85',
+        animalName: 'Blackbuck Antelope & Indian Wolf',
+        tagline: 'The Golden Savanna Dwellers of Velavadar',
+        photo: 'https://images.unsplash.com/photo-1484406566174-9da000fda645?auto=format&fit=crop&w=2400&q=85',
         highlights: [
-          'High-Density Territorial Tigress Tracking Near Banyan Ruins',
-          'Sambar & Axis Deer Alarm Call Tracking in Bamboo Thickets',
-          'Lake-Side Golden Hour Water Sightings'
+          'Photograph high-speed sprinting and leaping blackbuck antelopes in open grasslands',
+          'Track elusive Indian grey wolves, striped hyenas, and jungle cats',
+          'Capture one of the world’s largest harrier roosts during golden hour'
         ],
-        bestSeason: 'October – April (Crisp Morning Light & Waterhole Sightings)',
-        accommodation: 'Heritage Jungle Lodge with Private Plunge Pools & Naturalist Library'
+        bestSeason: 'November – March (Pleasant Grassland Climate & High Harrier Roost Activity)',
+        accommodation: 'Eco-Friendly Heritage Safari Lodge with Views Overlooking the Grasslands'
       }
-    : isRhino
+    : isCorbett
     ? {
-        animalName: 'White & Black Rhino',
-        tagline: 'The Prehistoric Giants of Greater Kruger',
-        photo: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=2400&q=85',
+        animalName: 'Royal Bengal Tiger & Asiatic Elephant',
+        tagline: 'The Himalayan Foothills Wilderness of Jim Corbett',
+        photo: 'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=2400&q=85',
         highlights: [
-          'White & Black Rhino Tracking in Private Conservation Reserves',
-          'K9 Anti-Poaching Unit Field Ride-Alongs & Satellite Collar Monitoring',
-          'Sabie River Big 5 Waterhole Crossings'
+          'Photograph wild Asiatic elephant herds and tigers along the Ramganga river',
+          'Explore the iconic Dhikala and Bijrani grasslands framed by Himalayan foothills',
+          'Observe rare gharials, otters, and over 600 species of Himalayan birds'
         ],
-        bestSeason: 'May – September (Dry Winter Season with Optimal Vegetation Clarity)',
-        accommodation: 'Sabie River Eco-Lodge with Timber Decks Overlooking Riverbeds'
+        bestSeason: 'November – June (Dhikala Zone Open & Peak Riverbed Wildlife Movements)',
+        accommodation: 'Riverside Jungle Lodge with Panoramic Forest & Mountain Views'
       }
     : {
-        animalName: 'African Lion',
-        tagline: 'The Apex Monarch of the Savanna',
-        photo: 'https://images.unsplash.com/photo-1534177616072-ef7dc120449d?auto=format&fit=crop&w=2400&q=85',
+        animalName: 'Royal Bengal Tiger',
+        tagline: 'The Apex Monarch of Indian Forests',
+        photo: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=2400&q=85',
         highlights: [
-          'Mara River Wildebeest Crossings & Lion Ambush Dynamics',
-          'Cheetah Sprint Tracking in Open Grasslands',
-          'Tree-Climbing Leopard Spotting in Seronera Valley'
+          'High-Density Territorial Tiger Tracking with Veteran Native Trackers',
+          'Sambar & Spotted Deer Alarm Call Triangulation in Deep Forest Trails',
+          'Golden Hour Waterhole & Forest River Crossing Encounters'
         ],
-        bestSeason: 'July – October (Great Migration & Dry Season)',
-        accommodation: 'Luxury Canvas Tented Camp with Private Decks & Solar Power'
+        bestSeason: 'October – May (Crisp Morning Light & High Waterhole Activity)',
+        accommodation: 'Luxury Safari Jungle Lodge with Naturalist Library & Open-Air Campfire Decks'
       };
 
   return (
