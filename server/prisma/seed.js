@@ -170,7 +170,19 @@ async function main() {
       duration: '6 Days / 5 Nights',
       isFeatured: false,
       imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=1600&q=80'
+        'https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg'
+      ])
+    },
+    {
+      title: 'Chitwan National Park One-Horned Rhino Safari',
+      slug: 'chitwan-rhino-safari',
+      description: 'Track and photograph greater one-horned rhinoceroses, wild elephants, and gharials across the sal forests and wetlands of Chitwan.',
+      location: 'Chitwan, Nepal',
+      basePrice: 2850,
+      duration: '6 Days / 5 Nights',
+      isFeatured: false,
+      imagesJson: JSON.stringify([
+        'https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?auto=format&fit=crop&w=1600&q=80'
       ])
     }
   ];
@@ -179,7 +191,7 @@ async function main() {
     await prisma.tour.create({ data: safari });
   }
 
-  console.log('✅ 11 Exact Wildlife Safari templates seeded successfully!');
+  console.log('✅ 12 Exact Wildlife Safari templates seeded successfully!');
 }
 
 main()

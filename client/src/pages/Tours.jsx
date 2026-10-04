@@ -28,7 +28,7 @@ export default function Tours() {
     }
   };
 
-  const locations = ['All', 'Madhya Pradesh', 'Gujarat', 'Rajasthan', 'Maharashtra', 'Uttarakhand'];
+  const locations = ['All', 'Madhya Pradesh', 'Gujarat', 'Rajasthan', 'Maharashtra', 'Uttarakhand', 'Nepal'];
 
   return (
     <div className="pt-24 sm:pt-28 pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-sand-gradient min-h-screen">
@@ -41,7 +41,7 @@ export default function Tours() {
           Wildlife Photography Safaris
         </h1>
         <p className="text-xs sm:text-sm text-charcoal-700 max-w-2xl mx-auto font-normal">
-          Explore our 11 signature small-group departures featuring Gir, Sanjay Dubri, Jawai, Ranthambore, Velavadar, Panna, Pench, Kanha, Bandhavgarh, Tadoba, and Jim Corbett. Select any safari card to explore each destination.
+          Explore our signature small-group departures featuring Gir, Sanjay Dubri, Jawai, Ranthambore, Velavadar, Panna, Pench, Kanha, Bandhavgarh, Tadoba, Jim Corbett, and Chitwan. Select any safari card to explore each destination.
         </p>
       </div>
 

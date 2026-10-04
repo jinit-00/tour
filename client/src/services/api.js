@@ -1723,6 +1723,23 @@ const FALLBACK_TOURS = [
     })),
     hotels: CORBETT_HOTELS,
     hotelDetails: CORBETT_HOTELS[0]
+  },
+  {
+    id: '12',
+    title: 'Chitwan National Park One-Horned Rhino Safari',
+    slug: 'chitwan-rhino-safari',
+    description: 'Track and photograph greater one-horned rhinoceroses, wild elephants, and gharials across the sal forests and wetlands of Chitwan.',
+    location: 'Chitwan, Nepal',
+    region: 'Terai Lowlands',
+    basePrice: 2850,
+    duration: '6 Days / 5 Nights',
+    isFeatured: false,
+    images: [
+      'https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?auto=format&fit=crop&w=1600&q=80',
+    ],
+    packages: [
+      { id: 'p12', name: 'Chitwan Riverside Rhino Lodge', price: 0, description: 'Sal forest eco-lodge overlooking Rapti River with river canoe and jeep safaris.' }
+    ]
   }
 ];
 
@@ -1759,16 +1776,16 @@ export const resendOtp = (data) => API.post('/auth/resend-otp', data);
 export const loginUser = (data) => API.post('/auth/login', data);
 export const getCurrentUser = () => API.get('/auth/me');
 
-// Tours API with Guaranteed 11 Safaris Output
+// Tours API with Guaranteed 12 Safaris Output
 export const getTours = async (params) => {
   try {
     const res = await API.get('/tours', { params });
-    if (Array.isArray(res.data) && res.data.length >= 11) {
+    if (Array.isArray(res.data) && res.data.length >= 12) {
       return res;
     }
     return { data: filterFallbackTours(params) };
   } catch (err) {
-    console.warn('API unavailable, returning 11 fallback safaris:', err.message);
+    console.warn('API unavailable, returning 12 fallback safaris:', err.message);
     return { data: filterFallbackTours(params) };
   }
 };

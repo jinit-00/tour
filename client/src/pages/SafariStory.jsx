@@ -55,6 +55,7 @@ export default function SafariStory() {
   const isTadoba = slug?.includes('tadoba');
   const isDeer = slug?.includes('deer') || slug?.includes('velavadar');
   const isCorbett = slug?.includes('corbett');
+  const isChitwan = slug?.includes('chitwan') || slug?.includes('rhino');
   const isTiger = slug?.includes('tiger') || slug?.includes('ranthambore') || slug?.includes('panna') || slug?.includes('sanjay');
 
   const storyData = isGir
@@ -152,6 +153,18 @@ export default function SafariStory() {
           'Observe rare gharials, otters, and over 600 species of Himalayan birds'
         ],
         bestSeason: 'November – June (Dhikala Zone Open & Peak Riverbed Wildlife Movements)'
+      }
+    : isChitwan
+    ? {
+        animalName: 'Greater One-Horned Rhinoceros',
+        tagline: 'The Prehistoric Grassland Giants of Chitwan',
+        photo: 'https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?auto=format&fit=crop&w=2400&q=85',
+        highlights: [
+          'Track greater one-horned rhinoceroses across tall elephant grass and wetlands',
+          'Float along Rapti River to photograph mugger crocodiles, gharials & kingfishers',
+          'Jeep safaris and guided jungle tracking through dense sub-tropical sal forests'
+        ],
+        bestSeason: 'October – March (Clear Himalayan Views & Ideal Wetland Wildlife Activity)'
       }
     : {
         animalName: 'Royal Bengal Tiger',
