@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Camera, ArrowRight, Users, ShieldCheck } from 'lucide-react';
 import FullWidthSafariBlock from '../components/tours/FullWidthSafariBlock';
 import logoImg from '../assets/logo.png';
+import heroBgImg from '../assets/hero-bg.jpg';
 
 export default function Home() {
   const [tours, setTours] = useState([]);
@@ -39,12 +40,12 @@ export default function Home() {
           className="absolute inset-0 z-0"
         >
           <img
-            src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=2000&q=90"
-            alt="Wilderness Savannah"
-            className="w-full h-full object-cover scale-110"
+            src={heroBgImg}
+            alt="JungleE Wildlife Expeditions Untamed Frontiers"
+            className="w-full h-full object-cover scale-105 object-center"
           />
-          {/* Subtle Sand Overlay Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-sand-900/80 via-sand-800/60 to-sand-800/95" />
+          {/* Subtle Sand/Vignette Overlay Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-b from-charcoal-950/40 via-sand-900/30 to-sand-900/90" />
         </motion.div>
 
         {/* Hero Content */}
