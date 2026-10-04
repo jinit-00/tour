@@ -164,7 +164,7 @@ async function main() {
     {
       title: 'Jim Corbett National Park Himalayan Foothills Safari',
       slug: 'jim-corbett-safari',
-      description: 'Photograph tigers, wild Asiatic elephants, and gharials along the Ramganga river in the foothills of the Himalayas.',
+      description: "Jim Corbett National Park, located in Uttarakhand, is one of India’s oldest and most renowned wildlife destinations. Established in 1936, the park is known for its forests, grasslands, rivers, and Himalayan foothills, creating a diverse habitat for wildlife.\n\nThe park is famous for Bengal tigers and is also home to leopards, elephants, sloth bears, sambar, chital, barking deer, crocodiles, and hundreds of bird species. Its varied landscapes provide opportunities to experience wildlife across forests, riverbeds, and open grasslands.\n\nCorbett offers a classic Indian jungle safari experience, combining rich biodiversity with beautiful Himalayan landscapes. For photographers and wildlife enthusiasts, the park provides opportunities to observe and capture some of the country’s most iconic wildlife in a remarkable natural setting.",
       location: 'Jim Corbett, India',
       basePrice: 2950,
       duration: '6 Days / 5 Nights',
