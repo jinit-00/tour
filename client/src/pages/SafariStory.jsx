@@ -49,9 +49,10 @@ export default function SafariStory() {
 
   const isGir = slug?.includes('gir');
   const isJawai = slug?.includes('jawai');
+  const isPench = slug?.includes('pench');
   const isDeer = slug?.includes('deer') || slug?.includes('velavadar');
   const isCorbett = slug?.includes('corbett');
-  const isTiger = slug?.includes('tiger') || slug?.includes('ranthambore') || slug?.includes('pench') || slug?.includes('kanha') || slug?.includes('bandhavgarh') || slug?.includes('tadoba') || slug?.includes('panna') || slug?.includes('sanjay');
+  const isTiger = slug?.includes('tiger') || slug?.includes('ranthambore') || slug?.includes('kanha') || slug?.includes('bandhavgarh') || slug?.includes('tadoba') || slug?.includes('panna') || slug?.includes('sanjay');
 
   const storyData = isGir
     ? {
@@ -76,6 +77,18 @@ export default function SafariStory() {
           'Exclusive open 4x4 gypsies with experienced local trackers and naturalist guides'
         ],
         bestSeason: 'October – April (Pleasant Weather & Excellent Leopard Sightings)'
+      }
+    : isPench
+    ? {
+        animalName: 'Pench Leopard & Royal Bengal Tiger',
+        tagline: 'The Legendary Mowgli Wilderness of Pench',
+        photo: '/pench-safari.jpg',
+        highlights: [
+          'Photograph tree-dwelling leopards and Bengal tigers in teak forest canopies',
+          'Track wild dholes (Asiatic wild dogs), sloth bears, and gaur herds',
+          'Experience open 4x4 safari drives across Turia and Touriya buffer zones'
+        ],
+        bestSeason: 'October – May (Optimal Teak Forest Lighting & Waterhole Activity)'
       }
     : isDeer
     ? {

@@ -1581,7 +1581,7 @@ const FALLBACK_TOURS = [
     duration: '6 Days / 5 Nights',
     isFeatured: false,
     images: [
-      'https://images.unsplash.com/photo-1589656966895-2f33e7653819?auto=format&fit=crop&w=1600&q=80',
+      '/pench-safari.jpg',
     ],
     packages: [
       { id: 'p7', name: 'Pench Treehouse Jungle Lodge', price: 0, description: 'Luxury machan cottage with open Gypsy 4x4 safaris.' }
