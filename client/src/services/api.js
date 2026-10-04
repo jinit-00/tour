@@ -1572,6 +1572,205 @@ export const PANNA_HOTELS = [
   }
 ];
 
+export const PENCH_HOTELS = [
+  {
+    "id": "kohka-wilderness-camp",
+    "name": "Kohka Wilderness Camp",
+    "tagline": "Eco-Wilderness Camp by Kohka Lake & Pench Tiger Corridor",
+    "price": 0,
+    "description": "Kohka Wilderness Camp offers rustic safari living by Kohka Lake near Turia Gate in Pench National Park, featuring air-conditioned Deluxe Cottages, a swimming pool, native wildlife tracking, and traditional bush meals.",
+    "amenities": [
+      "Swimming Pool",
+      "Multi-Cuisine Restaurant",
+      "Deluxe AC Cottages",
+      "Jungle Safaris & Nature Trails",
+      "Lush Forest Lawns",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+      "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+      "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+      "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+      "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+      "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+      "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+      "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+      "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png",
+      "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "kohka-deluxe-cottage",
+        "name": "Deluxe Cottage",
+        "price": 0,
+        "bedType": "1 Double Bed",
+        "view": "Jungle & Lake View",
+        "roomSize": "210 sq.ft",
+        "description": "Deluxe Cottage offering 210 sq.ft of rustic wilderness accommodation with air conditioning, private bathroom, sit-out porch, and serene jungle views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+          "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kayo-resort-pench",
+    "name": "Kayo Resort Pench",
+    "tagline": "Luxury Riverside Resort with Private Pool Villas & Infinity Pool",
+    "price": 75,
+    "description": "Kayo Resort Pench is Pench's premier riverside luxury retreat located in Gram Utariya near Khawasa, featuring luxury private pool villas, riverfront rooms with Jacuzzis, an infinity pool, spa, and gourmet wilderness dining.",
+    "amenities": [
+      "Infinity Swimming Pool",
+      "Private Plunge Pools",
+      "Riverside Jacuzzis",
+      "Fine Dining Restaurant",
+      "Spa & Wellness Center",
+      "EV Charging Station",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+      "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png",
+      "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
+      "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png",
+      "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+      "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png",
+      "https://r1imghtlak.mmtcdn.com/b3711454-f4a9-4096-8e3e-7c25183f7b10.png",
+      "https://r1imghtlak.mmtcdn.com/63e7b4b3-8540-44ac-9bf1-ff210318bc32.png",
+      "https://r1imghtlak.mmtcdn.com/ecaee98d-a999-413d-abfa-1c015552c443.png",
+      "https://r1imghtlak.mmtcdn.com/ba8dfd01-1d06-462c-83fc-fe711b23c75c.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "kayo-jungle-deluxe-room",
+        "name": "Jungle Deluxe Room",
+        "price": 0,
+        "bedType": "1 King Bed",
+        "view": "Garden View",
+        "roomSize": "750 sq.ft",
+        "description": "Jungle Deluxe Room offering 750 sq.ft of spacious living with a king bed, garden view balcony, work desk, sofa seating, and luxury en-suite bathroom.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+          "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png",
+          "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
+          "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png"
+        ]
+      },
+      {
+        "id": "kayo-river-premium-jacuzzi",
+        "name": "River Premium (with Jacuzzi)",
+        "price": 60,
+        "bedType": "1 King Bed",
+        "view": "River View",
+        "roomSize": "650 sq.ft",
+        "description": "River Premium room featuring 650 sq.ft of luxury with a private in-room Jacuzzi, open sit-out verandah facing the river, and plush king bedding.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+          "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png",
+          "https://r1imghtlak.mmtcdn.com/b3711454-f4a9-4096-8e3e-7c25183f7b10.png",
+          "https://r1imghtlak.mmtcdn.com/63e7b4b3-8540-44ac-9bf1-ff210318bc32.png"
+        ]
+      },
+      {
+        "id": "kayo-luxury-pool-villa",
+        "name": "Luxury Pool Villa",
+        "price": 120,
+        "bedType": "1 King Bed",
+        "view": "Private Pool & Forest View",
+        "roomSize": "215 sq.ft",
+        "description": "Luxury Pool Villa featuring a private plunge pool, outdoor sun deck, open-air shower, king bed, and secluded jungle garden ambiance.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/ecaee98d-a999-413d-abfa-1c015552c443.png",
+          "https://r1imghtlak.mmtcdn.com/ba8dfd01-1d06-462c-83fc-fe711b23c75c.png",
+          "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+          "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png"
+        ]
+      },
+      {
+        "id": "kayo-royal-pool-villa",
+        "name": "Royal Pool Villa",
+        "price": 180,
+        "bedType": "1 King Bed",
+        "view": "Private Pool & Riverfront View",
+        "roomSize": "250 sq.ft",
+        "description": "Royal Pool Villa offering private swimming pool, panoramic river views, dedicated butler service, and luxury bath amenities.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
+          "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png",
+          "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+          "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "vraksh-by-aranyak",
+    "name": "Vraksh by Aranyak",
+    "tagline": "Tranquil Forest Resort Nestled in the Buffers of Pench Tiger Reserve",
+    "price": 40,
+    "description": "Vraksh by Aranyak (Aranyak Resort) is an eco-sensitive forest retreat situated in Village Kohka near Pench Tiger Reserve, offering handcrafted Grand Rooms, Luxury Cottages, swimming pool, open lawns, bonfire experiences, and naturalist-guided jungle safaris.",
+    "amenities": [
+      "Swimming Pool",
+      "Garden View Cottages",
+      "Multi-Cuisine Restaurant",
+      "Bonfire & Yoga Lawn",
+      "Free Wi-Fi",
+      "Guided Jungle Safaris",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+      "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+      "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+      "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+      "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+      "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+      "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+      "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+      "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+      "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "vraksh-grand-room",
+        "name": "Grand Room",
+        "price": 0,
+        "bedType": "1 King Bed",
+        "view": "Garden View",
+        "roomSize": "420 sq.ft",
+        "description": "Grand Room offering 420 sq.ft of comfortable forest-edge living, king bedding, air conditioning, modern bathroom, and private balcony overlooking the lawns.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+          "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg"
+        ]
+      },
+      {
+        "id": "vraksh-luxury-cottage",
+        "name": "Luxury Cottage",
+        "price": 50,
+        "bedType": "1 King Bed",
+        "view": "Forest & Garden View",
+        "roomSize": "540 sq.ft",
+        "description": "Luxury Cottage offering 540 sq.ft of spacious wooden cottage architecture, private sit-out verandah, king bedding, premium bathroom fittings, and serene forest views.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+          "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+          "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+          "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
+        ]
+      }
+    ]
+  }
+];
+
 const FALLBACK_TOURS = [
   {
     id: '1',
@@ -1713,9 +1912,14 @@ const FALLBACK_TOURS = [
     images: [
       '/pench-safari.jpg',
     ],
-    packages: [
-      { id: 'p7', name: 'Pench Treehouse Jungle Lodge', price: 0, description: 'Luxury machan cottage with open Gypsy 4x4 safaris.' }
-    ]
+    packages: PENCH_HOTELS.map(h => ({
+      id: h.id,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      price: h.price,
+      description: h.tagline
+    })),
+    hotels: PENCH_HOTELS,
+    hotelDetails: PENCH_HOTELS[0]
   },
   {
     id: '8',
