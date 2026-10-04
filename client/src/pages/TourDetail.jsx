@@ -249,9 +249,6 @@ export default function TourDetail() {
             />
             {/* Small gradient overlay at bottom of photo */}
             <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
-            <div className="absolute top-4 left-4 bg-pine-800 text-sand-950 px-4 py-1.5 rounded-full text-xs font-mono font-bold shadow-md">
-              {tour.duration}
-            </div>
           </div>
 
           {/* Small subtle gradient divider between photo and white/sand details space */}
@@ -800,7 +797,7 @@ export default function TourDetail() {
                   disabled={bookingLoading}
                   className="w-full py-3 rounded-xl bg-pine-800 hover:bg-pine-700 text-sand-950 font-bold text-xs shadow-xl transition-all flex items-center justify-center gap-2"
                 >
-                  <span>{bookingLoading ? 'Processing...' : user ? 'Book Expedition Now' : 'Sign In to Reserve'}</span>
+                  <span>{bookingLoading ? 'Processing...' : user ? 'Book Your Safari Now' : 'Sign In to Reserve'}</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </form>

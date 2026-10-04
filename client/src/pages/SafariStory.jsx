@@ -327,8 +327,8 @@ export default function SafariStory() {
 
           <div className="inline-flex items-center justify-center gap-6 bg-sand-900 px-6 py-3 rounded-2xl border border-sand-700">
             <div className="text-center">
-              <span className="text-[10px] font-mono text-charcoal-600 uppercase block">Expedition Length</span>
-              <span className="text-sm sm:text-base font-bold text-charcoal-900">{tour?.duration} · {tour?.location}</span>
+              <span className="text-[10px] font-mono text-charcoal-600 uppercase block">Expedition Destination</span>
+              <span className="text-sm sm:text-base font-bold text-charcoal-900">{tour?.location}</span>
             </div>
           </div>
 
@@ -337,7 +337,7 @@ export default function SafariStory() {
               to={`/tours/${tour?.slug}`}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-pine-800 hover:bg-pine-700 text-sand-950 font-black text-base shadow-2xl transition-all hover:scale-105"
             >
-              <span>BOOK THIS SAFARI NOW</span>
+              <span>BOOK YOUR SAFARI NOW</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
