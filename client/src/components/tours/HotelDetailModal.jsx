@@ -52,9 +52,21 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
             
             {/* Title & Header */}
             <div className="space-y-2">
-              <h2 className="text-2xl sm:text-4xl font-black tracking-tight uppercase text-charcoal-950">
-                {hotel.name}
-              </h2>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h2 className="text-2xl sm:text-4xl font-black tracking-tight uppercase text-charcoal-950">
+                  {hotel.name}
+                </h2>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${hotel.name}, ${hotel.address || ''}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-sand-900 border border-sand-700 hover:border-pine-800 text-xs font-mono font-bold text-pine-800 hover:bg-sand-800 transition-all shadow-sm"
+                  title="Open Location on Google Maps"
+                >
+                  <MapPin className="w-3.5 h-3.5 text-pine-800" />
+                  <span>Google Maps Location</span>
+                </a>
+              </div>
               {hotel.tagline && (
                 <p className="text-sm font-semibold text-pine-800 font-mono">
                   {hotel.tagline}

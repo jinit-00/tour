@@ -349,9 +349,22 @@ export default function TourDetail() {
                             <h4 className="text-base sm:text-lg font-bold text-charcoal-950 leading-snug">
                               {hotel.name}
                             </h4>
-                            <p className="text-xs text-pine-800 font-medium font-mono pt-0.5">
-                              {hotel.tagline}
-                            </p>
+                            <div className="flex items-center justify-between gap-2 flex-wrap pt-0.5">
+                              <p className="text-xs text-pine-800 font-medium font-mono">
+                                {hotel.tagline}
+                              </p>
+                              <a
+                                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${hotel.name}, ${hotel.address || tour?.location || ''}`)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="inline-flex items-center gap-1 text-[11px] font-mono text-pine-800 hover:text-pine-700 hover:underline font-semibold"
+                                title="Open Location on Google Maps"
+                              >
+                                <MapPin className="w-3 h-3 text-pine-800 shrink-0" />
+                                <span>Location</span>
+                              </a>
+                            </div>
                           </div>
 
                           <p className="text-xs text-charcoal-700 font-normal leading-relaxed line-clamp-2">
@@ -371,14 +384,28 @@ export default function TourDetail() {
 
                       {/* Card Bottom Actions */}
                       <div className="p-5 pt-0 flex items-center justify-between gap-2.5 border-t border-sand-700/60 mt-3 pt-3">
-                        <button
-                          type="button"
-                          onClick={() => handleOpenHotelDetails(hotel)}
-                          className="px-3.5 py-2 rounded-xl text-xs font-bold text-charcoal-900 hover:text-pine-800 hover:bg-sand-800 transition-colors flex items-center gap-1"
-                        >
-                          <Eye className="w-3.5 h-3.5" />
-                          <span>View Details</span>
-                        </button>
+                        <div className="flex items-center gap-1.5 sm:gap-2">
+                          <button
+                            type="button"
+                            onClick={() => handleOpenHotelDetails(hotel)}
+                            className="px-3.5 py-2 rounded-xl text-xs font-bold text-charcoal-900 hover:text-pine-800 hover:bg-sand-800 transition-colors flex items-center gap-1"
+                          >
+                            <Eye className="w-3.5 h-3.5" />
+                            <span>View Details</span>
+                          </button>
+
+                          <a
+                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${hotel.name}, ${hotel.address || tour?.location || ''}`)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="px-3 py-2 rounded-xl text-xs font-bold text-charcoal-900 hover:text-pine-800 hover:bg-sand-800 transition-colors flex items-center gap-1 font-mono"
+                            title="Open Google Maps Location"
+                          >
+                            <MapPin className="w-3.5 h-3.5 text-pine-800" />
+                            <span>Location</span>
+                          </a>
+                        </div>
 
                         <button
                           type="button"
