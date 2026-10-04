@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getTourDetail, createBooking, GIR_HOTELS, JAWAI_HOTELS, SANJAY_DUBRI_HOTELS, VELAVADAR_HOTELS, CORBETT_HOTELS, PANNA_HOTELS, PENCH_HOTELS, CHITWAN_HOTELS, BANDHAVGARH_HOTELS } from '../services/api';
+import { getTourDetail, createBooking, GIR_HOTELS, JAWAI_HOTELS, SANJAY_DUBRI_HOTELS, VELAVADAR_HOTELS, CORBETT_HOTELS, PANNA_HOTELS, PENCH_HOTELS, CHITWAN_HOTELS, BANDHAVGARH_HOTELS, KANHA_HOTELS } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, Hotel, Eye, Plus, Minus, ChevronDown, Clock } from 'lucide-react';
 import HotelDetailModal from '../components/tours/HotelDetailModal';
@@ -34,7 +34,8 @@ export default function TourDetail() {
   const isPench = slug === 'pench-tiger-safari' || slug?.includes('pench');
   const isChitwan = slug === 'chitwan-rhino-safari' || slug?.includes('chitwan') || slug?.includes('rhino');
   const isBandhavgarh = slug === 'bandhavgarh-tiger-safari' || slug?.includes('bandhavgarh');
-  const availableHotels = isGir ? GIR_HOTELS : isJawai ? JAWAI_HOTELS : isSanjay ? SANJAY_DUBRI_HOTELS : isVelavadar ? VELAVADAR_HOTELS : isCorbett ? CORBETT_HOTELS : isPanna ? PANNA_HOTELS : isPench ? PENCH_HOTELS : isChitwan ? CHITWAN_HOTELS : isBandhavgarh ? BANDHAVGARH_HOTELS : (tour?.hotels || []);
+  const isKanha = slug === 'kanha-tiger-safari' || slug?.includes('kanha');
+  const availableHotels = isGir ? GIR_HOTELS : isJawai ? JAWAI_HOTELS : isSanjay ? SANJAY_DUBRI_HOTELS : isVelavadar ? VELAVADAR_HOTELS : isCorbett ? CORBETT_HOTELS : isPanna ? PANNA_HOTELS : isPench ? PENCH_HOTELS : isChitwan ? CHITWAN_HOTELS : isBandhavgarh ? BANDHAVGARH_HOTELS : isKanha ? KANHA_HOTELS : (tour?.hotels || []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -59,6 +60,8 @@ export default function TourDetail() {
           ? CHITWAN_HOTELS
           : (slug === 'bandhavgarh-tiger-safari' || slug?.includes('bandhavgarh'))
           ? BANDHAVGARH_HOTELS
+          : (slug === 'kanha-tiger-safari' || slug?.includes('kanha'))
+          ? KANHA_HOTELS
           : (res.data.hotels || []);
         
         if (hotels.length > 0) {
@@ -297,7 +300,7 @@ export default function TourDetail() {
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <div>
                   <h3 className="text-2xl sm:text-3xl font-black text-charcoal-950 uppercase tracking-tight">
-                    {isGir ? 'Choose Your Gir Stay' : isJawai ? 'Choose Your Jawai Stay' : isSanjay ? 'Choose Your Sanjay Dubri Stay' : isVelavadar ? 'Choose Your Velavadar Stay' : isCorbett ? 'Choose Your Jim Corbett Stay' : isPanna ? 'Choose Your Panna Stay' : isPench ? 'Choose Your Pench Stay' : isChitwan ? 'Choose Your Chitwan Stay' : isBandhavgarh ? 'Choose Your Bandhavgarh Stay' : 'Choose Your Stay'}
+                    {isGir ? 'Choose Your Gir Stay' : isJawai ? 'Choose Your Jawai Stay' : isSanjay ? 'Choose Your Sanjay Dubri Stay' : isVelavadar ? 'Choose Your Velavadar Stay' : isCorbett ? 'Choose Your Jim Corbett Stay' : isPanna ? 'Choose Your Panna Stay' : isPench ? 'Choose Your Pench Stay' : isChitwan ? 'Choose Your Chitwan Stay' : isBandhavgarh ? 'Choose Your Bandhavgarh Stay' : isKanha ? 'Choose Your Kanha Stay' : 'Choose Your Stay'}
                   </h3>
                 </div>
               </div>

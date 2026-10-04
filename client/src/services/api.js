@@ -2255,6 +2255,129 @@ export const BANDHAVGARH_HOTELS = [
   }
 ];
 
+// Official Partner Resorts for Kanha National Park (10 MMT Photos each & exact MMT Room Categories)
+export const KANHA_HOTELS = [
+  {
+    "id": "the-celebration-van-vilas-kanha",
+    "name": "The Celebration Van Vilas Kanha",
+    "tagline": "Eco-Luxury Riverside Safari Resort near Khatia Gate",
+    "price": 0,
+    "description": "The Celebration Van Vilas Kanha is situated along the Banjar River near Khatia Gate in Mocha, Mandla, offering tranquil Rajasthani Cottages, Family Cottages, a large swimming pool, riverside dining, Ayurvedic spa, and naturalist-guided tiger safaris across Kanha Tiger Reserve.",
+    "amenities": [
+      "Swimming Pool",
+      "Ayurvedic Spa & Wellness",
+      "Multi-Cuisine Restaurant",
+      "Banjar Riverfront Deck",
+      "Jungle Safaris & Nature Trails",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+      "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+      "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+      "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+      "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+      "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+      "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+      "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+      "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+      "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "van-vilas-rajasthani-cottage",
+        "name": "Rajasthani Cottage",
+        "price": 0,
+        "bedType": "1 King Bed / 1 Double Bed",
+        "view": "Garden & Forest View",
+        "roomSize": "350 sq.ft",
+        "description": "Rajasthani Cottage featuring fresco bathing facilities, air conditioning, attached modern bathroom, and private sit-out verandah.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+          "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg"
+        ]
+      },
+      {
+        "id": "van-vilas-family-cottage",
+        "name": "Family Cottage",
+        "price": 40,
+        "bedType": "2 Double Beds / 1 King Bed",
+        "view": "Pool & Garden View",
+        "roomSize": "500 sq.ft",
+        "description": "Family Cottage offering 500 sq.ft of spacious family living, air conditioning, pool and garden views, and premium bath amenities.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+          "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+          "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+          "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "aranyak-resort-kanha",
+    "name": "Aranyak Resort Kanha",
+    "tagline": "Tranquil Forest Resort in the Sal Woodlands near Khatiya Gate",
+    "price": 30,
+    "description": "Aranyak Resort Kanha is situated amidst pristine Sal forests in Village Mocha near Khatiya Gate, offering Premium Cottages and A/C Cottages, swimming pool, bar & barbecue, spa treatments, and expert naturalist-guided safari tracking.",
+    "amenities": [
+      "Swimming Pool",
+      "Multi-Cuisine Dining & Bar",
+      "Spa & Wellness Services",
+      "Bonfire & Nature Walks",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png",
+      "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+      "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+      "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png",
+      "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
+      "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png",
+      "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+      "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png",
+      "https://r1imghtlak.mmtcdn.com/b3711454-f4a9-4096-8e3e-7c25183f7b10.png",
+      "https://r1imghtlak.mmtcdn.com/63e7b4b3-8540-44ac-9bf1-ff210318bc32.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "aranyak-kanha-premium-cottage",
+        "name": "Premium Cottage",
+        "price": 0,
+        "bedType": "1 King Bed",
+        "view": "Jungle View",
+        "roomSize": "320 sq.ft",
+        "description": "Premium Cottage offering 320 sq.ft of serene wilderness living, air conditioning, heaters, attached modern bathroom, and private sit-out veranda.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png",
+          "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+          "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+          "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png"
+        ]
+      },
+      {
+        "id": "aranyak-kanha-ac-cottage",
+        "name": "A/C Cottage",
+        "price": 35,
+        "bedType": "1 King Bed",
+        "view": "Garden & Forest View",
+        "roomSize": "280 sq.ft",
+        "description": "A/C Cottage with climate control, comfortable king bedding, private balcony, tea/coffee maker, and attached bathroom.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
+          "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png",
+          "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+          "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png"
+        ]
+      }
+    ]
+  }
+];
+
 const FALLBACK_TOURS = [
   {
     id: '1',
@@ -2418,9 +2541,14 @@ const FALLBACK_TOURS = [
     images: [
       '/kanha-safari.png',
     ],
-    packages: [
-      { id: 'p8', name: 'Kanha Meadow Jungle Lodge', price: 0, description: 'Sal forest suite with naturalist-guided morning drives.' }
-    ]
+    packages: KANHA_HOTELS.map(h => ({
+      id: h.id,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      price: h.price,
+      description: h.tagline
+    })),
+    hotels: KANHA_HOTELS,
+    hotelDetails: KANHA_HOTELS[0]
   },
   {
     id: '9',
