@@ -176,7 +176,7 @@ async function main() {
     {
       title: 'Chitwan National Park One-Horned Rhino Safari',
       slug: 'chitwan-rhino-safari',
-      description: 'Track and photograph greater one-horned rhinoceroses, wild elephants, and gharials across the sal forests and wetlands of Chitwan.',
+      description: "Chitwan National Park, located in southern Nepal, is one of the country’s most famous wildlife destinations and a UNESCO World Heritage Site. Its forests, grasslands, wetlands, and rivers create a diverse landscape in the Himalayan foothills.\n\nThe park is known for its greater one-horned rhinoceros and is also home to Bengal tigers, leopards, sloth bears, wild elephants, crocodiles, deer, and hundreds of bird species. The rivers and wetlands add important habitats for both wildlife and birdlife.\n\nChitwan offers a unique combination of wildlife, landscapes, and Nepalese wilderness. For photographers, it provides opportunities to capture rhinos, birds, crocodiles, and other wildlife while experiencing a completely different ecosystem from India's central forest reserves.",
       location: 'Chitwan, Nepal',
       basePrice: 2850,
       duration: '6 Days / 5 Nights',
