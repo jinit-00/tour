@@ -128,7 +128,7 @@ async function main() {
     {
       title: 'Kanha National Park Sal Forest Tiger Expedition',
       slug: 'kanha-tiger-safari',
-      description: 'Photograph majestic tigers, barasingha swamp deer, and Indian gaurs amidst the sprawling sal meadows of Kanha.',
+      description: "Kanha National Park, located in Madhya Pradesh, is one of India’s most celebrated wildlife reserves and a major stronghold for Bengal tigers. Its sal forests, bamboo groves, open meadows, and streams create one of the most beautiful landscapes in central India.\n\nKanha is home to Bengal tigers, leopards, wild dogs, sloth bears, gaur, sambar, chital, and many bird species. The reserve is also known for the hard-ground barasingha, whose conservation has become one of Kanha’s notable success stories.\n\nWith its scenic forests, diverse wildlife, and expansive meadows, Kanha offers an immersive safari experience for photographers and nature enthusiasts. It is a destination where the landscape itself becomes an important part of the wildlife story.",
       location: 'Kanha, India',
       basePrice: 3300,
       duration: '6 Days / 5 Nights',
