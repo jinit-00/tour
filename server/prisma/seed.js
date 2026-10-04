@@ -116,7 +116,7 @@ async function main() {
     {
       title: 'Pench Tiger Reserve & Mowgli Jungle Safari',
       slug: 'pench-tiger-safari',
-      description: 'Track royal Bengal tigers, leopards, and dholes across the undulating teak forests that inspired The Jungle Book.',
+      description: "Pench National Park, located in Madhya Pradesh, is a beautiful central Indian wilderness known for its forests, open meadows, and the Pench River. The landscape is closely associated with the setting that inspired Rudyard Kipling’s famous *The Jungle Book*.\n\nThe reserve is home to Bengal tigers, leopards, wild dogs, sloth bears, gaur, sambar, chital, and numerous bird species. Its mixture of teak forests, grasslands, and water bodies creates a rich habitat for both predators and prey.\n\nPench offers an immersive safari experience where wildlife can be encountered across a varied and scenic landscape. For photographers, the combination of iconic wildlife, beautiful forests, and open clearings makes Pench an exciting destination to explore.",
       location: 'Pench, India',
       basePrice: 3100,
       duration: '6 Days / 5 Nights',
