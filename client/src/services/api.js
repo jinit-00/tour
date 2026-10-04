@@ -2980,7 +2980,7 @@ const FALLBACK_TOURS = [
     id: '9',
     title: 'Bandhavgarh National Park High-Density Tiger Safari',
     slug: 'bandhavgarh-tiger-safari',
-    description: 'Experience India’s highest tiger density among ancient cliffs, bamboo thickets, and Tala forest zones.',
+    description: "Bandhavgarh National Park, located in Madhya Pradesh, is one of India’s most renowned tiger destinations. The reserve combines dense forests, open meadows, rocky hills, and the historic Bandhavgarh Fort, creating a dramatic setting for wildlife exploration.\n\nThe park is particularly famous for its Bengal tigers and is also home to leopards, sloth bears, gaur, sambar, chital, wild dogs, and many bird species. Its varied terrain supports a rich ecosystem and provides excellent opportunities for wildlife encounters.\n\nBandhavgarh is a sought-after destination for wildlife photographers because of its tiger sightings and striking landscapes. The combination of powerful wildlife, ancient history, and central Indian wilderness makes every safari memorable.",
     location: 'Bandhavgarh, India',
     region: 'Madhya Pradesh',
     basePrice: 3400,
