@@ -49,8 +49,8 @@ export default function Navbar() {
         
         {/* Brand Logo & Name */}
         <Link to="/" className="flex items-center gap-3 shrink-0 group">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-sand-700/80 shadow-2xl group-hover:scale-105 transition-all shrink-0 bg-sand-950">
-            <img src="/logo.webp" alt="JungleE Wildlife Expeditions Logo" className="w-full h-full object-cover" />
+          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-sand-700/80 shadow-2xl group-hover:scale-105 transition-all shrink-0 bg-sand-950 p-1 flex items-center justify-center">
+            <img src="/logo.webp" alt="JungleE Wildlife Expeditions Logo" className="w-full h-full object-contain" />
           </div>
           <div className="flex flex-col shrink-0">
             <span className="font-sans font-black tracking-wider text-lg sm:text-2xl text-charcoal-950 uppercase group-hover:text-pine-800 transition-colors leading-none">

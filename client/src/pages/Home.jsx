@@ -54,12 +54,12 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden border-4 border-sand-700/80 shadow-2xl bg-sand-950 hover:scale-105 transition-transform"
+            className="w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden border-4 border-sand-700/80 shadow-2xl bg-sand-950 p-2 hover:scale-105 transition-transform flex items-center justify-center"
           >
             <img
               src="/logo.webp"
               alt="JungleE Wildlife Expeditions Official Logo"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </motion.div>
 
