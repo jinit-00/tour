@@ -134,7 +134,7 @@ async function main() {
       duration: '6 Days / 5 Nights',
       isFeatured: false,
       imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?auto=format&fit=crop&w=1600&q=80'
+        '/kanha-safari.png'
       ])
     },
     {

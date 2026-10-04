@@ -50,9 +50,10 @@ export default function SafariStory() {
   const isGir = slug?.includes('gir');
   const isJawai = slug?.includes('jawai');
   const isPench = slug?.includes('pench');
+  const isKanha = slug?.includes('kanha');
   const isDeer = slug?.includes('deer') || slug?.includes('velavadar');
   const isCorbett = slug?.includes('corbett');
-  const isTiger = slug?.includes('tiger') || slug?.includes('ranthambore') || slug?.includes('kanha') || slug?.includes('bandhavgarh') || slug?.includes('tadoba') || slug?.includes('panna') || slug?.includes('sanjay');
+  const isTiger = slug?.includes('tiger') || slug?.includes('ranthambore') || slug?.includes('bandhavgarh') || slug?.includes('tadoba') || slug?.includes('panna') || slug?.includes('sanjay');
 
   const storyData = isGir
     ? {
@@ -89,6 +90,18 @@ export default function SafariStory() {
           'Experience open 4x4 safari drives across Turia and Touriya buffer zones'
         ],
         bestSeason: 'October – May (Optimal Teak Forest Lighting & Waterhole Activity)'
+      }
+    : isKanha
+    ? {
+        animalName: 'Royal Bengal Tiger & Hardground Barasingha',
+        tagline: 'The Sal Meadows & Bamboo Forest Wilderness of Kanha',
+        photo: '/kanha-safari.png',
+        highlights: [
+          'Track dominant Bengal Tigers across open sal meadows and bamboo groves',
+          'Photograph rare southern hardground Barasingha swamp deer and Indian Gaurs',
+          'Exclusive morning & evening 4x4 safaris in Mukki and Kanha central zones'
+        ],
+        bestSeason: 'October – May (Optimal Daylight & High Meadow Activity)'
       }
     : isDeer
     ? {

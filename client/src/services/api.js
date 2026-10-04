@@ -1598,7 +1598,7 @@ const FALLBACK_TOURS = [
     duration: '6 Days / 5 Nights',
     isFeatured: false,
     images: [
-      'https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?auto=format&fit=crop&w=1600&q=80',
+      '/kanha-safari.png',
     ],
     packages: [
       { id: 'p8', name: 'Kanha Meadow Jungle Lodge', price: 0, description: 'Sal forest suite with naturalist-guided morning drives.' }
