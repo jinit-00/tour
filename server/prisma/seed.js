@@ -104,7 +104,7 @@ async function main() {
     {
       title: 'Panna Tiger Reserve & Ken River Expedition',
       slug: 'panna-tiger-safari',
-      description: 'Track thriving Bengal Tiger populations, leopards, and vultures among the pristine river canyons of Panna.',
+      description: "Panna Tiger Reserve, located in Madhya Pradesh, is a beautiful wilderness shaped by forests, plateaus, rocky terrain, and the Ken River. It is widely recognized for its successful tiger conservation efforts and offers a distinctive safari experience in central India.\n\nPanna is home to Bengal tigers, leopards, sloth bears, chital, sambar, nilgai, gharial, and a wide variety of birds. The Ken River and surrounding landscapes add another dimension to the reserve, supporting a rich and diverse ecosystem.\n\nFor wildlife photographers, Panna offers a combination of wildlife, dramatic landscapes, and riverine habitats. Its conservation story and recovering tiger population make it an especially meaningful destination for experiencing India’s wilderness.",
       location: 'Panna, India',
       basePrice: 3200,
       duration: '6 Days / 5 Nights',
