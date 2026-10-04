@@ -268,7 +268,7 @@ export default function TourDetail() {
               {tour.title}
             </h1>
 
-            <p className="text-sm text-charcoal-700 leading-relaxed font-normal">
+            <p className="text-sm text-charcoal-700 leading-relaxed font-normal whitespace-pre-line">
               {tour.description}
             </p>
           </div>

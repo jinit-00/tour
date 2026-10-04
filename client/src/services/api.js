@@ -2848,7 +2848,7 @@ const FALLBACK_TOURS = [
     id: '3',
     title: 'Jawai Granite Hills Leopard Tracking',
     slug: 'jawai-leopard-safari',
-    description: 'Photograph the legendary leopards of Jawai living in harmony among ancient granite rock formations.',
+    description: "Jawai, located in Rajasthan, is a unique wildlife destination known for its leopards living among dramatic granite hills and rocky landscapes. Unlike dense forests, Jawai’s open terrain makes it possible to observe wildlife against a striking natural backdrop.\n\nThe region is home to leopards, crocodiles, hyenas, jackals, flamingos, migratory birds, and other wildlife. Its rocky caves and hills provide natural shelter for leopards, while the surrounding grasslands and Jawai Dam support a diverse ecosystem.\n\nJawai is especially famous for its leopard sightings and distinctive landscape, offering photographers an experience very different from traditional forest safaris. The combination of wildlife, open terrain, local villages, and massive granite formations makes Jawai a remarkable destination for wildlife photography.",
     location: 'Jawai, India',
     region: 'Rajasthan',
     basePrice: 3400,
