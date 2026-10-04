@@ -170,7 +170,7 @@ async function main() {
       duration: '6 Days / 5 Nights',
       isFeatured: false,
       imagesJson: JSON.stringify([
-        'https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg'
+        '/corbett-safari.png'
       ])
     },
     {

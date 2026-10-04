@@ -144,9 +144,9 @@ export default function SafariStory() {
       }
     : isCorbett
     ? {
-        animalName: 'Royal Bengal Tiger & Asiatic Elephant',
-        tagline: 'The Himalayan Foothills Wilderness of Jim Corbett',
-        photo: 'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=2400&q=85',
+        animalName: 'Spotted Deer & Royal Bengal Tiger',
+        tagline: 'The Himalayan Foothills & Sal Forest Wilderness of Jim Corbett',
+        photo: '/corbett-safari.png',
         highlights: [
           'Photograph wild Asiatic elephant herds and tigers along the Ramganga river',
           'Explore the iconic Dhikala and Bijrani grasslands framed by Himalayan foothills',
