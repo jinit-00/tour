@@ -44,8 +44,8 @@ export default function Home() {
             alt="JungleE Wildlife Expeditions Untamed Frontiers"
             className="w-full h-full object-cover scale-105 object-center"
           />
-          {/* Subtle Sand/Vignette Overlay Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-charcoal-950/40 via-sand-900/30 to-sand-900/90" />
+          {/* Subtle Contrast & Vignette Overlay Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-b from-charcoal-950/35 via-transparent to-sand-900/85" />
         </motion.div>
 
         {/* Hero Content */}
