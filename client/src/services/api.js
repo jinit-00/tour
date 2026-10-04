@@ -1511,6 +1511,85 @@ export const CORBETT_HOTELS = [
   }
 ];
 
+export const PANNA_HOTELS = [
+  {
+    "id": "greetoe-camp-panna",
+    "name": "Greetoe Camp Panna",
+    "tagline": "Eco-Luxury Riverside Forest Camp on the Banks of Ken River",
+    "rating": "4.5 ★",
+    "price": 0,
+    "description": "Greetoe Camp Panna is situated right at the Ken River edge near Panna Tiger Reserve in Village Badata, featuring river-facing cottages, an outdoor swimming pool, lush forest gardens, open-air dining, bonfire nights, and naturalist-led jungle safaris.",
+    "amenities": [
+      "Outdoor Swimming Pool",
+      "Ken Riverfront Views",
+      "Multi-Cuisine Restaurant",
+      "Private Riverfront Verandahs",
+      "Free Wi-Fi",
+      "Jungle Safaris & Nature Trails",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+      "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+      "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+      "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+      "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+      "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+      "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+      "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+      "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+      "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "greetoe-river-facing-deluxe",
+        "name": "River Facing Deluxe",
+        "price": 0,
+        "bedType": "1 Double Bed",
+        "view": "Ken River & Garden View",
+        "roomSize": "100 sq.ft",
+        "description": "River Facing Deluxe room featuring air conditioning, comfortable double bedding, en-suite bathroom, and direct views of the Ken River corridor.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+          "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg"
+        ]
+      },
+      {
+        "id": "greetoe-super-deluxe-river-facing",
+        "name": "Super Deluxe - River Facing",
+        "price": 60,
+        "bedType": "1 Double Bed",
+        "view": "Panoramic River View",
+        "roomSize": "100 sq.ft",
+        "description": "Super Deluxe - River Facing room with living and seating area, balcony with unobstructed river views, work desk, sofa, mini fridge, and modern shower cubicle.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+          "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+          "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+          "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg"
+        ]
+      },
+      {
+        "id": "greetoe-cottage-river-facing",
+        "name": "Cottage - River Facing",
+        "price": 110,
+        "bedType": "1 King Bed",
+        "view": "Riverfront & Forest View",
+        "roomSize": "260 sq.ft",
+        "description": "Cottage - River Facing offering expansive 260 sq.ft rustic stone cottage living, private sit-out verandah overlooking the Ken River, luxury bath amenities, and air conditioning.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+          "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+          "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+          "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
+        ]
+      }
+    ]
+  }
+];
+
 const FALLBACK_TOURS = [
   {
     id: '1',
@@ -1630,9 +1709,14 @@ const FALLBACK_TOURS = [
     images: [
       'https://images.unsplash.com/photo-1591824438708-ce405f36ba3d?auto=format&fit=crop&w=1600&q=80',
     ],
-    packages: [
-      { id: 'p6', name: 'Ken River Jungle Lodge', price: 0, description: 'Cottage suite along the scenic Ken River.' }
-    ]
+    packages: PANNA_HOTELS.map(h => ({
+      id: h.id,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      price: h.price,
+      description: h.tagline
+    })),
+    hotels: PANNA_HOTELS,
+    hotelDetails: PANNA_HOTELS[0]
   },
   {
     id: '7',
