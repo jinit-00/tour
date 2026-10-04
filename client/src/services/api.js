@@ -1564,7 +1564,7 @@ const FALLBACK_TOURS = [
     duration: '6 Days / 5 Nights',
     isFeatured: true,
     images: [
-      'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1591824438708-ce405f36ba3d?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
       { id: 'p6', name: 'Ken River Jungle Lodge', price: 0, description: 'Cottage suite along the scenic Ken River.' }
@@ -1581,7 +1581,7 @@ const FALLBACK_TOURS = [
     duration: '6 Days / 5 Nights',
     isFeatured: false,
     images: [
-      'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1589656966895-2f33e7653819?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
       { id: 'p7', name: 'Pench Treehouse Jungle Lodge', price: 0, description: 'Luxury machan cottage with open Gypsy 4x4 safaris.' }
@@ -1598,7 +1598,7 @@ const FALLBACK_TOURS = [
     duration: '6 Days / 5 Nights',
     isFeatured: false,
     images: [
-      'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
       { id: 'p8', name: 'Kanha Meadow Jungle Lodge', price: 0, description: 'Sal forest suite with naturalist-guided morning drives.' }
@@ -1615,7 +1615,7 @@ const FALLBACK_TOURS = [
     duration: '6 Days / 5 Nights',
     isFeatured: false,
     images: [
-      'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
       { id: 'p9', name: 'Bandhavgarh Fort View Retreat', price: 0, description: 'Heritage forest cottage with dedicated 4x4 tracker.' }
@@ -1632,7 +1632,7 @@ const FALLBACK_TOURS = [
     duration: '6 Days / 5 Nights',
     isFeatured: false,
     images: [
-      'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=1600&q=80',
     ],
     packages: [
       { id: 'p10', name: 'Tadoba Bamboo Jungle Camp', price: 0, description: 'Eco-lodge near Moharli gate with open safari gypsies.' }

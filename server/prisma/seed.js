@@ -110,7 +110,7 @@ async function main() {
       duration: '6 Days / 5 Nights',
       isFeatured: true,
       imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80'
+        'https://images.unsplash.com/photo-1591824438708-ce405f36ba3d?auto=format&fit=crop&w=1600&q=80'
       ])
     },
     {
@@ -122,7 +122,7 @@ async function main() {
       duration: '6 Days / 5 Nights',
       isFeatured: false,
       imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80'
+        'https://images.unsplash.com/photo-1589656966895-2f33e7653819?auto=format&fit=crop&w=1600&q=80'
       ])
     },
     {
@@ -134,7 +134,7 @@ async function main() {
       duration: '6 Days / 5 Nights',
       isFeatured: false,
       imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?auto=format&fit=crop&w=1600&q=80'
+        'https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?auto=format&fit=crop&w=1600&q=80'
       ])
     },
     {
@@ -146,7 +146,7 @@ async function main() {
       duration: '6 Days / 5 Nights',
       isFeatured: false,
       imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80'
+        'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80'
       ])
     },
     {
@@ -158,7 +158,7 @@ async function main() {
       duration: '6 Days / 5 Nights',
       isFeatured: false,
       imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80'
+        'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=1600&q=80'
       ])
     },
     {
