@@ -87,8 +87,7 @@ export default function SafariStory() {
           'Track elusive Indian grey wolves, striped hyenas, and jungle cats',
           'Capture one of the world’s largest harrier roosts during golden hour'
         ],
-        bestSeason: 'November – March (Pleasant Grassland Climate & High Harrier Roost Activity)',
-        accommodation: 'Eco-Friendly Heritage Safari Lodge with Views Overlooking the Grasslands'
+        bestSeason: 'November – March (Pleasant Grassland Climate & High Harrier Roost Activity)'
       }
     : isCorbett
     ? {
@@ -100,8 +99,7 @@ export default function SafariStory() {
           'Explore the iconic Dhikala and Bijrani grasslands framed by Himalayan foothills',
           'Observe rare gharials, otters, and over 600 species of Himalayan birds'
         ],
-        bestSeason: 'November – June (Dhikala Zone Open & Peak Riverbed Wildlife Movements)',
-        accommodation: 'Riverside Jungle Lodge with Panoramic Forest & Mountain Views'
+        bestSeason: 'November – June (Dhikala Zone Open & Peak Riverbed Wildlife Movements)'
       }
     : {
         animalName: 'Royal Bengal Tiger',
@@ -112,8 +110,7 @@ export default function SafariStory() {
           'Sambar & Spotted Deer Alarm Call Triangulation in Deep Forest Trails',
           'Golden Hour Waterhole & Forest River Crossing Encounters'
         ],
-        bestSeason: 'October – May (Crisp Morning Light & High Waterhole Activity)',
-        accommodation: 'Luxury Safari Jungle Lodge with Naturalist Library & Open-Air Campfire Decks'
+        bestSeason: 'October – May (Crisp Morning Light & High Waterhole Activity)'
       };
 
   return (
@@ -233,11 +230,10 @@ export default function SafariStory() {
             ))}
           </div>
 
-          {/* Season & Lodging Info */}
-          <div className={`grid grid-cols-1 ${!isGir && !isJawai && storyData.accommodation ? 'md:grid-cols-2' : 'max-w-2xl mx-auto'} gap-6`}>
-            
-            <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-sand-700 space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center shadow-md">
+          {/* Season Info */}
+          <div className="max-w-2xl mx-auto">
+            <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-sand-700 space-y-3 text-center">
+              <div className="w-12 h-12 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center shadow-md mx-auto">
                 <Sun className="w-6 h-6" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-charcoal-900">Best Time to Visit</h3>
@@ -246,16 +242,6 @@ export default function SafariStory() {
                 Optimized for maximum daylight, clear tracking conditions, and predictable animal behavior around key water sources.
               </p>
             </div>
-
-            {!isGir && !isJawai && storyData.accommodation && (
-              <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-sand-700 space-y-3">
-                <div className="w-12 h-12 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center shadow-md">
-                  <ShieldCheck className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg sm:text-xl font-bold text-charcoal-900">Luxury Safari Stay</h3>
-                <p className="text-xs text-charcoal-700 leading-relaxed font-normal">{storyData.accommodation}</p>
-              </div>
-            )}
           </div>
 
         </div>
