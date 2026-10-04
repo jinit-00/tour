@@ -2870,7 +2870,7 @@ const FALLBACK_TOURS = [
     id: '4',
     title: 'Royal Ranthambore Bengal Tiger Portrait',
     slug: 'ranthambore-tiger-safari',
-    description: 'Capture intimate, low-angle facial portraits of royal Bengal Tigers among ancient fort ruins.',
+    description: "Ranthambore National Park, located in Rajasthan, is one of India’s most famous wildlife destinations and is particularly renowned for its Bengal tigers. The landscape combines dry forests, open grasslands, lakes, rocky hills, and the historic Ranthambore Fort.\n\nAlong with tigers, the park is home to leopards, sloth bears, sambar, chital, nilgai, wild boar, crocodiles, and a wide variety of birds. The open terrain and water sources can create excellent opportunities for observing wildlife in its natural surroundings.\n\nRanthambore is especially popular among wildlife photographers for its distinctive landscapes and memorable tiger encounters. The contrast between ancient ruins, lakes, forests, and wildlife gives the safari experience a character that is uniquely Ranthambore.",
     location: 'Ranthambore, India',
     region: 'Rajasthan',
     basePrice: 2950,
