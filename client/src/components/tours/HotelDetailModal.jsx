@@ -56,15 +56,14 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
             
             {/* Title & Header */}
             <div className="space-y-2">
-              <span className="text-xs font-mono font-bold text-pine-800 uppercase tracking-widest block">
-                Sasan Gir, Gujarat
-              </span>
               <h2 className="text-2xl sm:text-4xl font-black tracking-tight uppercase text-charcoal-950">
                 {hotel.name}
               </h2>
-              <p className="text-sm font-semibold text-pine-800 font-mono">
-                {hotel.tagline || 'A Premium Resort in Sasan Gir near Gir National Park Sanctuary'}
-              </p>
+              {hotel.tagline && (
+                <p className="text-sm font-semibold text-pine-800 font-mono">
+                  {hotel.tagline}
+                </p>
+              )}
             </div>
 
             {/* Photo Gallery Viewer */}
@@ -147,7 +146,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
           <div className="p-6 border-t border-sand-700/80 bg-sand-900/90 flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0">
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-pine-800" />
-              <span className="text-xs font-bold text-charcoal-900">Official Partner Hotel for JungleE Gir Lion Safari</span>
+              <span className="text-xs font-bold text-charcoal-900">Official Partner Resort for JungleE Wildlife Expeditions</span>
             </div>
 
             <button

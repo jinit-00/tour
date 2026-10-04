@@ -113,7 +113,6 @@ export default function TourDetail() {
     setModalHotel({
       name: `${hotel.name} - ${roomCat.name}`,
       tagline: `${roomCat.bedType} · ${roomCat.view} (${roomCat.roomSize})`,
-      address: hotel.address || 'Sasan Gir, Gujarat, India',
       rating: `${hotel.name} · Verified Room Category`,
       description: roomCat.description,
       images: roomCat.images && roomCat.images.length > 0 ? roomCat.images : hotel.images,
