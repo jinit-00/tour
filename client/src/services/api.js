@@ -1771,6 +1771,188 @@ export const PENCH_HOTELS = [
   }
 ];
 
+// Official Partner Resorts for Chitwan National Park (10 MMT Photos each & exact MMT Room Categories)
+export const CHITWAN_HOTELS = [
+  {
+    "id": "jungle-safari-resort",
+    "name": "Jungle Safari Resort",
+    "tagline": "Eco-Friendly Wilderness Lodge in the Heart of Sauraha Chitwan",
+    "price": 0,
+    "description": "Jungle Safari Resort offers tranquil lodging on the edge of Chitwan National Park in Sauraha, featuring lush tropical gardens, a swimming pool, open-air restaurant, canoe safaris, and guided elephant grass jungle tracking.",
+    "amenities": [
+      "Swimming Pool",
+      "Tropical Garden",
+      "Multi-Cuisine Restaurant",
+      "Jungle Safaris & Canoe Rides",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+      "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+      "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+      "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+      "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+      "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+      "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+      "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+      "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+      "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "jsr-deluxe-room",
+        "name": "Deluxe Room",
+        "price": 0,
+        "bedType": "1 Double Bed",
+        "view": "Garden View",
+        "roomSize": "215 sq.ft",
+        "description": "Deluxe Room featuring air conditioning, garden views, attached modern bathroom, and private sit-out.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+          "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg"
+        ]
+      },
+      {
+        "id": "jsr-super-deluxe-room",
+        "name": "Super Deluxe Room",
+        "price": 35,
+        "bedType": "1 King Bed",
+        "view": "Garden View",
+        "roomSize": "230 sq.ft",
+        "description": "Super Deluxe Room with king bed, spacious seating area, private balcony, and tea/coffee amenities.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+          "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+          "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+          "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kasara-resort",
+    "name": "Kasara Resort",
+    "tagline": "5-Star Ultra-Luxury Wilderness Sanctuary by Chitwan National Park",
+    "price": 110,
+    "description": "Kasara Resort is Chitwan's premier luxury villa retreat located in Patihani, featuring private plunge pool villas, water-edge architecture, spa & wellness treatments, and bespoke naturalist-led safari expeditions.",
+    "amenities": [
+      "Glass-Edge Swimming Pool",
+      "Private Plunge Pool Villas",
+      "Ayurvedic Spa & Wellness",
+      "Fine Dining Restaurant & Bar",
+      "Free Wi-Fi",
+      "Guided Safari Excursions",
+      "24/7 Concierge"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+      "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png",
+      "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
+      "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png",
+      "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+      "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png",
+      "https://r1imghtlak.mmtcdn.com/b3711454-f4a9-4096-8e3e-7c25183f7b10.png",
+      "https://r1imghtlak.mmtcdn.com/63e7b4b3-8540-44ac-9bf1-ff210318bc32.png",
+      "https://r1imghtlak.mmtcdn.com/ecaee98d-a999-413d-abfa-1c015552c443.png",
+      "https://r1imghtlak.mmtcdn.com/ba8dfd01-1d06-462c-83fc-fe711b23c75c.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "kasara-deluxe-villa",
+        "name": "Deluxe Villa",
+        "price": 0,
+        "bedType": "1 King Bed",
+        "view": "Private Garden View",
+        "roomSize": "1399 sq.ft",
+        "description": "Deluxe Villa offering expansive 1,399 sq.ft luxury sanctuary with private garden, open-air bath, and verandah.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+          "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png",
+          "https://r1imghtlak.mmtcdn.com/b3711454-f4a9-4096-8e3e-7c25183f7b10.png",
+          "https://r1imghtlak.mmtcdn.com/63e7b4b3-8540-44ac-9bf1-ff210318bc32.png"
+        ]
+      },
+      {
+        "id": "kasara-family-villa-pool",
+        "name": "Family Villa with Private Pool",
+        "price": 180,
+        "bedType": "1 King Bed",
+        "view": "Private Pool & Wilderness View",
+        "roomSize": "15059 sq.ft",
+        "description": "Family Villa featuring a private swimming pool, outdoor sun deck, separate living lounge, and dedicated butler service.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
+          "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png",
+          "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+          "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "river-bank-jungle-resort",
+    "name": "River Bank Jungle Resort",
+    "tagline": "Scenic Riverside Eco-Lodge Overlooking the Rapti River",
+    "price": 25,
+    "description": "River Bank Jungle Resort is situated on the tranquil banks of Rapti River in Chitwan, offering panoramic river views, rhino & bird watching from private balconies, river canoeing, and authentic Tharu hospitality.",
+    "amenities": [
+      "Rapti River Views",
+      "Multi-Cuisine Dining",
+      "Riverbank Sunset Deck",
+      "Canoe & Jeep Safaris",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png",
+      "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+      "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+      "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+      "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+      "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+      "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+      "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+      "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+      "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "rbjr-deluxe-room",
+        "name": "Deluxe Room",
+        "price": 0,
+        "bedType": "1 Double Bed",
+        "view": "Garden & River Corridor View",
+        "roomSize": "180 sq.ft",
+        "description": "Deluxe Room with air conditioning, comfortable double bedding, en-suite bathroom, and garden vistas.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png",
+          "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg"
+        ]
+      },
+      {
+        "id": "rbjr-river-view-cottage",
+        "name": "River View Cottage",
+        "price": 45,
+        "bedType": "1 King Bed",
+        "view": "Direct Rapti River View",
+        "roomSize": "320 sq.ft",
+        "description": "River View Cottage offering uninterrupted views of the Rapti River, private sit-out balcony, and tea/coffee facilities.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+          "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+          "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+          "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
+        ]
+      }
+    ]
+  }
+];
+
 const FALLBACK_TOURS = [
   {
     id: '1',
@@ -2007,9 +2189,14 @@ const FALLBACK_TOURS = [
     images: [
       'https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?auto=format&fit=crop&w=1600&q=80',
     ],
-    packages: [
-      { id: 'p12', name: 'Chitwan Riverside Rhino Lodge', price: 0, description: 'Sal forest eco-lodge overlooking Rapti River with river canoe and jeep safaris.' }
-    ]
+    packages: CHITWAN_HOTELS.map(h => ({
+      id: h.id,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      price: h.price,
+      description: h.tagline
+    })),
+    hotels: CHITWAN_HOTELS,
+    hotelDetails: CHITWAN_HOTELS[0]
   }
 ];
 
