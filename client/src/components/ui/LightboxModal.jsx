@@ -42,16 +42,11 @@ export default function LightboxModal({ isOpen, onClose, images, currentIndex, o
           onClick={(e) => e.stopPropagation()} 
           className="absolute top-4 left-4 right-4 sm:top-6 sm:left-8 sm:right-8 flex items-center justify-between z-50 pointer-events-auto"
         >
-          <div className="flex items-center space-x-3 bg-charcoal-900/80 border border-sand-700/40 rounded-full px-4 py-1.5 backdrop-blur-md">
+          <div className="flex items-center space-x-2 bg-charcoal-900/80 border border-sand-700/40 rounded-full px-4 py-1.5 backdrop-blur-md">
             <Compass className="w-3.5 h-3.5 text-pine-800" />
             <span className="text-xs font-mono font-bold text-sand-800 tracking-wider">
               {currentIndex + 1} / {images.length}
             </span>
-            {currentImg.category && (
-              <span className="hidden sm:inline-block text-[10px] uppercase font-mono font-bold tracking-widest text-pine-800 border-l border-sand-700/40 pl-3">
-                {currentImg.category}
-              </span>
-            )}
           </div>
 
           <button
@@ -77,10 +72,10 @@ export default function LightboxModal({ isOpen, onClose, images, currentIndex, o
           </button>
         )}
 
-        {/* Center Modal Image & Details */}
+        {/* Center Modal Image & Minimal Navigation Bar */}
         <div 
           onClick={(e) => e.stopPropagation()}
-          className="max-w-5xl w-full max-h-[86vh] flex flex-col items-center justify-center space-y-3 z-40 pointer-events-auto"
+          className="max-w-5xl w-full max-h-[88vh] flex flex-col items-center justify-center space-y-4 z-40 pointer-events-auto"
         >
           <motion.div
             key={currentIndex}
@@ -88,40 +83,26 @@ export default function LightboxModal({ isOpen, onClose, images, currentIndex, o
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="relative flex flex-col items-center max-h-[72vh] max-w-full"
+            className="relative flex flex-col items-center max-h-[76vh] max-w-full"
           >
             <img
               src={typeof currentImg === 'string' ? currentImg : currentImg.src}
-              alt={typeof currentImg === 'string' ? 'Safari Photo' : currentImg.title || 'Safari Photo'}
-              className="max-h-[68vh] sm:max-h-[72vh] max-w-full object-contain rounded-2xl shadow-2xl border border-sand-700/40 bg-charcoal-950"
+              alt="Safari Photo"
+              className="max-h-[72vh] sm:max-h-[76vh] max-w-full object-contain rounded-2xl shadow-2xl border border-sand-700/40 bg-charcoal-950"
             />
           </motion.div>
 
-          {/* Caption & Navigation Guidance */}
-          <div className="text-center space-y-1 max-w-2xl px-4">
-            {typeof currentImg !== 'string' && currentImg.title && (
-              <h4 className="text-base sm:text-lg font-bold text-sand-950 tracking-tight">
-                {currentImg.title}
-              </h4>
-            )}
-            {typeof currentImg !== 'string' && currentImg.location && (
-              <p className="text-xs sm:text-sm font-mono text-sand-700">
-                {currentImg.location}
-              </p>
-            )}
-
-            {/* Visual Shortcut Bar */}
-            <div className="pt-2 flex items-center justify-center gap-4 text-[11px] font-mono text-sand-700/70">
-              <span className="inline-flex items-center gap-1">
-                <kbd className="px-1.5 py-0.5 rounded bg-charcoal-800 border border-sand-700/40 text-[10px] text-sand-800">←</kbd>
-                Left arrow: Previous image
-              </span>
-              <span className="text-sand-700/40">•</span>
-              <span className="inline-flex items-center gap-1">
-                <kbd className="px-1.5 py-0.5 rounded bg-charcoal-800 border border-sand-700/40 text-[10px] text-sand-800">→</kbd>
-                Right arrow: Next image
-              </span>
-            </div>
+          {/* Clean Navigation Shortcut Indicator */}
+          <div className="flex items-center justify-center gap-4 text-[11px] font-mono text-sand-700/70">
+            <span className="inline-flex items-center gap-1">
+              <kbd className="px-1.5 py-0.5 rounded bg-charcoal-800 border border-sand-700/40 text-[10px] text-sand-800">←</kbd>
+              Left arrow: Previous image
+            </span>
+            <span className="text-sand-700/40">•</span>
+            <span className="inline-flex items-center gap-1">
+              <kbd className="px-1.5 py-0.5 rounded bg-charcoal-800 border border-sand-700/40 text-[10px] text-sand-800">→</kbd>
+              Right arrow: Next image
+            </span>
           </div>
         </div>
 
