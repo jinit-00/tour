@@ -14,7 +14,7 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full overflow-hidden border border-sand-700 shadow-md shrink-0 bg-sand-950 p-0.5 flex items-center justify-center">
+              <div className="w-12 h-12 shrink-0 flex items-center justify-center">
                 <img src={logoImg} alt="JungleE Wildlife Expeditions Logo" className="w-full h-full object-contain" />
               </div>
               <div className="flex flex-col">

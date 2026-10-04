@@ -51,17 +51,17 @@ export default function Home() {
         {/* Hero Content */}
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-6 pt-28 sm:pt-36 lg:pt-40 flex flex-col items-center">
           
-          {/* 3x Large Prominent Brand Logo */}
+          {/* Brand Logo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden border-4 border-sand-700/80 shadow-2xl bg-sand-950 p-2 hover:scale-105 transition-transform flex items-center justify-center"
+            className="w-32 h-32 sm:w-40 sm:h-40 hover:scale-105 transition-transform flex items-center justify-center"
           >
             <img
               src={logoImg}
               alt="JungleE Wildlife Expeditions Official Logo"
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain drop-shadow-2xl"
             />
           </motion.div>
 

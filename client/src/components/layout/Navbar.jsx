@@ -50,7 +50,7 @@ export default function Navbar() {
         
         {/* Brand Logo & Name */}
         <Link to="/" className="flex items-center gap-3 shrink-0 group">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-sand-700/80 shadow-2xl group-hover:scale-105 transition-all shrink-0 bg-sand-950 p-1 flex items-center justify-center">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform">
             <img src={logoImg} alt="JungleE Wildlife Expeditions Logo" className="w-full h-full object-contain" />
           </div>
           <div className="flex flex-col shrink-0">
