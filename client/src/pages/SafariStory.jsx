@@ -52,9 +52,10 @@ export default function SafariStory() {
   const isPench = slug?.includes('pench');
   const isKanha = slug?.includes('kanha');
   const isBandhavgarh = slug?.includes('bandhavgarh');
+  const isTadoba = slug?.includes('tadoba');
   const isDeer = slug?.includes('deer') || slug?.includes('velavadar');
   const isCorbett = slug?.includes('corbett');
-  const isTiger = slug?.includes('tiger') || slug?.includes('ranthambore') || slug?.includes('tadoba') || slug?.includes('panna') || slug?.includes('sanjay');
+  const isTiger = slug?.includes('tiger') || slug?.includes('ranthambore') || slug?.includes('panna') || slug?.includes('sanjay');
 
   const storyData = isGir
     ? {
@@ -115,6 +116,18 @@ export default function SafariStory() {
           'Expert native trackers trained in alarm call triangulation and behavioral anticipation'
         ],
         bestSeason: 'October – June (Peak Tiger Movements & Crisp Morning Light)'
+      }
+    : isTadoba
+    ? {
+        animalName: 'Royal Bengal Tiger & Sloth Bear',
+        tagline: 'The Teak, Bamboo & Waterhole Wilderness of Tadoba',
+        photo: '/tadoba-safari.jpg',
+        highlights: [
+          'Photograph tigers and sloth bears patrolling natural waterholes and lakes',
+          'Track wildlife across dense teak forests and bamboo groves in Moharli & Kolara',
+          'Prime positions for predator interactions and golden hour reflection photography'
+        ],
+        bestSeason: 'October – June (Peak Waterhole Activity & Dry Season Clarity)'
       }
     : isDeer
     ? {

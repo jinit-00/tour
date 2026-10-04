@@ -158,7 +158,7 @@ async function main() {
       duration: '6 Days / 5 Nights',
       isFeatured: false,
       imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=1600&q=80'
+        '/tadoba-safari.jpg'
       ])
     },
     {

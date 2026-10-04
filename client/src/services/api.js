@@ -1632,7 +1632,7 @@ const FALLBACK_TOURS = [
     duration: '6 Days / 5 Nights',
     isFeatured: false,
     images: [
-      'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=1600&q=80',
+      '/tadoba-safari.jpg',
     ],
     packages: [
       { id: 'p10', name: 'Tadoba Bamboo Jungle Camp', price: 0, description: 'Eco-lodge near Moharli gate with open safari gypsies.' }
