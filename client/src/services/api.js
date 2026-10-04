@@ -1447,6 +1447,70 @@ export const VELAVADAR_HOTELS = [
   }
 ];
 
+export const CORBETT_HOTELS = [
+  {
+    "id": "paatlidun-safari-lodge",
+    "name": "Paatlidun Safari Lodge Jim Corbett",
+    "tagline": "5-Star Luxury Wilderness Resort with Private Plunge Pools & Sky Beds",
+    "rating": "4.6 ★",
+    "price": 0,
+    "description": "Paatlidun Safari Lodge Jim Corbett offers vintage luxury cottages nestled in the foothills of Corbett National Park in Mohaan, Ramnagar, featuring open-air showers, private plunge pools, star-viewing sky beds, BrahmaKamal Spa, and fine wilderness dining at Risya.",
+    "amenities": [
+      "Private Plunge Pool",
+      "BrahmaKamal Spa",
+      "Risya Multi-Cuisine Dining",
+      "Private Sit-out Verandah",
+      "Free Wi-Fi",
+      "Guided Jungle Safaris & Nature Walks",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg",
+      "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+      "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+      "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+      "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+      "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+      "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+      "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+      "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+      "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
+    ],
+    "roomCategories": [
+      {
+        "id": "paatlidun-bush-cottage",
+        "name": "Bush Cottage",
+        "price": 0,
+        "bedType": "1 Double Bed",
+        "view": "Forest & Foothills View",
+        "roomSize": "900 sq.ft",
+        "description": "Bush Cottage featuring an open-to-sky sky bed, Jacuzzi, private sit-out deck, service window, rustic stone architecture, and serene Himalayan foothill views.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg",
+          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+          "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg"
+        ]
+      },
+      {
+        "id": "paatlidun-luxury-cottage",
+        "name": "Luxury Cottage",
+        "price": 120,
+        "bedType": "1 Double Bed / 1 King Bed",
+        "view": "Private Plunge Pool & Forest View",
+        "roomSize": "1496 sq.ft",
+        "description": "Luxury Cottage featuring an expansive master bedroom, living room, star window, private plunge pool, claw-footed copper bathtub, open-air shower, and private sit-out.",
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg",
+          "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+          "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png"
+        ]
+      }
+    ]
+  }
+];
+
 const FALLBACK_TOURS = [
   {
     id: '1',
@@ -1649,11 +1713,16 @@ const FALLBACK_TOURS = [
     duration: '6 Days / 5 Nights',
     isFeatured: false,
     images: [
-      'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=1600&q=80',
+      'https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg',
     ],
-    packages: [
-      { id: 'p11', name: 'Corbett Riverbank Jungle Resort', price: 0, description: 'Riverside cottage suite with Dhikala safari access.' }
-    ]
+    packages: CORBETT_HOTELS.map(h => ({
+      id: h.id,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      price: h.price,
+      description: h.tagline
+    })),
+    hotels: CORBETT_HOTELS,
+    hotelDetails: CORBETT_HOTELS[0]
   }
 ];
 
