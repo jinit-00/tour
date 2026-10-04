@@ -1396,6 +1396,57 @@ export const SANJAY_DUBRI_HOTELS = [
   }
 ];
 
+// Official Partner Resort for Velavadar Blackbuck National Park (10 Photos & MMT Room Categories)
+export const VELAVADAR_HOTELS = [
+  {
+    "id": "blackbuck-safari-lodge",
+    "name": "Blackbuck Safari Lodge Velavadar",
+    "tagline": "Eco-Luxury Wilderness Lodge in the Savanna Grasslands of Velavadar",
+    "rating": "4.6 \u2605",
+    "price": 0,
+    "description": "Blackbuck Safari Lodge Velavadar offers authentic wildlife hospitality set right beside the golden grassland savannas of Blackbuck National Park in Gujarat, featuring Deluxe AC Cottages, swimming pool, open-air bush dining, and expert safari guides.",
+    "amenities": [
+      "Swimming Pool",
+      "Deluxe AC Cottages",
+      "Multi-Cuisine Restaurant",
+      "Bush Dining & Lounge",
+      "Lush Savanna Grounds",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201909031654555784-23ebbecac32811ed99b70a58a9feac02.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201909031654555784-067e76fedeb411e9b9310242ac110003.jpg",
+      "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201909031654555784-1253-88d41b02deb611e994230242ac110002.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201909031654555784-1253-a054d712deb611e990ab0242ac110003.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201909031654555784-1253-4f5784eadeb611e98d670242ac110003.jpg",
+      "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+      "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201909031654555784-a3bee450c32e11ed970b0a58a9feac02.jpg",
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201909031654555784-0c63572ec32611ed8e6d0a58a9feac02.jpg"
+    ],
+    "roomCategories": [
+      {
+        "id": "blackbuck-safari-lodge-deluxe-ac-cottage",
+        "name": "Deluxe AC Cottage",
+        "price": 0,
+        "bedType": "1 King Bed",
+        "view": "Grassland & Savanna View",
+        "roomSize": "350 sq.ft",
+        "description": "Deluxe AC Cottage featuring handcrafted rustic cottage architecture, air conditioning, private sit-out verandah, en-suite bathroom, and panoramic grassland views.",
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201909031654555784-1253-88d41b02deb611e994230242ac110002.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201909031654555784-1253-a054d712deb611e990ab0242ac110003.jpg",
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/room-imgs/201909031654555784-1253-4f5784eadeb611e98d670242ac110003.jpg",
+          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+          "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg"
+        ]
+      }
+    ]
+  }
+];
+
 const FALLBACK_TOURS = [
   {
     id: '1',
@@ -1493,9 +1544,14 @@ const FALLBACK_TOURS = [
     images: [
       'https://images.unsplash.com/photo-1484406566174-9da000fda645?auto=format&fit=crop&w=1600&q=80',
     ],
-    packages: [
-      { id: 'p5', name: 'Savanna Eco Resort', price: 0, description: 'Grassland cottage near sanctuary boundary.' }
-    ]
+    packages: VELAVADAR_HOTELS.map(h => ({
+      id: h.id,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      price: h.price,
+      description: h.tagline
+    })),
+    hotels: VELAVADAR_HOTELS,
+    hotelDetails: VELAVADAR_HOTELS[0]
   },
   {
     id: '6',
