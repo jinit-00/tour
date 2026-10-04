@@ -66,14 +66,6 @@ export default function Home() {
           </motion.div>
 
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-base sm:text-lg text-charcoal-800 max-w-2xl mx-auto font-normal leading-relaxed"
-          >
-            Step beyond conventional tourism into Earth’s most sacred wilderness habitats. Guided by award-winning wildlife photographers in exclusive small groups.
-          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
