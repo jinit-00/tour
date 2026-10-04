@@ -1615,7 +1615,7 @@ const FALLBACK_TOURS = [
     duration: '6 Days / 5 Nights',
     isFeatured: false,
     images: [
-      'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80',
+      '/bandhavgarh-safari.png',
     ],
     packages: [
       { id: 'p9', name: 'Bandhavgarh Fort View Retreat', price: 0, description: 'Heritage forest cottage with dedicated 4x4 tracker.' }

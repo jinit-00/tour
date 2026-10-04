@@ -51,9 +51,10 @@ export default function SafariStory() {
   const isJawai = slug?.includes('jawai');
   const isPench = slug?.includes('pench');
   const isKanha = slug?.includes('kanha');
+  const isBandhavgarh = slug?.includes('bandhavgarh');
   const isDeer = slug?.includes('deer') || slug?.includes('velavadar');
   const isCorbett = slug?.includes('corbett');
-  const isTiger = slug?.includes('tiger') || slug?.includes('ranthambore') || slug?.includes('bandhavgarh') || slug?.includes('tadoba') || slug?.includes('panna') || slug?.includes('sanjay');
+  const isTiger = slug?.includes('tiger') || slug?.includes('ranthambore') || slug?.includes('tadoba') || slug?.includes('panna') || slug?.includes('sanjay');
 
   const storyData = isGir
     ? {
@@ -102,6 +103,18 @@ export default function SafariStory() {
           'Exclusive morning & evening 4x4 safaris in Mukki and Kanha central zones'
         ],
         bestSeason: 'October – May (Optimal Daylight & High Meadow Activity)'
+      }
+    : isBandhavgarh
+    ? {
+        animalName: 'Royal Bengal Tiger',
+        tagline: 'The Ancient Fort & High-Density Tiger Realm of Bandhavgarh',
+        photo: '/bandhavgarh-safari.png',
+        highlights: [
+          'Track dominant territorial tigers across Tala, Magdhi, and Khitauli zones',
+          'Photograph tigers resting against ancient sandstone cliffs and fort ruins',
+          'Expert native trackers trained in alarm call triangulation and behavioral anticipation'
+        ],
+        bestSeason: 'October – June (Peak Tiger Movements & Crisp Morning Light)'
       }
     : isDeer
     ? {
