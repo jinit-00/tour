@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getTours } from '../services/api';
 import { Search } from 'lucide-react';
 import SafariCard from '../components/tours/SafariCard';
+import girToursCardImg from '../assets/gir-tours-card.jpg';
 
 export default function Tours() {
   const [tours, setTours] = useState([]);
@@ -20,7 +21,13 @@ export default function Tours() {
       if (search) params.search = search;
       if (selectedLocation !== 'All') params.location = selectedLocation;
       const res = await getTours(params);
-      setTours(res.data);
+      const mapped = (res.data || []).map((t) => {
+        if (t.slug === 'gir-lion-safari') {
+          return { ...t, images: [girToursCardImg, ...(t.images || []).slice(1)] };
+        }
+        return t;
+      });
+      setTours(mapped);
     } catch (err) {
       console.error(err);
     } finally {
