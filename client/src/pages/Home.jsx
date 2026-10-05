@@ -128,7 +128,7 @@ export default function Home() {
             className="text-center space-y-3 mb-16"
           >
             <p className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">The JungleE Difference</p>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-charcoal-900">Designed for Serious Photographers</h2>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-charcoal-900">Wildlife, Done Differently</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -142,9 +142,9 @@ export default function Home() {
               <div className="w-12 h-12 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center shadow-md">
                 <Users className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-charcoal-900">Small Group Priority</h3>
+              <h3 className="text-xl font-bold text-charcoal-900">Small Groups. Better Experiences.</h3>
               <p className="text-sm text-charcoal-700 leading-relaxed font-normal">
-                Strict limits of 4 to 6 guests per departure. Everyone gets a window seat and dedicated swivel lens mounts in open-top 4x4s.
+                We keep departures intentionally small, giving you more space, flexibility and meaningful time in the wild.
               </p>
             </motion.div>
 
@@ -158,9 +158,9 @@ export default function Home() {
               <div className="w-12 h-12 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center shadow-md">
                 <Camera className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-charcoal-900">Pro Lens & Gear Support</h3>
+              <h3 className="text-xl font-bold text-charcoal-900">Curated From Start to Finish</h3>
               <p className="text-sm text-charcoal-700 leading-relaxed font-normal">
-                Don't fly with heavy 600mm primes? Rent top-tier super-telephoto lenses, carbon fiber tripods, and gimbal heads directly at basecamp.
+                Handpicked stays, expert guides, thoughtful safari planning and seamless logistics — every detail is built around the experience.
               </p>
             </motion.div>
 
@@ -174,9 +174,9 @@ export default function Home() {
               <div className="w-12 h-12 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center shadow-md">
                 <ShieldCheck className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-charcoal-900">100% Ethical Wildlife Focus</h3>
+              <h3 className="text-xl font-bold text-charcoal-900">Wildlife With Purpose</h3>
               <p className="text-sm text-charcoal-700 leading-relaxed font-normal">
-                Zero baiting or territorial intrusion. We work alongside native park rangers to support local anti-poaching and habitat conservation.
+                Ethical, responsible and conservation-led. No baiting, no intrusion — just genuine encounters with wildlife in its natural habitat.
               </p>
             </motion.div>
           </div>
