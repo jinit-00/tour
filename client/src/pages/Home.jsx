@@ -6,6 +6,7 @@ import { Camera, ArrowRight, Users, ShieldCheck } from 'lucide-react';
 import FullWidthSafariBlock from '../components/tours/FullWidthSafariBlock';
 import heroBgImg from '../assets/hero-bg.jpg';
 import pannaHomeImg from '../assets/panna-home.png';
+import girHomeImg from '../assets/gir-home.jpg';
 
 export default function Home() {
   const [tours, setTours] = useState([]);
@@ -26,6 +27,9 @@ export default function Home() {
             return (order[a.slug] || 99) - (order[b.slug] || 99);
           })
           .map((t) => {
+            if (t.slug === 'gir-lion-safari') {
+              return { ...t, images: [girHomeImg, ...(t.images || []).slice(1)] };
+            }
             if (t.slug === 'panna-tiger-safari') {
               return { ...t, images: [pannaHomeImg, ...(t.images || []).slice(1)] };
             }
