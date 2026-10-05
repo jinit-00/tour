@@ -4,7 +4,6 @@ import { getTours } from '../services/api';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Camera, ArrowRight, Users, ShieldCheck } from 'lucide-react';
 import FullWidthSafariBlock from '../components/tours/FullWidthSafariBlock';
-import logoImg from '../assets/logo.png';
 import heroBgImg from '../assets/hero-bg.jpg';
 
 export default function Home() {
@@ -33,7 +32,7 @@ export default function Home() {
   return (
     <div className="overflow-hidden bg-sand-gradient">
       {/* 1. Full-Bleed Parallax Hero Section */}
-      <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen min-h-[700px] sm:min-h-[800px] flex items-end justify-center overflow-hidden">
         {/* Parallax Background Image */}
         <motion.div
           style={{ y: yHero, opacity: opacityHero }}
@@ -41,48 +40,31 @@ export default function Home() {
         >
           <img
             src={heroBgImg}
-            alt="JungleE Wildlife Expeditions Untamed Frontiers"
+            alt="JungleE Wildlife Expeditions"
             className="w-full h-full object-cover scale-105 object-center"
           />
           {/* Subtle Contrast & Vignette Overlay Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-charcoal-950/35 via-transparent to-sand-900/85" />
+          <div className="absolute inset-0 bg-gradient-to-b from-charcoal-950/20 via-transparent to-sand-900/70" />
         </motion.div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-6 pt-28 sm:pt-36 lg:pt-40 flex flex-col items-center">
-          
-          {/* Brand Logo */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="w-32 h-32 sm:w-40 sm:h-40 hover:scale-105 transition-transform flex items-center justify-center"
-          >
-            <img
-              src={logoImg}
-              alt="JungleE Wildlife Expeditions Official Logo"
-              className="w-full h-full object-contain drop-shadow-2xl"
-            />
-          </motion.div>
-
-
-
+        {/* Hero CTA Actions */}
+        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center pb-12 sm:pb-16 flex flex-col items-center justify-end w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2"
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Link
               to="/tours"
-              className="w-full sm:w-auto px-8 py-4 rounded-full bg-pine-800 hover:bg-pine-700 text-sand-950 font-bold text-base shadow-2xl transition-all flex items-center justify-center gap-2 group"
+              className="w-full sm:w-auto px-8 py-4 rounded-full bg-pine-800 hover:bg-pine-700 text-sand-950 font-bold text-base shadow-2xl transition-all flex items-center justify-center gap-2 group backdrop-blur-sm"
             >
               <span>Explore Expeditions</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               to="/gallery"
-              className="w-full sm:w-auto px-8 py-4 rounded-full glass-panel border border-pine-800/40 text-charcoal-900 font-bold text-base transition-all text-center shadow-md hover:bg-sand-900"
+              className="w-full sm:w-auto px-8 py-4 rounded-full glass-panel border border-pine-800/40 text-charcoal-900 font-bold text-base transition-all text-center shadow-md hover:bg-sand-900 backdrop-blur-md"
             >
               View Field Gallery
             </Link>
