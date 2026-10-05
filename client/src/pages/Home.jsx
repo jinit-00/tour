@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Camera, ArrowRight, Users, ShieldCheck } from 'lucide-react';
 import FullWidthSafariBlock from '../components/tours/FullWidthSafariBlock';
 import heroBgImg from '../assets/hero-bg.jpg';
+import pannaHomeImg from '../assets/panna-home.png';
 
 export default function Home() {
   const [tours, setTours] = useState([]);
@@ -19,10 +20,17 @@ export default function Home() {
     getTours()
       .then((res) => {
         // Sort safaris: Gir (Lion) -> Ranthambore (Tiger Face) -> Panna (Tiger & Ken River), and keep top 3 on Home page
-        const sorted = [...res.data].sort((a, b) => {
-          const order = { 'gir-lion-safari': 1, 'ranthambore-tiger-safari': 2, 'panna-tiger-safari': 3 };
-          return (order[a.slug] || 99) - (order[b.slug] || 99);
-        });
+        const sorted = [...res.data]
+          .sort((a, b) => {
+            const order = { 'gir-lion-safari': 1, 'ranthambore-tiger-safari': 2, 'panna-tiger-safari': 3 };
+            return (order[a.slug] || 99) - (order[b.slug] || 99);
+          })
+          .map((t) => {
+            if (t.slug === 'panna-tiger-safari') {
+              return { ...t, images: [pannaHomeImg, ...(t.images || []).slice(1)] };
+            }
+            return t;
+          });
         setTours(sorted.slice(0, 3));
       })
       .catch((err) => console.error(err))
