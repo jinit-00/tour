@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, ArrowRight, Calendar } from 'lucide-react';
+import { MapPin, ArrowRight } from 'lucide-react';
 
 export default function FullWidthSafariBlock({ tour, index = 0 }) {
   const imageUrl = tour.images && tour.images[0] 
@@ -17,14 +17,9 @@ export default function FullWidthSafariBlock({ tour, index = 0 }) {
       {/* TOP HEADER ROW: Fixed Height Header for 100% Equal Alignment */}
       <div className="relative z-10 h-32 sm:h-36 md:h-40 flex flex-col justify-start space-y-2 shrink-0 overflow-hidden">
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <span className="bg-pine-800 text-sand-950 px-4 py-1 rounded-full text-xs font-mono font-semibold tracking-wider uppercase shadow-md">
-              {tour.duration}
-            </span>
-            <div className="flex items-center gap-1.5 text-xs text-charcoal-700 font-mono">
-              <MapPin className="w-4 h-4 text-pine-800 shrink-0" />
-              <span>{tour.location}</span>
-            </div>
+          <div className="flex items-center gap-1.5 text-xs text-charcoal-700 font-mono bg-sand-900/80 px-3.5 py-1.5 rounded-full border border-sand-700/80">
+            <MapPin className="w-4 h-4 text-pine-800 shrink-0" />
+            <span>{tour.location}</span>
           </div>
           <span className="text-[10px] font-mono uppercase tracking-widest text-charcoal-500 font-bold">
             Expedition 0{index + 1}
@@ -55,8 +50,8 @@ export default function FullWidthSafariBlock({ tour, index = 0 }) {
         
         <div className="flex items-center justify-between gap-4 text-xs font-mono text-charcoal-700">
           <div className="flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-pine-800" />
-            <span className="font-semibold">{tour.duration} · {tour.location}</span>
+            <MapPin className="w-4 h-4 text-pine-800" />
+            <span className="font-semibold">{tour.location}</span>
           </div>
         </div>
 
