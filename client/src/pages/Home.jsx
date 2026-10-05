@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Camera, ArrowRight, Users, ShieldCheck } from 'lucide-react';
 import FullWidthSafariBlock from '../components/tours/FullWidthSafariBlock';
 import heroBgImg from '../assets/hero-bg.jpg';
-import pannaHomeImg from '../assets/panna-home.png';
+import pannaHomeImg from '../assets/panna-home.jpg';
 import girHomeImg from '../assets/gir-home.jpg';
 
 export default function Home() {
