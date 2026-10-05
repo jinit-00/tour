@@ -27,7 +27,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-sm text-charcoal-700 leading-relaxed max-w-sm">
-              Crafting immersive, small-group wildlife photography safaris to Earth's most breathtaking untamed frontiers. Guided by world-renowned naturalists and wildlife photographers at JungleE Wildlife Expeditions.
+              Crafting immersive, small-group wildlife expeditions to some of India’s most extraordinary wildernesses. From intimate encounters with iconic wildlife to expertly guided safaris, every journey is designed around responsible exploration, photography, and unforgettable moments in the wild.
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a
