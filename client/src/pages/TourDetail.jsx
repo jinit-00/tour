@@ -7,7 +7,19 @@ import HotelDetailModal from '../components/tours/HotelDetailModal';
 
 function HotelCardImageCarousel({ images, name, onClick }) {
   const [currentIdx, setCurrentIdx] = useState(0);
-  const total = Array.isArray(images) ? images.length : 0;
+  const imageList = Array.isArray(images) && images.length > 0 
+    ? images 
+    : ['https://images.unsplash.com/photo-1546182990-dffeafbe841d'];
+  const total = imageList.length;
+
+  useEffect(() => {
+    if (Array.isArray(images)) {
+      images.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+    }
+  }, [images]);
 
   const handlePrev = (e) => {
     e.stopPropagation();
@@ -24,11 +36,22 @@ function HotelCardImageCarousel({ images, name, onClick }) {
       onClick={onClick}
       className="h-52 sm:h-56 w-full bg-sand-950 overflow-hidden relative cursor-pointer group select-none"
     >
-      <img
-        src={images && images[currentIdx] ? images[currentIdx] : 'https://images.unsplash.com/photo-1546182990-dffeafbe841d'}
-        alt={`${name} - Photo ${currentIdx + 1}`}
-        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-      />
+      {/* Sliding Track for instant, buttery-smooth hardware-accelerated transition */}
+      <div 
+        className="w-full h-full flex transition-transform duration-300 ease-out will-change-transform"
+        style={{ transform: `translateX(-${currentIdx * 100}%)` }}
+      >
+        {imageList.map((imgSrc, idx) => (
+          <div key={idx} className="w-full h-full shrink-0 relative overflow-hidden">
+            <img
+              src={imgSrc}
+              alt={`${name} - Photo ${idx + 1}`}
+              loading={idx === 0 ? "eager" : "lazy"}
+              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+        ))}
+      </div>
       
       {/* Subtle overlay gradient on hover */}
       <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -40,7 +63,7 @@ function HotelCardImageCarousel({ images, name, onClick }) {
             type="button"
             onClick={handlePrev}
             aria-label="Previous photo"
-            className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-charcoal-950/80 hover:bg-pine-800 text-sand-950 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-xl backdrop-blur-sm border border-sand-700/50 hover:scale-110 z-10"
+            className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-charcoal-950/80 hover:bg-pine-800 text-sand-950 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-xl backdrop-blur-sm border border-sand-700/50 hover:scale-110 active:scale-95 z-10"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
@@ -49,14 +72,14 @@ function HotelCardImageCarousel({ images, name, onClick }) {
             type="button"
             onClick={handleNext}
             aria-label="Next photo"
-            className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-charcoal-950/80 hover:bg-pine-800 text-sand-950 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-xl backdrop-blur-sm border border-sand-700/50 hover:scale-110 z-10"
+            className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-charcoal-950/80 hover:bg-pine-800 text-sand-950 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-xl backdrop-blur-sm border border-sand-700/50 hover:scale-110 active:scale-95 z-10"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
 
           {/* Photo Dots on hover */}
           <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 pointer-events-none">
-            {images.slice(0, Math.min(total, 6)).map((_, i) => (
+            {imageList.slice(0, Math.min(total, 6)).map((_, i) => (
               <span
                 key={i}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
@@ -78,7 +101,19 @@ function HotelCardImageCarousel({ images, name, onClick }) {
 
 function RoomCardImageCarousel({ images, name, onClick }) {
   const [currentIdx, setCurrentIdx] = useState(0);
-  const total = Array.isArray(images) ? images.length : 0;
+  const imageList = Array.isArray(images) && images.length > 0
+    ? images
+    : ['https://images.unsplash.com/photo-1546182990-dffeafbe841d'];
+  const total = imageList.length;
+
+  useEffect(() => {
+    if (Array.isArray(images)) {
+      images.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+    }
+  }, [images]);
 
   const handlePrev = (e) => {
     e.stopPropagation();
@@ -96,11 +131,21 @@ function RoomCardImageCarousel({ images, name, onClick }) {
       className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden bg-sand-900 relative shrink-0 group select-none cursor-pointer"
       title={`${name} - Click to view`}
     >
-      <img
-        src={images && images[currentIdx] ? images[currentIdx] : 'https://images.unsplash.com/photo-1546182990-dffeafbe841d'}
-        alt={name}
-        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-      />
+      <div 
+        className="w-full h-full flex transition-transform duration-300 ease-out will-change-transform"
+        style={{ transform: `translateX(-${currentIdx * 100}%)` }}
+      >
+        {imageList.map((imgSrc, idx) => (
+          <div key={idx} className="w-full h-full shrink-0 relative overflow-hidden">
+            <img
+              src={imgSrc}
+              alt={name}
+              loading={idx === 0 ? "eager" : "lazy"}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+        ))}
+      </div>
       
       {total > 1 && (
         <>
@@ -108,7 +153,7 @@ function RoomCardImageCarousel({ images, name, onClick }) {
             type="button"
             onClick={handlePrev}
             aria-label="Previous photo"
-            className="absolute left-0.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-charcoal-950/85 hover:bg-pine-800 text-sand-950 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-md z-10"
+            className="absolute left-0.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-charcoal-950/85 hover:bg-pine-800 text-sand-950 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-md active:scale-90 z-10"
           >
             <ChevronLeft className="w-3 h-3" />
           </button>
@@ -117,7 +162,7 @@ function RoomCardImageCarousel({ images, name, onClick }) {
             type="button"
             onClick={handleNext}
             aria-label="Next photo"
-            className="absolute right-0.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-charcoal-950/85 hover:bg-pine-800 text-sand-950 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-md z-10"
+            className="absolute right-0.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-charcoal-950/85 hover:bg-pine-800 text-sand-950 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-md active:scale-90 z-10"
           >
             <ChevronRight className="w-3 h-3" />
           </button>
