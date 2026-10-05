@@ -1,45 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { getTours } from '../services/api';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Camera, ArrowRight, Users, ShieldCheck } from 'lucide-react';
-import FullWidthSafariBlock from '../components/tours/FullWidthSafariBlock';
 import heroBgImg from '../assets/hero-bg.jpg';
-import pannaHomeImg from '../assets/panna-home.jpg';
-import girHomeImg from '../assets/gir-home.jpg';
 
 export default function Home() {
-  const [tours, setTours] = useState([]);
-  const [loading, setLoading] = useState(true);
-
   // Hero Parallax setup using Framer Motion useScroll and useTransform
   const { scrollY } = useScroll();
   const yHero = useTransform(scrollY, [0, 800], [0, 250]);
   const opacityHero = useTransform(scrollY, [0, 600], [1, 0.3]);
-
-  useEffect(() => {
-    getTours()
-      .then((res) => {
-        // Sort safaris: Gir (Lion) -> Ranthambore (Tiger Face) -> Panna (Tiger & Ken River), and keep top 3 on Home page
-        const sorted = [...res.data]
-          .sort((a, b) => {
-            const order = { 'gir-lion-safari': 1, 'ranthambore-tiger-safari': 2, 'panna-tiger-safari': 3 };
-            return (order[a.slug] || 99) - (order[b.slug] || 99);
-          })
-          .map((t) => {
-            if (t.slug === 'gir-lion-safari') {
-              return { ...t, images: [girHomeImg, ...(t.images || []).slice(1)] };
-            }
-            if (t.slug === 'panna-tiger-safari') {
-              return { ...t, images: [pannaHomeImg, ...(t.images || []).slice(1)] };
-            }
-            return t;
-          });
-        setTours(sorted.slice(0, 3));
-      })
-      .catch((err) => console.error(err))
-      .finally(() => setLoading(false));
-  }, []);
 
   return (
     <div className="overflow-hidden bg-sand-gradient">
@@ -81,39 +50,6 @@ export default function Home() {
               View Field Gallery
             </Link>
           </motion.div>
-        </div>
-      </section>
-
-      {/* 2. FEATURED EXPEDITIONS: EXACTLY 3 LARGE FULL-PAGE-WIDTH HORIZONTAL BLOCKS */}
-      <section className="py-24 relative bg-transparent">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <motion.div
-            whileInView={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 40 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center space-y-3 mb-20"
-          >
-            <p className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Curated Signature Safaris</p>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-charcoal-900 uppercase tracking-tight">
-              Featured Expeditions
-            </h2>
-            <p className="text-sm sm:text-base text-charcoal-700 max-w-xl mx-auto font-normal">
-              Immersive small-group photography safaris led by world-class naturalists. Choose your expedition to begin.
-            </p>
-          </motion.div>
-
-          {loading ? (
-            <div className="text-center py-20 text-charcoal-700 font-mono">Loading full-width safaris...</div>
-          ) : (
-            <div className="space-y-16">
-              {tours.map((tour, idx) => (
-                <FullWidthSafariBlock key={tour.id} tour={tour} index={idx} />
-              ))}
-            </div>
-          )}
-
         </div>
       </section>
 
