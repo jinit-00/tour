@@ -150,6 +150,8 @@ export default function TourDetail() {
   const [modalHotel, setModalHotel] = useState(null);
   const [selectedHotel, setSelectedHotel] = useState(null);
   const [selectedRoomCategory, setSelectedRoomCategory] = useState(null);
+  const [rooms, setRooms] = useState(1);
+  const [mealPlan, setMealPlan] = useState('APAI');
 
   const isGir = slug === 'gir-lion-safari' || slug?.includes('gir');
   const isJawai = slug === 'jawai-leopard-safari' || slug?.includes('jawai');
@@ -303,6 +305,9 @@ export default function TourDetail() {
         kids,
         numPeople: totalGuests,
         guests: totalGuests,
+        rooms,
+        numRooms: rooms,
+        mealPlan,
       };
       await createBooking(bookingData);
       setBookingSuccess(true);
@@ -864,6 +869,124 @@ export default function TourDetail() {
                         </div>
                       </>
                     )}
+                  </div>
+                </div>
+
+                {/* Number of Rooms */}
+                <div className="space-y-1">
+                  <label className="block text-xs font-mono uppercase text-charcoal-700 font-bold">
+                    Number of Rooms
+                  </label>
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-sand-950 border border-sand-700">
+                    <div className="flex items-center gap-2">
+                      <Hotel className="w-4 h-4 text-pine-800 shrink-0" />
+                      <span className="text-xs font-semibold text-charcoal-950">
+                        {rooms} {rooms === 1 ? 'Room' : 'Rooms'}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        disabled={rooms <= 1}
+                        onClick={() => setRooms(Math.max(1, rooms - 1))}
+                        className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 disabled:opacity-30 disabled:cursor-not-allowed text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
+                      >
+                        <Minus className="w-3.5 h-3.5" />
+                      </button>
+                      <span className="w-5 text-center font-mono font-bold text-xs text-charcoal-950">
+                        {rooms}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setRooms(rooms + 1)}
+                        className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Select Meal Option */}
+                <div className="space-y-1.5 pt-1">
+                  <div className="flex items-center justify-between">
+                    <label className="block text-xs font-mono uppercase text-charcoal-700 font-bold">
+                      Select Meal Option
+                    </label>
+                    <span className="text-[10px] font-mono text-pine-800 font-bold">
+                      {mealPlan}
+                    </span>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    {/* APAI */}
+                    <div
+                      onClick={() => setMealPlan('APAI')}
+                      className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-start gap-2.5 ${
+                        mealPlan === 'APAI'
+                          ? 'border-pine-800 bg-sand-900 ring-2 ring-pine-800/30 shadow-sm'
+                          : 'border-sand-700/80 bg-sand-950/60 hover:border-sand-600 hover:bg-sand-900/40'
+                      }`}
+                    >
+                      <div className={`w-4 h-4 rounded-full border mt-0.5 shrink-0 flex items-center justify-center ${
+                        mealPlan === 'APAI' ? 'border-pine-800 bg-pine-800' : 'border-charcoal-400'
+                      }`}>
+                        {mealPlan === 'APAI' && <div className="w-1.5 h-1.5 rounded-full bg-sand-950" />}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center justify-between gap-1">
+                          <p className="text-xs font-bold text-charcoal-950">APAI (All Meals Included)</p>
+                          <span className="text-[9px] font-mono bg-pine-800/10 text-pine-800 px-1.5 py-0.5 rounded font-bold border border-pine-800/20 shrink-0">Included</span>
+                        </div>
+                        <p className="text-[11px] text-charcoal-700 leading-tight pt-0.5 font-normal">
+                          Lunch, Hitea, Dinner and Breakfast
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* MAPAI */}
+                    <div
+                      onClick={() => setMealPlan('MAPAI')}
+                      className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-start gap-2.5 ${
+                        mealPlan === 'MAPAI'
+                          ? 'border-pine-800 bg-sand-900 ring-2 ring-pine-800/30 shadow-sm'
+                          : 'border-sand-700/80 bg-sand-950/60 hover:border-sand-600 hover:bg-sand-900/40'
+                      }`}
+                    >
+                      <div className={`w-4 h-4 rounded-full border mt-0.5 shrink-0 flex items-center justify-center ${
+                        mealPlan === 'MAPAI' ? 'border-pine-800 bg-pine-800' : 'border-charcoal-400'
+                      }`}>
+                        {mealPlan === 'MAPAI' && <div className="w-1.5 h-1.5 rounded-full bg-sand-950" />}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs font-bold text-charcoal-950">MAPAI</p>
+                        <p className="text-[11px] text-charcoal-700 leading-tight pt-0.5 font-normal">
+                          Breakfast and Lunch/ Dinner
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* CPAI */}
+                    <div
+                      onClick={() => setMealPlan('CPAI')}
+                      className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-start gap-2.5 ${
+                        mealPlan === 'CPAI'
+                          ? 'border-pine-800 bg-sand-900 ring-2 ring-pine-800/30 shadow-sm'
+                          : 'border-sand-700/80 bg-sand-950/60 hover:border-sand-600 hover:bg-sand-900/40'
+                      }`}
+                    >
+                      <div className={`w-4 h-4 rounded-full border mt-0.5 shrink-0 flex items-center justify-center ${
+                        mealPlan === 'CPAI' ? 'border-pine-800 bg-pine-800' : 'border-charcoal-400'
+                      }`}>
+                        {mealPlan === 'CPAI' && <div className="w-1.5 h-1.5 rounded-full bg-sand-950" />}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs font-bold text-charcoal-950">CPAI</p>
+                        <p className="text-[11px] text-charcoal-700 leading-tight pt-0.5 font-normal">
+                          Breakfast only
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
