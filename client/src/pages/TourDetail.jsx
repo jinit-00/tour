@@ -2,8 +2,134 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getTourDetail, createBooking, GIR_HOTELS, JAWAI_HOTELS, SANJAY_DUBRI_HOTELS, VELAVADAR_HOTELS, CORBETT_HOTELS, PANNA_HOTELS, PENCH_HOTELS, CHITWAN_HOTELS, BANDHAVGARH_HOTELS, KANHA_HOTELS, RANTHAMBORE_HOTELS } from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, Hotel, Eye, Plus, Minus, ChevronDown, Clock } from 'lucide-react';
+import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, Hotel, Eye, Plus, Minus, ChevronDown, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
 import HotelDetailModal from '../components/tours/HotelDetailModal';
+
+function HotelCardImageCarousel({ images, name, onClick }) {
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const total = Array.isArray(images) ? images.length : 0;
+
+  const handlePrev = (e) => {
+    e.stopPropagation();
+    setCurrentIdx((prev) => (prev === 0 ? total - 1 : prev - 1));
+  };
+
+  const handleNext = (e) => {
+    e.stopPropagation();
+    setCurrentIdx((prev) => (prev === total - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <div 
+      onClick={onClick}
+      className="h-52 sm:h-56 w-full bg-sand-950 overflow-hidden relative cursor-pointer group select-none"
+    >
+      <img
+        src={images && images[currentIdx] ? images[currentIdx] : 'https://images.unsplash.com/photo-1546182990-dffeafbe841d'}
+        alt={`${name} - Photo ${currentIdx + 1}`}
+        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+      />
+      
+      {/* Subtle overlay gradient on hover */}
+      <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+      {/* Left and Right Navigation Buttons on Hover */}
+      {total > 1 && (
+        <>
+          <button
+            type="button"
+            onClick={handlePrev}
+            aria-label="Previous photo"
+            className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-charcoal-950/80 hover:bg-pine-800 text-sand-950 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-xl backdrop-blur-sm border border-sand-700/50 hover:scale-110 z-10"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          
+          <button
+            type="button"
+            onClick={handleNext}
+            aria-label="Next photo"
+            className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-charcoal-950/80 hover:bg-pine-800 text-sand-950 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-xl backdrop-blur-sm border border-sand-700/50 hover:scale-110 z-10"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+
+          {/* Photo Dots on hover */}
+          <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 pointer-events-none">
+            {images.slice(0, Math.min(total, 6)).map((_, i) => (
+              <span
+                key={i}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  i === currentIdx ? 'w-4 bg-pine-800' : 'w-1.5 bg-sand-950/70'
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* Counter badge on top right */}
+          <div className="absolute top-2.5 right-2.5 bg-charcoal-950/75 text-sand-950 text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 border border-sand-700/40 pointer-events-none">
+            {currentIdx + 1} / {total}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+function RoomCardImageCarousel({ images, name, onClick }) {
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const total = Array.isArray(images) ? images.length : 0;
+
+  const handlePrev = (e) => {
+    e.stopPropagation();
+    setCurrentIdx((prev) => (prev === 0 ? total - 1 : prev - 1));
+  };
+
+  const handleNext = (e) => {
+    e.stopPropagation();
+    setCurrentIdx((prev) => (prev === total - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <div 
+      onClick={onClick}
+      className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden bg-sand-900 relative shrink-0 group select-none cursor-pointer"
+      title={`${name} - Click to view`}
+    >
+      <img
+        src={images && images[currentIdx] ? images[currentIdx] : 'https://images.unsplash.com/photo-1546182990-dffeafbe841d'}
+        alt={name}
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+      />
+      
+      {total > 1 && (
+        <>
+          <button
+            type="button"
+            onClick={handlePrev}
+            aria-label="Previous photo"
+            className="absolute left-0.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-charcoal-950/85 hover:bg-pine-800 text-sand-950 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-md z-10"
+          >
+            <ChevronLeft className="w-3 h-3" />
+          </button>
+
+          <button
+            type="button"
+            onClick={handleNext}
+            aria-label="Next photo"
+            className="absolute right-0.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-charcoal-950/85 hover:bg-pine-800 text-sand-950 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-md z-10"
+          >
+            <ChevronRight className="w-3 h-3" />
+          </button>
+
+          <div className="absolute bottom-0.5 right-0.5 bg-charcoal-950/85 text-sand-950 text-[8px] font-mono px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            {currentIdx + 1}/{total}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 export default function TourDetail() {
   const { slug } = useParams();
@@ -322,23 +448,12 @@ export default function TourDetail() {
                       }`}
                     >
                       <div>
-                        {/* Thumbnail photo with click to open full gallery */}
-                        <div 
+                        {/* Thumbnail photo carousel with hover arrows */}
+                        <HotelCardImageCarousel
+                          images={hotel.images}
+                          name={hotel.name}
                           onClick={() => handleOpenHotelDetails(hotel)}
-                          className="h-48 w-full bg-sand-950 overflow-hidden relative cursor-pointer group"
-                        >
-                          <img
-                            src={hotel.images[0]}
-                            alt={hotel.name}
-                            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                          />
-                          <div className="absolute inset-0 bg-charcoal-950/25 group-hover:bg-charcoal-950/10 transition-colors flex items-center justify-center">
-                            <span className="bg-charcoal-950/80 text-sand-950 text-[11px] font-mono font-bold px-3 py-1.5 rounded-full backdrop-blur-md border border-sand-700 flex items-center gap-1.5 shadow-lg">
-                              <Eye className="w-3.5 h-3.5 text-pine-800" />
-                              View Photos ({hotel.images.length})
-                            </span>
-                          </div>
-                        </div>
+                        />
 
                         {/* Card Info Content */}
                         <div className="p-5 space-y-3">
@@ -539,26 +654,15 @@ export default function TourDetail() {
                                     : 'border-sand-700/80 bg-sand-950/60 hover:border-sand-600 hover:bg-sand-900/40'
                                 }`}
                               >
-                                {/* Room Photo Thumbnail with click to view gallery */}
-                                <div 
+                                {/* Room Photo Carousel with hover navigation */}
+                                <RoomCardImageCarousel
+                                  images={cat.images}
+                                  name={cat.name}
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     handleOpenRoomGallery(cat);
                                   }}
-                                  className="w-16 h-16 rounded-xl overflow-hidden bg-sand-900 relative shrink-0 group"
-                                  title="Click to view room photos"
-                                >
-                                  <img
-                                    src={cat.images[0]}
-                                    alt={cat.name}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                                  />
-                                  <div className="absolute inset-0 bg-charcoal-950/30 group-hover:bg-charcoal-950/10 transition-colors flex items-center justify-center">
-                                    <span className="bg-charcoal-950/80 text-sand-950 text-[9px] font-mono px-1 py-0.5 rounded font-bold">
-                                      {cat.images.length} 📷
-                                    </span>
-                                  </div>
-                                </div>
+                                />
 
                                 {/* Room Category Details */}
                                 <div className="flex-1 min-w-0">
@@ -581,17 +685,6 @@ export default function TourDetail() {
                                     <span className="text-[9px] font-mono text-pine-800 bg-pine-800/10 px-1.5 py-0.5 rounded border border-pine-800/20 font-bold">
                                       {cat.roomSize}
                                     </span>
-                                    <button
-                                      type="button"
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleOpenRoomGallery(cat);
-                                      }}
-                                      className="text-pine-800 hover:underline font-mono text-[10px] font-bold flex items-center gap-0.5"
-                                    >
-                                      <Eye className="w-2.5 h-2.5" />
-                                      View Photos ({cat.images.length})
-                                    </button>
                                   </div>
                                 </div>
 
