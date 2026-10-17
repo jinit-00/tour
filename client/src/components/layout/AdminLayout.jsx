@@ -7,62 +7,14 @@ import {
   CalendarCheck,
   Users,
   Image,
-  MessageSquare,
   LogOut,
   ArrowLeft,
-  ShieldAlert,
+  ShieldCheck,
 } from 'lucide-react';
 
 export default function AdminLayout({ children }) {
-  const { user, logout, openAuthModal } = useAuth();
+  const { user, logout } = useAuth();
   const location = useLocation();
-
-  if (!user || user.role !== 'ADMIN') {
-    return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
-        <div className="bg-slate-800 border border-slate-700 text-slate-100 rounded-2xl p-8 max-w-md w-full text-center space-y-4 shadow-2xl">
-          <div className="w-16 h-16 bg-rose-500/20 text-rose-400 rounded-full flex items-center justify-center mx-auto">
-            <ShieldAlert className="w-8 h-8" />
-          </div>
-          <h2 className="text-2xl font-bold">Admin Access Restricted</h2>
-          <p className="text-slate-300 text-sm">
-            You must be logged in with administrator privileges to access this control panel.
-          </p>
-          <div className="pt-2 flex flex-col gap-2">
-            <button
-              onClick={() => openAuthModal('login')}
-              className="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-lg transition-colors"
-            >
-              Sign In as Admin
-            </button>
-            <button
-              onClick={() => {
-                const adminUser = {
-                  id: 'admin-local-1',
-                  name: 'Elena Rostova (Admin)',
-                  email: 'admin@junglee.com',
-                  role: 'ADMIN',
-                  isVerified: true,
-                };
-                localStorage.setItem('junglee_token', 'demo_admin_jwt_token');
-                localStorage.setItem('junglee_demo_user', JSON.stringify(adminUser));
-                window.location.reload();
-              }}
-              className="w-full py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 font-medium text-xs rounded-lg transition-colors border border-slate-600"
-            >
-              Demo Admin Instant Access
-            </button>
-            <Link
-              to="/"
-              className="w-full py-2 text-slate-400 hover:text-white text-sm"
-            >
-              Return to Public Website
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   const sidebarLinks = [
     { name: 'Dashboard', path: '/admin', icon: LayoutDashboard },
@@ -120,13 +72,15 @@ export default function AdminLayout({ children }) {
             <span>Back to Main Website</span>
           </Link>
 
-          <button
-            onClick={logout}
-            className="w-full flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold text-rose-600 hover:bg-rose-50 transition-colors"
-          >
-            <LogOut className="w-4 h-4" />
-            <span>Sign Out</span>
-          </button>
+          {user && (
+            <button
+              onClick={logout}
+              className="w-full flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold text-rose-600 hover:bg-rose-50 transition-colors"
+            >
+              <LogOut className="w-4 h-4" />
+              <span>Sign Out</span>
+            </button>
+          )}
         </div>
       </aside>
 
@@ -139,13 +93,16 @@ export default function AdminLayout({ children }) {
             <p className="text-xs text-slate-500">Live operational & inventory control</p>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <div className="text-right">
-              <p className="text-xs font-bold text-slate-900">{user.name}</p>
-              <p className="text-[11px] text-emerald-600 font-mono">Administrator</p>
+              <p className="text-xs font-bold text-slate-900">{user?.name || 'Administrator'}</p>
+              <p className="text-[11px] text-emerald-600 font-mono flex items-center gap-1 justify-end">
+                <ShieldCheck className="w-3 h-3 text-emerald-600" />
+                <span>Active</span>
+              </p>
             </div>
             <div className="w-9 h-9 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-sm shadow-sm">
-              {user.name ? user.name[0] : 'A'}
+              {user?.name ? user.name[0] : 'A'}
             </div>
           </div>
         </header>

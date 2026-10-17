@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getTours, isTourHidden } from '../services/api';
+import { getTours, isTourHidden, syncHiddenToursFromCloud } from '../services/api';
 import { Search } from 'lucide-react';
 import SafariCard from '../components/tours/SafariCard';
 import girToursCardImg from '../assets/gir-tours-card.jpg';
@@ -12,6 +12,9 @@ export default function Tours() {
 
   useEffect(() => {
     fetchTours();
+    syncHiddenToursFromCloud().then(() => {
+      fetchTours();
+    }).catch(() => {});
 
     const handleVisibilityChange = () => {
       fetchTours();

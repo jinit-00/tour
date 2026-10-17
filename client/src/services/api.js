@@ -3094,8 +3094,9 @@ export const resendOtp = (data) => API.post('/auth/resend-otp', data);
 export const loginUser = (data) => API.post('/auth/login', data);
 export const getCurrentUser = () => API.get('/auth/me');
 
-// Tour Section Visibility (Hide / Show) Helpers
+// Tour Section Visibility (Hide / Show) Helpers with Cloud Sync
 const HIDDEN_TOURS_STORAGE_KEY = 'junglee_hidden_tours';
+const CLOUD_SYNC_URL = 'https://api.restful-api.dev/objects/ff808181a09d98f701a14869bd637994';
 
 export const getHiddenTourSlugs = () => {
   try {
@@ -3115,6 +3116,25 @@ export const setHiddenTourSlugs = (slugs) => {
   } catch (e) {
     console.error('Failed to save hidden tours in localStorage:', e);
   }
+};
+
+// Sync from Cloud so ANY live website visitor (without login) gets the latest hidden tours
+export const syncHiddenToursFromCloud = async () => {
+  try {
+    const res = await axios.get(CLOUD_SYNC_URL, { timeout: 4000 });
+    if (res.data && res.data.data && Array.isArray(res.data.data.hidden)) {
+      const cloudHidden = res.data.data.hidden;
+      const localHidden = getHiddenTourSlugs();
+      if (JSON.stringify(cloudHidden) !== JSON.stringify(localHidden)) {
+        localStorage.setItem(HIDDEN_TOURS_STORAGE_KEY, JSON.stringify(cloudHidden));
+        window.dispatchEvent(new CustomEvent('tourVisibilityChanged', { detail: cloudHidden }));
+      }
+      return cloudHidden;
+    }
+  } catch (err) {
+    // Fail silently to local storage
+  }
+  return getHiddenTourSlugs();
 };
 
 export const isTourHidden = (tour) => {
@@ -3145,7 +3165,17 @@ export const toggleTourVisibility = async (tourOrId, explicitHiddenState) => {
   }
   setHiddenTourSlugs(updatedList);
 
-  // Sync with backend if available
+  // Sync to Cloud immediately so ALL live website visitors without login see the change
+  try {
+    await axios.put(CLOUD_SYNC_URL, {
+      name: 'junglee_visibility',
+      data: { hidden: updatedList },
+    }, { timeout: 4000 });
+  } catch (cloudErr) {
+    console.warn('Cloud sync update failed:', cloudErr.message);
+  }
+
+  // Also sync with backend if available
   try {
     if (id) {
       await API.patch(`/admin/tours/${id}/visibility`, { isHidden: nextHidden });
@@ -3222,6 +3252,9 @@ export const sendContactMessage = (data) => API.post('/contact', data);
 // Admin API
 export const getAdminAnalytics = () => API.get('/admin/analytics');
 export const getAdminTours = async () => {
+  try {
+    await syncHiddenToursFromCloud();
+  } catch (_) {}
   const hiddenList = getHiddenTourSlugs();
   try {
     const res = await API.get('/admin/tours');

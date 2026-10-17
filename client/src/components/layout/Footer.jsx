@@ -117,7 +117,13 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-charcoal-600 gap-4">
           <p>© {new Date().getFullYear()} JungleE Wildlife Expeditions. All rights reserved.</p>
-          <div className="flex gap-6">
+          <div className="flex items-center gap-6">
+            <Link
+              to="/admin/tours"
+              className="hover:text-pine-800 transition-colors font-medium cursor-pointer"
+            >
+              Admin Panel
+            </Link>
             <button
               type="button"
               onClick={() => setIsTermsOpen(true)}
