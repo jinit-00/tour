@@ -9,6 +9,9 @@ router.get('/', async (req, res) => {
     const { featured, search, location } = req.query;
 
     const where = {};
+    if (req.query.includeHidden !== 'true') {
+      where.isHidden = false;
+    }
     if (featured === 'true') {
       where.isFeatured = true;
     }

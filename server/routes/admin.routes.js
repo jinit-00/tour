@@ -78,7 +78,7 @@ router.get('/tours', async (req, res) => {
 
 router.post('/tours', async (req, res) => {
   try {
-    const { title, description, location, basePrice, duration, isFeatured, images, packages } = req.body;
+    const { title, description, location, basePrice, duration, isFeatured, isHidden, images, packages } = req.body;
 
     if (!title || !description || !location || !basePrice || !duration) {
       return res.status(400).json({ error: 'All core tour fields are required.' });
@@ -95,6 +95,7 @@ router.post('/tours', async (req, res) => {
         basePrice: parseFloat(basePrice),
         duration,
         isFeatured: Boolean(isFeatured),
+        isHidden: Boolean(isHidden || false),
         imagesJson: JSON.stringify(Array.isArray(images) ? images : [images]),
         packages: {
           create: (packages || []).map(p => ({
@@ -117,29 +118,35 @@ router.post('/tours', async (req, res) => {
 router.put('/tours/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, location, basePrice, duration, isFeatured, images, packages } = req.body;
+    const { title, description, location, basePrice, duration, isFeatured, isHidden, images, packages } = req.body;
 
     // Delete old packages & update tour
     await prisma.tourPackage.deleteMany({ where: { tourId: id } });
 
+    const updateData = {
+      title,
+      description,
+      location,
+      basePrice: parseFloat(basePrice),
+      duration,
+      isFeatured: Boolean(isFeatured),
+      imagesJson: JSON.stringify(Array.isArray(images) ? images : [images]),
+      packages: {
+        create: (packages || []).map(p => ({
+          name: p.name,
+          price: parseFloat(p.price || 0),
+          description: p.description || '',
+        })),
+      },
+    };
+
+    if (isHidden !== undefined) {
+      updateData.isHidden = Boolean(isHidden);
+    }
+
     const updatedTour = await prisma.tour.update({
       where: { id },
-      data: {
-        title,
-        description,
-        location,
-        basePrice: parseFloat(basePrice),
-        duration,
-        isFeatured: Boolean(isFeatured),
-        imagesJson: JSON.stringify(Array.isArray(images) ? images : [images]),
-        packages: {
-          create: (packages || []).map(p => ({
-            name: p.name,
-            price: parseFloat(p.price || 0),
-            description: p.description || '',
-          })),
-        },
-      },
+      data: updateData,
       include: { packages: true },
     });
 
@@ -147,6 +154,24 @@ router.put('/tours/:id', async (req, res) => {
   } catch (error) {
     console.error('Error updating tour:', error);
     res.status(500).json({ error: 'Failed to update tour.' });
+  }
+});
+
+// Toggle tour visibility (hide or show)
+router.patch('/tours/:id/visibility', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { isHidden } = req.body;
+
+    const tour = await prisma.tour.update({
+      where: { id },
+      data: { isHidden: Boolean(isHidden) },
+    });
+
+    res.json({ message: 'Tour visibility updated successfully.', tour });
+  } catch (error) {
+    console.error('Error updating tour visibility:', error);
+    res.status(500).json({ error: 'Failed to update tour visibility.' });
   }
 });
 

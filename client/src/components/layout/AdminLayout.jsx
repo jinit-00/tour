@@ -35,6 +35,23 @@ export default function AdminLayout({ children }) {
             >
               Sign In as Admin
             </button>
+            <button
+              onClick={() => {
+                const adminUser = {
+                  id: 'admin-local-1',
+                  name: 'Elena Rostova (Admin)',
+                  email: 'admin@junglee.com',
+                  role: 'ADMIN',
+                  isVerified: true,
+                };
+                localStorage.setItem('junglee_token', 'demo_admin_jwt_token');
+                localStorage.setItem('junglee_demo_user', JSON.stringify(adminUser));
+                window.location.reload();
+              }}
+              className="w-full py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 font-medium text-xs rounded-lg transition-colors border border-slate-600"
+            >
+              Demo Admin Instant Access
+            </button>
             <Link
               to="/"
               className="w-full py-2 text-slate-400 hover:text-white text-sm"

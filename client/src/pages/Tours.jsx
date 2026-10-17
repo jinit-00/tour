@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getTours } from '../services/api';
+import { getTours, isTourHidden } from '../services/api';
 import { Search } from 'lucide-react';
 import SafariCard from '../components/tours/SafariCard';
 import girToursCardImg from '../assets/gir-tours-card.jpg';
@@ -12,6 +12,16 @@ export default function Tours() {
 
   useEffect(() => {
     fetchTours();
+
+    const handleVisibilityChange = () => {
+      fetchTours();
+    };
+    window.addEventListener('tourVisibilityChanged', handleVisibilityChange);
+    window.addEventListener('storage', handleVisibilityChange);
+    return () => {
+      window.removeEventListener('tourVisibilityChanged', handleVisibilityChange);
+      window.removeEventListener('storage', handleVisibilityChange);
+    };
   }, [search, selectedLocation]);
 
   const fetchTours = async () => {
@@ -21,7 +31,8 @@ export default function Tours() {
       if (search) params.search = search;
       if (selectedLocation !== 'All') params.location = selectedLocation;
       const res = await getTours(params);
-      const mapped = (res.data || []).map((t) => {
+      const visible = (res.data || []).filter((t) => !isTourHidden(t));
+      const mapped = visible.map((t) => {
         if (t.slug === 'gir-lion-safari') {
           return { ...t, images: [girToursCardImg, ...(t.images || []).slice(1)] };
         }
@@ -87,7 +98,7 @@ export default function Tours() {
 
       {/* Large 2-Column Editorial Grid */}
       {loading ? (
-        <div className="text-center py-20 text-charcoal-700 font-mono">Loading 11 signature safaris...</div>
+        <div className="text-center py-20 text-charcoal-700 font-mono">Loading signature safaris...</div>
       ) : tours.length === 0 ? (
         <div className="glass-panel p-12 rounded-3xl text-center space-y-3 max-w-md mx-auto my-12 border border-sand-700">
           <p className="text-lg font-bold text-charcoal-900">No safaris match your criteria.</p>

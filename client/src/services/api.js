@@ -3094,17 +3094,83 @@ export const resendOtp = (data) => API.post('/auth/resend-otp', data);
 export const loginUser = (data) => API.post('/auth/login', data);
 export const getCurrentUser = () => API.get('/auth/me');
 
-// Tours API with Guaranteed 12 Safaris Output
+// Tour Section Visibility (Hide / Show) Helpers
+const HIDDEN_TOURS_STORAGE_KEY = 'junglee_hidden_tours';
+
+export const getHiddenTourSlugs = () => {
+  try {
+    const raw = localStorage.getItem(HIDDEN_TOURS_STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (e) {
+    return [];
+  }
+};
+
+export const setHiddenTourSlugs = (slugs) => {
+  try {
+    localStorage.setItem(HIDDEN_TOURS_STORAGE_KEY, JSON.stringify(slugs));
+    window.dispatchEvent(new CustomEvent('tourVisibilityChanged', { detail: slugs }));
+  } catch (e) {
+    console.error('Failed to save hidden tours in localStorage:', e);
+  }
+};
+
+export const isTourHidden = (tour) => {
+  if (!tour) return false;
+  if (tour.isHidden === true) return true;
+  const hiddenList = getHiddenTourSlugs();
+  return (
+    (tour.slug && hiddenList.includes(tour.slug)) ||
+    (tour.id && hiddenList.includes(String(tour.id)))
+  );
+};
+
+export const toggleTourVisibility = async (tourOrId, explicitHiddenState) => {
+  const id = typeof tourOrId === 'object' ? tourOrId.id : tourOrId;
+  const slug = typeof tourOrId === 'object' ? tourOrId.slug : null;
+
+  const hiddenList = getHiddenTourSlugs();
+  const currentlyHidden = (slug && hiddenList.includes(slug)) || (id && hiddenList.includes(String(id)));
+  const nextHidden = explicitHiddenState !== undefined ? explicitHiddenState : !currentlyHidden;
+
+  let updatedList;
+  if (nextHidden) {
+    updatedList = [...hiddenList];
+    if (slug && !updatedList.includes(slug)) updatedList.push(slug);
+    if (id && !updatedList.includes(String(id))) updatedList.push(String(id));
+  } else {
+    updatedList = hiddenList.filter((item) => item !== slug && item !== String(id));
+  }
+  setHiddenTourSlugs(updatedList);
+
+  // Sync with backend if available
+  try {
+    if (id) {
+      await API.patch(`/admin/tours/${id}/visibility`, { isHidden: nextHidden });
+    }
+  } catch (err) {
+    // Backend may be offline or in static SPA mode, local state is persisted
+  }
+
+  return { isHidden: nextHidden, slugs: updatedList };
+};
+
+// Tours API with Guaranteed 12 Safaris Output (excluding hidden tours from tour section)
 export const getTours = async (params) => {
   try {
     const res = await API.get('/tours', { params });
     if (Array.isArray(res.data) && res.data.length >= 12) {
-      return res;
+      const visible = res.data.filter((t) => !isTourHidden(t));
+      return { data: visible };
     }
-    return { data: filterFallbackTours(params) };
+    const filteredFallback = filterFallbackTours(params).filter((t) => !isTourHidden(t));
+    return { data: filteredFallback };
   } catch (err) {
     console.warn('API unavailable, returning 12 fallback safaris:', err.message);
-    return { data: filterFallbackTours(params) };
+    const filteredFallback = filterFallbackTours(params).filter((t) => !isTourHidden(t));
+    return { data: filteredFallback };
   }
 };
 
@@ -3155,10 +3221,36 @@ export const sendContactMessage = (data) => API.post('/contact', data);
 
 // Admin API
 export const getAdminAnalytics = () => API.get('/admin/analytics');
-export const getAdminTours = () => API.get('/admin/tours');
+export const getAdminTours = async () => {
+  const hiddenList = getHiddenTourSlugs();
+  try {
+    const res = await API.get('/admin/tours');
+    if (Array.isArray(res.data) && res.data.length > 0) {
+      const mapped = res.data.map((t) => ({
+        ...t,
+        isHidden: t.isHidden !== undefined ? Boolean(t.isHidden) : (hiddenList.includes(t.slug) || hiddenList.includes(String(t.id))),
+      }));
+      return { data: mapped };
+    }
+  } catch (err) {
+    console.warn('Admin tours API unavailable, returning fallback tours inventory:', err.message);
+  }
+  const toursWithVisibility = FALLBACK_TOURS.map((t) => ({
+    ...t,
+    isHidden: hiddenList.includes(t.slug) || hiddenList.includes(String(t.id)),
+  }));
+  return { data: toursWithVisibility };
+};
+
 export const createAdminTour = (data) => API.post('/admin/tours', data);
-export const updateAdminTour = (id, data) => API.put(`/admin/tours/${id}`, data);
+export const updateAdminTour = async (id, data) => {
+  if (data && data.isHidden !== undefined) {
+    await toggleTourVisibility({ id, slug: data.slug }, data.isHidden);
+  }
+  return API.put(`/admin/tours/${id}`, data);
+};
 export const deleteAdminTour = (id) => API.delete(`/admin/tours/${id}`);
+export const toggleAdminTourVisibility = toggleTourVisibility;
 
 export const getAdminBookings = () => API.get('/admin/bookings');
 export const updateAdminBookingStatus = (id, status) => API.patch(`/admin/bookings/${id}/status`, { status });
