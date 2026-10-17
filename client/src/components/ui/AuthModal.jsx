@@ -219,7 +219,7 @@ export default function AuthModal() {
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Elena Rostova"
+                  placeholder="JungleE Team"
                   className="w-full bg-sand-950 border border-sand-700 rounded-lg py-2.5 pl-10 pr-4 text-sm text-charcoal-900 focus:outline-none focus:border-pine-800"
                 />
               </div>

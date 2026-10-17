@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
       if (email && email.toLowerCase().includes('admin')) {
         const adminUser = {
           id: 'admin-local-1',
-          name: 'Elena Rostova (Admin)',
+          name: 'JungleE Team',
           email: email,
           role: 'ADMIN',
           isVerified: true,
