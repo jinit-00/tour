@@ -216,7 +216,6 @@ export default function TourDetail() {
   const [safariPeople, setSafariPeople] = useState(1);
   const [safariPeopleManual, setSafariPeopleManual] = useState(false);
   const [safariPricing, setSafariPricing] = useState(() => getSafariPricing(slug));
-  const [dayTypeOverride, setDayTypeOverride] = useState(null); // null (auto from checkInDate) | 'weekday' | 'weekend'
 
   // Live Cloud and Local sync for safari prices set in the Admin Panel
   useEffect(() => {
@@ -401,6 +400,9 @@ export default function TourDetail() {
         startDate: checkInDate,
         checkInDate,
         checkOutDate,
+        numDays,
+        weekdayDays,
+        weekendDays,
         adults,
         kids,
         numPeople: totalGuests,
@@ -411,8 +413,9 @@ export default function TourDetail() {
         safariPeople,
         safariVehicles,
         safariPrice,
-        safariRate: activeSafariVehicleRate,
-        safariRateType: isWeekend ? 'Weekend' : 'Weekday',
+        perVehicleSafariRate,
+        safariWeekdayRate: weekdayRate,
+        safariWeekendRate: weekendRate,
       };
       await createBooking(bookingData);
       setBookingSuccess(true);
@@ -439,21 +442,45 @@ export default function TourDetail() {
     );
   }
 
-  // Auto-detect weekend from Check-in Date (Saturday = 6, Sunday = 0)
-  const checkInDateObj = checkInDate ? new Date(checkInDate + 'T00:00:00') : new Date();
-  const dayOfWeek = checkInDateObj.getDay();
-  const isAutoWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-  const isWeekend = dayTypeOverride !== null ? dayTypeOverride === 'weekend' : isAutoWeekend;
+  // Dynamic day calculation based on check-in and check-out dates
+  const calculateStayBreakdown = () => {
+    if (!checkInDate) return { numDays: 1, weekdayDays: 1, weekendDays: 0 };
+    
+    const start = new Date(checkInDate + 'T00:00:00');
+    const end = checkOutDate ? new Date(checkOutDate + 'T00:00:00') : new Date(start);
+    const diffMs = end.getTime() - start.getTime();
+    const daysCount = Math.max(1, Math.round(diffMs / (1000 * 60 * 60 * 24)));
+
+    let weekdayDays = 0;
+    let weekendDays = 0;
+
+    for (let i = 0; i < daysCount; i++) {
+      const cur = new Date(start);
+      cur.setDate(start.getDate() + i);
+      const day = cur.getDay(); // 0 = Sunday, 6 = Saturday
+      if (day === 0 || day === 6) {
+        weekendDays++;
+      } else {
+        weekdayDays++;
+      }
+    }
+
+    return { numDays: daysCount, weekdayDays, weekendDays };
+  };
+
+  const { numDays, weekdayDays, weekendDays } = calculateStayBreakdown();
 
   const weekdayRate = Number(safariPricing?.weekday) || 6000;
   const weekendRate = Number(safariPricing?.weekend) || 8000;
-  const activeSafariVehicleRate = isWeekend ? weekendRate : weekdayRate;
+
+  // Rate per vehicle across all selected days
+  const perVehicleSafariRate = (weekdayDays * weekdayRate) + (weekendDays * weekendRate);
 
   const basePrice = tour.basePrice || 0;
   const packagePrice = selectedPackage?.price || 0;
   const totalGuests = adults + kids;
   const safariVehicles = Math.max(1, Math.ceil(safariPeople / 6));
-  const safariPrice = safariVehicles * activeSafariVehicleRate;
+  const safariPrice = safariVehicles * perVehicleSafariRate;
   const totalPrice = ((basePrice + packagePrice) * totalGuests) + safariPrice;
 
 
@@ -891,6 +918,14 @@ export default function TourDetail() {
                       </div>
                     </div>
                   </div>
+
+                  {/* Dynamic Duration and Day Types Pill */}
+                  <div className="flex items-center justify-between px-3 py-1.5 rounded-xl bg-sand-950/80 border border-sand-700/80 text-[11px] font-mono">
+                    <span className="text-charcoal-600">Expedition Duration:</span>
+                    <span className="text-pine-800 font-bold">
+                      {numDays} {numDays === 1 ? 'Day' : 'Days'} ({weekdayDays > 0 ? `${weekdayDays} Weekday${weekdayDays > 1 ? 's' : ''}` : ''}{weekdayDays > 0 && weekendDays > 0 ? ' · ' : ''}{weekendDays > 0 ? `${weekendDays} Weekend${weekendDays > 1 ? 's' : ''}` : ''})
+                    </span>
+                  </div>
                 </div>
 
                 {/* Interactive Number of Passengers Menu (Adults min 1, Kids min 0) */}
@@ -1027,7 +1062,7 @@ export default function TourDetail() {
                 </div>
 
                 {/* Safari Selection */}
-                <div className="space-y-1.5">
+                <div className="space-y-1">
                   <div className="flex items-center justify-between">
                     <label className="block text-xs font-mono uppercase text-charcoal-700 font-bold">
                       Safari Selection
@@ -1035,47 +1070,6 @@ export default function TourDetail() {
                     <span className="text-[10px] font-mono text-pine-800 font-bold">
                       ₹{safariPrice.toLocaleString()} ({safariVehicles} {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'})
                     </span>
-                  </div>
-
-                  {/* Weekday vs Weekend Safari Price Sections */}
-                  <div className="grid grid-cols-2 gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setDayTypeOverride('weekday')}
-                      className={`p-2 rounded-xl border text-left transition-all ${
-                        !isWeekend
-                          ? 'border-pine-800 bg-sand-900 ring-2 ring-pine-800/30 shadow-xs'
-                          : 'border-sand-700/80 bg-sand-950/60 hover:bg-sand-900/40 hover:border-sand-600'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-mono uppercase font-bold text-charcoal-700">Weekday</span>
-                        {!isWeekend && (
-                          <span className="text-[9px] font-mono bg-pine-800/15 text-pine-800 font-bold px-1 rounded">Active</span>
-                        )}
-                      </div>
-                      <div className="text-xs font-bold text-charcoal-950 font-mono mt-0.5">₹{weekdayRate.toLocaleString()}</div>
-                      <div className="text-[9px] text-charcoal-500 leading-tight">Mon – Fri / vehicle</div>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => setDayTypeOverride('weekend')}
-                      className={`p-2 rounded-xl border text-left transition-all ${
-                        isWeekend
-                          ? 'border-pine-800 bg-sand-900 ring-2 ring-pine-800/30 shadow-xs'
-                          : 'border-sand-700/80 bg-sand-950/60 hover:bg-sand-900/40 hover:border-sand-600'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-mono uppercase font-bold text-charcoal-700">Weekend</span>
-                        {isWeekend && (
-                          <span className="text-[9px] font-mono bg-pine-800/15 text-pine-800 font-bold px-1 rounded">Active</span>
-                        )}
-                      </div>
-                      <div className="text-xs font-bold text-charcoal-950 font-mono mt-0.5">₹{weekendRate.toLocaleString()}</div>
-                      <div className="text-[9px] text-charcoal-500 leading-tight">Sat – Sun / vehicle</div>
-                    </button>
                   </div>
 
                   <div className="p-2.5 rounded-xl bg-sand-950 border border-sand-700 space-y-2">
@@ -1115,13 +1109,25 @@ export default function TourDetail() {
                       </div>
                     </div>
 
-                    <div className="pt-1.5 border-t border-sand-800/60 flex items-center justify-between text-[11px] font-mono">
-                      <span className="text-charcoal-600">
-                        Vehicle Allocation:
-                      </span>
-                      <span className="text-charcoal-900 font-bold">
-                        {safariVehicles} × Safari {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'} (₹{activeSafariVehicleRate.toLocaleString()}/ea · {isWeekend ? 'Weekend Rate' : 'Weekday Rate'})
-                      </span>
+                    <div className="pt-2 border-t border-sand-800/60 space-y-1 text-[11px] font-mono">
+                      <div className="flex items-center justify-between">
+                        <span className="text-charcoal-600">Vehicle Allocation:</span>
+                        <span className="text-charcoal-900 font-bold">
+                          {safariVehicles} × Safari {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-charcoal-600">Date-based Safari Rate:</span>
+                        <span className="text-pine-800 font-bold">
+                          {weekdayDays > 0 && weekendDays > 0 ? (
+                            `₹${perVehicleSafariRate.toLocaleString()}/veh (${weekdayDays}Wkday + ${weekendDays}Wkend)`
+                          ) : weekdayDays > 0 ? (
+                            `₹${perVehicleSafariRate.toLocaleString()}/veh (${numDays} ${numDays === 1 ? 'Weekday' : 'Weekdays'} @ ₹${weekdayRate.toLocaleString()})`
+                          ) : (
+                            `₹${perVehicleSafariRate.toLocaleString()}/veh (${numDays} ${numDays === 1 ? 'Weekend' : 'Weekends'} @ ₹${weekendRate.toLocaleString()})`
+                          )}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1221,8 +1227,15 @@ export default function TourDetail() {
                       <span>+₹{(packagePrice * (adults + kids)).toLocaleString()}</span>
                     </div>
                   )}
-                  <div className="flex justify-between">
-                    <span>Safari Selection ({safariVehicles} {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'} · {safariPeople} {safariPeople === 1 ? 'Person' : 'People'})</span>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <span>Safari ({safariVehicles} {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'} · {numDays} {numDays === 1 ? 'Day' : 'Days'})</span>
+                      <span className="block text-[10px] text-charcoal-500 font-mono">
+                        {weekdayDays > 0 && `${weekdayDays} weekday @ ₹${weekdayRate.toLocaleString()}`}
+                        {weekdayDays > 0 && weekendDays > 0 && ' · '}
+                        {weekendDays > 0 && `${weekendDays} weekend @ ₹${weekendRate.toLocaleString()}`}
+                      </span>
+                    </div>
                     <span className="font-mono text-charcoal-900 font-semibold">+₹{safariPrice.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between font-bold text-charcoal-900 text-sm pt-1.5 border-t border-sand-700">
