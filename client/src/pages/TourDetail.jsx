@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getTourDetail, createBooking, GIR_HOTELS, JAWAI_HOTELS, SANJAY_DUBRI_HOTELS, VELAVADAR_HOTELS, CORBETT_HOTELS, PANNA_HOTELS, PENCH_HOTELS, CHITWAN_HOTELS, BANDHAVGARH_HOTELS, KANHA_HOTELS, RANTHAMBORE_HOTELS } from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, Hotel, Eye, Plus, Minus, ChevronDown, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
+import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, Hotel, Eye, Plus, Minus, ChevronDown, Clock, ChevronLeft, ChevronRight, Compass } from 'lucide-react';
 import HotelDetailModal from '../components/tours/HotelDetailModal';
 
 function HotelCardImageCarousel({ images, name, onClick }) {
@@ -197,6 +197,25 @@ export default function TourDetail() {
   const [selectedRoomCategory, setSelectedRoomCategory] = useState(null);
   const [rooms, setRooms] = useState(1);
   const [mealPlan, setMealPlan] = useState('APAI');
+  const [safariPeople, setSafariPeople] = useState(1);
+  const [safariPeopleManual, setSafariPeopleManual] = useState(false);
+
+  // Synchronize safariPeople with total passengers unless manually adjusted by the user
+  useEffect(() => {
+    if (!safariPeopleManual) {
+      setSafariPeople(Math.max(1, adults + kids));
+    }
+  }, [adults, kids, safariPeopleManual]);
+
+  const handleDecrementSafariPeople = () => {
+    setSafariPeopleManual(true);
+    setSafariPeople((prev) => Math.max(1, prev - 1));
+  };
+
+  const handleIncrementSafariPeople = () => {
+    setSafariPeopleManual(true);
+    setSafariPeople((prev) => prev + 1);
+  };
 
   const isGir = slug === 'gir-lion-safari' || slug?.includes('gir');
   const isJawai = slug === 'jawai-leopard-safari' || slug?.includes('jawai');
@@ -353,6 +372,9 @@ export default function TourDetail() {
         rooms,
         numRooms: rooms,
         mealPlan,
+        safariPeople,
+        safariVehicles,
+        safariPrice,
       };
       await createBooking(bookingData);
       setBookingSuccess(true);
@@ -382,7 +404,10 @@ export default function TourDetail() {
   const basePrice = tour.basePrice || 0;
   const packagePrice = selectedPackage?.price || 0;
   const totalGuests = adults + kids;
-  const totalPrice = (basePrice + packagePrice) * totalGuests;
+  const safariVehicles = Math.max(1, Math.ceil(safariPeople / 6));
+  const safariPrice = safariVehicles * 6000;
+  const totalPrice = ((basePrice + packagePrice) * totalGuests) + safariPrice;
+
 
   const images = tour.images && tour.images.length > 0 
     ? tour.images 
@@ -952,6 +977,64 @@ export default function TourDetail() {
                   </div>
                 </div>
 
+                {/* Safari Selection */}
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <label className="block text-xs font-mono uppercase text-charcoal-700 font-bold">
+                      Safari Selection
+                    </label>
+                    <span className="text-[10px] font-mono text-pine-800 font-bold">
+                      ${safariPrice.toLocaleString()} ({safariVehicles} {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'})
+                    </span>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-sand-950 border border-sand-700 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Compass className="w-4 h-4 text-pine-800 shrink-0" />
+                        <div>
+                          <span className="text-xs font-semibold text-charcoal-950 block">
+                            {safariPeople} {safariPeople === 1 ? 'Person' : 'People'}
+                          </span>
+                          <span className="text-[10px] text-charcoal-500 font-mono block">
+                            {safariVehicles} {safariVehicles === 1 ? 'Safari Vehicle' : 'Safari Vehicles'} (Max 6 guests / vehicle)
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          disabled={safariPeople <= 1}
+                          onClick={handleDecrementSafariPeople}
+                          className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 disabled:opacity-30 disabled:cursor-not-allowed text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
+                          aria-label="Decrease safari people"
+                        >
+                          <Minus className="w-3.5 h-3.5" />
+                        </button>
+                        <span className="w-5 text-center font-mono font-bold text-xs text-charcoal-950">
+                          {safariPeople}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={handleIncrementSafariPeople}
+                          className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
+                          aria-label="Increase safari people"
+                        >
+                          <Plus className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="pt-1.5 border-t border-sand-800/60 flex items-center justify-between text-[11px] font-mono">
+                      <span className="text-charcoal-600">
+                        Vehicle Allocation:
+                      </span>
+                      <span className="text-charcoal-900 font-bold">
+                        {safariVehicles} × Safari {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'} ($6,000/ea)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Select Meal Option */}
                 <div className="space-y-1.5 pt-1">
                   <div className="flex items-center justify-between">
@@ -1047,9 +1130,13 @@ export default function TourDetail() {
                       <span>+${packagePrice * (adults + kids)}</span>
                     </div>
                   )}
+                  <div className="flex justify-between">
+                    <span>Safari Selection ({safariVehicles} {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'} · {safariPeople} {safariPeople === 1 ? 'Person' : 'People'})</span>
+                    <span className="font-mono text-charcoal-900 font-semibold">+${safariPrice.toLocaleString()}</span>
+                  </div>
                   <div className="flex justify-between font-bold text-charcoal-900 text-sm pt-1.5 border-t border-sand-700">
                     <span>Total Cost</span>
-                    <span className="text-pine-800">${((basePrice + packagePrice) * (adults + kids)).toLocaleString()}</span>
+                    <span className="text-pine-800">${totalPrice.toLocaleString()}</span>
                   </div>
                 </div>
 

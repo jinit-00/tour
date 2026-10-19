@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 // Create a new booking
 router.post('/', requireAuth, async (req, res) => {
   try {
-    const { tourId, packageId, bookingDate, numPeople } = req.body;
+    const { tourId, packageId, bookingDate, numPeople, safariPrice } = req.body;
     const userId = req.user.id;
 
     if (!tourId || !bookingDate) {
@@ -38,7 +38,10 @@ router.post('/', requireAuth, async (req, res) => {
       }
     }
 
-    const totalAmount = tour.basePrice * guestCount + packagePrice;
+    const safariFee = parseFloat(safariPrice || 0);
+    const validSafariFee = isNaN(safariFee) || safariFee < 0 ? 0 : safariFee;
+    const totalAmount = (tour.basePrice + packagePrice) * guestCount + validSafariFee;
+
 
     const booking = await prisma.booking.create({
       data: {
