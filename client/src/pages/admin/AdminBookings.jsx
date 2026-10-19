@@ -115,10 +115,10 @@ export default function AdminBookings() {
                     </td>
 
                     <td className="p-4 text-xs font-mono text-slate-600">
-                      {b.tourPackage ? `${b.tourPackage.name} (+$${b.tourPackage.price})` : 'Standard'}
+                      {b.tourPackage ? `${b.tourPackage.name} (+₹${b.tourPackage.price})` : 'Standard'}
                     </td>
 
-                    <td className="p-4 font-bold text-emerald-700">${b.totalAmount.toLocaleString()}</td>
+                    <td className="p-4 font-bold text-emerald-700">₹{b.totalAmount.toLocaleString()}</td>
 
                     <td className="p-4">
                       <select

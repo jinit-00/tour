@@ -1,6 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getTourDetail, createBooking, GIR_HOTELS, JAWAI_HOTELS, SANJAY_DUBRI_HOTELS, VELAVADAR_HOTELS, CORBETT_HOTELS, PANNA_HOTELS, PENCH_HOTELS, CHITWAN_HOTELS, BANDHAVGARH_HOTELS, KANHA_HOTELS, RANTHAMBORE_HOTELS } from '../services/api';
+import { 
+  getTourDetail, 
+  createBooking, 
+  getSafariPricing,
+  syncSafariPricingFromCloud,
+  GIR_HOTELS, 
+  JAWAI_HOTELS, 
+  SANJAY_DUBRI_HOTELS, 
+  VELAVADAR_HOTELS, 
+  CORBETT_HOTELS, 
+  PANNA_HOTELS, 
+  PENCH_HOTELS, 
+  CHITWAN_HOTELS, 
+  BANDHAVGARH_HOTELS, 
+  KANHA_HOTELS, 
+  RANTHAMBORE_HOTELS 
+} from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, Hotel, Eye, Plus, Minus, ChevronDown, Clock, ChevronLeft, ChevronRight, Compass } from 'lucide-react';
 import HotelDetailModal from '../components/tours/HotelDetailModal';
@@ -199,6 +215,25 @@ export default function TourDetail() {
   const [mealPlan, setMealPlan] = useState('APAI');
   const [safariPeople, setSafariPeople] = useState(1);
   const [safariPeopleManual, setSafariPeopleManual] = useState(false);
+  const [safariPricing, setSafariPricing] = useState(() => getSafariPricing(slug));
+  const [dayTypeOverride, setDayTypeOverride] = useState(null); // null (auto from checkInDate) | 'weekday' | 'weekend'
+
+  // Live Cloud and Local sync for safari prices set in the Admin Panel
+  useEffect(() => {
+    syncSafariPricingFromCloud().then((p) => {
+      if (p) setSafariPricing(getSafariPricing(slug));
+    }).catch(() => {});
+
+    const handlePricingChange = () => {
+      setSafariPricing(getSafariPricing(slug));
+    };
+    window.addEventListener('safariPricingChanged', handlePricingChange);
+    window.addEventListener('storage', handlePricingChange);
+    return () => {
+      window.removeEventListener('safariPricingChanged', handlePricingChange);
+      window.removeEventListener('storage', handlePricingChange);
+    };
+  }, [slug]);
 
   // Synchronize safariPeople with total passengers unless manually adjusted by the user
   useEffect(() => {
@@ -216,6 +251,7 @@ export default function TourDetail() {
     setSafariPeopleManual(true);
     setSafariPeople((prev) => prev + 1);
   };
+
 
   const isGir = slug === 'gir-lion-safari' || slug?.includes('gir');
   const isJawai = slug === 'jawai-leopard-safari' || slug?.includes('jawai');
@@ -278,7 +314,7 @@ export default function TourDetail() {
           } else {
             setSelectedPackage({
               id: firstHotel.id,
-              name: `${firstHotel.name} (${firstHotel.price === 0 ? 'Standard' : `+$${firstHotel.price}`})`,
+              name: `${firstHotel.name} (${firstHotel.price === 0 ? 'Standard' : `+₹${firstHotel.price}`})`,
               price: firstHotel.price || 0,
               description: firstHotel.tagline
             });
@@ -305,7 +341,7 @@ export default function TourDetail() {
     } else {
       setSelectedPackage({
         id: hotel.id,
-        name: `${hotel.name} (${hotel.price === 0 ? 'Standard Package' : `+$${hotel.price}`})`,
+        name: `${hotel.name} (${hotel.price === 0 ? 'Standard Package' : `+₹${hotel.price}`})`,
         price: hotel.price || 0,
         description: hotel.tagline
       });
@@ -375,6 +411,8 @@ export default function TourDetail() {
         safariPeople,
         safariVehicles,
         safariPrice,
+        safariRate: activeSafariVehicleRate,
+        safariRateType: isWeekend ? 'Weekend' : 'Weekday',
       };
       await createBooking(bookingData);
       setBookingSuccess(true);
@@ -401,12 +439,23 @@ export default function TourDetail() {
     );
   }
 
+  // Auto-detect weekend from Check-in Date (Saturday = 6, Sunday = 0)
+  const checkInDateObj = checkInDate ? new Date(checkInDate + 'T00:00:00') : new Date();
+  const dayOfWeek = checkInDateObj.getDay();
+  const isAutoWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+  const isWeekend = dayTypeOverride !== null ? dayTypeOverride === 'weekend' : isAutoWeekend;
+
+  const weekdayRate = Number(safariPricing?.weekday) || 6000;
+  const weekendRate = Number(safariPricing?.weekend) || 8000;
+  const activeSafariVehicleRate = isWeekend ? weekendRate : weekdayRate;
+
   const basePrice = tour.basePrice || 0;
   const packagePrice = selectedPackage?.price || 0;
   const totalGuests = adults + kids;
   const safariVehicles = Math.max(1, Math.ceil(safariPeople / 6));
-  const safariPrice = safariVehicles * 6000;
+  const safariPrice = safariVehicles * activeSafariVehicleRate;
   const totalPrice = ((basePrice + packagePrice) * totalGuests) + safariPrice;
+
 
 
   const images = tour.images && tour.images.length > 0 
@@ -609,7 +658,7 @@ export default function TourDetail() {
                               <span>Selected</span>
                             </>
                           ) : (
-                            <span>Select ({hotel.price === 0 ? 'Included' : `+$${hotel.price}`})</span>
+                            <span>Select ({hotel.price === 0 ? 'Included' : `+₹${hotel.price}`})</span>
                           )}
                         </button>
                       </div>
@@ -630,7 +679,7 @@ export default function TourDetail() {
             <div>
               <span className="text-xs font-mono uppercase text-pine-800 font-bold block">Reserve Your Seat</span>
               <div className="flex items-baseline gap-2 pt-1">
-                <span className="text-3xl sm:text-4xl font-black text-charcoal-900">${(basePrice + packagePrice).toLocaleString()}</span>
+                <span className="text-3xl sm:text-4xl font-black text-charcoal-900">₹{(basePrice + packagePrice).toLocaleString()}</span>
                 <span className="text-xs font-mono text-charcoal-600">/ guest</span>
               </div>
             </div>
@@ -682,7 +731,7 @@ export default function TourDetail() {
                     >
                       {availableHotels.map((h) => (
                         <option key={h.id} value={h.id}>
-                          {h.name} ({h.price === 0 ? 'Standard Package' : `+$${h.price} / guest`})
+                          {h.name} ({h.price === 0 ? 'Standard Package' : `+₹${h.price} / guest`})
                         </option>
                       ))}
                     </select>
@@ -748,7 +797,7 @@ export default function TourDetail() {
                                     <span className={`text-[10px] font-mono font-bold shrink-0 ${
                                       cat.price === 0 ? 'text-pine-800' : 'text-amber-600'
                                     }`}>
-                                      {cat.price === 0 ? 'Included' : `+$${cat.price}`}
+                                      {cat.price === 0 ? 'Included' : `+₹${cat.price}`}
                                     </span>
                                   </div>
 
@@ -786,7 +835,7 @@ export default function TourDetail() {
                         >
                           <div className="flex justify-between font-bold text-charcoal-900">
                             <span>{pkg.name}</span>
-                            <span>{pkg.price > 0 ? `+$${pkg.price}` : 'Included'}</span>
+                            <span>{pkg.price > 0 ? `+₹${pkg.price}` : 'Included'}</span>
                           </div>
                           <p className="text-[11px] text-charcoal-700 pt-0.5 font-normal">{pkg.description}</p>
                         </div>
@@ -978,15 +1027,57 @@ export default function TourDetail() {
                 </div>
 
                 {/* Safari Selection */}
-                <div className="space-y-1">
+                <div className="space-y-1.5">
                   <div className="flex items-center justify-between">
                     <label className="block text-xs font-mono uppercase text-charcoal-700 font-bold">
                       Safari Selection
                     </label>
                     <span className="text-[10px] font-mono text-pine-800 font-bold">
-                      ${safariPrice.toLocaleString()} ({safariVehicles} {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'})
+                      ₹{safariPrice.toLocaleString()} ({safariVehicles} {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'})
                     </span>
                   </div>
+
+                  {/* Weekday vs Weekend Safari Price Sections */}
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setDayTypeOverride('weekday')}
+                      className={`p-2 rounded-xl border text-left transition-all ${
+                        !isWeekend
+                          ? 'border-pine-800 bg-sand-900 ring-2 ring-pine-800/30 shadow-xs'
+                          : 'border-sand-700/80 bg-sand-950/60 hover:bg-sand-900/40 hover:border-sand-600'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-mono uppercase font-bold text-charcoal-700">Weekday</span>
+                        {!isWeekend && (
+                          <span className="text-[9px] font-mono bg-pine-800/15 text-pine-800 font-bold px-1 rounded">Active</span>
+                        )}
+                      </div>
+                      <div className="text-xs font-bold text-charcoal-950 font-mono mt-0.5">₹{weekdayRate.toLocaleString()}</div>
+                      <div className="text-[9px] text-charcoal-500 leading-tight">Mon – Fri / vehicle</div>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setDayTypeOverride('weekend')}
+                      className={`p-2 rounded-xl border text-left transition-all ${
+                        isWeekend
+                          ? 'border-pine-800 bg-sand-900 ring-2 ring-pine-800/30 shadow-xs'
+                          : 'border-sand-700/80 bg-sand-950/60 hover:bg-sand-900/40 hover:border-sand-600'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-mono uppercase font-bold text-charcoal-700">Weekend</span>
+                        {isWeekend && (
+                          <span className="text-[9px] font-mono bg-pine-800/15 text-pine-800 font-bold px-1 rounded">Active</span>
+                        )}
+                      </div>
+                      <div className="text-xs font-bold text-charcoal-950 font-mono mt-0.5">₹{weekendRate.toLocaleString()}</div>
+                      <div className="text-[9px] text-charcoal-500 leading-tight">Sat – Sun / vehicle</div>
+                    </button>
+                  </div>
+
                   <div className="p-2.5 rounded-xl bg-sand-950 border border-sand-700 space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -1029,7 +1120,7 @@ export default function TourDetail() {
                         Vehicle Allocation:
                       </span>
                       <span className="text-charcoal-900 font-bold">
-                        {safariVehicles} × Safari {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'} ($6,000/ea)
+                        {safariVehicles} × Safari {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'} (₹{activeSafariVehicleRate.toLocaleString()}/ea · {isWeekend ? 'Weekend Rate' : 'Weekday Rate'})
                       </span>
                     </div>
                   </div>
@@ -1121,22 +1212,22 @@ export default function TourDetail() {
                 {/* Price Summary Breakdown */}
                 <div className="pt-2.5 border-t border-sand-700 space-y-1 text-xs text-charcoal-700">
                   <div className="flex justify-between">
-                    <span>Base (${basePrice} × {adults + kids} {adults + kids === 1 ? 'Guest' : 'Guests'})</span>
-                    <span>${basePrice * (adults + kids)}</span>
+                    <span>Base (₹{basePrice.toLocaleString()} × {adults + kids} {adults + kids === 1 ? 'Guest' : 'Guests'})</span>
+                    <span>₹{(basePrice * (adults + kids)).toLocaleString()}</span>
                   </div>
                   {packagePrice > 0 && (
                     <div className="flex justify-between">
                       <span>{selectedPackage.name}</span>
-                      <span>+${packagePrice * (adults + kids)}</span>
+                      <span>+₹{(packagePrice * (adults + kids)).toLocaleString()}</span>
                     </div>
                   )}
                   <div className="flex justify-between">
                     <span>Safari Selection ({safariVehicles} {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'} · {safariPeople} {safariPeople === 1 ? 'Person' : 'People'})</span>
-                    <span className="font-mono text-charcoal-900 font-semibold">+${safariPrice.toLocaleString()}</span>
+                    <span className="font-mono text-charcoal-900 font-semibold">+₹{safariPrice.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between font-bold text-charcoal-900 text-sm pt-1.5 border-t border-sand-700">
                     <span>Total Cost</span>
-                    <span className="text-pine-800">${totalPrice.toLocaleString()}</span>
+                    <span className="text-pine-800">₹{totalPrice.toLocaleString()}</span>
                   </div>
                 </div>
 

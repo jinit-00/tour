@@ -2815,7 +2815,7 @@ const FALLBACK_TOURS = [
     ],
     packages: GIR_HOTELS.map(h => ({
       id: h.id,
-      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+₹${h.price} Premium`})`,
       price: h.price,
       description: h.tagline
     })),
@@ -2837,7 +2837,7 @@ const FALLBACK_TOURS = [
     ],
     packages: SANJAY_DUBRI_HOTELS.map(h => ({
       id: h.id,
-      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+₹${h.price} Premium`})`,
       price: h.price,
       description: h.tagline
     })),
@@ -2859,7 +2859,7 @@ const FALLBACK_TOURS = [
     ],
     packages: JAWAI_HOTELS.map(h => ({
       id: h.id,
-      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+₹${h.price} Premium`})`,
       price: h.price,
       description: h.tagline
     })),
@@ -2881,7 +2881,7 @@ const FALLBACK_TOURS = [
     ],
     packages: RANTHAMBORE_HOTELS.map(h => ({
       id: h.id,
-      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+₹${h.price} Premium`})`,
       price: h.price,
       description: h.tagline
     })),
@@ -2903,7 +2903,7 @@ const FALLBACK_TOURS = [
     ],
     packages: VELAVADAR_HOTELS.map(h => ({
       id: h.id,
-      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+₹${h.price} Premium`})`,
       price: h.price,
       description: h.tagline
     })),
@@ -2925,7 +2925,7 @@ const FALLBACK_TOURS = [
     ],
     packages: PANNA_HOTELS.map(h => ({
       id: h.id,
-      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+₹${h.price} Premium`})`,
       price: h.price,
       description: h.tagline
     })),
@@ -2947,7 +2947,7 @@ const FALLBACK_TOURS = [
     ],
     packages: PENCH_HOTELS.map(h => ({
       id: h.id,
-      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+₹${h.price} Premium`})`,
       price: h.price,
       description: h.tagline
     })),
@@ -2969,7 +2969,7 @@ const FALLBACK_TOURS = [
     ],
     packages: KANHA_HOTELS.map(h => ({
       id: h.id,
-      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+₹${h.price} Premium`})`,
       price: h.price,
       description: h.tagline
     })),
@@ -2991,7 +2991,7 @@ const FALLBACK_TOURS = [
     ],
     packages: BANDHAVGARH_HOTELS.map(h => ({
       id: h.id,
-      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+₹${h.price} Premium`})`,
       price: h.price,
       description: h.tagline
     })),
@@ -3030,7 +3030,7 @@ const FALLBACK_TOURS = [
     ],
     packages: CORBETT_HOTELS.map(h => ({
       id: h.id,
-      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+₹${h.price} Premium`})`,
       price: h.price,
       description: h.tagline
     })),
@@ -3052,7 +3052,7 @@ const FALLBACK_TOURS = [
     ],
     packages: CHITWAN_HOTELS.map(h => ({
       id: h.id,
-      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+$${h.price} Premium`})`,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+₹${h.price} Premium`})`,
       price: h.price,
       description: h.tagline
     })),
@@ -3096,7 +3096,88 @@ export const getCurrentUser = () => API.get('/auth/me');
 
 // Tour Section Visibility (Hide / Show) Helpers with Cloud Sync
 const HIDDEN_TOURS_STORAGE_KEY = 'junglee_hidden_tours';
+export const SAFARI_PRICING_STORAGE_KEY = 'junglee_safari_pricing';
 const CLOUD_SYNC_URL = 'https://api.restful-api.dev/objects/ff808181a09d98f701a14869bd637994';
+
+export const DEFAULT_SAFARI_PRICING = {
+  weekday: 6000,
+  weekend: 8000,
+  bySlug: {}
+};
+
+export const getSafariPricing = (slug = null) => {
+  try {
+    const raw = localStorage.getItem(SAFARI_PRICING_STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : DEFAULT_SAFARI_PRICING;
+    const weekday = Number(parsed.weekday) || DEFAULT_SAFARI_PRICING.weekday;
+    const weekend = Number(parsed.weekend) || DEFAULT_SAFARI_PRICING.weekend;
+    if (slug && parsed.bySlug && parsed.bySlug[slug]) {
+      return {
+        weekday: Number(parsed.bySlug[slug].weekday) || weekday,
+        weekend: Number(parsed.bySlug[slug].weekend) || weekend,
+      };
+    }
+    return { weekday, weekend, bySlug: parsed.bySlug || {} };
+  } catch (e) {
+    return { ...DEFAULT_SAFARI_PRICING };
+  }
+};
+
+export const setSafariPricing = async (newPricing) => {
+  try {
+    const raw = localStorage.getItem(SAFARI_PRICING_STORAGE_KEY);
+    const current = raw ? JSON.parse(raw) : { ...DEFAULT_SAFARI_PRICING };
+    const updated = {
+      weekday: Number(newPricing.weekday !== undefined ? newPricing.weekday : current.weekday),
+      weekend: Number(newPricing.weekend !== undefined ? newPricing.weekend : current.weekend),
+      bySlug: {
+        ...(current.bySlug || {}),
+        ...(newPricing.bySlug || {}),
+      }
+    };
+    localStorage.setItem(SAFARI_PRICING_STORAGE_KEY, JSON.stringify(updated));
+    window.dispatchEvent(new CustomEvent('safariPricingChanged', { detail: updated }));
+
+    // Sync to Cloud immediately so all live visitors see the updated pricing
+    const hiddenList = getHiddenTourSlugs();
+    try {
+      await axios.put(CLOUD_SYNC_URL, {
+        name: 'junglee_visibility',
+        data: {
+          hidden: hiddenList,
+          safariPricing: updated,
+        }
+      }, { timeout: 4000 });
+    } catch (cloudErr) {
+      console.warn('Cloud sync for pricing failed:', cloudErr.message);
+    }
+
+    return updated;
+  } catch (err) {
+    console.error('Failed to set safari pricing:', err);
+    return newPricing;
+  }
+};
+
+export const syncSafariPricingFromCloud = async () => {
+  try {
+    const res = await axios.get(CLOUD_SYNC_URL, { timeout: 4000 });
+    if (res.data && res.data.data) {
+      if (res.data.data.safariPricing) {
+        const cloudPricing = res.data.data.safariPricing;
+        localStorage.setItem(SAFARI_PRICING_STORAGE_KEY, JSON.stringify(cloudPricing));
+        window.dispatchEvent(new CustomEvent('safariPricingChanged', { detail: cloudPricing }));
+        return cloudPricing;
+      }
+      if (Array.isArray(res.data.data.hidden)) {
+        localStorage.setItem(HIDDEN_TOURS_STORAGE_KEY, JSON.stringify(res.data.data.hidden));
+      }
+    }
+  } catch (err) {
+    // Fail silently to local storage
+  }
+  return getSafariPricing();
+};
 
 export const getHiddenTourSlugs = () => {
   try {
@@ -3118,18 +3199,25 @@ export const setHiddenTourSlugs = (slugs) => {
   }
 };
 
-// Sync from Cloud so ANY live website visitor (without login) gets the latest hidden tours
+// Sync from Cloud so ANY live website visitor (without login) gets the latest hidden tours & safari prices
 export const syncHiddenToursFromCloud = async () => {
   try {
     const res = await axios.get(CLOUD_SYNC_URL, { timeout: 4000 });
-    if (res.data && res.data.data && Array.isArray(res.data.data.hidden)) {
-      const cloudHidden = res.data.data.hidden;
-      const localHidden = getHiddenTourSlugs();
-      if (JSON.stringify(cloudHidden) !== JSON.stringify(localHidden)) {
-        localStorage.setItem(HIDDEN_TOURS_STORAGE_KEY, JSON.stringify(cloudHidden));
-        window.dispatchEvent(new CustomEvent('tourVisibilityChanged', { detail: cloudHidden }));
+    if (res.data && res.data.data) {
+      if (Array.isArray(res.data.data.hidden)) {
+        const cloudHidden = res.data.data.hidden;
+        const localHidden = getHiddenTourSlugs();
+        if (JSON.stringify(cloudHidden) !== JSON.stringify(localHidden)) {
+          localStorage.setItem(HIDDEN_TOURS_STORAGE_KEY, JSON.stringify(cloudHidden));
+          window.dispatchEvent(new CustomEvent('tourVisibilityChanged', { detail: cloudHidden }));
+        }
       }
-      return cloudHidden;
+      if (res.data.data.safariPricing) {
+        const cloudPricing = res.data.data.safariPricing;
+        localStorage.setItem(SAFARI_PRICING_STORAGE_KEY, JSON.stringify(cloudPricing));
+        window.dispatchEvent(new CustomEvent('safariPricingChanged', { detail: cloudPricing }));
+      }
+      return res.data.data.hidden || [];
     }
   } catch (err) {
     // Fail silently to local storage
@@ -3165,11 +3253,15 @@ export const toggleTourVisibility = async (tourOrId, explicitHiddenState) => {
   }
   setHiddenTourSlugs(updatedList);
 
-  // Sync to Cloud immediately so ALL live website visitors without login see the change
+  // Sync to Cloud immediately, preserving safariPricing so ALL live website visitors see the change
   try {
+    const currentPricing = getSafariPricing();
     await axios.put(CLOUD_SYNC_URL, {
       name: 'junglee_visibility',
-      data: { hidden: updatedList },
+      data: { 
+        hidden: updatedList,
+        safariPricing: currentPricing,
+      },
     }, { timeout: 4000 });
   } catch (cloudErr) {
     console.warn('Cloud sync update failed:', cloudErr.message);

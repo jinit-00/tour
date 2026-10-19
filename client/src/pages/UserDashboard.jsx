@@ -113,7 +113,7 @@ export default function UserDashboard() {
                 <div className="flex items-center gap-6 border-t md:border-t-0 border-sand-700 pt-4 md:pt-0">
                   <div className="text-right">
                     <span className="text-[10px] font-mono text-charcoal-500 uppercase block">Total Cost</span>
-                    <span className="text-xl font-extrabold text-charcoal-900">${b.totalPrice?.toLocaleString()}</span>
+                    <span className="text-xl font-extrabold text-charcoal-900">₹{(b.totalPrice || b.totalAmount || 0).toLocaleString()}</span>
                   </div>
 
                   {b.status !== 'CANCELLED' && (

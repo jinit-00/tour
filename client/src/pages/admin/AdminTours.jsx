@@ -6,7 +6,10 @@ import {
   createAdminTour, 
   updateAdminTour, 
   deleteAdminTour, 
-  toggleAdminTourVisibility 
+  toggleAdminTourVisibility,
+  getSafariPricing,
+  setSafariPricing,
+  syncSafariPricingFromCloud
 } from '../../services/api';
 import { 
   Plus, 
@@ -19,7 +22,10 @@ import {
   Check, 
   Search, 
   ExternalLink,
-  Sparkles
+  Sparkles,
+  IndianRupee,
+  Save,
+  Calendar
 } from 'lucide-react';
 
 export default function AdminTours() {
@@ -47,9 +53,60 @@ export default function AdminTours() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
+  // Safari Pricing Manager (Weekday & Weekend rates)
+  const initialPricing = getSafariPricing();
+  const [weekdaySafariPrice, setWeekdaySafariPrice] = useState(initialPricing.weekday || 6000);
+  const [weekendSafariPrice, setWeekendSafariPrice] = useState(initialPricing.weekend || 8000);
+  const [selectedPricingTour, setSelectedPricingTour] = useState('all');
+  const [savingPricing, setSavingPricing] = useState(false);
+
   useEffect(() => {
     fetchTours();
+    syncSafariPricingFromCloud().then((p) => {
+      if (p) {
+        setWeekdaySafariPrice(p.weekday || 6000);
+        setWeekendSafariPrice(p.weekend || 8000);
+      }
+    }).catch(() => {});
   }, []);
+
+  // When changing destination in pricing selector, load that specific tour's custom pricing if set
+  const handleSelectPricingTour = (slug) => {
+    setSelectedPricingTour(slug);
+    const p = getSafariPricing(slug === 'all' ? null : slug);
+    setWeekdaySafariPrice(p.weekday);
+    setWeekendSafariPrice(p.weekend);
+  };
+
+  const handleSaveSafariPricing = async () => {
+    const wDay = parseFloat(weekdaySafariPrice);
+    const wEnd = parseFloat(weekendSafariPrice);
+    if (isNaN(wDay) || wDay < 0 || isNaN(wEnd) || wEnd < 0) {
+      alert('Please enter valid positive numbers for both Weekday and Weekend prices.');
+      return;
+    }
+    setSavingPricing(true);
+    try {
+      if (selectedPricingTour === 'all') {
+        await setSafariPricing({ weekday: wDay, weekend: wEnd });
+      } else {
+        const current = getSafariPricing();
+        const updatedBySlug = {
+          ...(current.bySlug || {}),
+          [selectedPricingTour]: { weekday: wDay, weekend: wEnd }
+        };
+        await setSafariPricing({ bySlug: updatedBySlug });
+      }
+      setToast({
+        type: 'visible',
+        message: `Safari pricing updated: Weekday ₹${wDay.toLocaleString()} / Weekend ₹${wEnd.toLocaleString()}. Live website updated!`,
+      });
+    } catch (err) {
+      alert('Failed to save safari pricing.');
+    } finally {
+      setSavingPricing(false);
+    }
+  };
 
   // Auto-dismiss toast after 4 seconds
   useEffect(() => {
@@ -283,6 +340,130 @@ export default function AdminTours() {
           </div>
         )}
 
+        {/* Safari Vehicle Pricing Manager - 2 Sections: Weekday & Weekend Rates */}
+        <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950 p-6 rounded-2xl border border-emerald-800/40 shadow-xl space-y-5 text-white">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-700/60 pb-4">
+            <div className="flex items-center gap-3.5">
+              <div className="w-11 h-11 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30 shrink-0">
+                <IndianRupee className="w-6 h-6" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                    Safari Pricing Manager
+                  </h3>
+                  <span className="text-[10px] font-mono uppercase bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded-full border border-emerald-500/30 font-semibold">
+                    Live Sync
+                  </span>
+                </div>
+                <p className="text-xs text-slate-300 pt-0.5">
+                  Write and adjust safari vehicle rates. When updated, the new rates instantly reflect on the main website booking card.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 w-full sm:w-auto">
+              {/* Optional Tour Specific Selector */}
+              <select
+                value={selectedPricingTour}
+                onChange={(e) => handleSelectPricingTour(e.target.value)}
+                className="bg-slate-800 text-slate-200 border border-slate-700 rounded-xl px-3 py-2 text-xs font-medium focus:outline-none focus:border-emerald-500 flex-1 sm:flex-initial"
+              >
+                <option value="all">All Safaris (Global Standard)</option>
+                {tours.map((t) => (
+                  <option key={t.slug || t.id} value={t.slug || t.id}>
+                    {t.title}
+                  </option>
+                ))}
+              </select>
+
+              <button
+                type="button"
+                onClick={handleSaveSafariPricing}
+                disabled={savingPricing}
+                className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 shrink-0 active:scale-95 disabled:opacity-50"
+              >
+                <Save className="w-4 h-4" />
+                <span>{savingPricing ? 'Syncing...' : 'Save Safari Prices'}</span>
+              </button>
+            </div>
+          </div>
+
+          {/* 2 Distinct Sections: Weekday Price & Weekend Price */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            
+            {/* SECTION 1: Weekday Safari Price */}
+            <div className="bg-slate-800/80 p-5 rounded-xl border border-slate-700/80 space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                  <label className="text-xs font-mono font-bold uppercase text-emerald-400 tracking-wider">
+                    Section 1: Weekday Price (Monday – Friday)
+                  </label>
+                </div>
+                <span className="text-[10px] font-mono bg-emerald-500/10 text-emerald-300 px-2 py-0.5 rounded border border-emerald-500/20 font-bold">
+                  Per Vehicle (Max 6)
+                </span>
+              </div>
+
+              <div className="relative">
+                <span className="absolute left-3.5 top-2.5 text-base font-bold text-emerald-400 pointer-events-none">
+                  ₹
+                </span>
+                <input
+                  type="number"
+                  min="0"
+                  step="100"
+                  value={weekdaySafariPrice}
+                  onChange={(e) => setWeekdaySafariPrice(e.target.value)}
+                  placeholder="6000"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-4 py-2.5 text-base text-white font-mono font-bold focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
+                />
+              </div>
+
+              <p className="text-[11px] text-slate-300 leading-relaxed font-normal">
+                Standard vehicle booking charge applied when visitors select dates falling on a weekday (Monday to Friday).
+              </p>
+            </div>
+
+            {/* SECTION 2: Weekend Safari Price */}
+            <div className="bg-slate-800/80 p-5 rounded-xl border border-slate-700/80 space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400" />
+                  <label className="text-xs font-mono font-bold uppercase text-amber-400 tracking-wider">
+                    Section 2: Weekend Price (Saturday – Sunday)
+                  </label>
+                </div>
+                <span className="text-[10px] font-mono bg-amber-500/10 text-amber-300 px-2 py-0.5 rounded border border-amber-500/20 font-bold">
+                  Per Vehicle (Max 6)
+                </span>
+              </div>
+
+              <div className="relative">
+                <span className="absolute left-3.5 top-2.5 text-base font-bold text-amber-400 pointer-events-none">
+                  ₹
+                </span>
+                <input
+                  type="number"
+                  min="0"
+                  step="100"
+                  value={weekendSafariPrice}
+                  onChange={(e) => setWeekendSafariPrice(e.target.value)}
+                  placeholder="8000"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-4 py-2.5 text-base text-white font-mono font-bold focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all"
+                />
+              </div>
+
+              <p className="text-[11px] text-slate-300 leading-relaxed font-normal">
+                Peak weekend rate charged per vehicle when visitors choose Saturday or Sunday safari departures.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+
         {/* Filters & Search Toolbar */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs">
           <div className="flex items-center gap-2">
@@ -408,7 +589,7 @@ export default function AdminTours() {
 
                       {/* Base Price */}
                       <td className="p-4 font-bold text-emerald-700">
-                        ${(tour.basePrice || 0).toLocaleString()}
+                        ₹{(tour.basePrice || 0).toLocaleString()}
                       </td>
 
                       {/* Visibility Toggle Button */}
@@ -556,7 +737,7 @@ export default function AdminTours() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 uppercase mb-1">
-                      Base Price ($ USD)
+                      Base Price (₹ INR)
                     </label>
                     <input
                       type="number"
@@ -678,7 +859,7 @@ export default function AdminTours() {
                         />
                         <input
                           type="number"
-                          placeholder="Price ($)"
+                          placeholder="Price (₹)"
                           value={pkg.price}
                           onChange={(e) => handlePackageChange(i, 'price', e.target.value)}
                           className="border border-slate-300 rounded p-1.5 text-xs"

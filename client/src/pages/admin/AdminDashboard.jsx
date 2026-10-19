@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AdminLayout from '../../components/layout/AdminLayout';
 import { getAdminAnalytics } from '../../services/api';
-import { DollarSign, CalendarCheck, Compass, Users, MessageSquare, TrendingUp } from 'lucide-react';
+import { IndianRupee, CalendarCheck, Compass, Users, MessageSquare, TrendingUp } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 
 export default function AdminDashboard() {
@@ -44,9 +44,9 @@ export default function AdminDashboard() {
           <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-xs space-y-2">
             <div className="flex items-center justify-between text-slate-500 text-xs font-semibold uppercase">
               <span>Total Revenue</span>
-              <DollarSign className="w-4 h-4 text-emerald-600" />
+              <IndianRupee className="w-4 h-4 text-emerald-600" />
             </div>
-            <p className="text-2xl font-black text-slate-900">${(metrics.totalRevenue || 0).toLocaleString()}</p>
+            <p className="text-2xl font-black text-slate-900">₹{(metrics.totalRevenue || 0).toLocaleString()}</p>
             <p className="text-[11px] text-emerald-600 flex items-center gap-1 font-medium">
               <TrendingUp className="w-3 h-3" /> +18.4% from last month
             </p>
@@ -93,7 +93,7 @@ export default function AdminDashboard() {
         {/* Analytics Charts */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-xs space-y-4">
-            <h3 className="text-base font-bold text-slate-900">Revenue Growth Trend ($)</h3>
+            <h3 className="text-base font-bold text-slate-900">Revenue Growth Trend (₹)</h3>
             <div className="h-72">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData}>
@@ -142,7 +142,7 @@ export default function AdminDashboard() {
                 <tr key={tour.id} className="hover:bg-slate-50 transition-colors">
                   <td className="p-4 font-bold text-slate-900">{tour.title}</td>
                   <td className="p-4 text-xs font-mono text-slate-500">{tour.location}</td>
-                  <td className="p-4 font-semibold text-emerald-700">${tour.price.toLocaleString()}</td>
+                  <td className="p-4 font-semibold text-emerald-700">₹{tour.price.toLocaleString()}</td>
                   <td className="p-4">
                     <span className="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold font-mono">
                       {tour.bookingCount} bookings
