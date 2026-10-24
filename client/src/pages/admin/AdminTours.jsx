@@ -275,11 +275,11 @@ export default function AdminTours() {
     <AdminLayout>
       <div className="space-y-6">
         
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        {/* Page Header */}
+        <div className="bg-white p-5 sm:p-6 rounded-xl border border-slate-200 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 className="text-xl font-bold text-slate-900">Manage Expeditions & Tours</h2>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 mt-1">
               Control safari visibility with the toggle switch, add new expeditions, or customize pricing packages
             </p>
           </div>
@@ -297,7 +297,7 @@ export default function AdminTours() {
 
             <button
               onClick={() => openModal()}
-              className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs rounded-lg shadow-sm flex items-center gap-1.5 transition-colors"
+              className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs rounded-lg shadow-xs flex items-center gap-1.5 transition-colors"
             >
               <Plus className="w-4 h-4" />
               <span>Create New Tour</span>
@@ -308,7 +308,7 @@ export default function AdminTours() {
         {/* Real-time Toast Feedback Banner */}
         {toast && (
           <div
-            className={`p-4 rounded-xl border flex items-center justify-between text-xs sm:text-sm shadow-sm transition-all animate-fadeIn ${
+            className={`p-4 rounded-xl border flex items-center justify-between text-xs sm:text-sm shadow-xs transition-all animate-fadeIn ${
               toast.type === 'hidden'
                 ? 'bg-amber-50 border-amber-200 text-amber-900'
                 : 'bg-emerald-50 border-emerald-200 text-emerald-900'
@@ -341,22 +341,22 @@ export default function AdminTours() {
         )}
 
         {/* Safari Vehicle Pricing Manager - 2 Sections: Weekday & Weekend Rates */}
-        <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950 p-6 rounded-2xl border border-emerald-800/40 shadow-xl space-y-5 text-white">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-700/60 pb-4">
+        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-xs space-y-5 text-slate-800">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
             <div className="flex items-center gap-3.5">
-              <div className="w-11 h-11 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30 shrink-0">
+              <div className="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100 shrink-0">
                 <IndianRupee className="w-6 h-6" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
                     Safari Pricing Manager
                   </h3>
-                  <span className="text-[10px] font-mono uppercase bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded-full border border-emerald-500/30 font-semibold">
+                  <span className="text-[10px] uppercase bg-emerald-50 text-emerald-700 px-2.5 py-0.5 rounded-full border border-emerald-200 font-semibold">
                     Live Sync
                   </span>
                 </div>
-                <p className="text-xs text-slate-300 pt-0.5">
+                <p className="text-xs text-slate-500 pt-0.5">
                   Write and adjust safari vehicle rates. When updated, the new rates instantly reflect on the main website booking card.
                 </p>
               </div>
@@ -367,7 +367,7 @@ export default function AdminTours() {
               <select
                 value={selectedPricingTour}
                 onChange={(e) => handleSelectPricingTour(e.target.value)}
-                className="bg-slate-800 text-slate-200 border border-slate-700 rounded-xl px-3 py-2 text-xs font-medium focus:outline-none focus:border-emerald-500 flex-1 sm:flex-initial"
+                className="bg-slate-50 text-slate-800 border border-slate-300 rounded-xl px-3 py-2 text-xs font-medium focus:outline-none focus:border-emerald-500 flex-1 sm:flex-initial"
               >
                 <option value="all">All Safaris (Global Standard)</option>
                 {tours.map((t) => (
@@ -381,7 +381,7 @@ export default function AdminTours() {
                 type="button"
                 onClick={handleSaveSafariPricing}
                 disabled={savingPricing}
-                className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 shrink-0 active:scale-95 disabled:opacity-50"
+                className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 shrink-0 active:scale-95 disabled:opacity-50"
               >
                 <Save className="w-4 h-4" />
                 <span>{savingPricing ? 'Syncing...' : 'Save Safari Prices'}</span>
@@ -393,21 +393,21 @@ export default function AdminTours() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             
             {/* SECTION 1: Weekday Safari Price */}
-            <div className="bg-slate-800/80 p-5 rounded-xl border border-slate-700/80 space-y-3">
+            <div className="bg-slate-50/80 p-5 rounded-xl border border-slate-200 space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                  <label className="text-xs font-mono font-bold uppercase text-emerald-400 tracking-wider">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                  <label className="text-xs font-bold uppercase text-emerald-700 tracking-wider">
                     Section 1: Weekday Price (Monday – Friday)
                   </label>
                 </div>
-                <span className="text-[10px] font-mono bg-emerald-500/10 text-emerald-300 px-2 py-0.5 rounded border border-emerald-500/20 font-bold">
+                <span className="text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded border border-emerald-200 font-bold">
                   Per Vehicle (Max 6)
                 </span>
               </div>
 
               <div className="relative">
-                <span className="absolute left-3.5 top-2.5 text-base font-bold text-emerald-400 pointer-events-none">
+                <span className="absolute left-3.5 top-2.5 text-base font-bold text-emerald-600 pointer-events-none">
                   ₹
                 </span>
                 <input
@@ -417,31 +417,31 @@ export default function AdminTours() {
                   value={weekdaySafariPrice}
                   onChange={(e) => setWeekdaySafariPrice(e.target.value)}
                   placeholder="6000"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-4 py-2.5 text-base text-white font-mono font-bold focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
+                  className="w-full bg-white border border-slate-300 rounded-xl pl-9 pr-4 py-2.5 text-base text-slate-900 font-bold focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                 />
               </div>
 
-              <p className="text-[11px] text-slate-300 leading-relaxed font-normal">
+              <p className="text-[11px] text-slate-500 leading-relaxed font-normal">
                 Standard vehicle booking charge applied when visitors select dates falling on a weekday (Monday to Friday).
               </p>
             </div>
 
             {/* SECTION 2: Weekend Safari Price */}
-            <div className="bg-slate-800/80 p-5 rounded-xl border border-slate-700/80 space-y-3">
+            <div className="bg-slate-50/80 p-5 rounded-xl border border-slate-200 space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-amber-400" />
-                  <label className="text-xs font-mono font-bold uppercase text-amber-400 tracking-wider">
+                  <span className="w-2 h-2 rounded-full bg-amber-500" />
+                  <label className="text-xs font-bold uppercase text-amber-700 tracking-wider">
                     Section 2: Weekend Price (Saturday – Sunday)
                   </label>
                 </div>
-                <span className="text-[10px] font-mono bg-amber-500/10 text-amber-300 px-2 py-0.5 rounded border border-amber-500/20 font-bold">
+                <span className="text-[10px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded border border-amber-200 font-bold">
                   Per Vehicle (Max 6)
                 </span>
               </div>
 
               <div className="relative">
-                <span className="absolute left-3.5 top-2.5 text-base font-bold text-amber-400 pointer-events-none">
+                <span className="absolute left-3.5 top-2.5 text-base font-bold text-amber-600 pointer-events-none">
                   ₹
                 </span>
                 <input
@@ -451,11 +451,11 @@ export default function AdminTours() {
                   value={weekendSafariPrice}
                   onChange={(e) => setWeekendSafariPrice(e.target.value)}
                   placeholder="8000"
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-4 py-2.5 text-base text-white font-mono font-bold focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all"
+                  className="w-full bg-white border border-slate-300 rounded-xl pl-9 pr-4 py-2.5 text-base text-slate-900 font-bold focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all"
                 />
               </div>
 
-              <p className="text-[11px] text-slate-300 leading-relaxed font-normal">
+              <p className="text-[11px] text-slate-500 leading-relaxed font-normal">
                 Peak weekend rate charged per vehicle when visitors choose Saturday or Sunday safari departures.
               </p>
             </div>
@@ -521,7 +521,6 @@ export default function AdminTours() {
               <tr className="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-500 uppercase tracking-wider">
                 <th className="p-4">Safari Tour</th>
                 <th className="p-4">Location</th>
-                <th className="p-4">Duration</th>
                 <th className="p-4">Base Price</th>
                 <th className="p-4 text-center">Tour Section Visibility</th>
                 <th className="p-4 text-right">Actions</th>
@@ -530,13 +529,13 @@ export default function AdminTours() {
             <tbody className="divide-y divide-slate-100 text-slate-700">
               {loading ? (
                 <tr>
-                  <td colSpan="6" className="p-8 text-center text-slate-400 font-mono">
+                  <td colSpan="5" className="p-8 text-center text-slate-400">
                     Loading tours inventory...
                   </td>
                 </tr>
               ) : filteredTours.length === 0 ? (
                 <tr>
-                  <td colSpan="6" className="p-8 text-center text-slate-400">
+                  <td colSpan="5" className="p-8 text-center text-slate-400">
                     No tours found matching your search or filter.
                   </td>
                 </tr>
@@ -575,17 +574,14 @@ export default function AdminTours() {
                               </span>
                             )}
                           </div>
-                          <span className="text-xs font-mono text-slate-400 block pt-0.5">
+                          <span className="text-xs text-slate-400 block pt-0.5">
                             {tour.slug}
                           </span>
                         </div>
                       </td>
 
                       {/* Location */}
-                      <td className="p-4 text-xs font-mono text-slate-600">{tour.location}</td>
-
-                      {/* Duration */}
-                      <td className="p-4 text-xs font-mono text-slate-600">{tour.duration}</td>
+                      <td className="p-4 text-xs text-slate-600">{tour.location}</td>
 
                       {/* Base Price */}
                       <td className="p-4 font-bold text-emerald-700">
