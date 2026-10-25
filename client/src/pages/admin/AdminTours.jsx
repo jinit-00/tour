@@ -88,14 +88,14 @@ export default function AdminTours() {
     setSavingPricing(true);
     try {
       if (selectedPricingTour === 'all') {
-        await setSafariPricing({ weekday: wDay, weekend: wEnd });
+        await setSafariPricing({ weekday: wDay, weekend: wEnd, resetBySlug: true });
       } else {
         const current = getSafariPricing();
         const updatedBySlug = {
           ...(current.bySlug || {}),
           [selectedPricingTour]: { weekday: wDay, weekend: wEnd }
         };
-        await setSafariPricing({ bySlug: updatedBySlug });
+        await setSafariPricing({ weekday: wDay, weekend: wEnd, bySlug: updatedBySlug });
       }
       setToast({
         type: 'visible',
@@ -384,7 +384,7 @@ export default function AdminTours() {
                 className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 shrink-0 active:scale-95 disabled:opacity-50"
               >
                 <Save className="w-4 h-4" />
-                <span>{savingPricing ? 'Syncing...' : 'Save Safari Prices'}</span>
+                <span>{savingPricing ? 'Saving Changes...' : 'Save Changes'}</span>
               </button>
             </div>
           </div>

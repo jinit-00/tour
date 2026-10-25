@@ -3102,7 +3102,8 @@ const CLOUD_SYNC_URL = 'https://api.restful-api.dev/objects/ff808181a09d98f701a1
 export const DEFAULT_SAFARI_PRICING = {
   weekday: 6000,
   weekend: 8000,
-  bySlug: {}
+  bySlug: {},
+  updatedAt: 0,
 };
 
 export const getSafariPricing = (slug = null) => {
@@ -3111,13 +3112,15 @@ export const getSafariPricing = (slug = null) => {
     const parsed = raw ? JSON.parse(raw) : DEFAULT_SAFARI_PRICING;
     const weekday = Number(parsed.weekday) || DEFAULT_SAFARI_PRICING.weekday;
     const weekend = Number(parsed.weekend) || DEFAULT_SAFARI_PRICING.weekend;
+    const updatedAt = Number(parsed.updatedAt) || 0;
     if (slug && parsed.bySlug && parsed.bySlug[slug]) {
       return {
         weekday: Number(parsed.bySlug[slug].weekday) || weekday,
         weekend: Number(parsed.bySlug[slug].weekend) || weekend,
+        updatedAt,
       };
     }
-    return { weekday, weekend, bySlug: parsed.bySlug || {} };
+    return { weekday, weekend, bySlug: parsed.bySlug || {}, updatedAt };
   } catch (e) {
     return { ...DEFAULT_SAFARI_PRICING };
   }
@@ -3127,16 +3130,36 @@ export const setSafariPricing = async (newPricing) => {
   try {
     const raw = localStorage.getItem(SAFARI_PRICING_STORAGE_KEY);
     const current = raw ? JSON.parse(raw) : { ...DEFAULT_SAFARI_PRICING };
+
+    const weekday = Number(newPricing.weekday !== undefined ? newPricing.weekday : current.weekday) || DEFAULT_SAFARI_PRICING.weekday;
+    const weekend = Number(newPricing.weekend !== undefined ? newPricing.weekend : current.weekend) || DEFAULT_SAFARI_PRICING.weekend;
+
+    let updatedBySlug = { ...(current.bySlug || {}) };
+    if (newPricing.resetBySlug) {
+      // Clear individual overrides so all safaris adopt the new global pricing
+      updatedBySlug = {};
+    } else if (newPricing.bySlug) {
+      updatedBySlug = { ...updatedBySlug, ...newPricing.bySlug };
+    }
+
     const updated = {
-      weekday: Number(newPricing.weekday !== undefined ? newPricing.weekday : current.weekday),
-      weekend: Number(newPricing.weekend !== undefined ? newPricing.weekend : current.weekend),
-      bySlug: {
-        ...(current.bySlug || {}),
-        ...(newPricing.bySlug || {}),
-      }
+      weekday,
+      weekend,
+      bySlug: updatedBySlug,
+      updatedAt: Date.now(),
     };
+
     localStorage.setItem(SAFARI_PRICING_STORAGE_KEY, JSON.stringify(updated));
     window.dispatchEvent(new CustomEvent('safariPricingChanged', { detail: updated }));
+
+    // Instant multi-tab synchronization via BroadcastChannel
+    if (typeof BroadcastChannel !== 'undefined') {
+      try {
+        const bc = new BroadcastChannel('junglee_safari_pricing_sync');
+        bc.postMessage({ type: 'PRICING_UPDATED', pricing: updated });
+        bc.close();
+      } catch (e) {}
+    }
 
     // Sync to Cloud immediately so all live visitors see the updated pricing
     const hiddenList = getHiddenTourSlugs();
@@ -3161,12 +3184,37 @@ export const setSafariPricing = async (newPricing) => {
 
 export const syncSafariPricingFromCloud = async () => {
   try {
-    const res = await axios.get(CLOUD_SYNC_URL, { timeout: 4000 });
+    const res = await axios.get(`${CLOUD_SYNC_URL}?_nocache=${Date.now()}`, { timeout: 4000 });
     if (res.data && res.data.data) {
       if (res.data.data.safariPricing) {
         const cloudPricing = res.data.data.safariPricing;
+        const localPricing = getSafariPricing();
+        const cloudTime = Number(cloudPricing.updatedAt) || 0;
+        const localTime = Number(localPricing.updatedAt) || 0;
+
+        // If local changes are fresher than cloud, keep local and update cloud
+        if (localTime > cloudTime) {
+          try {
+            await axios.put(CLOUD_SYNC_URL, {
+              name: 'junglee_visibility',
+              data: {
+                hidden: getHiddenTourSlugs(),
+                safariPricing: localPricing,
+              }
+            }, { timeout: 4000 });
+          } catch (e) {}
+          return localPricing;
+        }
+
         localStorage.setItem(SAFARI_PRICING_STORAGE_KEY, JSON.stringify(cloudPricing));
         window.dispatchEvent(new CustomEvent('safariPricingChanged', { detail: cloudPricing }));
+        if (typeof BroadcastChannel !== 'undefined') {
+          try {
+            const bc = new BroadcastChannel('junglee_safari_pricing_sync');
+            bc.postMessage({ type: 'PRICING_UPDATED', pricing: cloudPricing });
+            bc.close();
+          } catch (e) {}
+        }
         return cloudPricing;
       }
       if (Array.isArray(res.data.data.hidden)) {
@@ -3202,7 +3250,7 @@ export const setHiddenTourSlugs = (slugs) => {
 // Sync from Cloud so ANY live website visitor (without login) gets the latest hidden tours & safari prices
 export const syncHiddenToursFromCloud = async () => {
   try {
-    const res = await axios.get(CLOUD_SYNC_URL, { timeout: 4000 });
+    const res = await axios.get(`${CLOUD_SYNC_URL}?_nocache=${Date.now()}`, { timeout: 4000 });
     if (res.data && res.data.data) {
       if (Array.isArray(res.data.data.hidden)) {
         const cloudHidden = res.data.data.hidden;
@@ -3214,8 +3262,21 @@ export const syncHiddenToursFromCloud = async () => {
       }
       if (res.data.data.safariPricing) {
         const cloudPricing = res.data.data.safariPricing;
-        localStorage.setItem(SAFARI_PRICING_STORAGE_KEY, JSON.stringify(cloudPricing));
-        window.dispatchEvent(new CustomEvent('safariPricingChanged', { detail: cloudPricing }));
+        const localPricing = getSafariPricing();
+        const cloudTime = Number(cloudPricing.updatedAt) || 0;
+        const localTime = Number(localPricing.updatedAt) || 0;
+
+        if (cloudTime >= localTime) {
+          localStorage.setItem(SAFARI_PRICING_STORAGE_KEY, JSON.stringify(cloudPricing));
+          window.dispatchEvent(new CustomEvent('safariPricingChanged', { detail: cloudPricing }));
+          if (typeof BroadcastChannel !== 'undefined') {
+            try {
+              const bc = new BroadcastChannel('junglee_safari_pricing_sync');
+              bc.postMessage({ type: 'PRICING_UPDATED', pricing: cloudPricing });
+              bc.close();
+            } catch (e) {}
+          }
+        }
       }
       return res.data.data.hidden || [];
     }

@@ -219,18 +219,37 @@ export default function TourDetail() {
 
   // Live Cloud and Local sync for safari prices set in the Admin Panel
   useEffect(() => {
+    const handlePricingChange = () => {
+      setSafariPricing(getSafariPricing(slug));
+    };
+
+    let bc = null;
+    if (typeof BroadcastChannel !== 'undefined') {
+      try {
+        bc = new BroadcastChannel('junglee_safari_pricing_sync');
+        bc.onmessage = (event) => {
+          if (event.data?.type === 'PRICING_UPDATED') {
+            setSafariPricing(getSafariPricing(slug));
+          }
+        };
+      } catch (e) {}
+    }
+
     syncSafariPricingFromCloud().then((p) => {
       if (p) setSafariPricing(getSafariPricing(slug));
     }).catch(() => {});
 
-    const handlePricingChange = () => {
-      setSafariPricing(getSafariPricing(slug));
-    };
     window.addEventListener('safariPricingChanged', handlePricingChange);
     window.addEventListener('storage', handlePricingChange);
+    window.addEventListener('focus', handlePricingChange);
+
     return () => {
+      if (bc) {
+        try { bc.close(); } catch (e) {}
+      }
       window.removeEventListener('safariPricingChanged', handlePricingChange);
       window.removeEventListener('storage', handlePricingChange);
+      window.removeEventListener('focus', handlePricingChange);
     };
   }, [slug]);
 
@@ -1109,6 +1128,20 @@ export default function TourDetail() {
                       </div>
                     </div>
 
+                    {/* Live Admin Safari Rates Badges */}
+                    <div className="grid grid-cols-2 gap-2 pt-1 pb-1">
+                      <div className="bg-sand-900/70 p-2 rounded-lg border border-sand-800/70 text-center">
+                        <span className="text-[9px] text-charcoal-600 uppercase block font-mono font-bold tracking-wider">Weekday Rate</span>
+                        <span className="text-xs font-bold text-pine-800 font-mono">₹{weekdayRate.toLocaleString()}</span>
+                        <span className="text-[9px] text-charcoal-500 block">/ vehicle / day</span>
+                      </div>
+                      <div className="bg-sand-900/70 p-2 rounded-lg border border-sand-800/70 text-center">
+                        <span className="text-[9px] text-charcoal-600 uppercase block font-mono font-bold tracking-wider">Weekend Rate</span>
+                        <span className="text-xs font-bold text-pine-800 font-mono">₹{weekendRate.toLocaleString()}</span>
+                        <span className="text-[9px] text-charcoal-500 block">/ vehicle / day</span>
+                      </div>
+                    </div>
+
                     <div className="pt-2 border-t border-sand-800/60 space-y-1 text-[11px] font-mono">
                       <div className="flex items-center justify-between">
                         <span className="text-charcoal-600">Vehicle Allocation:</span>
@@ -1120,7 +1153,7 @@ export default function TourDetail() {
                         <span className="text-charcoal-600">Date-based Safari Rate:</span>
                         <span className="text-pine-800 font-bold">
                           {weekdayDays > 0 && weekendDays > 0 ? (
-                            `₹${perVehicleSafariRate.toLocaleString()}/veh (${weekdayDays}Wkday + ${weekendDays}Wkend)`
+                            `₹${perVehicleSafariRate.toLocaleString()}/veh (${weekdayDays} Wkday @ ₹${weekdayRate.toLocaleString()} + ${weekendDays} Wkend @ ₹${weekendRate.toLocaleString()})`
                           ) : weekdayDays > 0 ? (
                             `₹${perVehicleSafariRate.toLocaleString()}/veh (${numDays} ${numDays === 1 ? 'Weekday' : 'Weekdays'} @ ₹${weekdayRate.toLocaleString()})`
                           ) : (
