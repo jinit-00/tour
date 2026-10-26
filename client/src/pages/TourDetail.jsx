@@ -484,7 +484,8 @@ export default function TourDetail() {
     const start = new Date(checkInDate + 'T00:00:00');
     const end = checkOutDate ? new Date(checkOutDate + 'T00:00:00') : new Date(start);
     const diffMs = end.getTime() - start.getTime();
-    const daysCount = Math.max(1, Math.round(diffMs / (1000 * 60 * 60 * 24)));
+    // Inclusive date calculation (includes both selected start and end dates)
+    const daysCount = Math.max(1, Math.round(diffMs / (1000 * 60 * 60 * 24)) + 1);
 
     let weekdayDays = 0;
     let weekendDays = 0;
@@ -948,10 +949,8 @@ export default function TourDetail() {
                           value={checkInDate}
                           onChange={(e) => {
                             setCheckInDate(e.target.value);
-                            if (e.target.value >= checkOutDate) {
-                              const nextDate = new Date(e.target.value);
-                              nextDate.setDate(nextDate.getDate() + 1);
-                              setCheckOutDate(nextDate.toISOString().split('T')[0]);
+                            if (e.target.value > checkOutDate) {
+                              setCheckOutDate(e.target.value);
                             }
                           }}
                           className="w-full bg-sand-950 border border-sand-700 rounded-xl pl-8 pr-2 py-2 text-xs text-charcoal-900 focus:outline-none focus:border-pine-800 font-medium"
@@ -962,7 +961,7 @@ export default function TourDetail() {
                     <div className="space-y-1">
                       <div className="flex items-center justify-between">
                         <label className="block text-[11px] uppercase text-charcoal-700 font-bold tracking-wider">
-                          Check-out Date
+                          Check-out Date (Inclusive)
                         </label>
                         <span className="text-[9px] text-charcoal-500 font-bold">10:00 AM</span>
                       </div>
