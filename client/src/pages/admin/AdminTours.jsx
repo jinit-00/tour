@@ -100,17 +100,11 @@ export default function AdminTours() {
       setAllHotelPricing(getAllHotelCustomPricing());
     };
 
-    const handleTourVisibilityEvt = () => {
-      fetchTours();
-    };
-
-    window.addEventListener('tourVisibilityChanged', handleTourVisibilityEvt);
     window.addEventListener('hotelVisibilityChanged', handleHotelVisibilityEvt);
     window.addEventListener('hotelPricingChanged', handleHotelPricingEvt);
 
     let bcVis = null;
     let bcPrice = null;
-    let bcTour = null;
     if (typeof BroadcastChannel !== 'undefined') {
       try {
         bcVis = new BroadcastChannel('junglee_hotel_visibility_sync');
@@ -121,20 +115,14 @@ export default function AdminTours() {
         bcPrice.onmessage = () => {
           setAllHotelPricing(getAllHotelCustomPricing());
         };
-        bcTour = new BroadcastChannel('junglee_tour_visibility_sync');
-        bcTour.onmessage = () => {
-          fetchTours();
-        };
       } catch (e) {}
     }
 
     return () => {
-      window.removeEventListener('tourVisibilityChanged', handleTourVisibilityEvt);
       window.removeEventListener('hotelVisibilityChanged', handleHotelVisibilityEvt);
       window.removeEventListener('hotelPricingChanged', handleHotelPricingEvt);
       if (bcVis) { try { bcVis.close(); } catch (e) {} }
       if (bcPrice) { try { bcPrice.close(); } catch (e) {} }
-      if (bcTour) { try { bcTour.close(); } catch (e) {} }
     };
   }, []);
 

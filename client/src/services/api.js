@@ -3340,6 +3340,8 @@ export const syncSafariPricingFromCloud = async () => {
 // -------------------------------------------------------------
 // TOUR SECTION VISIBILITY (Show / Hide)
 // -------------------------------------------------------------
+let lastTourVisibilityUpdateTime = 0;
+
 export const getHiddenTourSlugs = () => {
   try {
     const raw = localStorage.getItem(HIDDEN_TOURS_STORAGE_KEY);
@@ -3353,6 +3355,7 @@ export const getHiddenTourSlugs = () => {
 
 export const setHiddenTourSlugs = (slugs) => {
   try {
+    lastTourVisibilityUpdateTime = Date.now();
     localStorage.setItem(HIDDEN_TOURS_STORAGE_KEY, JSON.stringify(slugs));
     window.dispatchEvent(new CustomEvent('tourVisibilityChanged', { detail: slugs }));
     if (typeof BroadcastChannel !== 'undefined') {
@@ -3372,11 +3375,14 @@ export const syncHiddenToursFromCloud = async () => {
     const data = await fetchCloudData();
     if (data) {
       if (Array.isArray(data.hidden)) {
-        const cloudHidden = data.hidden;
-        const localHidden = getHiddenTourSlugs();
-        if (JSON.stringify(cloudHidden) !== JSON.stringify(localHidden)) {
-          localStorage.setItem(HIDDEN_TOURS_STORAGE_KEY, JSON.stringify(cloudHidden));
-          window.dispatchEvent(new CustomEvent('tourVisibilityChanged', { detail: cloudHidden }));
+        // Protect recent local toggle from being overwritten by in-flight/stale read
+        if (Date.now() - lastTourVisibilityUpdateTime > 6000) {
+          const cloudHidden = data.hidden;
+          const localHidden = getHiddenTourSlugs();
+          if (JSON.stringify(cloudHidden) !== JSON.stringify(localHidden)) {
+            localStorage.setItem(HIDDEN_TOURS_STORAGE_KEY, JSON.stringify(cloudHidden));
+            window.dispatchEvent(new CustomEvent('tourVisibilityChanged', { detail: cloudHidden }));
+          }
         }
       }
       if (data.safariPricing) {
@@ -3438,17 +3444,25 @@ export const toggleTourVisibility = async (tourOrId, explicitHiddenState) => {
     if (found) id = found.id;
   }
 
+  const cleanSlug = slug ? String(slug).toLowerCase().trim() : '';
+  const cleanId = id ? String(id).toLowerCase().trim() : '';
+
   const hiddenList = getHiddenTourSlugs();
-  const currentlyHidden = (slug && hiddenList.includes(slug)) || (id && hiddenList.includes(String(id)));
-  const nextHidden = explicitHiddenState !== undefined ? explicitHiddenState : !currentlyHidden;
+  const currentlyHidden = isTourHidden(typeof tourOrId === 'object' ? tourOrId : { id, slug });
+  const nextHidden = explicitHiddenState !== undefined ? Boolean(explicitHiddenState) : !currentlyHidden;
 
   let updatedList;
   if (nextHidden) {
-    updatedList = [...hiddenList];
-    if (slug && !updatedList.includes(slug)) updatedList.push(slug);
-    if (id && !updatedList.includes(String(id))) updatedList.push(String(id));
+    updatedList = Array.from(new Set([
+      ...hiddenList,
+      ...(cleanSlug ? [cleanSlug] : []),
+      ...(cleanId ? [cleanId] : []),
+    ]));
   } else {
-    updatedList = hiddenList.filter((item) => item !== slug && item !== String(id));
+    updatedList = hiddenList.filter((item) => {
+      const cleanItem = String(item).toLowerCase().trim();
+      return cleanItem !== cleanSlug && cleanItem !== cleanId;
+    });
   }
   setHiddenTourSlugs(updatedList);
 
@@ -3675,13 +3689,12 @@ export const getAdminTours = async () => {
   try {
     await syncHiddenToursFromCloud();
   } catch (_) {}
-  const hiddenList = getHiddenTourSlugs();
   try {
     const res = await API.get('/admin/tours');
     if (Array.isArray(res.data) && res.data.length > 0) {
       const mapped = res.data.map((t) => ({
         ...t,
-        isHidden: t.isHidden !== undefined ? Boolean(t.isHidden) : (hiddenList.includes(t.slug) || hiddenList.includes(String(t.id))),
+        isHidden: isTourHidden(t),
       }));
       return { data: mapped };
     }
@@ -3690,7 +3703,7 @@ export const getAdminTours = async () => {
   }
   const toursWithVisibility = FALLBACK_TOURS.map((t) => ({
     ...t,
-    isHidden: hiddenList.includes(t.slug) || hiddenList.includes(String(t.id)),
+    isHidden: isTourHidden(t),
   }));
   return { data: toursWithVisibility };
 };
