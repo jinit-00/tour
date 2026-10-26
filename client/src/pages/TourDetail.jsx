@@ -1074,7 +1074,7 @@ export default function TourDetail() {
                     <div className="space-y-1">
                       <div className="flex items-center justify-between">
                         <label className="block text-[11px] uppercase text-charcoal-700 font-bold tracking-wider">
-                          Check-out Date (Inclusive)
+                          Check-out Date
                         </label>
                         <span className="text-[9px] text-charcoal-500 font-bold">10:00 AM</span>
                       </div>
