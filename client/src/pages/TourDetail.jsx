@@ -216,6 +216,14 @@ export default function TourDetail() {
   const [safariPeople, setSafariPeople] = useState(1);
   const [safariPeopleManual, setSafariPeopleManual] = useState(false);
   const [safariPricing, setSafariPricing] = useState(() => getSafariPricing(slug));
+  const [dailySafaris, setDailySafaris] = useState({});
+
+  const handleDaySafariChange = (dayIndex, count) => {
+    setDailySafaris((prev) => ({
+      ...prev,
+      [dayIndex]: Number(count),
+    }));
+  };
 
   // Live Cloud and Local sync for safari prices set in the Admin Panel
   useEffect(() => {
@@ -435,6 +443,14 @@ export default function TourDetail() {
         perVehicleSafariRate,
         safariWeekdayRate: weekdayRate,
         safariWeekendRate: weekendRate,
+        dailySafarisSchedule: daysList.map((d, idx) => ({
+          day: d.dayIndex,
+          date: d.dateStr,
+          safaris: dailySafaris[idx] || 1,
+          isWeekend: d.isWeekend,
+          rate: d.isWeekend ? weekendRate : weekdayRate,
+        })),
+        totalSafaris: totalSafarisCount,
       };
       await createBooking(bookingData);
       setBookingSuccess(true);
@@ -463,7 +479,7 @@ export default function TourDetail() {
 
   // Dynamic day calculation based on check-in and check-out dates
   const calculateStayBreakdown = () => {
-    if (!checkInDate) return { numDays: 1, weekdayDays: 1, weekendDays: 0 };
+    if (!checkInDate) return { numDays: 1, weekdayDays: 1, weekendDays: 0, daysList: [] };
     
     const start = new Date(checkInDate + 'T00:00:00');
     const end = checkOutDate ? new Date(checkOutDate + 'T00:00:00') : new Date(start);
@@ -472,28 +488,53 @@ export default function TourDetail() {
 
     let weekdayDays = 0;
     let weekendDays = 0;
+    const daysList = [];
 
     for (let i = 0; i < daysCount; i++) {
       const cur = new Date(start);
       cur.setDate(start.getDate() + i);
       const day = cur.getDay(); // 0 = Sunday, 6 = Saturday
-      if (day === 0 || day === 6) {
+      const isWeekend = (day === 0 || day === 6);
+      if (isWeekend) {
         weekendDays++;
       } else {
         weekdayDays++;
       }
+      daysList.push({
+        dayIndex: i + 1,
+        dateObj: cur,
+        dateStr: cur.toISOString().split('T')[0],
+        formattedDate: cur.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
+        dayName: cur.toLocaleDateString('en-IN', { weekday: 'short' }),
+        isWeekend,
+      });
     }
 
-    return { numDays: daysCount, weekdayDays, weekendDays };
+    return { numDays: daysCount, weekdayDays, weekendDays, daysList };
   };
 
-  const { numDays, weekdayDays, weekendDays } = calculateStayBreakdown();
+  const { numDays, weekdayDays, weekendDays, daysList } = calculateStayBreakdown();
 
   const weekdayRate = Number(safariPricing?.weekday) || 6000;
   const weekendRate = Number(safariPricing?.weekend) || 8000;
 
-  // Rate per vehicle across all selected days
-  const perVehicleSafariRate = (weekdayDays * weekdayRate) + (weekendDays * weekendRate);
+  // Rate per vehicle across all selected days based on custom daily safaris (1, 2, or 3)
+  let perVehicleSafariRate = 0;
+  let totalSafarisCount = 0;
+  let totalWeekdaySafaris = 0;
+  let totalWeekendSafaris = 0;
+
+  daysList.forEach((dayItem, idx) => {
+    const safarisOnDay = dailySafaris[idx] || 1;
+    totalSafarisCount += safarisOnDay;
+    if (dayItem.isWeekend) {
+      totalWeekendSafaris += safarisOnDay;
+      perVehicleSafariRate += (safarisOnDay * weekendRate);
+    } else {
+      totalWeekdaySafaris += safarisOnDay;
+      perVehicleSafariRate += (safarisOnDay * weekdayRate);
+    }
+  });
 
   const basePrice = tour.basePrice || 0;
   const packagePrice = selectedPackage?.price || 0;
@@ -1142,6 +1183,68 @@ export default function TourDetail() {
                       </div>
                     </div>
 
+                    {/* Daily Safari Schedule: Select number of safaris per day */}
+                    <div className="pt-2 border-t border-sand-800/60 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <label className="text-[11px] font-mono uppercase text-charcoal-700 font-bold tracking-wider">
+                          Safaris Per Day ({daysList.length} {daysList.length === 1 ? 'Day' : 'Days'})
+                        </label>
+                        <span className="text-[10px] font-mono text-pine-800 font-bold">
+                          {totalSafarisCount} {totalSafarisCount === 1 ? 'Safari' : 'Safaris'} Total
+                        </span>
+                      </div>
+
+                      <div className="space-y-1.5">
+                        {daysList.map((dayItem, idx) => {
+                          const safariCount = dailySafaris[idx] || 1;
+                          const dayRate = dayItem.isWeekend ? weekendRate : weekdayRate;
+                          const dayVehicleCost = safariCount * dayRate;
+                          const dayTotalCost = dayVehicleCost * safariVehicles;
+
+                          return (
+                            <div
+                              key={`${dayItem.dateStr}-${idx}`}
+                              className="p-2.5 rounded-xl bg-sand-900/80 border border-sand-800/80 flex items-center justify-between gap-3"
+                            >
+                              <div className="min-w-0 flex-1">
+                                <div className="flex items-center gap-2 flex-wrap">
+                                  <span className="font-bold text-charcoal-950 font-mono text-xs">
+                                    Day {dayItem.dayIndex}:
+                                  </span>
+                                  <span className="text-charcoal-800 font-semibold text-xs">
+                                    {dayItem.formattedDate}
+                                  </span>
+                                  <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded font-bold ${
+                                    dayItem.isWeekend
+                                      ? 'bg-amber-100 text-amber-900 border border-amber-300/70'
+                                      : 'bg-emerald-100 text-emerald-900 border border-emerald-300/70'
+                                  }`}>
+                                    {dayItem.isWeekend ? 'Weekend' : 'Weekday'}
+                                  </span>
+                                </div>
+                                <div className="text-[10px] text-charcoal-500 font-mono pt-0.5">
+                                  ₹{dayRate.toLocaleString()} / safari · Total: ₹{dayTotalCost.toLocaleString()} ({safariCount} {safariCount === 1 ? 'safari' : 'safaris'} × {safariVehicles} {safariVehicles === 1 ? 'veh' : 'vehs'})
+                                </div>
+                              </div>
+
+                              <div className="flex items-center gap-1.5 shrink-0">
+                                <select
+                                  value={safariCount}
+                                  onChange={(e) => handleDaySafariChange(idx, e.target.value)}
+                                  className="bg-sand-950 border border-sand-700 text-charcoal-950 rounded-lg px-2.5 py-1 text-xs font-mono font-bold focus:outline-none focus:border-pine-800 cursor-pointer shadow-xs"
+                                  aria-label={`Select number of safaris for Day ${dayItem.dayIndex}`}
+                                >
+                                  <option value={1}>1 Safari</option>
+                                  <option value={2}>2 Safaris</option>
+                                  <option value={3}>3 Safaris</option>
+                                </select>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+
                     <div className="pt-2 border-t border-sand-800/60 space-y-1 text-[11px] font-mono">
                       <div className="flex items-center justify-between">
                         <span className="text-charcoal-600">Vehicle Allocation:</span>
@@ -1150,15 +1253,15 @@ export default function TourDetail() {
                         </span>
                       </div>
                       <div className="flex items-center justify-between">
+                        <span className="text-charcoal-600">Total Safaris Selected:</span>
+                        <span className="text-charcoal-900 font-bold">
+                          {totalSafarisCount} {totalSafarisCount === 1 ? 'Safari' : 'Safaris'} across {numDays} {numDays === 1 ? 'Day' : 'Days'}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
                         <span className="text-charcoal-600">Date-based Safari Rate:</span>
                         <span className="text-pine-800 font-bold">
-                          {weekdayDays > 0 && weekendDays > 0 ? (
-                            `₹${perVehicleSafariRate.toLocaleString()}/veh (${weekdayDays} Wkday @ ₹${weekdayRate.toLocaleString()} + ${weekendDays} Wkend @ ₹${weekendRate.toLocaleString()})`
-                          ) : weekdayDays > 0 ? (
-                            `₹${perVehicleSafariRate.toLocaleString()}/veh (${numDays} ${numDays === 1 ? 'Weekday' : 'Weekdays'} @ ₹${weekdayRate.toLocaleString()})`
-                          ) : (
-                            `₹${perVehicleSafariRate.toLocaleString()}/veh (${numDays} ${numDays === 1 ? 'Weekend' : 'Weekends'} @ ₹${weekendRate.toLocaleString()})`
-                          )}
+                          ₹{safariPrice.toLocaleString()} ({safariVehicles} × ₹{perVehicleSafariRate.toLocaleString()}/veh)
                         </span>
                       </div>
                     </div>
@@ -1262,11 +1365,11 @@ export default function TourDetail() {
                   )}
                   <div className="flex justify-between items-start">
                     <div>
-                      <span>Safari ({safariVehicles} {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'} · {numDays} {numDays === 1 ? 'Day' : 'Days'})</span>
+                      <span>Safari ({safariVehicles} {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'} · {totalSafarisCount} {totalSafarisCount === 1 ? 'Safari' : 'Safaris'})</span>
                       <span className="block text-[10px] text-charcoal-500 font-mono">
-                        {weekdayDays > 0 && `${weekdayDays} weekday @ ₹${weekdayRate.toLocaleString()}`}
-                        {weekdayDays > 0 && weekendDays > 0 && ' · '}
-                        {weekendDays > 0 && `${weekendDays} weekend @ ₹${weekendRate.toLocaleString()}`}
+                        {totalWeekdaySafaris > 0 && `${totalWeekdaySafaris} weekday safari${totalWeekdaySafaris > 1 ? 's' : ''} @ ₹${weekdayRate.toLocaleString()}`}
+                        {totalWeekdaySafaris > 0 && totalWeekendSafaris > 0 && ' · '}
+                        {totalWeekendSafaris > 0 && `${totalWeekendSafaris} weekend safari${totalWeekendSafaris > 1 ? 's' : ''} @ ₹${weekendRate.toLocaleString()}`}
                       </span>
                     </div>
                     <span className="font-mono text-charcoal-900 font-semibold">+₹{safariPrice.toLocaleString()}</span>
