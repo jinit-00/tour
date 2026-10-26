@@ -17,20 +17,27 @@ export default function Tours() {
     fetchTours();
 
     // 2. Refresh from cloud across devices immediately
-    syncHiddenToursFromCloud()
-      .then(() => {
-        if (isMounted) fetchTours();
-      })
-      .catch(() => {});
+    const syncAndRefresh = () => {
+      syncHiddenToursFromCloud()
+        .then(() => {
+          if (isMounted) fetchTours();
+        })
+        .catch(() => {});
+    };
+    syncAndRefresh();
 
-    // 3. Multi-window / tab event listeners
+    // 3. Multi-window / tab & focus event listeners
     const handleVisibilityChange = () => {
       fetchTours();
     };
     window.addEventListener('tourVisibilityChanged', handleVisibilityChange);
     window.addEventListener('storage', handleVisibilityChange);
+    window.addEventListener('focus', syncAndRefresh);
 
-    // 4. Instant cross-tab broadcast
+    // 4. Background polling every 10 seconds for live cross-device sync
+    const pollTimer = setInterval(syncAndRefresh, 10000);
+
+    // 5. Instant cross-tab broadcast
     let bc;
     if (typeof BroadcastChannel !== 'undefined') {
       try {
@@ -43,8 +50,10 @@ export default function Tours() {
 
     return () => {
       isMounted = false;
+      clearInterval(pollTimer);
       window.removeEventListener('tourVisibilityChanged', handleVisibilityChange);
       window.removeEventListener('storage', handleVisibilityChange);
+      window.removeEventListener('focus', syncAndRefresh);
       if (bc) bc.close();
     };
   }, [search, selectedLocation]);

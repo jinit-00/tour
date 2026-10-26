@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getTourDetail } from '../services/api';
+import { getTourDetail, isTourHidden, syncHiddenToursFromCloud } from '../services/api';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { 
   Camera, ShieldCheck, Sun, ArrowRight, ChevronDown, 
@@ -14,6 +14,9 @@ export default function SafariStory() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    syncHiddenToursFromCloud().then(() => {
+      getTourDetail(slug).then((res) => setTour(res.data)).catch(() => {});
+    }).catch(() => {});
     getTourDetail(slug)
       .then((res) => setTour(res.data))
       .catch((err) => console.error(err))
@@ -43,6 +46,25 @@ export default function SafariStory() {
     return (
       <div className="min-h-screen bg-sand-gradient flex items-center justify-center text-charcoal-700 font-mono">
         Initializing safari story...
+      </div>
+    );
+  }
+
+  if (!tour || isTourHidden(tour) || tour.isHidden) {
+    return (
+      <div className="min-h-screen bg-sand-gradient flex items-center justify-center p-4">
+        <div className="glass-panel p-10 rounded-3xl max-w-md text-center space-y-4 border border-sand-700 shadow-xl">
+          <h2 className="text-2xl font-black text-charcoal-900">Story Unavailable</h2>
+          <p className="text-xs sm:text-sm text-charcoal-700 leading-relaxed">
+            This wildlife safari expedition is currently offline or hidden by the management.
+          </p>
+          <Link
+            to="/tours"
+            className="inline-block px-6 py-2.5 bg-pine-800 text-sand-950 rounded-full text-xs font-bold shadow-md hover:bg-pine-700 transition-all"
+          >
+            Explore Active Expeditions
+          </Link>
+        </div>
       </div>
     );
   }

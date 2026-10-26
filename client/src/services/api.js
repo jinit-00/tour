@@ -3174,11 +3174,24 @@ export const HOTEL_PRICING_STORAGE_KEY = 'junglee_hotel_pricing';
 const PRIMARY_SYNC_URL = 'https://extendsclass.com/api/json-storage/bin/aefeadc';
 const BACKUP_SYNC_URL = 'https://extendsclass.com/api/json-storage/bin/affadea';
 
-// Fetch helper with multi-cloud fallback
+// Fetch helper with multi-tier fallback (Same-origin API + direct cloud fallback)
 export const fetchCloudData = async () => {
+  // 1. First priority: Same-origin API route /api/sync (zero CORS, instantaneous on all browsers)
+  try {
+    const res = await API.get('/sync', { timeout: 3500 });
+    if (res.data) {
+      const data = typeof res.data === 'string' ? JSON.parse(res.data) : res.data;
+      if (data && (Array.isArray(data.hidden) || data.safariPricing || Array.isArray(data.hiddenHotels) || data.hotelPricing)) {
+        return data;
+      }
+    }
+  } catch (err) {
+    // /api/sync not responding, proceed to direct cloud fetch
+  }
+
+  // 2. Direct cloud GET fallback (GET requests from browsers succeed with 200 on all platforms)
   try {
     const res = await axios.get(PRIMARY_SYNC_URL, {
-      headers: { 'Cache-Control': 'no-cache, no-store' },
       timeout: 4000,
     });
     if (res.data) {
@@ -3191,9 +3204,9 @@ export const fetchCloudData = async () => {
     console.warn('Primary cloud sync GET failed, trying backup:', err.message);
   }
 
+  // 3. Backup cloud GET
   try {
     const res = await axios.get(BACKUP_SYNC_URL, {
-      headers: { 'Cache-Control': 'no-cache, no-store' },
       timeout: 4000,
     });
     if (res.data) {
@@ -3219,23 +3232,30 @@ export const pushAllToCloud = async (overrides = {}) => {
     updatedAt: Date.now(),
   };
 
-  const jsonString = JSON.stringify(payload);
+  // 1. Same-origin API route /api/sync (zero CORS restrictions in any browser)
+  try {
+    const res = await API.post('/sync', payload, { timeout: 4000 });
+    if (res.data) {
+      return res.data;
+    }
+  } catch (err) {
+    // Fall back to direct push if /api/sync is unreachable
+  }
 
+  // 2. Direct cloud PUT fallback
+  const jsonString = JSON.stringify(payload);
   try {
     await axios.put(PRIMARY_SYNC_URL, jsonString, {
       headers: { 'Content-Type': 'application/json' },
-      timeout: 5000,
+      timeout: 4000,
     });
   } catch (err) {
-    console.warn('Primary cloud sync PUT failed, attempting backup:', err.message);
     try {
       await axios.put(BACKUP_SYNC_URL, jsonString, {
         headers: { 'Content-Type': 'application/json' },
-        timeout: 5000,
+        timeout: 4000,
       });
-    } catch (e) {
-      console.warn('Backup cloud sync PUT failed:', e.message);
-    }
+    } catch (_) {}
   }
 };
 

@@ -31,6 +31,10 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', name: 'JungleE Wildlife Expeditions API', time: new Date() });
 });
 
+// Live Synchronization Route (Cross-device visibility & pricing)
+const syncHandler = require('../api/sync.js');
+app.all('/api/sync', (req, res) => syncHandler(req, res));
+
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/tours', toursRoutes);

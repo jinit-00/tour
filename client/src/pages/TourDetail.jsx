@@ -22,7 +22,9 @@ import {
   getAllHotelCustomPricing,
   getHotelPricing,
   syncHotelDataFromCloud,
-  getDefaultRoomPricing
+  getDefaultRoomPricing,
+  isTourHidden,
+  syncHiddenToursFromCloud
 } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, Hotel, Eye, Plus, Minus, ChevronDown, Clock, ChevronLeft, ChevronRight, Compass } from 'lucide-react';
@@ -371,6 +373,9 @@ export default function TourDetail() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    syncHiddenToursFromCloud().then(() => {
+      getTourDetail(slug).then((res) => setTour(res.data)).catch(() => {});
+    }).catch(() => {});
     getTourDetail(slug)
       .then((res) => {
         setTour(res.data);
@@ -547,11 +552,11 @@ export default function TourDetail() {
     return <div className="pt-28 text-center py-20 text-charcoal-700 font-medium">Loading expedition details...</div>;
   }
 
-  if (!tour) {
+  if (!tour || isTourHidden(tour) || tour.isHidden) {
     return (
-      <div className="pt-28 max-w-md mx-auto text-center space-y-4 py-20 px-4">
-        <h2 className="text-2xl font-bold text-charcoal-900">Expedition Not Found</h2>
-        <p className="text-sm text-charcoal-700">The requested safari departure could not be found.</p>
+      <div className="pt-32 max-w-md mx-auto text-center space-y-4 py-20 px-4">
+        <h2 className="text-2xl font-bold text-charcoal-900">Expedition Unavailable</h2>
+        <p className="text-sm text-charcoal-700">This wildlife expedition has been removed or hidden by the management.</p>
         <Link to="/tours" className="inline-block px-6 py-2.5 bg-pine-800 text-sand-950 rounded-full text-xs font-bold">
           Return to Safari Catalog
         </Link>
