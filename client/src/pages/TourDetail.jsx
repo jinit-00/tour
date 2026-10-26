@@ -106,7 +106,7 @@ function HotelCardImageCarousel({ images, name, onClick }) {
           </div>
 
           {/* Counter badge on top right */}
-          <div className="absolute top-2.5 right-2.5 bg-charcoal-950/75 text-sand-950 text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 border border-sand-700/40 pointer-events-none">
+          <div className="absolute top-2.5 right-2.5 bg-charcoal-950/75 text-sand-950 text-[10px] font-semibold px-2 py-0.5 rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 border border-sand-700/40 pointer-events-none">
             {currentIdx + 1} / {total}
           </div>
         </>
@@ -183,7 +183,7 @@ function RoomCardImageCarousel({ images, name, onClick }) {
             <ChevronRight className="w-3 h-3" />
           </button>
 
-          <div className="absolute bottom-0.5 right-0.5 bg-charcoal-950/85 text-sand-950 text-[8px] font-mono px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+          <div className="absolute bottom-0.5 right-0.5 bg-charcoal-950/85 text-sand-950 text-[8px] font-semibold px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
             {currentIdx + 1}/{total}
           </div>
         </>
@@ -462,7 +462,7 @@ export default function TourDetail() {
   };
 
   if (loading) {
-    return <div className="pt-28 text-center py-20 font-mono text-charcoal-700">Loading expedition details...</div>;
+    return <div className="pt-28 text-center py-20 text-charcoal-700 font-medium">Loading expedition details...</div>;
   }
 
   if (!tour) {
@@ -593,7 +593,7 @@ export default function TourDetail() {
 
           {/* Expedition Details */}
           <div className="space-y-3">
-            <div className="flex items-center gap-2 text-xs font-mono text-pine-800 uppercase tracking-widest font-bold">
+            <div className="flex items-center gap-2 text-xs text-pine-800 uppercase tracking-widest font-bold">
               <MapPin className="w-4 h-4 shrink-0" />
               <span>{tour.location}</span>
             </div>
@@ -673,7 +673,7 @@ export default function TourDetail() {
                               {hotel.name}
                             </h4>
                             <div className="flex items-center justify-between gap-2 flex-wrap pt-0.5">
-                              <p className="text-xs text-pine-800 font-medium font-mono">
+                              <p className="text-xs text-pine-800 font-medium">
                                 {hotel.tagline}
                               </p>
                               <a
@@ -681,7 +681,7 @@ export default function TourDetail() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={(e) => e.stopPropagation()}
-                                className="inline-flex items-center gap-1 text-[11px] font-mono text-pine-800 hover:text-pine-700 hover:underline font-semibold"
+                                className="inline-flex items-center gap-1 text-[11px] text-pine-800 hover:text-pine-700 hover:underline font-semibold"
                                 title="Open Location on Google Maps"
                               >
                                 <MapPin className="w-3 h-3 text-pine-800 shrink-0" />
@@ -697,7 +697,7 @@ export default function TourDetail() {
                           {/* Amenity tags */}
                           <div className="flex flex-wrap gap-1.5 pt-1">
                             {hotel.amenities.slice(0, 3).map((amenity, i) => (
-                              <span key={i} className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-sand-950 border border-sand-700 text-charcoal-800">
+                              <span key={i} className="text-[10px] px-2 py-0.5 rounded-md bg-sand-950 border border-sand-700 text-charcoal-800 font-medium">
                                 {amenity}
                               </span>
                             ))}
@@ -722,7 +722,7 @@ export default function TourDetail() {
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="px-3 py-2 rounded-xl text-xs font-bold text-charcoal-900 hover:text-pine-800 hover:bg-sand-800 transition-colors flex items-center gap-1 font-mono"
+                            className="px-3 py-2 rounded-xl text-xs font-bold text-charcoal-900 hover:text-pine-800 hover:bg-sand-800 transition-colors flex items-center gap-1"
                             title="Open Google Maps Location"
                           >
                             <MapPin className="w-3.5 h-3.5 text-pine-800" />
@@ -764,10 +764,10 @@ export default function TourDetail() {
           <div className="sticky top-28 glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 shadow-2xl space-y-5">
             
             <div>
-              <span className="text-xs font-mono uppercase text-pine-800 font-bold block">Reserve Your Seat</span>
+              <span className="text-xs uppercase text-pine-800 font-bold block tracking-wider">Reserve Your Seat</span>
               <div className="flex items-baseline gap-2 pt-1">
                 <span className="text-3xl sm:text-4xl font-black text-charcoal-900">₹{(basePrice + packagePrice).toLocaleString()}</span>
-                <span className="text-xs font-mono text-charcoal-600">/ guest</span>
+                <span className="text-xs text-charcoal-600 font-medium">/ guest</span>
               </div>
             </div>
 
@@ -795,14 +795,14 @@ export default function TourDetail() {
                 {availableHotels.length > 0 ? (
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <label className="block text-xs font-mono uppercase text-charcoal-700 font-bold">
+                      <label className="block text-xs uppercase text-charcoal-700 font-bold tracking-wider">
                         Selected Resort Stay
                       </label>
                       {selectedHotel && (
                         <button
                           type="button"
                           onClick={() => handleOpenHotelDetails(selectedHotel)}
-                          className="text-[11px] font-mono text-pine-800 hover:underline font-bold"
+                          className="text-[11px] text-pine-800 hover:underline font-bold"
                         >
                           View Photos →
                         </button>
@@ -835,7 +835,7 @@ export default function TourDetail() {
                         />
                         <div className="min-w-0 flex-1">
                           <p className="text-xs font-bold text-charcoal-900 truncate">{selectedHotel.name}</p>
-                          <p className="text-[10px] text-pine-800 font-mono truncate">Click to view details</p>
+                          <p className="text-[10px] text-pine-800 font-medium truncate">Click to view details</p>
                         </div>
                       </div>
                     )}
@@ -844,10 +844,10 @@ export default function TourDetail() {
                     {selectedHotel?.roomCategories && selectedHotel.roomCategories.length > 0 && (
                       <div className="space-y-2 pt-2 border-t border-sand-700/80">
                         <div className="flex items-center justify-between">
-                          <label className="block text-xs font-mono uppercase text-pine-800 font-bold tracking-wider">
+                          <label className="block text-xs uppercase text-pine-800 font-bold tracking-wider">
                             {selectedHotel.name} Room Category
                           </label>
-                          <span className="text-[10px] font-mono text-charcoal-600 font-bold">
+                          <span className="text-[10px] text-charcoal-600 font-bold">
                             Available ({selectedHotel.roomCategories.length})
                           </span>
                         </div>
@@ -881,19 +881,19 @@ export default function TourDetail() {
                                     <h5 className="text-xs font-bold text-charcoal-950 leading-tight truncate">
                                       {cat.name}
                                     </h5>
-                                    <span className={`text-[10px] font-mono font-bold shrink-0 ${
+                                    <span className={`text-[10px] font-bold shrink-0 ${
                                       cat.price === 0 ? 'text-pine-800' : 'text-amber-600'
                                     }`}>
                                       {cat.price === 0 ? 'Included' : `+₹${cat.price}`}
                                     </span>
                                   </div>
 
-                                  <p className="text-[10px] text-charcoal-600 font-mono truncate pt-0.5">
+                                  <p className="text-[10px] text-charcoal-600 truncate pt-0.5">
                                     {cat.bedType} · {cat.view}
                                   </p>
 
                                   <div className="flex items-center justify-between pt-1">
-                                    <span className="text-[9px] font-mono text-pine-800 bg-pine-800/10 px-1.5 py-0.5 rounded border border-pine-800/20 font-bold">
+                                    <span className="text-[9px] text-pine-800 bg-pine-800/10 px-1.5 py-0.5 rounded border border-pine-800/20 font-bold">
                                       {cat.roomSize}
                                     </span>
                                   </div>
@@ -908,7 +908,7 @@ export default function TourDetail() {
                   </div>
                 ) : tour.packages && tour.packages.length > 0 ? (
                   <div className="space-y-1.5">
-                    <label className="block text-xs font-mono uppercase text-charcoal-700 font-bold">Select Accommodation Tier</label>
+                    <label className="block text-xs uppercase text-charcoal-700 font-bold tracking-wider">Select Accommodation Tier</label>
                     <div className="space-y-2">
                       {tour.packages.map((pkg) => (
                         <div
@@ -936,10 +936,10 @@ export default function TourDetail() {
                   <div className="grid grid-cols-2 gap-2.5">
                     <div className="space-y-1">
                       <div className="flex items-center justify-between">
-                        <label className="block text-[11px] font-mono uppercase text-charcoal-700 font-bold">
+                        <label className="block text-[11px] uppercase text-charcoal-700 font-bold tracking-wider">
                           Check-in Date
                         </label>
-                        <span className="text-[9px] font-mono text-pine-800 font-bold">12:00 PM</span>
+                        <span className="text-[9px] text-pine-800 font-bold">12:00 PM</span>
                       </div>
                       <div className="relative">
                         <Calendar className="w-3.5 h-3.5 text-pine-800 absolute left-2.5 top-2.5 pointer-events-none" />
@@ -954,17 +954,17 @@ export default function TourDetail() {
                               setCheckOutDate(nextDate.toISOString().split('T')[0]);
                             }
                           }}
-                          className="w-full bg-sand-950 border border-sand-700 rounded-xl pl-8 pr-2 py-2 text-xs text-charcoal-900 focus:outline-none focus:border-pine-800 font-mono font-medium"
+                          className="w-full bg-sand-950 border border-sand-700 rounded-xl pl-8 pr-2 py-2 text-xs text-charcoal-900 focus:outline-none focus:border-pine-800 font-medium"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-1">
                       <div className="flex items-center justify-between">
-                        <label className="block text-[11px] font-mono uppercase text-charcoal-700 font-bold">
+                        <label className="block text-[11px] uppercase text-charcoal-700 font-bold tracking-wider">
                           Check-out Date
                         </label>
-                        <span className="text-[9px] font-mono text-charcoal-500 font-bold">10:00 AM</span>
+                        <span className="text-[9px] text-charcoal-500 font-bold">10:00 AM</span>
                       </div>
                       <div className="relative">
                         <Calendar className="w-3.5 h-3.5 text-pine-800 absolute left-2.5 top-2.5 pointer-events-none" />
@@ -973,15 +973,15 @@ export default function TourDetail() {
                           min={checkInDate}
                           value={checkOutDate}
                           onChange={(e) => setCheckOutDate(e.target.value)}
-                          className="w-full bg-sand-950 border border-sand-700 rounded-xl pl-8 pr-2 py-2 text-xs text-charcoal-900 focus:outline-none focus:border-pine-800 font-mono font-medium"
+                          className="w-full bg-sand-950 border border-sand-700 rounded-xl pl-8 pr-2 py-2 text-xs text-charcoal-900 focus:outline-none focus:border-pine-800 font-medium"
                         />
                       </div>
                     </div>
                   </div>
 
                   {/* Dynamic Duration and Day Types Pill */}
-                  <div className="flex items-center justify-between px-3 py-1.5 rounded-xl bg-sand-950/80 border border-sand-700/80 text-[11px] font-mono">
-                    <span className="text-charcoal-600">Expedition Duration:</span>
+                  <div className="flex items-center justify-between px-3 py-1.5 rounded-xl bg-sand-950/80 border border-sand-700/80 text-[11px]">
+                    <span className="text-charcoal-600 font-medium">Expedition Duration:</span>
                     <span className="text-pine-800 font-bold">
                       {numDays} {numDays === 1 ? 'Day' : 'Days'} ({weekdayDays > 0 ? `${weekdayDays} Weekday${weekdayDays > 1 ? 's' : ''}` : ''}{weekdayDays > 0 && weekendDays > 0 ? ' · ' : ''}{weekendDays > 0 ? `${weekendDays} Weekend${weekendDays > 1 ? 's' : ''}` : ''})
                     </span>
@@ -990,7 +990,7 @@ export default function TourDetail() {
 
                 {/* Interactive Number of Passengers Menu (Adults min 1, Kids min 0) */}
                 <div className="space-y-1 relative">
-                  <label className="block text-xs font-mono uppercase text-charcoal-700 font-bold">
+                  <label className="block text-xs uppercase text-charcoal-700 font-bold tracking-wider">
                     Number of Passengers
                   </label>
                   <div className="relative">
@@ -1020,7 +1020,7 @@ export default function TourDetail() {
                           <div className="flex items-center justify-between">
                             <div>
                               <p className="text-xs font-bold text-charcoal-950">Adults</p>
-                              <p className="text-[10px] text-charcoal-500 font-mono">Age 12+ years</p>
+                              <p className="text-[10px] text-charcoal-500 font-medium">Age 12+ years</p>
                             </div>
                             <div className="flex items-center gap-3">
                               <button
@@ -1031,7 +1031,7 @@ export default function TourDetail() {
                               >
                                 <Minus className="w-3.5 h-3.5" />
                               </button>
-                              <span className="w-5 text-center font-mono font-bold text-xs text-charcoal-950">
+                              <span className="w-5 text-center font-bold text-xs text-charcoal-950">
                                 {adults}
                               </span>
                               <button
@@ -1048,7 +1048,7 @@ export default function TourDetail() {
                           <div className="flex items-center justify-between pt-2 border-t border-sand-700/60">
                             <div>
                               <p className="text-xs font-bold text-charcoal-950">Kids</p>
-                              <p className="text-[10px] text-charcoal-500 font-mono">Age 0 - 11 years</p>
+                              <p className="text-[10px] text-charcoal-500 font-medium">Age 0 - 11 years</p>
                             </div>
                             <div className="flex items-center gap-3">
                               <button
@@ -1059,7 +1059,7 @@ export default function TourDetail() {
                               >
                                 <Minus className="w-3.5 h-3.5" />
                               </button>
-                              <span className="w-5 text-center font-mono font-bold text-xs text-charcoal-950">
+                              <span className="w-5 text-center font-bold text-xs text-charcoal-950">
                                 {kids}
                               </span>
                               <button
@@ -1076,7 +1076,7 @@ export default function TourDetail() {
                           <button
                             type="button"
                             onClick={() => setPassengerMenuOpen(false)}
-                            className="w-full py-1.5 rounded-lg bg-pine-800 hover:bg-pine-700 text-sand-950 font-bold text-[11px] font-mono tracking-wider uppercase transition-colors"
+                            className="w-full py-1.5 rounded-lg bg-pine-800 hover:bg-pine-700 text-sand-950 font-bold text-[11px] tracking-wider uppercase transition-colors"
                           >
                             Done
                           </button>
@@ -1088,7 +1088,7 @@ export default function TourDetail() {
 
                 {/* Number of Rooms */}
                 <div className="space-y-1">
-                  <label className="block text-xs font-mono uppercase text-charcoal-700 font-bold">
+                  <label className="block text-xs uppercase text-charcoal-700 font-bold tracking-wider">
                     Number of Rooms
                   </label>
                   <div className="flex items-center justify-between p-2.5 rounded-xl bg-sand-950 border border-sand-700">
@@ -1107,7 +1107,7 @@ export default function TourDetail() {
                       >
                         <Minus className="w-3.5 h-3.5" />
                       </button>
-                      <span className="w-5 text-center font-mono font-bold text-xs text-charcoal-950">
+                      <span className="w-5 text-center font-bold text-xs text-charcoal-950">
                         {rooms}
                       </span>
                       <button
@@ -1124,10 +1124,10 @@ export default function TourDetail() {
                 {/* Safari Selection */}
                 <div className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <label className="block text-xs font-mono uppercase text-charcoal-700 font-bold">
+                    <label className="block text-xs uppercase text-charcoal-700 font-bold tracking-wider">
                       Safari Selection
                     </label>
-                    <span className="text-[10px] font-mono text-pine-800 font-bold">
+                    <span className="text-[10px] text-pine-800 font-bold">
                       ₹{safariPrice.toLocaleString()} ({safariVehicles} {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'})
                     </span>
                   </div>
@@ -1140,7 +1140,7 @@ export default function TourDetail() {
                           <span className="text-xs font-semibold text-charcoal-950 block">
                             {safariPeople} {safariPeople === 1 ? 'Person' : 'People'}
                           </span>
-                          <span className="text-[10px] text-charcoal-500 font-mono block">
+                          <span className="text-[10px] text-charcoal-500 block">
                             {safariVehicles} {safariVehicles === 1 ? 'Safari Vehicle' : 'Safari Vehicles'} (Max 6 guests / vehicle)
                           </span>
                         </div>
@@ -1155,7 +1155,7 @@ export default function TourDetail() {
                         >
                           <Minus className="w-3.5 h-3.5" />
                         </button>
-                        <span className="w-5 text-center font-mono font-bold text-xs text-charcoal-950">
+                        <span className="w-5 text-center font-bold text-xs text-charcoal-950">
                           {safariPeople}
                         </span>
                         <button
@@ -1172,13 +1172,13 @@ export default function TourDetail() {
                     {/* Live Admin Safari Rates Badges */}
                     <div className="grid grid-cols-2 gap-2 pt-1 pb-1">
                       <div className="bg-sand-900/70 p-2 rounded-lg border border-sand-800/70 text-center">
-                        <span className="text-[9px] text-charcoal-600 uppercase block font-mono font-bold tracking-wider">Weekday Rate</span>
-                        <span className="text-xs font-bold text-pine-800 font-mono">₹{weekdayRate.toLocaleString()}</span>
+                        <span className="text-[9px] text-charcoal-600 uppercase block font-bold tracking-wider">Weekday Rate</span>
+                        <span className="text-xs font-bold text-pine-800">₹{weekdayRate.toLocaleString()}</span>
                         <span className="text-[9px] text-charcoal-500 block">/ vehicle / day</span>
                       </div>
                       <div className="bg-sand-900/70 p-2 rounded-lg border border-sand-800/70 text-center">
-                        <span className="text-[9px] text-charcoal-600 uppercase block font-mono font-bold tracking-wider">Weekend Rate</span>
-                        <span className="text-xs font-bold text-pine-800 font-mono">₹{weekendRate.toLocaleString()}</span>
+                        <span className="text-[9px] text-charcoal-600 uppercase block font-bold tracking-wider">Weekend Rate</span>
+                        <span className="text-xs font-bold text-pine-800">₹{weekendRate.toLocaleString()}</span>
                         <span className="text-[9px] text-charcoal-500 block">/ vehicle / day</span>
                       </div>
                     </div>
@@ -1186,10 +1186,10 @@ export default function TourDetail() {
                     {/* Daily Safari Schedule: Select number of safaris per day */}
                     <div className="pt-2 border-t border-sand-800/60 space-y-2">
                       <div className="flex items-center justify-between">
-                        <label className="text-[11px] font-mono uppercase text-charcoal-700 font-bold tracking-wider">
+                        <label className="text-[11px] uppercase text-charcoal-700 font-bold tracking-wider">
                           Safaris Per Day ({daysList.length} {daysList.length === 1 ? 'Day' : 'Days'})
                         </label>
-                        <span className="text-[10px] font-mono text-pine-800 font-bold">
+                        <span className="text-[10px] text-pine-800 font-bold">
                           {totalSafarisCount} {totalSafarisCount === 1 ? 'Safari' : 'Safaris'} Total
                         </span>
                       </div>
@@ -1208,13 +1208,13 @@ export default function TourDetail() {
                             >
                               <div className="min-w-0 flex-1">
                                 <div className="flex items-center gap-2 flex-wrap">
-                                  <span className="font-bold text-charcoal-950 font-mono text-xs">
+                                  <span className="font-bold text-charcoal-950 text-xs">
                                     Day {dayItem.dayIndex}:
                                   </span>
                                   <span className="text-charcoal-800 font-semibold text-xs">
                                     {dayItem.formattedDate}
                                   </span>
-                                  <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded font-bold ${
+                                  <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold ${
                                     dayItem.isWeekend
                                       ? 'bg-amber-100 text-amber-900 border border-amber-300/70'
                                       : 'bg-emerald-100 text-emerald-900 border border-emerald-300/70'
@@ -1222,7 +1222,7 @@ export default function TourDetail() {
                                     {dayItem.isWeekend ? 'Weekend' : 'Weekday'}
                                   </span>
                                 </div>
-                                <div className="text-[10px] text-charcoal-500 font-mono pt-0.5">
+                                <div className="text-[10px] text-charcoal-500 pt-0.5">
                                   ₹{dayRate.toLocaleString()} / safari · Total: ₹{dayTotalCost.toLocaleString()} ({safariCount} {safariCount === 1 ? 'safari' : 'safaris'} × {safariVehicles} {safariVehicles === 1 ? 'veh' : 'vehs'})
                                 </div>
                               </div>
@@ -1231,7 +1231,7 @@ export default function TourDetail() {
                                 <select
                                   value={safariCount}
                                   onChange={(e) => handleDaySafariChange(idx, e.target.value)}
-                                  className="bg-sand-950 border border-sand-700 text-charcoal-950 rounded-lg px-2.5 py-1 text-xs font-mono font-bold focus:outline-none focus:border-pine-800 cursor-pointer shadow-xs"
+                                  className="bg-sand-950 border border-sand-700 text-charcoal-950 rounded-lg px-2.5 py-1 text-xs font-bold focus:outline-none focus:border-pine-800 cursor-pointer shadow-xs"
                                   aria-label={`Select number of safaris for Day ${dayItem.dayIndex}`}
                                 >
                                   <option value={1}>1 Safari</option>
@@ -1245,21 +1245,21 @@ export default function TourDetail() {
                       </div>
                     </div>
 
-                    <div className="pt-2 border-t border-sand-800/60 space-y-1 text-[11px] font-mono">
+                    <div className="pt-2 border-t border-sand-800/60 space-y-1 text-[11px]">
                       <div className="flex items-center justify-between">
-                        <span className="text-charcoal-600">Vehicle Allocation:</span>
+                        <span className="text-charcoal-600 font-medium">Vehicle Allocation:</span>
                         <span className="text-charcoal-900 font-bold">
                           {safariVehicles} × Safari {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'}
                         </span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-charcoal-600">Total Safaris Selected:</span>
+                        <span className="text-charcoal-600 font-medium">Total Safaris Selected:</span>
                         <span className="text-charcoal-900 font-bold">
                           {totalSafarisCount} {totalSafarisCount === 1 ? 'Safari' : 'Safaris'} across {numDays} {numDays === 1 ? 'Day' : 'Days'}
                         </span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-charcoal-600">Date-based Safari Rate:</span>
+                        <span className="text-charcoal-600 font-medium">Date-based Safari Rate:</span>
                         <span className="text-pine-800 font-bold">
                           ₹{safariPrice.toLocaleString()} ({safariVehicles} × ₹{perVehicleSafariRate.toLocaleString()}/veh)
                         </span>
@@ -1271,10 +1271,10 @@ export default function TourDetail() {
                 {/* Select Meal Option */}
                 <div className="space-y-1.5 pt-1">
                   <div className="flex items-center justify-between">
-                    <label className="block text-xs font-mono uppercase text-charcoal-700 font-bold">
+                    <label className="block text-xs uppercase text-charcoal-700 font-bold tracking-wider">
                       Select Meal Option
                     </label>
-                    <span className="text-[10px] font-mono text-pine-800 font-bold">
+                    <span className="text-[10px] text-pine-800 font-bold">
                       {mealPlan}
                     </span>
                   </div>
@@ -1297,7 +1297,7 @@ export default function TourDetail() {
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center justify-between gap-1">
                           <p className="text-xs font-bold text-charcoal-950">APAI (All Meals Included)</p>
-                          <span className="text-[9px] font-mono bg-pine-800/10 text-pine-800 px-1.5 py-0.5 rounded font-bold border border-pine-800/20 shrink-0">Included</span>
+                          <span className="text-[9px] bg-pine-800/10 text-pine-800 px-1.5 py-0.5 rounded font-bold border border-pine-800/20 shrink-0">Included</span>
                         </div>
                         <p className="text-[11px] text-charcoal-700 leading-tight pt-0.5 font-normal">
                           Lunch, Hitea, Dinner and Breakfast
@@ -1366,13 +1366,13 @@ export default function TourDetail() {
                   <div className="flex justify-between items-start">
                     <div>
                       <span>Safari ({safariVehicles} {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'} · {totalSafarisCount} {totalSafarisCount === 1 ? 'Safari' : 'Safaris'})</span>
-                      <span className="block text-[10px] text-charcoal-500 font-mono">
+                      <span className="block text-[10px] text-charcoal-500">
                         {totalWeekdaySafaris > 0 && `${totalWeekdaySafaris} weekday safari${totalWeekdaySafaris > 1 ? 's' : ''} @ ₹${weekdayRate.toLocaleString()}`}
                         {totalWeekdaySafaris > 0 && totalWeekendSafaris > 0 && ' · '}
                         {totalWeekendSafaris > 0 && `${totalWeekendSafaris} weekend safari${totalWeekendSafaris > 1 ? 's' : ''} @ ₹${weekendRate.toLocaleString()}`}
                       </span>
                     </div>
-                    <span className="font-mono text-charcoal-900 font-semibold">+₹{safariPrice.toLocaleString()}</span>
+                    <span className="text-charcoal-900 font-semibold">+₹{safariPrice.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between font-bold text-charcoal-900 text-sm pt-1.5 border-t border-sand-700">
                     <span>Total Cost</span>
