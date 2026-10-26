@@ -15,7 +15,14 @@ import {
   CHITWAN_HOTELS, 
   BANDHAVGARH_HOTELS, 
   KANHA_HOTELS, 
-  RANTHAMBORE_HOTELS 
+  RANTHAMBORE_HOTELS,
+  TADOBA_HOTELS,
+  getHiddenHotelIds,
+  isHotelHidden,
+  getAllHotelCustomPricing,
+  getHotelPricing,
+  syncHotelDataFromCloud,
+  getDefaultRoomPricing
 } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight, BookOpen, Hotel, Eye, Plus, Minus, ChevronDown, Clock, ChevronLeft, ChevronRight, Compass } from 'lucide-react';
@@ -218,6 +225,10 @@ export default function TourDetail() {
   const [safariPricing, setSafariPricing] = useState(() => getSafariPricing(slug));
   const [dailySafaris, setDailySafaris] = useState({});
 
+  // Hotel Visibility & Live Custom Pricing State
+  const [hiddenHotels, setHiddenHotels] = useState(() => getHiddenHotelIds());
+  const [hotelPricingMap, setHotelPricingMap] = useState(() => getAllHotelCustomPricing());
+
   const handleDaySafariChange = (dayIndex, count) => {
     setDailySafaris((prev) => ({
       ...prev,
@@ -261,6 +272,46 @@ export default function TourDetail() {
     };
   }, [slug]);
 
+  // Live Cloud and Local sync for Hotel Visibility and Hotel APAI / MAPAI / CPAI Pricing
+  useEffect(() => {
+    const handleHotelVisibility = (e) => {
+      setHiddenHotels(e.detail || getHiddenHotelIds());
+    };
+    const handleHotelPricing = () => {
+      setHotelPricingMap(getAllHotelCustomPricing());
+    };
+
+    let bcVis = null;
+    let bcPrice = null;
+    if (typeof BroadcastChannel !== 'undefined') {
+      try {
+        bcVis = new BroadcastChannel('junglee_hotel_visibility_sync');
+        bcVis.onmessage = (evt) => {
+          if (evt.data?.ids) setHiddenHotels(evt.data.ids);
+        };
+        bcPrice = new BroadcastChannel('junglee_hotel_pricing_sync');
+        bcPrice.onmessage = () => {
+          setHotelPricingMap(getAllHotelCustomPricing());
+        };
+      } catch (e) {}
+    }
+
+    syncHotelDataFromCloud().then((data) => {
+      if (data?.hiddenHotels) setHiddenHotels(data.hiddenHotels);
+      if (data?.hotelPricing) setHotelPricingMap(data.hotelPricing);
+    }).catch(() => {});
+
+    window.addEventListener('hotelVisibilityChanged', handleHotelVisibility);
+    window.addEventListener('hotelPricingChanged', handleHotelPricing);
+
+    return () => {
+      if (bcVis) { try { bcVis.close(); } catch (e) {} }
+      if (bcPrice) { try { bcPrice.close(); } catch (e) {} }
+      window.removeEventListener('hotelVisibilityChanged', handleHotelVisibility);
+      window.removeEventListener('hotelPricingChanged', handleHotelPricing);
+    };
+  }, []);
+
   // Synchronize safariPeople with total passengers unless manually adjusted by the user
   useEffect(() => {
     if (!safariPeopleManual) {
@@ -290,14 +341,40 @@ export default function TourDetail() {
   const isBandhavgarh = slug === 'bandhavgarh-tiger-safari' || slug?.includes('bandhavgarh');
   const isKanha = slug === 'kanha-tiger-safari' || slug?.includes('kanha');
   const isRanthambore = slug === 'ranthambore-tiger-safari' || slug?.includes('ranthambore');
-  const availableHotels = isGir ? GIR_HOTELS : isJawai ? JAWAI_HOTELS : isSanjay ? SANJAY_DUBRI_HOTELS : isVelavadar ? VELAVADAR_HOTELS : isCorbett ? CORBETT_HOTELS : isPanna ? PANNA_HOTELS : isPench ? PENCH_HOTELS : isChitwan ? CHITWAN_HOTELS : isBandhavgarh ? BANDHAVGARH_HOTELS : isKanha ? KANHA_HOTELS : isRanthambore ? RANTHAMBORE_HOTELS : (tour?.hotels || []);
+  const isTadoba = slug === 'tadoba-tiger-safari' || slug?.includes('tadoba');
+
+  const rawHotels = isGir ? GIR_HOTELS 
+    : isJawai ? JAWAI_HOTELS 
+    : isSanjay ? SANJAY_DUBRI_HOTELS 
+    : isVelavadar ? VELAVADAR_HOTELS 
+    : isCorbett ? CORBETT_HOTELS 
+    : isPanna ? PANNA_HOTELS 
+    : isPench ? PENCH_HOTELS 
+    : isChitwan ? CHITWAN_HOTELS 
+    : isBandhavgarh ? BANDHAVGARH_HOTELS 
+    : isKanha ? KANHA_HOTELS 
+    : isRanthambore ? RANTHAMBORE_HOTELS 
+    : isTadoba ? TADOBA_HOTELS 
+    : (tour?.hotels || []);
+
+  const availableHotels = rawHotels.filter((h) => !hiddenHotels.includes(h.id));
+
+  // If currently selected hotel becomes hidden, immediately switch to the first visible hotel
+  useEffect(() => {
+    if (availableHotels.length > 0) {
+      const isSelectedVisible = availableHotels.some((h) => h.id === selectedHotel?.id);
+      if (!isSelectedVisible) {
+        handleSelectHotel(availableHotels[0]);
+      }
+    }
+  }, [availableHotels, selectedHotel]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     getTourDetail(slug)
       .then((res) => {
         setTour(res.data);
-        const hotels = (slug === 'gir-lion-safari' || slug?.includes('gir')) 
+        const destinationHotels = (slug === 'gir-lion-safari' || slug?.includes('gir')) 
           ? GIR_HOTELS 
           : (slug === 'jawai-leopard-safari' || slug?.includes('jawai'))
           ? JAWAI_HOTELS
@@ -319,8 +396,13 @@ export default function TourDetail() {
           ? KANHA_HOTELS
           : (slug === 'ranthambore-tiger-safari' || slug?.includes('ranthambore'))
           ? RANTHAMBORE_HOTELS
+          : (slug === 'tadoba-tiger-safari' || slug?.includes('tadoba'))
+          ? TADOBA_HOTELS
           : (res.data.hotels || []);
         
+        const currentHidden = getHiddenHotelIds();
+        const hotels = destinationHotels.filter((h) => !currentHidden.includes(h.id));
+
         if (hotels.length > 0) {
           const firstHotel = hotels[0];
           setSelectedHotel(firstHotel);
@@ -537,12 +619,26 @@ export default function TourDetail() {
     }
   });
 
-  const basePrice = tour.basePrice || 0;
-  const packagePrice = selectedPackage?.price || 0;
+  // Accommodation pricing based directly on selected hotel, room category, and meal plan (APAI / MAPAI / CPAI)
+  const activeHotelPricing = getHotelPricing(selectedHotel?.id, selectedRoomCategory?.id, selectedRoomCategory);
+  const hotelBaseRate = activeHotelPricing.price || 0;
+  const roomMealRates = activeHotelPricing.room || { apai: 6000, mapai: 5000, cpai: 4000 };
+
+  const activeRoomRate = mealPlan === 'APAI'
+    ? roomMealRates.apai
+    : mealPlan === 'MAPAI'
+    ? roomMealRates.mapai
+    : roomMealRates.cpai;
+
+  const perDayStayRate = hotelBaseRate + activeRoomRate;
+  const accommodationCost = perDayStayRate * rooms * numDays;
+
   const totalGuests = adults + kids;
   const safariVehicles = Math.max(1, Math.ceil(safariPeople / 6));
   const safariPrice = safariVehicles * perVehicleSafariRate;
-  const totalPrice = ((basePrice + packagePrice) * totalGuests) + safariPrice;
+
+  // Total Reservation Cost (Base price is completely removed as requested!)
+  const totalPrice = accommodationCost + safariPrice;
 
 
 
@@ -746,7 +842,7 @@ export default function TourDetail() {
                               <span>Selected</span>
                             </>
                           ) : (
-                            <span>Select ({hotel.price === 0 ? 'Included' : `+₹${hotel.price}`})</span>
+                            <span>Select Resort {getHotelPricing(hotel.id).price > 0 ? `(+₹${getHotelPricing(hotel.id).price.toLocaleString()})` : ''}</span>
                           )}
                         </button>
                       </div>
@@ -767,9 +863,12 @@ export default function TourDetail() {
             <div>
               <span className="text-xs uppercase text-pine-800 font-bold block tracking-wider">Reserve Your Seat</span>
               <div className="flex items-baseline gap-2 pt-1">
-                <span className="text-3xl sm:text-4xl font-black text-charcoal-900">₹{(basePrice + packagePrice).toLocaleString()}</span>
-                <span className="text-xs text-charcoal-600 font-medium">/ guest</span>
+                <span className="text-3xl sm:text-4xl font-black text-charcoal-900">₹{perDayStayRate.toLocaleString()}</span>
+                <span className="text-xs text-charcoal-600 font-medium">/ room / day</span>
               </div>
+              <p className="text-[11px] text-pine-800 font-bold pt-0.5">
+                {selectedRoomCategory?.name || selectedHotel?.name || 'Selected Room'} · {mealPlan} Plan
+              </p>
             </div>
 
             {bookingSuccess ? (
@@ -817,11 +916,14 @@ export default function TourDetail() {
                       }}
                       className="w-full bg-sand-950 border border-sand-700 rounded-xl py-2.5 px-3 text-xs text-charcoal-900 focus:outline-none focus:border-pine-800 font-medium"
                     >
-                      {availableHotels.map((h) => (
-                        <option key={h.id} value={h.id}>
-                          {h.name} ({h.price === 0 ? 'Standard Package' : `+₹${h.price} / guest`})
-                        </option>
-                      ))}
+                      {availableHotels.map((h) => {
+                        const hPrice = getHotelPricing(h.id).price || 0;
+                        return (
+                          <option key={h.id} value={h.id}>
+                            {h.name} {hPrice > 0 ? `(+₹${hPrice.toLocaleString()} / day)` : ''}
+                          </option>
+                        );
+                      })}
                     </select>
 
                     {selectedHotel && (
@@ -882,11 +984,19 @@ export default function TourDetail() {
                                     <h5 className="text-xs font-bold text-charcoal-950 leading-tight truncate">
                                       {cat.name}
                                     </h5>
-                                    <span className={`text-[10px] font-bold shrink-0 ${
-                                      cat.price === 0 ? 'text-pine-800' : 'text-amber-600'
-                                    }`}>
-                                      {cat.price === 0 ? 'Included' : `+₹${cat.price}`}
-                                    </span>
+                                    {(() => {
+                                      const catPricing = getHotelPricing(selectedHotel.id, cat.id, cat);
+                                      const catPlanPrice = mealPlan === 'APAI'
+                                        ? catPricing.room.apai
+                                        : mealPlan === 'MAPAI'
+                                        ? catPricing.room.mapai
+                                        : catPricing.room.cpai;
+                                      return (
+                                        <span className="text-[11px] font-bold text-pine-800 shrink-0">
+                                          ₹{catPlanPrice.toLocaleString()} / day
+                                        </span>
+                                      );
+                                    })()}
                                   </div>
 
                                   <p className="text-[10px] text-charcoal-600 truncate pt-0.5">
@@ -896,6 +1006,9 @@ export default function TourDetail() {
                                   <div className="flex items-center justify-between pt-1">
                                     <span className="text-[9px] text-pine-800 bg-pine-800/10 px-1.5 py-0.5 rounded border border-pine-800/20 font-bold">
                                       {cat.roomSize}
+                                    </span>
+                                    <span className="text-[9px] text-charcoal-500 font-medium">
+                                      {mealPlan} Plan
                                     </span>
                                   </div>
                                 </div>
@@ -1274,7 +1387,7 @@ export default function TourDetail() {
                       Select Meal Option
                     </label>
                     <span className="text-[10px] text-pine-800 font-bold">
-                      {mealPlan}
+                      {mealPlan} Plan
                     </span>
                   </div>
                   
@@ -1296,10 +1409,12 @@ export default function TourDetail() {
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center justify-between gap-1">
                           <p className="text-xs font-bold text-charcoal-950">APAI (All Meals Included)</p>
-                          <span className="text-[9px] bg-pine-800/10 text-pine-800 px-1.5 py-0.5 rounded font-bold border border-pine-800/20 shrink-0">Included</span>
+                          <span className="text-[11px] text-pine-800 font-bold">
+                            ₹{roomMealRates.apai.toLocaleString()} / day
+                          </span>
                         </div>
                         <p className="text-[11px] text-charcoal-700 leading-tight pt-0.5 font-normal">
-                          Lunch, Hitea, Dinner and Breakfast
+                          Lunch, High Tea, Dinner and Breakfast
                         </p>
                       </div>
                     </div>
@@ -1319,9 +1434,14 @@ export default function TourDetail() {
                         {mealPlan === 'MAPAI' && <div className="w-1.5 h-1.5 rounded-full bg-sand-950" />}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="text-xs font-bold text-charcoal-950">MAPAI</p>
+                        <div className="flex items-center justify-between gap-1">
+                          <p className="text-xs font-bold text-charcoal-950">MAPAI</p>
+                          <span className="text-[11px] text-pine-800 font-bold">
+                            ₹{roomMealRates.mapai.toLocaleString()} / day
+                          </span>
+                        </div>
                         <p className="text-[11px] text-charcoal-700 leading-tight pt-0.5 font-normal">
-                          Breakfast and Lunch/ Dinner
+                          Breakfast and Lunch or Dinner
                         </p>
                       </div>
                     </div>
@@ -1341,7 +1461,12 @@ export default function TourDetail() {
                         {mealPlan === 'CPAI' && <div className="w-1.5 h-1.5 rounded-full bg-sand-950" />}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="text-xs font-bold text-charcoal-950">CPAI</p>
+                        <div className="flex items-center justify-between gap-1">
+                          <p className="text-xs font-bold text-charcoal-950">CPAI</p>
+                          <span className="text-[11px] text-pine-800 font-bold">
+                            ₹{roomMealRates.cpai.toLocaleString()} / day
+                          </span>
+                        </div>
                         <p className="text-[11px] text-charcoal-700 leading-tight pt-0.5 font-normal">
                           Breakfast only
                         </p>
@@ -1351,31 +1476,34 @@ export default function TourDetail() {
                 </div>
 
                 {/* Price Summary Breakdown */}
-                <div className="pt-2.5 border-t border-sand-700 space-y-1 text-xs text-charcoal-700">
-                  <div className="flex justify-between">
-                    <span>Base (₹{basePrice.toLocaleString()} × {adults + kids} {adults + kids === 1 ? 'Guest' : 'Guests'})</span>
-                    <span>₹{(basePrice * (adults + kids)).toLocaleString()}</span>
-                  </div>
-                  {packagePrice > 0 && (
-                    <div className="flex justify-between">
-                      <span>{selectedPackage.name}</span>
-                      <span>+₹{(packagePrice * (adults + kids)).toLocaleString()}</span>
-                    </div>
-                  )}
+                <div className="pt-2.5 border-t border-sand-700 space-y-1.5 text-xs text-charcoal-700">
                   <div className="flex justify-between items-start">
                     <div>
-                      <span>Safari ({safariVehicles} {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'} · {totalSafarisCount} {totalSafarisCount === 1 ? 'Safari' : 'Safaris'})</span>
-                      <span className="block text-[10px] text-charcoal-500">
+                      <span className="font-semibold text-charcoal-900">
+                        Stay ({selectedRoomCategory ? selectedRoomCategory.name : selectedHotel?.name || 'Resort Stay'})
+                      </span>
+                      <span className="block text-[10px] text-charcoal-500 font-normal">
+                        ₹{perDayStayRate.toLocaleString()} × {rooms} {rooms === 1 ? 'room' : 'rooms'} × {numDays} {numDays === 1 ? 'day' : 'days'} ({mealPlan} Plan)
+                      </span>
+                    </div>
+                    <span className="font-bold text-charcoal-900">₹{accommodationCost.toLocaleString()}</span>
+                  </div>
+
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <span className="font-semibold text-charcoal-900">Safari ({safariVehicles} {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'} · {totalSafarisCount} {totalSafarisCount === 1 ? 'Safari' : 'Safaris'})</span>
+                      <span className="block text-[10px] text-charcoal-500 font-normal">
                         {totalWeekdaySafaris > 0 && `${totalWeekdaySafaris} weekday safari${totalWeekdaySafaris > 1 ? 's' : ''} @ ₹${weekdayRate.toLocaleString()}`}
                         {totalWeekdaySafaris > 0 && totalWeekendSafaris > 0 && ' · '}
                         {totalWeekendSafaris > 0 && `${totalWeekendSafaris} weekend safari${totalWeekendSafaris > 1 ? 's' : ''} @ ₹${weekendRate.toLocaleString()}`}
                       </span>
                     </div>
-                    <span className="text-charcoal-900 font-semibold">+₹{safariPrice.toLocaleString()}</span>
+                    <span className="font-bold text-charcoal-900">+₹{safariPrice.toLocaleString()}</span>
                   </div>
-                  <div className="flex justify-between font-bold text-charcoal-900 text-sm pt-1.5 border-t border-sand-700">
-                    <span>Total Cost</span>
-                    <span className="text-pine-800">₹{totalPrice.toLocaleString()}</span>
+
+                  <div className="flex justify-between font-bold text-charcoal-900 text-sm pt-2 border-t border-sand-700">
+                    <span>Total Reservation Cost</span>
+                    <span className="text-pine-800 text-base">₹{totalPrice.toLocaleString()}</span>
                   </div>
                 </div>
 

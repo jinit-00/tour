@@ -2799,6 +2799,55 @@ export const RANTHAMBORE_HOTELS = [
   }
 ];
 
+export const TADOBA_HOTELS = [
+  {
+    "id": "tadoba-bamboo-camp",
+    "name": "Tadoba Bamboo Jungle Camp & Wildlife Resort",
+    "tagline": "Eco-friendly wilderness retreat right next to Moharli Safari Gate",
+    "price": 0,
+    "address": "Moharli Gate, Tadoba Andhari Tiger Reserve, Maharashtra",
+    "description": "Tadoba Bamboo Jungle Camp offers authentic jungle cottages crafted from sustainable bamboo and teakwood, naturalist-led open gypsy safaris, multi-cuisine open dining, and birdwatching decks.",
+    "amenities": [
+      "Naturalist Safaris",
+      "Swimming Pool",
+      "Multi-Cuisine Restaurant",
+      "Bonfire & Wildlife Documentaries",
+      "Free Wi-Fi",
+      "24/7 Front Desk"
+    ],
+    "images": [
+      "/tadoba-safari.jpg",
+      "https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "roomCategories": [
+      {
+        "id": "tadoba-bamboo-cottage",
+        "name": "Deluxe Bamboo Cottage",
+        "price": 0,
+        "bedType": "1 King Bed",
+        "view": "Jungle & Garden View",
+        "roomSize": "350 sq.ft",
+        "description": "Spacious air-conditioned cottage built with indigenous bamboo and teakwood, offering modern en-suite amenities and private sit-out.",
+        "images": [
+          "/tadoba-safari.jpg"
+        ]
+      },
+      {
+        "id": "tadoba-luxury-machan",
+        "name": "Luxury Machan Suite",
+        "price": 25,
+        "bedType": "1 King Bed",
+        "view": "Canopy & Forest View",
+        "roomSize": "450 sq.ft",
+        "description": "Elevated wooden machan suite with private balcony offering panoramic forest canopy views and luxury naturalist amenities.",
+        "images": [
+          "/tadoba-safari.jpg"
+        ]
+      }
+    ]
+  }
+];
+
 const FALLBACK_TOURS = [
   {
     id: '1',
@@ -3011,9 +3060,14 @@ const FALLBACK_TOURS = [
     images: [
       '/tadoba-safari.jpg',
     ],
-    packages: [
-      { id: 'p10', name: 'Tadoba Bamboo Jungle Camp', price: 0, description: 'Eco-lodge near Moharli gate with open safari gypsies.' }
-    ]
+    packages: TADOBA_HOTELS.map(h => ({
+      id: h.id,
+      name: `${h.name} (${h.price === 0 ? 'Standard Package' : `+₹${h.price} Premium`})`,
+      price: h.price,
+      description: h.tagline
+    })),
+    hotels: TADOBA_HOTELS,
+    hotelDetails: TADOBA_HOTELS[0]
   },
   {
     id: '11',
@@ -3094,11 +3148,50 @@ export const resendOtp = (data) => API.post('/auth/resend-otp', data);
 export const loginUser = (data) => API.post('/auth/login', data);
 export const getCurrentUser = () => API.get('/auth/me');
 
-// Tour Section Visibility (Hide / Show) Helpers with Cloud Sync
+// Tour & Hotel Destinations Registry
+export const ALL_DESTINATION_HOTELS = [
+  { id: 'gir', name: 'Gir National Park', slug: 'gir-lion-safari', hotels: GIR_HOTELS },
+  { id: 'jawai', name: 'Jawai Bera', slug: 'jawai-leopard-safari', hotels: JAWAI_HOTELS },
+  { id: 'sanjay-dubri', name: 'Sanjay Dubri Tiger Reserve', slug: 'sanjay-dubri-tiger-safari', hotels: SANJAY_DUBRI_HOTELS },
+  { id: 'ranthambore', name: 'Ranthambore National Park', slug: 'ranthambore-tiger-safari', hotels: RANTHAMBORE_HOTELS },
+  { id: 'velavadar', name: 'Velavadar Blackbuck National Park', slug: 'velavadar-deer-safari', hotels: VELAVADAR_HOTELS },
+  { id: 'panna', name: 'Panna Tiger Reserve', slug: 'panna-tiger-safari', hotels: PANNA_HOTELS },
+  { id: 'pench', name: 'Pench Tiger Reserve', slug: 'pench-tiger-safari', hotels: PENCH_HOTELS },
+  { id: 'kanha', name: 'Kanha National Park', slug: 'kanha-tiger-safari', hotels: KANHA_HOTELS },
+  { id: 'bandhavgarh', name: 'Bandhavgarh National Park', slug: 'bandhavgarh-tiger-safari', hotels: BANDHAVGARH_HOTELS },
+  { id: 'tadoba', name: 'Tadoba National Park', slug: 'tadoba-tiger-safari', hotels: TADOBA_HOTELS },
+  { id: 'corbett', name: 'Jim Corbett National Park', slug: 'jim-corbett-safari', hotels: CORBETT_HOTELS },
+  { id: 'chitwan', name: 'Chitwan National Park', slug: 'chitwan-rhino-safari', hotels: CHITWAN_HOTELS },
+];
+
+// Storage Keys & Cloud Sync Constants
 const HIDDEN_TOURS_STORAGE_KEY = 'junglee_hidden_tours';
 export const SAFARI_PRICING_STORAGE_KEY = 'junglee_safari_pricing';
+export const HIDDEN_HOTELS_STORAGE_KEY = 'junglee_hidden_hotels';
+export const HOTEL_PRICING_STORAGE_KEY = 'junglee_hotel_pricing';
 const CLOUD_SYNC_URL = 'https://api.restful-api.dev/objects/ff808181a09d98f701a14869bd637994';
 
+// Unified Cloud Push Helper to keep tours, safari pricing, hidden hotels & hotel pricing synchronized
+export const pushAllToCloud = async (overrides = {}) => {
+  try {
+    const payload = {
+      hidden: overrides.hidden !== undefined ? overrides.hidden : getHiddenTourSlugs(),
+      safariPricing: overrides.safariPricing !== undefined ? overrides.safariPricing : getSafariPricing(),
+      hiddenHotels: overrides.hiddenHotels !== undefined ? overrides.hiddenHotels : getHiddenHotelIds(),
+      hotelPricing: overrides.hotelPricing !== undefined ? overrides.hotelPricing : getAllHotelCustomPricing(),
+    };
+    await axios.put(CLOUD_SYNC_URL, {
+      name: 'junglee_visibility',
+      data: payload,
+    }, { timeout: 4000 });
+  } catch (err) {
+    console.warn('pushAllToCloud failed:', err.message);
+  }
+};
+
+// -------------------------------------------------------------
+// SAFARI VEHICLE PRICING (Weekday & Weekend)
+// -------------------------------------------------------------
 export const DEFAULT_SAFARI_PRICING = {
   weekday: 6000,
   weekend: 8000,
@@ -3136,7 +3229,6 @@ export const setSafariPricing = async (newPricing) => {
 
     let updatedBySlug = { ...(current.bySlug || {}) };
     if (newPricing.resetBySlug) {
-      // Clear individual overrides so all safaris adopt the new global pricing
       updatedBySlug = {};
     } else if (newPricing.bySlug) {
       updatedBySlug = { ...updatedBySlug, ...newPricing.bySlug };
@@ -3162,19 +3254,7 @@ export const setSafariPricing = async (newPricing) => {
     }
 
     // Sync to Cloud immediately so all live visitors see the updated pricing
-    const hiddenList = getHiddenTourSlugs();
-    try {
-      await axios.put(CLOUD_SYNC_URL, {
-        name: 'junglee_visibility',
-        data: {
-          hidden: hiddenList,
-          safariPricing: updated,
-        }
-      }, { timeout: 4000 });
-    } catch (cloudErr) {
-      console.warn('Cloud sync for pricing failed:', cloudErr.message);
-    }
-
+    await pushAllToCloud({ safariPricing: updated });
     return updated;
   } catch (err) {
     console.error('Failed to set safari pricing:', err);
@@ -3192,41 +3272,37 @@ export const syncSafariPricingFromCloud = async () => {
         const cloudTime = Number(cloudPricing.updatedAt) || 0;
         const localTime = Number(localPricing.updatedAt) || 0;
 
-        // If local changes are fresher than cloud, keep local and update cloud
-        if (localTime > cloudTime) {
-          try {
-            await axios.put(CLOUD_SYNC_URL, {
-              name: 'junglee_visibility',
-              data: {
-                hidden: getHiddenTourSlugs(),
-                safariPricing: localPricing,
-              }
-            }, { timeout: 4000 });
-          } catch (e) {}
-          return localPricing;
+        if (cloudTime >= localTime) {
+          localStorage.setItem(SAFARI_PRICING_STORAGE_KEY, JSON.stringify(cloudPricing));
+          window.dispatchEvent(new CustomEvent('safariPricingChanged', { detail: cloudPricing }));
+          if (typeof BroadcastChannel !== 'undefined') {
+            try {
+              const bc = new BroadcastChannel('junglee_safari_pricing_sync');
+              bc.postMessage({ type: 'PRICING_UPDATED', pricing: cloudPricing });
+              bc.close();
+            } catch (e) {}
+          }
         }
-
-        localStorage.setItem(SAFARI_PRICING_STORAGE_KEY, JSON.stringify(cloudPricing));
-        window.dispatchEvent(new CustomEvent('safariPricingChanged', { detail: cloudPricing }));
-        if (typeof BroadcastChannel !== 'undefined') {
-          try {
-            const bc = new BroadcastChannel('junglee_safari_pricing_sync');
-            bc.postMessage({ type: 'PRICING_UPDATED', pricing: cloudPricing });
-            bc.close();
-          } catch (e) {}
-        }
-        return cloudPricing;
       }
       if (Array.isArray(res.data.data.hidden)) {
         localStorage.setItem(HIDDEN_TOURS_STORAGE_KEY, JSON.stringify(res.data.data.hidden));
       }
+      if (Array.isArray(res.data.data.hiddenHotels)) {
+        localStorage.setItem(HIDDEN_HOTELS_STORAGE_KEY, JSON.stringify(res.data.data.hiddenHotels));
+        window.dispatchEvent(new CustomEvent('hotelVisibilityChanged', { detail: res.data.data.hiddenHotels }));
+      }
+      if (res.data.data.hotelPricing && typeof res.data.data.hotelPricing === 'object') {
+        localStorage.setItem(HOTEL_PRICING_STORAGE_KEY, JSON.stringify(res.data.data.hotelPricing));
+        window.dispatchEvent(new CustomEvent('hotelPricingChanged', { detail: { all: res.data.data.hotelPricing } }));
+      }
     }
-  } catch (err) {
-    // Fail silently to local storage
-  }
+  } catch (err) {}
   return getSafariPricing();
 };
 
+// -------------------------------------------------------------
+// TOUR SECTION VISIBILITY (Show / Hide)
+// -------------------------------------------------------------
 export const getHiddenTourSlugs = () => {
   try {
     const raw = localStorage.getItem(HIDDEN_TOURS_STORAGE_KEY);
@@ -3247,7 +3323,6 @@ export const setHiddenTourSlugs = (slugs) => {
   }
 };
 
-// Sync from Cloud so ANY live website visitor (without login) gets the latest hidden tours & safari prices
 export const syncHiddenToursFromCloud = async () => {
   try {
     const res = await axios.get(`${CLOUD_SYNC_URL}?_nocache=${Date.now()}`, { timeout: 4000 });
@@ -3278,11 +3353,17 @@ export const syncHiddenToursFromCloud = async () => {
           }
         }
       }
+      if (Array.isArray(res.data.data.hiddenHotels)) {
+        localStorage.setItem(HIDDEN_HOTELS_STORAGE_KEY, JSON.stringify(res.data.data.hiddenHotels));
+        window.dispatchEvent(new CustomEvent('hotelVisibilityChanged', { detail: res.data.data.hiddenHotels }));
+      }
+      if (res.data.data.hotelPricing && typeof res.data.data.hotelPricing === 'object') {
+        localStorage.setItem(HOTEL_PRICING_STORAGE_KEY, JSON.stringify(res.data.data.hotelPricing));
+        window.dispatchEvent(new CustomEvent('hotelPricingChanged', { detail: { all: res.data.data.hotelPricing } }));
+      }
       return res.data.data.hidden || [];
     }
-  } catch (err) {
-    // Fail silently to local storage
-  }
+  } catch (err) {}
   return getHiddenTourSlugs();
 };
 
@@ -3314,30 +3395,172 @@ export const toggleTourVisibility = async (tourOrId, explicitHiddenState) => {
   }
   setHiddenTourSlugs(updatedList);
 
-  // Sync to Cloud immediately, preserving safariPricing so ALL live website visitors see the change
-  try {
-    const currentPricing = getSafariPricing();
-    await axios.put(CLOUD_SYNC_URL, {
-      name: 'junglee_visibility',
-      data: { 
-        hidden: updatedList,
-        safariPricing: currentPricing,
-      },
-    }, { timeout: 4000 });
-  } catch (cloudErr) {
-    console.warn('Cloud sync update failed:', cloudErr.message);
-  }
+  await pushAllToCloud({ hidden: updatedList });
 
-  // Also sync with backend if available
   try {
     if (id) {
       await API.patch(`/admin/tours/${id}/visibility`, { isHidden: nextHidden });
     }
-  } catch (err) {
-    // Backend may be offline or in static SPA mode, local state is persisted
-  }
+  } catch (err) {}
 
   return { isHidden: nextHidden, slugs: updatedList };
+};
+
+// -------------------------------------------------------------
+// HOTEL VISIBILITY & CUSTOM PRICING (APAI / MAPAI / CPAI)
+// -------------------------------------------------------------
+export const getDefaultRoomPricing = (roomCat) => {
+  const rawPrice = Number(roomCat?.price) || 0;
+  const offset = rawPrice > 100 ? rawPrice : rawPrice * 80;
+  const apai = 6000 + offset;
+  const mapai = Math.max(2000, apai - 1000);
+  const cpai = Math.max(1500, apai - 2000);
+  return { apai, mapai, cpai };
+};
+
+export const getHiddenHotelIds = () => {
+  try {
+    const raw = localStorage.getItem(HIDDEN_HOTELS_STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (e) {
+    return [];
+  }
+};
+
+export const setHiddenHotelIds = async (ids) => {
+  try {
+    localStorage.setItem(HIDDEN_HOTELS_STORAGE_KEY, JSON.stringify(ids));
+    window.dispatchEvent(new CustomEvent('hotelVisibilityChanged', { detail: ids }));
+    if (typeof BroadcastChannel !== 'undefined') {
+      try {
+        const bc = new BroadcastChannel('junglee_hotel_visibility_sync');
+        bc.postMessage({ type: 'HOTEL_VISIBILITY_UPDATED', ids });
+        bc.close();
+      } catch (e) {}
+    }
+    await pushAllToCloud({ hiddenHotels: ids });
+  } catch (e) {
+    console.error('Failed to set hidden hotel ids:', e);
+  }
+};
+
+export const isHotelHidden = (hotelOrId) => {
+  if (!hotelOrId) return false;
+  const id = typeof hotelOrId === 'string' ? hotelOrId : hotelOrId.id;
+  const hidden = getHiddenHotelIds();
+  return hidden.includes(id);
+};
+
+export const toggleHotelVisibility = async (hotelId, forceHidden = null) => {
+  const hidden = getHiddenHotelIds();
+  const isCurrentlyHidden = hidden.includes(hotelId);
+  const nextHidden = forceHidden !== null ? Boolean(forceHidden) : !isCurrentlyHidden;
+  let updated;
+  if (nextHidden) {
+    updated = Array.from(new Set([...hidden, hotelId]));
+  } else {
+    updated = hidden.filter(id => id !== hotelId);
+  }
+  await setHiddenHotelIds(updated);
+  return { isHidden: nextHidden, ids: updated };
+};
+
+export const getAllHotelCustomPricing = () => {
+  try {
+    const raw = localStorage.getItem(HOTEL_PRICING_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return typeof parsed === 'object' && parsed !== null ? parsed : {};
+  } catch (e) {
+    return {};
+  }
+};
+
+export const getHotelPricing = (hotelId, roomId = null, defaultRoom = null) => {
+  const all = getAllHotelCustomPricing();
+  const hotelEntry = (hotelId && all[hotelId]) ? all[hotelId] : null;
+  const hotelPrice = Number(hotelEntry?.price) || 0;
+
+  let roomPricing = null;
+  if (roomId && hotelEntry?.roomCategories && hotelEntry.roomCategories[roomId]) {
+    const r = hotelEntry.roomCategories[roomId];
+    roomPricing = {
+      apai: Number(r.apai) || 6000,
+      mapai: Number(r.mapai) || 5000,
+      cpai: Number(r.cpai) || 4000,
+    };
+  } else if (defaultRoom) {
+    roomPricing = getDefaultRoomPricing(defaultRoom);
+  } else {
+    roomPricing = { apai: 6000, mapai: 5000, cpai: 4000 };
+  }
+
+  return {
+    price: hotelPrice,
+    roomCategories: hotelEntry?.roomCategories || {},
+    room: roomPricing,
+    updatedAt: Number(hotelEntry?.updatedAt) || 0,
+  };
+};
+
+export const setHotelCustomPricing = async (hotelId, pricingData) => {
+  try {
+    const all = getAllHotelCustomPricing();
+    const existingHotel = all[hotelId] || { price: 0, roomCategories: {} };
+
+    const updatedHotel = {
+      price: pricingData.price !== undefined ? Number(pricingData.price) : (existingHotel.price || 0),
+      roomCategories: {
+        ...(existingHotel.roomCategories || {}),
+        ...(pricingData.roomCategories || {}),
+      },
+      updatedAt: Date.now(),
+    };
+
+    const updatedAll = {
+      ...all,
+      [hotelId]: updatedHotel,
+    };
+
+    localStorage.setItem(HOTEL_PRICING_STORAGE_KEY, JSON.stringify(updatedAll));
+    window.dispatchEvent(new CustomEvent('hotelPricingChanged', { detail: { hotelId, all: updatedAll, updatedHotel } }));
+
+    if (typeof BroadcastChannel !== 'undefined') {
+      try {
+        const bc = new BroadcastChannel('junglee_hotel_pricing_sync');
+        bc.postMessage({ type: 'HOTEL_PRICING_UPDATED', hotelId, all: updatedAll });
+        bc.close();
+      } catch (e) {}
+    }
+
+    await pushAllToCloud({ hotelPricing: updatedAll });
+    return updatedHotel;
+  } catch (err) {
+    console.error('Failed to set hotel custom pricing:', err);
+    return pricingData;
+  }
+};
+
+export const syncHotelDataFromCloud = async () => {
+  try {
+    const res = await axios.get(`${CLOUD_SYNC_URL}?_nocache=${Date.now()}`, { timeout: 4000 });
+    if (res.data && res.data.data) {
+      if (Array.isArray(res.data.data.hiddenHotels)) {
+        localStorage.setItem(HIDDEN_HOTELS_STORAGE_KEY, JSON.stringify(res.data.data.hiddenHotels));
+        window.dispatchEvent(new CustomEvent('hotelVisibilityChanged', { detail: res.data.data.hiddenHotels }));
+      }
+      if (res.data.data.hotelPricing && typeof res.data.data.hotelPricing === 'object') {
+        localStorage.setItem(HOTEL_PRICING_STORAGE_KEY, JSON.stringify(res.data.data.hotelPricing));
+        window.dispatchEvent(new CustomEvent('hotelPricingChanged', { detail: { all: res.data.data.hotelPricing } }));
+      }
+    }
+  } catch (e) {}
+  return {
+    hiddenHotels: getHiddenHotelIds(),
+    hotelPricing: getAllHotelCustomPricing(),
+  };
 };
 
 // Tours API with Guaranteed 12 Safaris Output (excluding hidden tours from tour section)
