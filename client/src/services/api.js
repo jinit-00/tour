@@ -3169,23 +3169,73 @@ const HIDDEN_TOURS_STORAGE_KEY = 'junglee_hidden_tours';
 export const SAFARI_PRICING_STORAGE_KEY = 'junglee_safari_pricing';
 export const HIDDEN_HOTELS_STORAGE_KEY = 'junglee_hidden_hotels';
 export const HOTEL_PRICING_STORAGE_KEY = 'junglee_hotel_pricing';
-const CLOUD_SYNC_URL = 'https://api.restful-api.dev/objects/ff808181a09d98f701a14869bd637994';
 
-// Unified Cloud Push Helper to keep tours, safari pricing, hidden hotels & hotel pricing synchronized
-export const pushAllToCloud = async (overrides = {}) => {
+// High-speed, high-availability multi-endpoint JSON cloud storage
+const PRIMARY_SYNC_URL = 'https://extendsclass.com/api/json-storage/bin/aefeadc';
+const BACKUP_SYNC_URL = 'https://extendsclass.com/api/json-storage/bin/affadea';
+
+// Fetch helper with multi-cloud fallback
+export const fetchCloudData = async () => {
   try {
-    const payload = {
-      hidden: overrides.hidden !== undefined ? overrides.hidden : getHiddenTourSlugs(),
-      safariPricing: overrides.safariPricing !== undefined ? overrides.safariPricing : getSafariPricing(),
-      hiddenHotels: overrides.hiddenHotels !== undefined ? overrides.hiddenHotels : getHiddenHotelIds(),
-      hotelPricing: overrides.hotelPricing !== undefined ? overrides.hotelPricing : getAllHotelCustomPricing(),
-    };
-    await axios.put(CLOUD_SYNC_URL, {
-      name: 'junglee_visibility',
-      data: payload,
-    }, { timeout: 4000 });
+    const res = await axios.get(PRIMARY_SYNC_URL, {
+      headers: { 'Cache-Control': 'no-cache, no-store' },
+      timeout: 4000,
+    });
+    if (res.data) {
+      const data = typeof res.data === 'string' ? JSON.parse(res.data) : res.data;
+      if (data && (Array.isArray(data.hidden) || data.safariPricing || Array.isArray(data.hiddenHotels) || data.hotelPricing)) {
+        return data;
+      }
+    }
   } catch (err) {
-    console.warn('pushAllToCloud failed:', err.message);
+    console.warn('Primary cloud sync GET failed, trying backup:', err.message);
+  }
+
+  try {
+    const res = await axios.get(BACKUP_SYNC_URL, {
+      headers: { 'Cache-Control': 'no-cache, no-store' },
+      timeout: 4000,
+    });
+    if (res.data) {
+      const data = typeof res.data === 'string' ? JSON.parse(res.data) : res.data;
+      if (data && (Array.isArray(data.hidden) || data.safariPricing || Array.isArray(data.hiddenHotels) || data.hotelPricing)) {
+        return data;
+      }
+    }
+  } catch (err) {
+    console.warn('Backup cloud sync GET failed:', err.message);
+  }
+
+  return null;
+};
+
+// Unified Cloud Push Helper to keep tours, safari pricing, hidden hotels & hotel pricing synchronized across all devices
+export const pushAllToCloud = async (overrides = {}) => {
+  const payload = {
+    hidden: overrides.hidden !== undefined ? overrides.hidden : getHiddenTourSlugs(),
+    safariPricing: overrides.safariPricing !== undefined ? overrides.safariPricing : getSafariPricing(),
+    hiddenHotels: overrides.hiddenHotels !== undefined ? overrides.hiddenHotels : getHiddenHotelIds(),
+    hotelPricing: overrides.hotelPricing !== undefined ? overrides.hotelPricing : getAllHotelCustomPricing(),
+    updatedAt: Date.now(),
+  };
+
+  const jsonString = JSON.stringify(payload);
+
+  try {
+    await axios.put(PRIMARY_SYNC_URL, jsonString, {
+      headers: { 'Content-Type': 'application/json' },
+      timeout: 5000,
+    });
+  } catch (err) {
+    console.warn('Primary cloud sync PUT failed, attempting backup:', err.message);
+    try {
+      await axios.put(BACKUP_SYNC_URL, jsonString, {
+        headers: { 'Content-Type': 'application/json' },
+        timeout: 5000,
+      });
+    } catch (e) {
+      console.warn('Backup cloud sync PUT failed:', e.message);
+    }
   }
 };
 
@@ -3263,40 +3313,7 @@ export const setSafariPricing = async (newPricing) => {
 };
 
 export const syncSafariPricingFromCloud = async () => {
-  try {
-    const res = await axios.get(`${CLOUD_SYNC_URL}?_nocache=${Date.now()}`, { timeout: 4000 });
-    if (res.data && res.data.data) {
-      if (res.data.data.safariPricing) {
-        const cloudPricing = res.data.data.safariPricing;
-        const localPricing = getSafariPricing();
-        const cloudTime = Number(cloudPricing.updatedAt) || 0;
-        const localTime = Number(localPricing.updatedAt) || 0;
-
-        if (cloudTime >= localTime) {
-          localStorage.setItem(SAFARI_PRICING_STORAGE_KEY, JSON.stringify(cloudPricing));
-          window.dispatchEvent(new CustomEvent('safariPricingChanged', { detail: cloudPricing }));
-          if (typeof BroadcastChannel !== 'undefined') {
-            try {
-              const bc = new BroadcastChannel('junglee_safari_pricing_sync');
-              bc.postMessage({ type: 'PRICING_UPDATED', pricing: cloudPricing });
-              bc.close();
-            } catch (e) {}
-          }
-        }
-      }
-      if (Array.isArray(res.data.data.hidden)) {
-        localStorage.setItem(HIDDEN_TOURS_STORAGE_KEY, JSON.stringify(res.data.data.hidden));
-      }
-      if (Array.isArray(res.data.data.hiddenHotels)) {
-        localStorage.setItem(HIDDEN_HOTELS_STORAGE_KEY, JSON.stringify(res.data.data.hiddenHotels));
-        window.dispatchEvent(new CustomEvent('hotelVisibilityChanged', { detail: res.data.data.hiddenHotels }));
-      }
-      if (res.data.data.hotelPricing && typeof res.data.data.hotelPricing === 'object') {
-        localStorage.setItem(HOTEL_PRICING_STORAGE_KEY, JSON.stringify(res.data.data.hotelPricing));
-        window.dispatchEvent(new CustomEvent('hotelPricingChanged', { detail: { all: res.data.data.hotelPricing } }));
-      }
-    }
-  } catch (err) {}
+  await syncHiddenToursFromCloud();
   return getSafariPricing();
 };
 
@@ -3318,6 +3335,13 @@ export const setHiddenTourSlugs = (slugs) => {
   try {
     localStorage.setItem(HIDDEN_TOURS_STORAGE_KEY, JSON.stringify(slugs));
     window.dispatchEvent(new CustomEvent('tourVisibilityChanged', { detail: slugs }));
+    if (typeof BroadcastChannel !== 'undefined') {
+      try {
+        const bc = new BroadcastChannel('junglee_tour_visibility_sync');
+        bc.postMessage({ type: 'TOUR_VISIBILITY_UPDATED', slugs });
+        bc.close();
+      } catch (e) {}
+    }
   } catch (e) {
     console.error('Failed to save hidden tours in localStorage:', e);
   }
@@ -3325,18 +3349,18 @@ export const setHiddenTourSlugs = (slugs) => {
 
 export const syncHiddenToursFromCloud = async () => {
   try {
-    const res = await axios.get(`${CLOUD_SYNC_URL}?_nocache=${Date.now()}`, { timeout: 4000 });
-    if (res.data && res.data.data) {
-      if (Array.isArray(res.data.data.hidden)) {
-        const cloudHidden = res.data.data.hidden;
+    const data = await fetchCloudData();
+    if (data) {
+      if (Array.isArray(data.hidden)) {
+        const cloudHidden = data.hidden;
         const localHidden = getHiddenTourSlugs();
         if (JSON.stringify(cloudHidden) !== JSON.stringify(localHidden)) {
           localStorage.setItem(HIDDEN_TOURS_STORAGE_KEY, JSON.stringify(cloudHidden));
           window.dispatchEvent(new CustomEvent('tourVisibilityChanged', { detail: cloudHidden }));
         }
       }
-      if (res.data.data.safariPricing) {
-        const cloudPricing = res.data.data.safariPricing;
+      if (data.safariPricing) {
+        const cloudPricing = data.safariPricing;
         const localPricing = getSafariPricing();
         const cloudTime = Number(cloudPricing.updatedAt) || 0;
         const localTime = Number(localPricing.updatedAt) || 0;
@@ -3353,17 +3377,19 @@ export const syncHiddenToursFromCloud = async () => {
           }
         }
       }
-      if (Array.isArray(res.data.data.hiddenHotels)) {
-        localStorage.setItem(HIDDEN_HOTELS_STORAGE_KEY, JSON.stringify(res.data.data.hiddenHotels));
-        window.dispatchEvent(new CustomEvent('hotelVisibilityChanged', { detail: res.data.data.hiddenHotels }));
+      if (Array.isArray(data.hiddenHotels)) {
+        localStorage.setItem(HIDDEN_HOTELS_STORAGE_KEY, JSON.stringify(data.hiddenHotels));
+        window.dispatchEvent(new CustomEvent('hotelVisibilityChanged', { detail: data.hiddenHotels }));
       }
-      if (res.data.data.hotelPricing && typeof res.data.data.hotelPricing === 'object') {
-        localStorage.setItem(HOTEL_PRICING_STORAGE_KEY, JSON.stringify(res.data.data.hotelPricing));
-        window.dispatchEvent(new CustomEvent('hotelPricingChanged', { detail: { all: res.data.data.hotelPricing } }));
+      if (data.hotelPricing && typeof data.hotelPricing === 'object') {
+        localStorage.setItem(HOTEL_PRICING_STORAGE_KEY, JSON.stringify(data.hotelPricing));
+        window.dispatchEvent(new CustomEvent('hotelPricingChanged', { detail: { all: data.hotelPricing } }));
       }
-      return res.data.data.hidden || [];
+      return data.hidden || [];
     }
-  } catch (err) {}
+  } catch (err) {
+    console.warn('syncHiddenToursFromCloud error:', err.message);
+  }
   return getHiddenTourSlugs();
 };
 
@@ -3371,15 +3397,26 @@ export const isTourHidden = (tour) => {
   if (!tour) return false;
   if (tour.isHidden === true) return true;
   const hiddenList = getHiddenTourSlugs();
-  return (
-    (tour.slug && hiddenList.includes(tour.slug)) ||
-    (tour.id && hiddenList.includes(String(tour.id)))
-  );
+  const slug = tour.slug ? String(tour.slug).toLowerCase().trim() : '';
+  const id = tour.id ? String(tour.id).toLowerCase().trim() : '';
+  return hiddenList.some((item) => {
+    const clean = String(item).toLowerCase().trim();
+    return (slug && clean === slug) || (id && clean === id);
+  });
 };
 
 export const toggleTourVisibility = async (tourOrId, explicitHiddenState) => {
-  const id = typeof tourOrId === 'object' ? tourOrId.id : tourOrId;
-  const slug = typeof tourOrId === 'object' ? tourOrId.slug : null;
+  let id = typeof tourOrId === 'object' ? tourOrId.id : tourOrId;
+  let slug = typeof tourOrId === 'object' ? tourOrId.slug : null;
+
+  if (!slug && id) {
+    const found = FALLBACK_TOURS.find((t) => String(t.id) === String(id));
+    if (found) slug = found.slug;
+  }
+  if (!id && slug) {
+    const found = FALLBACK_TOURS.find((t) => String(t.slug) === String(slug));
+    if (found) id = found.id;
+  }
 
   const hiddenList = getHiddenTourSlugs();
   const currentlyHidden = (slug && hiddenList.includes(slug)) || (id && hiddenList.includes(String(id)));
@@ -3544,19 +3581,7 @@ export const setHotelCustomPricing = async (hotelId, pricingData) => {
 };
 
 export const syncHotelDataFromCloud = async () => {
-  try {
-    const res = await axios.get(`${CLOUD_SYNC_URL}?_nocache=${Date.now()}`, { timeout: 4000 });
-    if (res.data && res.data.data) {
-      if (Array.isArray(res.data.data.hiddenHotels)) {
-        localStorage.setItem(HIDDEN_HOTELS_STORAGE_KEY, JSON.stringify(res.data.data.hiddenHotels));
-        window.dispatchEvent(new CustomEvent('hotelVisibilityChanged', { detail: res.data.data.hiddenHotels }));
-      }
-      if (res.data.data.hotelPricing && typeof res.data.data.hotelPricing === 'object') {
-        localStorage.setItem(HOTEL_PRICING_STORAGE_KEY, JSON.stringify(res.data.data.hotelPricing));
-        window.dispatchEvent(new CustomEvent('hotelPricingChanged', { detail: { all: res.data.data.hotelPricing } }));
-      }
-    }
-  } catch (e) {}
+  await syncHiddenToursFromCloud();
   return {
     hiddenHotels: getHiddenHotelIds(),
     hotelPricing: getAllHotelCustomPricing(),
@@ -3567,14 +3592,13 @@ export const syncHotelDataFromCloud = async () => {
 export const getTours = async (params) => {
   try {
     const res = await API.get('/tours', { params });
-    if (Array.isArray(res.data) && res.data.length >= 12) {
+    if (Array.isArray(res.data) && res.data.length > 0) {
       const visible = res.data.filter((t) => !isTourHidden(t));
       return { data: visible };
     }
     const filteredFallback = filterFallbackTours(params).filter((t) => !isTourHidden(t));
     return { data: filteredFallback };
   } catch (err) {
-    console.warn('API unavailable, returning 12 fallback safaris:', err.message);
     const filteredFallback = filterFallbackTours(params).filter((t) => !isTourHidden(t));
     return { data: filteredFallback };
   }

@@ -11,19 +11,41 @@ export default function Tours() {
   const [selectedLocation, setSelectedLocation] = useState('All');
 
   useEffect(() => {
-    fetchTours();
-    syncHiddenToursFromCloud().then(() => {
-      fetchTours();
-    }).catch(() => {});
+    let isMounted = true;
 
+    // 1. Initial quick load from local cache
+    fetchTours();
+
+    // 2. Refresh from cloud across devices immediately
+    syncHiddenToursFromCloud()
+      .then(() => {
+        if (isMounted) fetchTours();
+      })
+      .catch(() => {});
+
+    // 3. Multi-window / tab event listeners
     const handleVisibilityChange = () => {
       fetchTours();
     };
     window.addEventListener('tourVisibilityChanged', handleVisibilityChange);
     window.addEventListener('storage', handleVisibilityChange);
+
+    // 4. Instant cross-tab broadcast
+    let bc;
+    if (typeof BroadcastChannel !== 'undefined') {
+      try {
+        bc = new BroadcastChannel('junglee_tour_visibility_sync');
+        bc.onmessage = () => {
+          fetchTours();
+        };
+      } catch (e) {}
+    }
+
     return () => {
+      isMounted = false;
       window.removeEventListener('tourVisibilityChanged', handleVisibilityChange);
       window.removeEventListener('storage', handleVisibilityChange);
+      if (bc) bc.close();
     };
   }, [search, selectedLocation]);
 
