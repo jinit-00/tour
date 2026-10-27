@@ -1,28 +1,44 @@
 const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcryptjs');
+const toursData = require('./data/tours.json');
+const destinationsData = require('./data/destinations.json');
 
 const prisma = new PrismaClient();
 
-async function main() {
-  console.log('🌱 Starting database seed with 11 exact wildlife safari templates...');
+function calculateMealPricing(rawPrice) {
+  const price = Number(rawPrice) || 0;
+  const offset = price > 100 ? price : price * 80;
+  const apai = 6000 + offset;
+  const mapai = Math.max(2000, apai - 1000);
+  const cpai = Math.max(1500, apai - 2000);
+  return { apai, mapai, cpai };
+}
 
-  // Clean existing tables
+async function main() {
+  console.log('🌱 Starting comprehensive database seeding from extracted master datasets...');
+
+  // 1. Clean existing records in correct relation order
+  console.log('🧹 Cleaning existing records...');
+  await prisma.roomCategory.deleteMany();
+  await prisma.hotel.deleteMany();
   await prisma.booking.deleteMany();
-  await prisma.otpCode.deleteMany();
   await prisma.tourPackage.deleteMany();
   await prisma.tour.deleteMany();
+  await prisma.safariPricing.deleteMany();
+  await prisma.otpCode.deleteMany();
   await prisma.user.deleteMany();
   await prisma.contactMessage.deleteMany();
   await prisma.blogPost.deleteMany();
   await prisma.galleryItem.deleteMany();
 
-  // Create Users
-  const adminPasswordHash = await bcrypt.hash('AdminPass123!', 10);
-  const userPasswordHash = await bcrypt.hash('UserPass123!', 10);
+  // 2. Create Users
+  console.log('👤 Seeding users...');
+  const adminPasswordHash = await bcrypt.hash('admin123', 10);
+  const userPasswordHash = await bcrypt.hash('user123', 10);
 
   const admin = await prisma.user.create({
     data: {
-      name: 'JungleE Team',
+      name: 'JungleE Admin',
       email: 'admin@junglee.com',
       passwordHash: adminPasswordHash,
       role: 'ADMIN',
@@ -30,7 +46,7 @@ async function main() {
     },
   });
 
-  const user = await prisma.user.create({
+  const demoUser = await prisma.user.create({
     data: {
       name: 'Marcus Vance',
       email: 'marcus@example.com',
@@ -40,158 +56,165 @@ async function main() {
     },
   });
 
-  const safarisData = [
-    {
-      title: 'Gir Asiatic Lion Sanctuary Masterclass',
-      slug: 'gir-lion-safari',
-      description: 'Track and photograph the world’s last remaining wild Asiatic Lions in the dry deciduous forests of Gir.',
-      location: 'Gir, India',
-      basePrice: 3100,
-      duration: '6 Days / 5 Nights',
-      isFeatured: true,
-      imagesJson: JSON.stringify([
-        '/gir-safari.png'
-      ])
-    },
-    {
-      title: 'Sanjay Dubri Tiger Reserve Expedition',
-      slug: 'sanjay-dubri-tiger-safari',
-      description: "Sanjay-Dubri Tiger Reserve, located in Madhya Pradesh, is a lesser-explored wilderness known for its forests, hills, valleys, and rich biodiversity. The reserve forms an important part of the central Indian tiger landscape and offers a quieter safari experience away from more crowded destinations.\n\nThe reserve is home to Bengal tigers, leopards, sloth bears, chital, sambar, gaur, wild dogs, and numerous species of birds. Its diverse terrain of sal forests, grasslands, streams, and rugged hills provides an excellent habitat for wildlife.\n\nFor wildlife photographers, Sanjay-Dubri offers the chance to explore a relatively wild and peaceful landscape while searching for some of India’s most iconic species. Its remote character and natural beauty make every safari an immersive wilderness experience.",
-      location: 'Sanjay Dubri, India',
-      basePrice: 2900,
-      duration: '6 Days / 5 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80'
-      ])
-    },
-    {
-      title: 'Jawai Granite Hills Leopard Tracking',
-      slug: 'jawai-leopard-safari',
-      description: "Jawai, located in Rajasthan, is a unique wildlife destination known for its leopards living among dramatic granite hills and rocky landscapes. Unlike dense forests, Jawai’s open terrain makes it possible to observe wildlife against a striking natural backdrop.\n\nThe region is home to leopards, crocodiles, hyenas, jackals, flamingos, migratory birds, and other wildlife. Its rocky caves and hills provide natural shelter for leopards, while the surrounding grasslands and Jawai Dam support a diverse ecosystem.\n\nJawai is especially famous for its leopard sightings and distinctive landscape, offering photographers an experience very different from traditional forest safaris. The combination of wildlife, open terrain, local villages, and massive granite formations makes Jawai a remarkable destination for wildlife photography.",
-      location: 'Jawai, India',
-      basePrice: 3400,
-      duration: '5 Days / 4 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1456926631375-92c8ce872def?auto=format&fit=crop&w=1600&q=80'
-      ])
-    },
-    {
-      title: 'Royal Ranthambore Bengal Tiger Portrait',
-      slug: 'ranthambore-tiger-safari',
-      description: "Ranthambore National Park, located in Rajasthan, is one of India’s most famous wildlife destinations and is particularly renowned for its Bengal tigers. The landscape combines dry forests, open grasslands, lakes, rocky hills, and the historic Ranthambore Fort.\n\nAlong with tigers, the park is home to leopards, sloth bears, sambar, chital, nilgai, wild boar, crocodiles, and a wide variety of birds. The open terrain and water sources can create excellent opportunities for observing wildlife in its natural surroundings.\n\nRanthambore is especially popular among wildlife photographers for its distinctive landscapes and memorable tiger encounters. The contrast between ancient ruins, lakes, forests, and wildlife gives the safari experience a character that is uniquely Ranthambore.",
-      location: 'Ranthambore, India',
-      basePrice: 2950,
-      duration: '6 Days / 5 Nights',
-      isFeatured: true,
-      imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?auto=format&fit=crop&w=1600&q=80'
-      ])
-    },
-    {
-      title: 'Velavadar Blackbuck & Deer Grasslands',
-      slug: 'velavadar-deer-safari',
-      description: "Blackbuck National Park, Velavadar, located in Gujarat, is famous for its open grasslands and large populations of blackbuck and other wildlife. Unlike dense forest reserves, its wide landscapes provide excellent visibility and a completely different safari experience.\n\nThe park is home to blackbuck, nilgai, Indian wolves, striped hyenas, jackals, foxes, and a remarkable variety of birds. Its grasslands and wetlands also attract numerous migratory and resident bird species throughout the year.\n\nVelavadar is particularly special for wildlife photographers because of its open terrain, dramatic herds of blackbuck, and opportunities to observe predators in their natural environment. The combination of grassland, wildlife, and expansive skies creates a distinctive photography experience.",
-      location: 'Velavadar, India',
-      basePrice: 2700,
-      duration: '5 Days / 4 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1484406566174-9da000fda645?auto=format&fit=crop&w=1600&q=80'
-      ])
-    },
-    {
-      title: 'Panna Tiger Reserve & Ken River Expedition',
-      slug: 'panna-tiger-safari',
-      description: "Panna Tiger Reserve, located in Madhya Pradesh, is a beautiful wilderness shaped by forests, plateaus, rocky terrain, and the Ken River. It is widely recognized for its successful tiger conservation efforts and offers a distinctive safari experience in central India.\n\nPanna is home to Bengal tigers, leopards, sloth bears, chital, sambar, nilgai, gharial, and a wide variety of birds. The Ken River and surrounding landscapes add another dimension to the reserve, supporting a rich and diverse ecosystem.\n\nFor wildlife photographers, Panna offers a combination of wildlife, dramatic landscapes, and riverine habitats. Its conservation story and recovering tiger population make it an especially meaningful destination for experiencing India’s wilderness.",
-      location: 'Panna, India',
-      basePrice: 3200,
-      duration: '6 Days / 5 Nights',
-      isFeatured: true,
-      imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1591824438708-ce405f36ba3d?auto=format&fit=crop&w=1600&q=80'
-      ])
-    },
-    {
-      title: 'Pench Tiger Reserve & Mowgli Jungle Safari',
-      slug: 'pench-tiger-safari',
-      description: "Pench National Park, located in Madhya Pradesh, is a beautiful central Indian wilderness known for its forests, open meadows, and the Pench River. The landscape is closely associated with the setting that inspired Rudyard Kipling’s famous *The Jungle Book*.\n\nThe reserve is home to Bengal tigers, leopards, wild dogs, sloth bears, gaur, sambar, chital, and numerous bird species. Its mixture of teak forests, grasslands, and water bodies creates a rich habitat for both predators and prey.\n\nPench offers an immersive safari experience where wildlife can be encountered across a varied and scenic landscape. For photographers, the combination of iconic wildlife, beautiful forests, and open clearings makes Pench an exciting destination to explore.",
-      location: 'Pench, India',
-      basePrice: 3100,
-      duration: '6 Days / 5 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        '/pench-safari.jpg'
-      ])
-    },
-    {
-      title: 'Kanha National Park Sal Forest Tiger Expedition',
-      slug: 'kanha-tiger-safari',
-      description: "Kanha National Park, located in Madhya Pradesh, is one of India’s most celebrated wildlife reserves and a major stronghold for Bengal tigers. Its sal forests, bamboo groves, open meadows, and streams create one of the most beautiful landscapes in central India.\n\nKanha is home to Bengal tigers, leopards, wild dogs, sloth bears, gaur, sambar, chital, and many bird species. The reserve is also known for the hard-ground barasingha, whose conservation has become one of Kanha’s notable success stories.\n\nWith its scenic forests, diverse wildlife, and expansive meadows, Kanha offers an immersive safari experience for photographers and nature enthusiasts. It is a destination where the landscape itself becomes an important part of the wildlife story.",
-      location: 'Kanha, India',
-      basePrice: 3300,
-      duration: '6 Days / 5 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        '/kanha-safari.png'
-      ])
-    },
-    {
-      title: 'Bandhavgarh National Park High-Density Tiger Safari',
-      slug: 'bandhavgarh-tiger-safari',
-      description: "Bandhavgarh National Park, located in Madhya Pradesh, is one of India’s most renowned tiger destinations. The reserve combines dense forests, open meadows, rocky hills, and the historic Bandhavgarh Fort, creating a dramatic setting for wildlife exploration.\n\nThe park is particularly famous for its Bengal tigers and is also home to leopards, sloth bears, gaur, sambar, chital, wild dogs, and many bird species. Its varied terrain supports a rich ecosystem and provides excellent opportunities for wildlife encounters.\n\nBandhavgarh is a sought-after destination for wildlife photographers because of its tiger sightings and striking landscapes. The combination of powerful wildlife, ancient history, and central Indian wilderness makes every safari memorable.",
-      location: 'Bandhavgarh, India',
-      basePrice: 3400,
-      duration: '6 Days / 5 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        '/bandhavgarh-safari.png'
-      ])
-    },
-    {
-      title: 'Tadoba National Park Bamboo Forest Tiger Safari',
-      slug: 'tadoba-tiger-safari',
-      description: 'Track the famed tigers, sloth bears, and wild dogs of Tadoba Andhari Reserve across dense teak and bamboo jungles.',
-      location: 'Tadoba, India',
-      basePrice: 3200,
-      duration: '6 Days / 5 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        '/tadoba-safari.jpg'
-      ])
-    },
-    {
-      title: 'Jim Corbett National Park Himalayan Foothills Safari',
-      slug: 'jim-corbett-safari',
-      description: "Jim Corbett National Park, located in Uttarakhand, is one of India’s oldest and most renowned wildlife destinations. Established in 1936, the park is known for its forests, grasslands, rivers, and Himalayan foothills, creating a diverse habitat for wildlife.\n\nThe park is famous for Bengal tigers and is also home to leopards, elephants, sloth bears, sambar, chital, barking deer, crocodiles, and hundreds of bird species. Its varied landscapes provide opportunities to experience wildlife across forests, riverbeds, and open grasslands.\n\nCorbett offers a classic Indian jungle safari experience, combining rich biodiversity with beautiful Himalayan landscapes. For photographers and wildlife enthusiasts, the park provides opportunities to observe and capture some of the country’s most iconic wildlife in a remarkable natural setting.",
-      location: 'Jim Corbett, India',
-      basePrice: 2950,
-      duration: '6 Days / 5 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        '/corbett-safari.png'
-      ])
-    },
-    {
-      title: 'Chitwan National Park One-Horned Rhino Safari',
-      slug: 'chitwan-rhino-safari',
-      description: "Chitwan National Park, located in southern Nepal, is one of the country’s most famous wildlife destinations and a UNESCO World Heritage Site. Its forests, grasslands, wetlands, and rivers create a diverse landscape in the Himalayan foothills.\n\nThe park is known for its greater one-horned rhinoceros and is also home to Bengal tigers, leopards, sloth bears, wild elephants, crocodiles, deer, and hundreds of bird species. The rivers and wetlands add important habitats for both wildlife and birdlife.\n\nChitwan offers a unique combination of wildlife, landscapes, and Nepalese wilderness. For photographers, it provides opportunities to capture rhinos, birds, crocodiles, and other wildlife while experiencing a completely different ecosystem from India's central forest reserves.",
-      location: 'Chitwan, Nepal',
-      basePrice: 2850,
-      duration: '6 Days / 5 Nights',
-      isFeatured: false,
-      imagesJson: JSON.stringify([
-        'https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?auto=format&fit=crop&w=1600&q=80'
-      ])
-    }
-  ];
+  // 3. Seed Tours
+  console.log('🦁 Seeding 12 Master Safaris...');
+  const createdToursMap = {};
 
-  for (const safari of safarisData) {
-    await prisma.tour.create({ data: safari });
+  for (const tour of toursData) {
+    const packagesToCreate = Array.isArray(tour.packages)
+      ? tour.packages.map((pkg) => ({
+          name: pkg.name || 'Standard Package',
+          price: parseFloat(pkg.price || tour.basePrice || 3000),
+          description: pkg.description || '',
+        }))
+      : [];
+
+    const createdTour = await prisma.tour.create({
+      data: {
+        id: tour.id,
+        title: tour.title,
+        slug: tour.slug,
+        description: tour.description,
+        location: tour.location,
+        region: tour.region || '',
+        basePrice: parseFloat(tour.basePrice || 3000),
+        duration: tour.duration || '6 Days / 5 Nights',
+        imagesJson: JSON.stringify(tour.images || []),
+        isFeatured: Boolean(tour.isFeatured),
+        isHidden: false,
+        packages: {
+          create: packagesToCreate,
+        },
+      },
+    });
+
+    createdToursMap[createdTour.slug] = createdTour;
   }
 
-  console.log('✅ 12 Exact Wildlife Safari templates seeded successfully!');
+  // 4. Seed Destinations, Hotels, and Room Categories
+  console.log('🏨 Seeding 39 Hotels and 104 Room Categories across 12 Destinations...');
+  let totalHotelsCount = 0;
+  let totalRoomsCount = 0;
+
+  for (const destination of destinationsData) {
+    const destSlug = destination.id; // e.g. 'gir', 'jawai', etc.
+    const tourSlug = destination.slug; // e.g. 'gir-lion-safari'
+    const tour = createdToursMap[tourSlug];
+
+    for (const hotel of destination.hotels) {
+      const amenitiesList = Array.isArray(hotel.amenities) ? hotel.amenities : [];
+      const imagesList = Array.isArray(hotel.images) ? hotel.images : [];
+
+      const createdHotel = await prisma.hotel.create({
+        data: {
+          id: hotel.id,
+          destinationSlug: destSlug,
+          tourSlug: tourSlug,
+          tourId: tour ? tour.id : null,
+          name: hotel.name,
+          tagline: hotel.tagline || '',
+          price: parseFloat(hotel.price || 0),
+          address: hotel.address || '',
+          description: hotel.description || '',
+          amenitiesJson: JSON.stringify(amenitiesList),
+          imagesJson: JSON.stringify(imagesList),
+          isHidden: false,
+        },
+      });
+      totalHotelsCount++;
+
+      // Seed Room Categories for this hotel
+      if (Array.isArray(hotel.roomCategories)) {
+        for (const room of hotel.roomCategories) {
+          const roomImages = Array.isArray(room.images) ? room.images : [];
+          const mealPricing = calculateMealPricing(room.price || hotel.price || 0);
+
+          await prisma.roomCategory.create({
+            data: {
+              id: room.id,
+              hotelId: createdHotel.id,
+              name: room.name,
+              price: parseFloat(room.price || 0),
+              bedType: room.bedType || '',
+              view: room.view || '',
+              roomSize: room.roomSize || '',
+              description: room.description || '',
+              imagesJson: JSON.stringify(roomImages),
+              apaiPrice: mealPricing.apai,
+              mapaiPrice: mealPricing.mapai,
+              cpaiPrice: mealPricing.cpai,
+            },
+          });
+          totalRoomsCount++;
+        }
+      }
+    }
+  }
+
+  // 5. Seed Safari Pricing
+  console.log('🚙 Seeding Safari Pricing config...');
+  await prisma.safariPricing.create({
+    data: {
+      slug: 'default',
+      weekdayPrice: 6000,
+      weekendPrice: 8000,
+    },
+  });
+
+  for (const destination of destinationsData) {
+    await prisma.safariPricing.create({
+      data: {
+        slug: destination.slug,
+        weekdayPrice: 6000,
+        weekendPrice: 8000,
+      },
+    });
+  }
+
+  // 6. Seed Gallery & Blog
+  console.log('📸 Seeding initial gallery & blog content...');
+  await prisma.galleryItem.createMany({
+    data: [
+      {
+        title: 'Asiatic Lion in Sasan Gir',
+        category: 'Mammals',
+        imageUrl: '/gir-safari.png',
+        aspect: 'horizontal',
+      },
+      {
+        title: 'Bengal Tiger on Prowl',
+        category: 'Big Cats',
+        imageUrl: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1600&q=80',
+        aspect: 'vertical',
+      },
+      {
+        title: 'Jawai Granite Leopard',
+        category: 'Big Cats',
+        imageUrl: 'https://images.unsplash.com/photo-1456926631375-92c8ce872def?auto=format&fit=crop&w=1600&q=80',
+        aspect: 'horizontal',
+      },
+    ],
+  });
+
+  await prisma.blogPost.create({
+    data: {
+      title: 'Guide to Wildlife Photography in Gir Forest',
+      slug: 'guide-wildlife-photography-gir-forest',
+      summary: 'Master lighting, focal lengths, and animal behavior for tracking Asiatic lions.',
+      content: 'Gir National Park offers golden morning light and open teak groves ideal for 400mm-600mm telephoto lenses...',
+      coverImage: '/gir-safari.png',
+      category: 'Photography Guide',
+    },
+  });
+
+  console.log(`✅ Database successfully seeded!
+  - 12 Safaris
+  - ${totalHotelsCount} Hotels
+  - ${totalRoomsCount} Room Categories
+  - Safari Pricing Configurations
+  - Admin & Demo Users
+  - Sample Gallery & Blog items
+  `);
 }
 
 main()

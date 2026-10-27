@@ -345,7 +345,9 @@ export default function TourDetail() {
   const isRanthambore = slug === 'ranthambore-tiger-safari' || slug?.includes('ranthambore');
   const isTadoba = slug === 'tadoba-tiger-safari' || slug?.includes('tadoba');
 
-  const rawHotels = isGir ? GIR_HOTELS 
+  const rawHotels = (tour?.hotels && tour.hotels.length > 0)
+    ? tour.hotels
+    : isGir ? GIR_HOTELS 
     : isJawai ? JAWAI_HOTELS 
     : isSanjay ? SANJAY_DUBRI_HOTELS 
     : isVelavadar ? VELAVADAR_HOTELS 
@@ -357,7 +359,7 @@ export default function TourDetail() {
     : isKanha ? KANHA_HOTELS 
     : isRanthambore ? RANTHAMBORE_HOTELS 
     : isTadoba ? TADOBA_HOTELS 
-    : (tour?.hotels || []);
+    : [];
 
   const availableHotels = rawHotels.filter((h) => !hiddenHotels.includes(h.id));
 
@@ -379,7 +381,9 @@ export default function TourDetail() {
     getTourDetail(slug)
       .then((res) => {
         setTour(res.data);
-        const destinationHotels = (slug === 'gir-lion-safari' || slug?.includes('gir')) 
+        const destinationHotels = (res.data?.hotels && res.data.hotels.length > 0)
+          ? res.data.hotels
+          : (slug === 'gir-lion-safari' || slug?.includes('gir')) 
           ? GIR_HOTELS 
           : (slug === 'jawai-leopard-safari' || slug?.includes('jawai'))
           ? JAWAI_HOTELS
@@ -403,7 +407,7 @@ export default function TourDetail() {
           ? RANTHAMBORE_HOTELS
           : (slug === 'tadoba-tiger-safari' || slug?.includes('tadoba'))
           ? TADOBA_HOTELS
-          : (res.data.hotels || []);
+          : [];
         
         const currentHidden = getHiddenHotelIds();
         const hotels = destinationHotels.filter((h) => !currentHidden.includes(h.id));

@@ -1,64 +1,179 @@
-const https = require('https');
+let prisma;
+try {
+  const { PrismaClient } = require('@prisma/client');
+  prisma = new PrismaClient();
+} catch (e) {
+  prisma = null;
+}
 
-// Primary remote cloud storage endpoint
-const REMOTE_URL = 'https://extendsclass.com/api/json-storage/bin/aefeadc';
-const BACKUP_URL = 'https://extendsclass.com/api/json-storage/bin/affadea';
-
-// In-memory cache for ultra-fast same-instance reads
+// In-memory cache for ultra-fast reads
 let globalCache = null;
 
-function requestRemote(url, method, payload = null) {
-  return new Promise((resolve, reject) => {
-    try {
-      const parsedUrl = new URL(url);
-      const postData = payload ? JSON.stringify(payload) : null;
+async function getDatabaseState() {
+  if (!prisma) return null;
+  try {
+    const hiddenTours = await prisma.tour.findMany({
+      where: { isHidden: true },
+      select: { slug: true, id: true },
+    });
+    const hiddenTourSlugs = Array.from(new Set(hiddenTours.flatMap((t) => [t.slug, t.id]).filter(Boolean)));
 
-      const options = {
-        hostname: parsedUrl.hostname,
-        port: 443,
-        path: parsedUrl.pathname,
-        method: method,
-        headers: {
-          'Content-Type': 'application/json',
-          'User-Agent': 'JungleeSafari-Sync/1.0',
-        },
-      };
+    const hiddenHotels = await prisma.hotel.findMany({
+      where: { isHidden: true },
+      select: { id: true },
+    });
+    const hiddenHotelIds = hiddenHotels.map((h) => h.id);
 
-      if (postData) {
-        options.headers['Content-Length'] = Buffer.byteLength(postData);
+    const safariPricings = await prisma.safariPricing.findMany();
+    const defaultSafari = safariPricings.find((p) => p.slug === 'default') || {
+      weekdayPrice: 6000,
+      weekendPrice: 8000,
+      updatedAt: new Date(),
+    };
+    const bySlug = {};
+    for (const p of safariPricings) {
+      if (p.slug !== 'default') {
+        bySlug[p.slug] = {
+          weekday: p.weekdayPrice,
+          weekend: p.weekendPrice,
+        };
       }
-
-      const req = https.request(options, (res) => {
-        let body = '';
-        res.on('data', (chunk) => { body += chunk; });
-        res.on('end', () => {
-          if (res.statusCode >= 200 && res.statusCode < 300) {
-            try {
-              const parsed = JSON.parse(body);
-              resolve(parsed);
-            } catch (err) {
-              resolve(body);
-            }
-          } else {
-            reject(new Error(`Remote status ${res.statusCode}: ${body}`));
-          }
-        });
-      });
-
-      req.on('error', (err) => reject(err));
-      req.setTimeout(4500, () => {
-        req.destroy();
-        reject(new Error('Remote request timed out'));
-      });
-
-      if (postData) {
-        req.write(postData);
-      }
-      req.end();
-    } catch (err) {
-      reject(err);
     }
-  });
+
+    const hotels = await prisma.hotel.findMany({
+      include: { roomCategories: true },
+    });
+    const hotelPricing = {};
+    for (const h of hotels) {
+      const roomCats = {};
+      for (const r of h.roomCategories) {
+        roomCats[r.id] = {
+          apai: r.apaiPrice || 0,
+          mapai: r.mapaiPrice || 0,
+          cpai: r.cpaiPrice || 0,
+        };
+      }
+      hotelPricing[h.id] = {
+        price: h.price || 0,
+        roomCategories: roomCats,
+        updatedAt: h.updatedAt.getTime(),
+      };
+    }
+
+    return {
+      hidden: hiddenTourSlugs,
+      safariPricing: {
+        weekday: defaultSafari.weekdayPrice,
+        weekend: defaultSafari.weekendPrice,
+        bySlug,
+        updatedAt: defaultSafari.updatedAt.getTime(),
+      },
+      hiddenHotels: hiddenHotelIds,
+      hotelPricing,
+      updatedAt: Date.now(),
+    };
+  } catch (err) {
+    console.error('Error fetching database sync state:', err);
+    return null;
+  }
+}
+
+async function saveDatabaseState(data) {
+  if (!prisma) return;
+  try {
+    // 1. Update hidden tours
+    if (Array.isArray(data.hidden)) {
+      await prisma.tour.updateMany({
+        data: { isHidden: false },
+      });
+      if (data.hidden.length > 0) {
+        await prisma.tour.updateMany({
+          where: {
+            OR: [
+              { slug: { in: data.hidden } },
+              { id: { in: data.hidden } },
+            ],
+          },
+          data: { isHidden: true },
+        });
+      }
+    }
+
+    // 2. Update hidden hotels
+    if (Array.isArray(data.hiddenHotels)) {
+      await prisma.hotel.updateMany({
+        data: { isHidden: false },
+      });
+      if (data.hiddenHotels.length > 0) {
+        await prisma.hotel.updateMany({
+          where: { id: { in: data.hiddenHotels } },
+          data: { isHidden: true },
+        });
+      }
+    }
+
+    // 3. Update safari pricing
+    if (data.safariPricing && typeof data.safariPricing === 'object') {
+      const { weekday, weekend, bySlug } = data.safariPricing;
+      if (weekday !== undefined || weekend !== undefined) {
+        await prisma.safariPricing.upsert({
+          where: { slug: 'default' },
+          create: {
+            slug: 'default',
+            weekdayPrice: Number(weekday) || 6000,
+            weekendPrice: Number(weekend) || 8000,
+          },
+          update: {
+            ...(weekday !== undefined ? { weekdayPrice: Number(weekday) } : {}),
+            ...(weekend !== undefined ? { weekendPrice: Number(weekend) } : {}),
+          },
+        });
+      }
+
+      if (bySlug && typeof bySlug === 'object') {
+        for (const [slug, rates] of Object.entries(bySlug)) {
+          await prisma.safariPricing.upsert({
+            where: { slug },
+            create: {
+              slug,
+              weekdayPrice: Number(rates.weekday) || 6000,
+              weekendPrice: Number(rates.weekend) || 8000,
+            },
+            update: {
+              weekdayPrice: Number(rates.weekday) || 6000,
+              weekendPrice: Number(rates.weekend) || 8000,
+            },
+          });
+        }
+      }
+    }
+
+    // 4. Update hotel pricing
+    if (data.hotelPricing && typeof data.hotelPricing === 'object') {
+      for (const [hotelId, hInfo] of Object.entries(data.hotelPricing)) {
+        if (hInfo.price !== undefined) {
+          await prisma.hotel.updateMany({
+            where: { id: hotelId },
+            data: { price: Number(hInfo.price) || 0 },
+          });
+        }
+        if (hInfo.roomCategories && typeof hInfo.roomCategories === 'object') {
+          for (const [roomId, roomRates] of Object.entries(hInfo.roomCategories)) {
+            await prisma.roomCategory.updateMany({
+              where: { id: roomId, hotelId },
+              data: {
+                apaiPrice: Number(roomRates.apai) || 0,
+                mapaiPrice: Number(roomRates.mapai) || 0,
+                cpaiPrice: Number(roomRates.cpai) || 0,
+              },
+            });
+          }
+        }
+      }
+    }
+  } catch (err) {
+    console.error('Error saving database sync state:', err);
+  }
 }
 
 module.exports = async function handler(req, res) {
@@ -96,17 +211,8 @@ module.exports = async function handler(req, res) {
 
       globalCache = syncPayload;
 
-      // Persist to remote storage via Node.js HTTPS (zero CORS preflight)
-      try {
-        await requestRemote(REMOTE_URL, 'PUT', syncPayload);
-      } catch (err) {
-        console.warn('Primary remote write failed, attempting backup:', err.message);
-        try {
-          await requestRemote(BACKUP_URL, 'PUT', syncPayload);
-        } catch (backupErr) {
-          console.warn('Backup remote write also failed:', backupErr.message);
-        }
-      }
+      // Save directly to PostgreSQL Database
+      await saveDatabaseState(syncPayload);
 
       return res.status(200).json({ success: true, data: syncPayload });
     } catch (err) {
@@ -117,27 +223,15 @@ module.exports = async function handler(req, res) {
 
   // READ (GET)
   try {
-    // Attempt fresh read from remote
-    const remoteData = await requestRemote(REMOTE_URL, 'GET').catch(async () => {
-      return await requestRemote(BACKUP_URL, 'GET').catch(() => null);
-    });
-
-    if (remoteData && typeof remoteData === 'object') {
-      const formatted = {
-        hidden: Array.isArray(remoteData.hidden) ? remoteData.hidden : [],
-        safariPricing: remoteData.safariPricing || { weekday: 6000, weekend: 8000, bySlug: {} },
-        hiddenHotels: Array.isArray(remoteData.hiddenHotels) ? remoteData.hiddenHotels : [],
-        hotelPricing: remoteData.hotelPricing || {},
-        updatedAt: Number(remoteData.updatedAt) || Date.now(),
-      };
-      globalCache = formatted;
-      return res.status(200).json(formatted);
+    const dbState = await getDatabaseState();
+    if (dbState) {
+      globalCache = dbState;
+      return res.status(200).json(dbState);
     }
   } catch (err) {
-    console.warn('Sync GET remote failed, falling back to cache:', err.message);
+    console.warn('Sync GET from database failed:', err.message);
   }
 
-  // Fallback to in-memory cache if available
   if (globalCache) {
     return res.status(200).json(globalCache);
   }

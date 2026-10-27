@@ -11,6 +11,7 @@ import {
   setSafariPricing,
   syncSafariPricingFromCloud,
   ALL_DESTINATION_HOTELS,
+  refreshHotelsFromDatabase,
   getHiddenHotelIds,
   toggleHotelVisibility,
   getAllHotelCustomPricing,
@@ -72,6 +73,7 @@ export default function AdminTours() {
   const [savingPricing, setSavingPricing] = useState(false);
 
   // Hotel & Resort Manager State (Visibility Toggles & Custom APAI/MAPAI/CPAI Pricing)
+  const [destinationsList, setDestinationsList] = useState(ALL_DESTINATION_HOTELS);
   const [hiddenHotelIds, setHiddenHotelIds] = useState(() => getHiddenHotelIds());
   const [allHotelPricing, setAllHotelPricing] = useState(() => getAllHotelCustomPricing());
   const [selectedHotelDestination, setSelectedHotelDestination] = useState('gir');
@@ -93,15 +95,23 @@ export default function AdminTours() {
       if (data?.hotelPricing) setAllHotelPricing(data.hotelPricing);
     }).catch(() => {});
 
+    refreshHotelsFromDatabase().then((dests) => {
+      if (Array.isArray(dests)) setDestinationsList([...dests]);
+    }).catch(() => {});
+
     const handleHotelVisibilityEvt = (e) => {
       setHiddenHotelIds(e.detail || getHiddenHotelIds());
     };
     const handleHotelPricingEvt = (e) => {
       setAllHotelPricing(getAllHotelCustomPricing());
     };
+    const handleDestHotelsUpdated = (e) => {
+      if (Array.isArray(e.detail)) setDestinationsList([...e.detail]);
+    };
 
     window.addEventListener('hotelVisibilityChanged', handleHotelVisibilityEvt);
     window.addEventListener('hotelPricingChanged', handleHotelPricingEvt);
+    window.addEventListener('destinationHotelsUpdated', handleDestHotelsUpdated);
 
     let bcVis = null;
     let bcPrice = null;
@@ -121,6 +131,7 @@ export default function AdminTours() {
     return () => {
       window.removeEventListener('hotelVisibilityChanged', handleHotelVisibilityEvt);
       window.removeEventListener('hotelPricingChanged', handleHotelPricingEvt);
+      window.removeEventListener('destinationHotelsUpdated', handleDestHotelsUpdated);
       if (bcVis) { try { bcVis.close(); } catch (e) {} }
       if (bcPrice) { try { bcPrice.close(); } catch (e) {} }
     };
@@ -638,7 +649,7 @@ export default function AdminTours() {
 
         {/* Hotel & Resort Manager (Visibility Toggles & Custom APAI / MAPAI / CPAI Room Pricing) */}
         {(() => {
-          const activeDestination = ALL_DESTINATION_HOTELS.find((d) => d.id === selectedHotelDestination) || ALL_DESTINATION_HOTELS[0];
+          const activeDestination = destinationsList.find((d) => d.id === selectedHotelDestination) || destinationsList[0];
           const destHotels = activeDestination?.hotels || [];
           const filteredDestHotels = destHotels.filter((h) => {
             if (!hotelSearchQuery) return true;
@@ -680,7 +691,7 @@ export default function AdminTours() {
                     onChange={(e) => setSelectedHotelDestination(e.target.value)}
                     className="bg-slate-50 text-slate-800 border border-slate-300 rounded-xl px-3.5 py-2 text-xs font-bold focus:outline-none focus:border-emerald-500"
                   >
-                    {ALL_DESTINATION_HOTELS.map((d) => (
+                    {destinationsList.map((d) => (
                       <option key={d.id} value={d.id}>
                         {d.name} ({d.hotels.length} Resorts)
                       </option>

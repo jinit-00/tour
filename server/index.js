@@ -7,6 +7,8 @@ const errorHandler = require('./middleware/error.middleware');
 
 const authRoutes = require('./routes/auth.routes');
 const toursRoutes = require('./routes/tours.routes');
+const hotelsRoutes = require('./routes/hotels.routes');
+const pricingRoutes = require('./routes/pricing.routes');
 const bookingsRoutes = require('./routes/bookings.routes');
 const galleryRoutes = require('./routes/gallery.routes');
 const blogRoutes = require('./routes/blog.routes');
@@ -14,11 +16,11 @@ const contactRoutes = require('./routes/contact.routes');
 const adminRoutes = require('./routes/admin.routes');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 // Middleware
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
+  origin: true,
   credentials: true,
 }));
 app.use(express.json());
@@ -31,13 +33,15 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', name: 'JungleE Wildlife Expeditions API', time: new Date() });
 });
 
-// Live Synchronization Route (Cross-device visibility & pricing)
+// Live Synchronization Route (Cross-device visibility & pricing database connector)
 const syncHandler = require('../api/sync.js');
 app.all('/api/sync', (req, res) => syncHandler(req, res));
 
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/tours', toursRoutes);
+app.use('/api/hotels', hotelsRoutes);
+app.use('/api/pricing', pricingRoutes);
 app.use('/api/bookings', bookingsRoutes);
 app.use('/api/gallery', galleryRoutes);
 app.use('/api/blog', blogRoutes);

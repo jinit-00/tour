@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -42,20 +42,28 @@ model OtpCode {
 }
 
 model Tour {
-  id          String        @id @default(uuid())
-  title       String
-  slug        String        @unique
-  description String        @db.Text
-  location    String
-  basePrice   Float
-  duration    String
-  imagesJson  String        @db.Text
-  isFeatured  Boolean       @default(false)
-  isHidden    Boolean       @default(false)
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  packages    TourPackage[]
-  bookings    Booking[]
+  id             String        @id @default(uuid())
+  title          String
+  slug           String        @unique
+  description    String        @db.Text
+  location       String
+  region         String?
+  basePrice      Float
+  duration       String
+  imagesJson     String        @db.Text
+  itineraryJson  String?       @db.Text
+  highlightsJson String?       @db.Text
+  inclusionsJson String?       @db.Text
+  exclusionsJson String?       @db.Text
+  bestSeason     String?
+  groupSize      String?
+  isFeatured     Boolean       @default(false)
+  isHidden       Boolean       @default(false)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  packages       TourPackage[]
+  hotels         Hotel[]
+  bookings       Booking[]
 }
 
 model TourPackage {
@@ -67,6 +75,52 @@ model TourPackage {
   description String    @db.Text
   createdAt   DateTime  @default(now())
   bookings    Booking[]
+}
+
+model Hotel {
+  id              String         @id
+  destinationSlug String         // 'gir', 'jawai', 'sanjay-dubri', etc.
+  tourSlug        String?        // 'gir-lion-safari', etc.
+  tourId          String?
+  tour            Tour?          @relation(fields: [tourId], references: [id], onDelete: SetNull)
+  name            String
+  tagline         String?
+  price           Float          @default(0)
+  address         String?        @db.Text
+  description     String?        @db.Text
+  amenitiesJson   String         @db.Text
+  imagesJson      String         @db.Text
+  isHidden        Boolean        @default(false)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  roomCategories  RoomCategory[]
+}
+
+model RoomCategory {
+  id          String   @id
+  hotelId     String
+  hotel       Hotel    @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  name        String
+  price       Float    @default(0)
+  bedType     String?
+  view        String?
+  roomSize    String?
+  description String?  @db.Text
+  imagesJson  String   @db.Text
+  apaiPrice   Float?
+  mapaiPrice  Float?
+  cpaiPrice   Float?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SafariPricing {
+  id           String   @id @default(uuid())
+  slug         String   @unique // 'default' for global base, or specific tour slug
+  weekdayPrice Float    @default(6000)
+  weekendPrice Float    @default(8000)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model Booking {
