@@ -12,16 +12,30 @@ const API = axios.create({
   },
 });
 
-// Request interceptor to attach bearer token
+// Request interceptor to attach bearer token & log outgoing API call
 API.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('junglee_auth_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+    console.log(`📡 [API CALL] ${config.method?.toUpperCase()} ${config.url}`);
     return config;
   },
   (error) => Promise.reject(error)
+);
+
+// Response interceptor to log returned HTTP Status Code
+API.interceptors.response.use(
+  (response) => {
+    console.log(`✅ [API RESPONSE] ${response.config.method?.toUpperCase()} ${response.config.url} ➜ Status Code: ${response.status}`);
+    return response;
+  },
+  (error) => {
+    const status = error.response ? error.response.status : 'NETWORK ERROR';
+    console.error(`❌ [API RESPONSE] ${error.config?.method?.toUpperCase()} ${error.config?.url} ➜ Status Code: ${status}`, error.message);
+    return Promise.reject(error);
+  }
 );
 
 // Auth API

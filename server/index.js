@@ -25,7 +25,46 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(morgan('dev'));
+
+// 1. Log incoming API call immediately when it arrives in terminal
+app.use((req, res, next) => {
+  if (req.path.startsWith('/api')) {
+    const time = new Date().toLocaleTimeString();
+    console.log(`\x1b[90m[${time}]\x1b[0m \x1b[36m[INCOMING CALL]\x1b[0m \x1b[1m${req.method}\x1b[0m ${req.originalUrl}`);
+  }
+  next();
+});
+
+// 2. Morgan Logger to print completed API calls with their HTTP Status Code & Duration
+app.use(morgan((tokens, req, res) => {
+  const method = tokens.method(req, res);
+  const url = tokens.url(req, res);
+  const status = Number(tokens.status(req, res));
+  const time = tokens['response-time'](req, res);
+  const timestamp = new Date().toLocaleTimeString();
+
+  let statusBadge = `${status}`;
+  if (status >= 500) {
+    statusBadge = `\x1b[41m\x1b[37m ${status} SERVER ERROR \x1b[0m`;
+  } else if (status >= 400) {
+    statusBadge = `\x1b[43m\x1b[30m ${status} CLIENT ERROR \x1b[0m`;
+  } else if (status >= 300) {
+    statusBadge = `\x1b[46m\x1b[30m ${status} REDIRECT \x1b[0m`;
+  } else if (status >= 200) {
+    statusBadge = `\x1b[42m\x1b[30m ${status} OK \x1b[0m`;
+  }
+
+  return [
+    `\x1b[90m[${timestamp}]\x1b[0m`,
+    `\x1b[35m[API LOG]\x1b[0m`,
+    `\x1b[1m${method.padEnd(6)}\x1b[0m`,
+    url,
+    '➜ Status Code:',
+    statusBadge,
+    `\x1b[90m(${time} ms)\x1b[0m`,
+  ].join(' ');
+}));
+
 app.use(passport.initialize());
 
 // Health Check
@@ -53,4 +92,5 @@ app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`🌲 JungleE Wildlife Expeditions Backend Server listening on http://localhost:${PORT}`);
+  console.log(`📡 Terminal API logging active: watching all endpoints and status codes...`);
 });
