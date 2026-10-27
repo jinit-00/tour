@@ -375,9 +375,6 @@ export default function TourDetail() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    syncHiddenToursFromCloud().then(() => {
-      getTourDetail(slug).then((res) => setTour(res.data)).catch(() => {});
-    }).catch(() => {});
     getTourDetail(slug)
       .then((res) => {
         setTour(res.data);
