@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
+    "build": "npm run build --prefix client",
     "db:push": "prisma db push",
     "seed": "node prisma/seed.js"
   },
