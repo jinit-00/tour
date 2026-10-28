@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   ArrowLeft,
   CheckCircle2,
@@ -12,9 +12,149 @@ import {
   ChevronLeft,
   ChevronRight,
   RotateCcw,
+  X,
 } from 'lucide-react';
 
 const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1200&q=80';
+
+/**
+ * Lightbox Modal for Room Category Photos
+ * Allows navigating full-resolution photos of a specific room category.
+ * Accessible with Escape and Arrow keys.
+ * Strictly no rates or pricing rendered.
+ */
+function RoomCategoryLightbox({ isOpen, onClose, images = [], categoryName = '', hotelName = '', initialIndex = 0, specs = {} }) {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const imageList = Array.isArray(images) && images.length > 0 ? images : [FALLBACK_IMAGE];
+  const total = imageList.length;
+
+  useEffect(() => {
+    setCurrentIndex(initialIndex);
+  }, [initialIndex, isOpen]);
+
+  const handlePrev = useCallback(() => {
+    setCurrentIndex((prev) => (prev === 0 ? total - 1 : prev - 1));
+  }, [total]);
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev === total - 1 ? 0 : prev + 1));
+  }, [total]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'ArrowRight') handleNext();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose, handlePrev, handleNext]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Photo gallery for ${categoryName}`}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 sm:p-6 select-none animate-fadeIn"
+      onClick={onClose}
+    >
+      <div
+        className="relative max-w-4xl w-full bg-sand-950/95 border border-sand-700/80 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="p-4 sm:p-5 border-b border-sand-800 flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <h4 className="text-base sm:text-lg font-bold text-sand-100 truncate">
+              {categoryName}
+            </h4>
+            <p className="text-xs text-sand-400 truncate">
+              {hotelName} {specs.bedType ? `· ${specs.bedType}` : ''} {specs.roomSize ? `· ${specs.roomSize}` : ''}
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-sand-900 border border-sand-700 text-sand-300">
+              {currentIndex + 1} / {total}
+            </span>
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close photo gallery"
+              className="p-2 rounded-xl bg-sand-900 hover:bg-sand-800 text-sand-300 hover:text-white transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Main Photo Viewport */}
+        <div className="relative flex-1 bg-black/80 flex items-center justify-center overflow-hidden min-h-[300px] sm:min-h-[420px]">
+          <img
+            src={imageList[currentIndex] || FALLBACK_IMAGE}
+            alt={`${categoryName} photo ${currentIndex + 1}`}
+            className="w-full h-full max-h-[60vh] object-contain transition-all duration-300"
+            onError={(e) => {
+              e.target.src = FALLBACK_IMAGE;
+            }}
+          />
+
+          {total > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={handlePrev}
+                aria-label="Previous photo"
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-charcoal-950/80 hover:bg-pine-800 text-sand-950 flex items-center justify-center transition-all shadow-xl active:scale-90"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              <button
+                type="button"
+                onClick={handleNext}
+                aria-label="Next photo"
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-charcoal-950/80 hover:bg-pine-800 text-sand-950 flex items-center justify-center transition-all shadow-xl active:scale-90"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* Thumbnails strip at bottom */}
+        {total > 1 && (
+          <div className="p-3 bg-sand-950/90 border-t border-sand-800 flex items-center gap-2 overflow-x-auto justify-center">
+            {imageList.map((imgSrc, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setCurrentIndex(idx)}
+                aria-label={`Thumbnail ${idx + 1}`}
+                className={`relative w-14 h-11 rounded-lg overflow-hidden border transition-all shrink-0 ${
+                  currentIndex === idx
+                    ? 'border-pine-800 ring-2 ring-pine-800/40 opacity-100 scale-105'
+                    : 'border-sand-700/60 opacity-60 hover:opacity-100'
+                }`}
+              >
+                <img
+                  src={imgSrc || FALLBACK_IMAGE}
+                  alt={`Thumbnail ${idx + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 /**
  * Image Carousel for Resort Cards
@@ -91,198 +231,246 @@ function ResortImageCarousel({ images, name, onOpenDetails }) {
 
 /**
  * Single Room Category Card
- * Displays main photo (4:3 aspect ratio), 3-4 thumbnail gallery, specs, and radio-style selection.
- * NO prices or rates rendered anywhere.
+ * Displays main photo (fixed 4:3 aspect ratio, lazy loaded), 3-4 thumbnail photos opening lightbox,
+ * category name, bed type, room size, view, and radio-style single selection with clear selected state.
+ * ABSOLUTELY NO price, rate, "₹", "+₹", "/ day", or "per night" anywhere.
  */
-function RoomCategoryCard({ category, isSelected, onSelect, onOpenDetails, hotelName }) {
+function RoomCategoryCard({ category, isSelected, onSelect, onChangeRoom, hotelName }) {
   const rawImages = Array.isArray(category.images) && category.images.length > 0 ? category.images : [];
   const imageList = rawImages.length > 0 ? rawImages : [FALLBACK_IMAGE];
-  const [activePhotoIdx, setActivePhotoIdx] = useState(0);
 
-  const bedType = category.bedType || 'Comfort Bedding';
+  const [activePhotoIdx, setActivePhotoIdx] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  const bedType = category.bedType || null;
   const roomSize = category.roomSize || null;
   const view = category.view || null;
 
-  return (
-    <div
-      role="radio"
-      aria-checked={isSelected}
-      tabIndex={0}
-      onClick={() => onSelect(category)}
-      onKeyDown={(e) => {
-        if (e.key === ' ' || e.key === 'Enter') {
-          e.preventDefault();
-          onSelect(category);
-        }
-      }}
-      className={`glass-panel rounded-2xl border transition-all duration-300 p-4 flex flex-col justify-between cursor-pointer select-none group relative ${
-        isSelected
-          ? 'border-pine-800 ring-2 ring-pine-800/40 bg-sand-900/90 shadow-xl'
-          : 'border-sand-700/80 hover:border-sand-600 bg-sand-950/60 hover:bg-sand-900/40 shadow-sm'
-      }`}
-    >
-      <div className="space-y-3">
-        {/* Main Room Photo with fixed 4:3 aspect ratio */}
-        <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden bg-sand-900 shadow-sm">
-          <img
-            src={imageList[activePhotoIdx] || imageList[0]}
-            alt={`${category.name} at ${hotelName}`}
-            loading="lazy"
-            onError={(e) => {
-              e.target.src = FALLBACK_IMAGE;
-            }}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
+  const openLightboxAt = (idx) => {
+    setLightboxIndex(idx);
+    setLightboxOpen(true);
+  };
 
-          {/* Radio indicator pill on top right */}
-          <div className="absolute top-2.5 right-2.5 z-10">
-            <span
-              className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold shadow-md transition-all ${
-                isSelected
-                  ? 'bg-pine-800 text-sand-950 ring-2 ring-sand-950/40'
-                  : 'bg-sand-950/85 backdrop-blur-md text-charcoal-700 border border-sand-700'
-              }`}
-            >
+  return (
+    <>
+      <div
+        role="radio"
+        aria-checked={isSelected}
+        tabIndex={0}
+        onClick={() => onSelect(category)}
+        onKeyDown={(e) => {
+          if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            onSelect(category);
+          }
+        }}
+        className={`glass-panel rounded-2xl border transition-all duration-300 p-4 flex flex-col justify-between cursor-pointer select-none group relative ${
+          isSelected
+            ? 'border-pine-800 ring-2 ring-pine-800/40 bg-sand-900/90 shadow-xl'
+            : 'border-sand-700/80 hover:border-sand-600 bg-sand-950/60 hover:bg-sand-900/40 shadow-sm'
+        }`}
+      >
+        <div className="space-y-3">
+          {/* Main Room Photo with fixed 4:3 aspect ratio, lazy loaded */}
+          <div
+            className="relative aspect-[4/3] w-full rounded-xl overflow-hidden bg-sand-900 shadow-sm cursor-zoom-in"
+            onClick={(e) => {
+              e.stopPropagation();
+              openLightboxAt(activePhotoIdx);
+            }}
+            title="Click to expand photos in lightbox"
+          >
+            <img
+              src={imageList[activePhotoIdx] || imageList[0]}
+              alt={`${category.name || 'Room Category'} at ${hotelName}`}
+              loading="lazy"
+              onError={(e) => {
+                e.target.src = FALLBACK_IMAGE;
+              }}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+
+            {/* Radio indicator pill on top right */}
+            <div className="absolute top-2.5 right-2.5 z-10 pointer-events-none">
               <span
-                className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${
-                  isSelected ? 'border-sand-950 bg-sand-950' : 'border-charcoal-500'
+                className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold shadow-md transition-all ${
+                  isSelected
+                    ? 'bg-pine-800 text-sand-950 ring-2 ring-sand-950/40'
+                    : 'bg-sand-950/85 backdrop-blur-md text-charcoal-700 border border-sand-700'
                 }`}
               >
-                {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-pine-800" />}
+                <span
+                  className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${
+                    isSelected ? 'border-sand-950 bg-sand-950' : 'border-charcoal-500'
+                  }`}
+                >
+                  {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-pine-800" />}
+                </span>
+                <span>{isSelected ? 'Selected' : 'Select'}</span>
               </span>
-              <span>{isSelected ? 'Selected' : 'Select'}</span>
-            </span>
+            </div>
+
+            {/* View photos indicator button */}
+            {imageList.length > 1 && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openLightboxAt(0);
+                }}
+                className="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded-lg bg-charcoal-950/80 hover:bg-pine-800 text-sand-950 text-[10px] font-semibold backdrop-blur-md transition-colors flex items-center gap-1.5 shadow-md"
+                title="Click to view all photos in lightbox"
+              >
+                <Images className="w-3 h-3" />
+                <span>{imageList.length} Photos</span>
+              </button>
+            )}
           </div>
 
-          {/* View photos indicator */}
+          {/* 3 to 4 Thumbnail Photos Opening Lightbox Carousel */}
           {imageList.length > 1 && (
+            <div className="grid grid-cols-4 gap-1.5">
+              {imageList.slice(0, 4).map((thumb, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActivePhotoIdx(idx);
+                    openLightboxAt(idx);
+                  }}
+                  className={`relative aspect-[4/3] rounded-lg overflow-hidden border transition-all ${
+                    activePhotoIdx === idx
+                      ? 'border-pine-800 ring-2 ring-pine-800/40'
+                      : 'border-sand-700/80 opacity-75 hover:opacity-100'
+                  }`}
+                  aria-label={`Open photo ${idx + 1} of ${category.name} in lightbox`}
+                  title={`View photo ${idx + 1}`}
+                >
+                  <img
+                    src={thumb || FALLBACK_IMAGE}
+                    alt={`${category.name || 'Room'} thumbnail ${idx + 1}`}
+                    loading="lazy"
+                    onError={(e) => {
+                      e.target.src = FALLBACK_IMAGE;
+                    }}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Room Category Details */}
+          <div className="space-y-1.5 pt-1">
+            <h5 className="text-sm sm:text-base font-bold text-charcoal-950 leading-snug">
+              {category.name || 'Wilderness Room'}
+            </h5>
+
+            {category.description && (
+              <p className="text-[11px] text-charcoal-700 line-clamp-2 leading-relaxed font-normal">
+                {category.description}
+              </p>
+            )}
+
+            {/* Feature Spec Tags: Bed, Size, View (gracefully hidden if missing) */}
+            <div className="flex flex-wrap gap-1.5 pt-1">
+              {bedType && (
+                <span className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-md bg-sand-900 border border-sand-700 text-charcoal-800 font-medium">
+                  <Bed className="w-3 h-3 text-pine-800 shrink-0" />
+                  <span>{bedType}</span>
+                </span>
+              )}
+              {roomSize && (
+                <span className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-md bg-sand-900 border border-sand-700 text-charcoal-800 font-medium">
+                  <Maximize2 className="w-3 h-3 text-pine-800 shrink-0" />
+                  <span>{roomSize}</span>
+                </span>
+              )}
+              {view && (
+                <span className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-md bg-sand-900 border border-sand-700 text-charcoal-800 font-medium">
+                  <Sparkles className="w-3 h-3 text-pine-800 shrink-0" />
+                  <span>{view}</span>
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Card Action Footer */}
+        <div className="pt-3 mt-3 border-t border-sand-700/60 flex items-center justify-between gap-2">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              openLightboxAt(0);
+            }}
+            className="text-[11px] text-pine-800 hover:underline font-bold flex items-center gap-1"
+          >
+            <Eye className="w-3.5 h-3.5" />
+            <span>View Photos</span>
+          </button>
+
+          <div className="flex items-center gap-2">
+            {isSelected && onChangeRoom && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onChangeRoom();
+                }}
+                aria-label="Change room category"
+                className="px-2.5 py-1.5 rounded-xl text-xs font-bold text-charcoal-800 hover:text-pine-800 bg-sand-900 border border-sand-700 hover:border-pine-800/60 transition-colors flex items-center gap-1"
+              >
+                <RotateCcw className="w-3 h-3 text-pine-800" />
+                <span>Change Room</span>
+              </button>
+            )}
+
             <button
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
-                onOpenDetails(category);
+                onSelect(category);
               }}
-              className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-md bg-charcoal-950/75 hover:bg-charcoal-950 text-sand-950 text-[10px] font-semibold backdrop-blur-md transition-colors flex items-center gap-1 shadow-xs"
-              title="Click to view all photos"
+              aria-label={`Choose ${category.name}`}
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 ${
+                isSelected
+                  ? 'bg-pine-800 text-sand-950 ring-2 ring-pine-800/40'
+                  : 'bg-sand-900 hover:bg-pine-800 hover:text-sand-950 text-charcoal-900 border border-sand-700'
+              }`}
             >
-              <Images className="w-3 h-3" />
-              <span>{imageList.length} Photos</span>
+              {isSelected ? (
+                <>
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>Selected</span>
+                </>
+              ) : (
+                <span>Select Room</span>
+              )}
             </button>
-          )}
-        </div>
-
-        {/* Small 3-4 Thumbnails Gallery */}
-        {imageList.length > 1 && (
-          <div className="grid grid-cols-4 gap-1.5">
-            {imageList.slice(0, 4).map((thumb, idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setActivePhotoIdx(idx);
-                }}
-                className={`relative aspect-[4/3] rounded-lg overflow-hidden border transition-all ${
-                  activePhotoIdx === idx
-                    ? 'border-pine-800 ring-2 ring-pine-800/40'
-                    : 'border-sand-700/80 opacity-70 hover:opacity-100'
-                }`}
-                aria-label={`View photo ${idx + 1} of ${category.name}`}
-              >
-                <img
-                  src={thumb}
-                  alt={`${category.name} thumbnail ${idx + 1}`}
-                  loading="lazy"
-                  onError={(e) => {
-                    e.target.src = FALLBACK_IMAGE;
-                  }}
-                  className="w-full h-full object-cover"
-                />
-              </button>
-            ))}
-          </div>
-        )}
-
-        {/* Room Category Details */}
-        <div className="space-y-1.5 pt-1">
-          <h5 className="text-sm sm:text-base font-bold text-charcoal-950 leading-snug">
-            {category.name}
-          </h5>
-
-          {category.description && (
-            <p className="text-[11px] text-charcoal-700 line-clamp-2 leading-relaxed font-normal">
-              {category.description}
-            </p>
-          )}
-
-          {/* Feature Spec Tags: Bed, Size, View */}
-          <div className="flex flex-wrap gap-1.5 pt-1">
-            {bedType && (
-              <span className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-md bg-sand-900 border border-sand-700 text-charcoal-800 font-medium">
-                <Bed className="w-3 h-3 text-pine-800 shrink-0" />
-                <span>{bedType}</span>
-              </span>
-            )}
-            {roomSize && (
-              <span className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-md bg-sand-900 border border-sand-700 text-charcoal-800 font-medium">
-                <Maximize2 className="w-3 h-3 text-pine-800 shrink-0" />
-                <span>{roomSize}</span>
-              </span>
-            )}
-            {view && (
-              <span className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-md bg-sand-900 border border-sand-700 text-charcoal-800 font-medium">
-                <Sparkles className="w-3 h-3 text-pine-800 shrink-0" />
-                <span>{view}</span>
-              </span>
-            )}
           </div>
         </div>
       </div>
 
-      {/* Card Action Footer */}
-      <div className="pt-3 mt-3 border-t border-sand-700/60 flex items-center justify-between gap-2">
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            onOpenDetails(category);
-          }}
-          className="text-[11px] text-pine-800 hover:underline font-bold flex items-center gap-1"
-        >
-          <Eye className="w-3.5 h-3.5" />
-          <span>Room Details</span>
-        </button>
-
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            onSelect(category);
-          }}
-          aria-label={`Choose ${category.name}`}
-          className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 ${
-            isSelected
-              ? 'bg-pine-800 text-sand-950 ring-2 ring-pine-800/40'
-              : 'bg-sand-900 hover:bg-pine-800 hover:text-sand-950 text-charcoal-900 border border-sand-700'
-          }`}
-        >
-          {isSelected ? (
-            <>
-              <CheckCircle2 className="w-3.5 h-3.5" />
-              <span>Selected</span>
-            </>
-          ) : (
-            <span>Select Room</span>
-          )}
-        </button>
-      </div>
-    </div>
+      {/* Lightbox Modal */}
+      <RoomCategoryLightbox
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        images={imageList}
+        categoryName={category.name || 'Room Category'}
+        hotelName={hotelName}
+        initialIndex={lightboxIndex}
+        specs={{ bedType, roomSize, view }}
+      />
+    </>
   );
 }
 
 /**
  * Reusable Resort & Room Category Selection Component
- * Driven strictly by hotel and room data across ALL tours and ALL hotels.
+ * One component driven dynamically by data across ALL tours and ALL hotels.
  * Strictly no rates or price markers rendered here.
  */
 export default function ResortRoomSelector({
@@ -294,7 +482,6 @@ export default function ResortRoomSelector({
   onGoBackToResorts,
   onChangeRoom,
   onOpenHotelDetails,
-  onOpenRoomGallery,
   tourLocation = '',
 }) {
   const [expandedHotelId, setExpandedHotelId] = useState(selectedHotel?.id || null);
@@ -310,8 +497,22 @@ export default function ResortRoomSelector({
 
   const isBothSelected = Boolean(selectedHotel && selectedRoomCategory);
 
+  const handleResortCardClick = (hotel) => {
+    if (expandedHotelId === hotel.id) {
+      // If clicking already expanded resort, keep expanded
+      return;
+    }
+    // Selecting another resort collapses the old one, sets roomCategory = null, and expands the new one
+    setExpandedHotelId(hotel.id);
+    onSelectHotel(hotel);
+  };
+
   return (
-    <section id="resort-selection-section" className="space-y-5 scroll-mt-28">
+    <section
+      id="resort-selection-section"
+      tabIndex={-1}
+      className="space-y-5 scroll-mt-28 outline-none"
+    >
       {/* Section Header */}
       <div className="flex items-center justify-between flex-wrap gap-2">
         <div>
@@ -321,8 +522,8 @@ export default function ResortRoomSelector({
           <p className="text-xs sm:text-sm text-charcoal-700 pt-0.5">
             {isBothSelected
               ? 'Your accommodation has been selected. You can change your room or choose a different resort at any time.'
-              : selectedHotel
-              ? `Select your room category at ${selectedHotel.name}.`
+              : selectedHotel || expandedHotelId
+              ? `Select your room category below to reserve your stay.`
               : 'Select your preferred wilderness resort below to view its available room categories.'}
           </p>
         </div>
@@ -345,9 +546,8 @@ export default function ResortRoomSelector({
           STATE 1: BOTH RESORT & ROOM CATEGORY SELECTED (COLLAPSED SUMMARY)
          ========================================================================= */}
       {isBothSelected ? (
-        <div className="glass-panel rounded-3xl border-2 border-pine-800 bg-sand-900/90 p-5 sm:p-6 shadow-xl transition-all duration-300">
+        <div className="glass-panel rounded-3xl border-2 border-pine-800 bg-sand-900/90 p-5 sm:p-6 shadow-xl transition-all duration-500 ease-in-out">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
-            
             {/* Left: Thumbnail & Info */}
             <div className="flex items-start sm:items-center gap-4 flex-1 min-w-0">
               <div className="relative aspect-[4/3] w-24 sm:w-32 rounded-2xl overflow-hidden bg-sand-950 border border-sand-700 shadow-md shrink-0">
@@ -437,7 +637,7 @@ export default function ResortRoomSelector({
                 className="flex-1 md:flex-initial px-4 py-2 rounded-xl bg-sand-950 hover:bg-pine-800 hover:text-sand-950 text-charcoal-900 border border-sand-700 text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5"
               >
                 <ArrowLeft className="w-3.5 h-3.5 text-pine-800" />
-                <span>Change Resort</span>
+                <span>Back to Resorts</span>
               </button>
 
               <button
@@ -449,46 +649,49 @@ export default function ResortRoomSelector({
                 <Eye className="w-4 h-4" />
               </button>
             </div>
-
           </div>
         </div>
       ) : null}
 
       {/* =========================================================================
-          STATE 2: RESORT LIST OR EXPANDED ROOM CATEGORIES
+          STATE 2: RESORT SELECTION & IN-PLACE EXPANDABLE CARDS
          ========================================================================= */}
       {!isBothSelected && (
-        <div className="space-y-6">
-          {/* If a resort is expanded, show only that resort in expanded mode */}
-          {expandedHotelId ? (
-            (() => {
-              const activeHotel = hotels.find((h) => h.id === expandedHotelId) || hotels[0];
-              const roomCategories = Array.isArray(activeHotel.roomCategories) ? activeHotel.roomCategories : [];
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {hotels.map((hotel) => {
+            const isExpanded = expandedHotelId === hotel.id;
+            const roomCategories = Array.isArray(hotel.roomCategories) ? hotel.roomCategories : [];
+            const roomCount = roomCategories.length;
 
+            if (isExpanded) {
+              /* =================================================================
+                 EXPANDED RESORT CARD (IN PLACE)
+                 ================================================================= */
               return (
                 <div
+                  key={hotel.id}
                   aria-expanded="true"
-                  className="glass-panel rounded-3xl border-2 border-pine-800 bg-sand-900/90 shadow-2xl overflow-hidden transition-all duration-300"
+                  className="col-span-1 md:col-span-2 glass-panel rounded-3xl border-2 border-pine-800 bg-sand-900/95 shadow-2xl overflow-hidden transition-all duration-500 ease-in-out"
                 >
-                  {/* Expanded Header Banner */}
-                  <div className="p-5 sm:p-6 border-b border-sand-700/80 bg-sand-950/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  {/* Expanded Resort Header Banner */}
+                  <div className="p-5 sm:p-6 border-b border-sand-700/80 bg-sand-950/70 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
                       <button
                         type="button"
                         onClick={onGoBackToResorts}
                         aria-label="Go back to all resorts"
-                        className="p-2 rounded-xl bg-sand-900 hover:bg-pine-800 hover:text-sand-950 border border-sand-700 text-charcoal-900 transition-colors shadow-xs flex items-center gap-1 text-xs font-bold"
+                        className="px-3 py-1.5 rounded-xl bg-sand-900 hover:bg-pine-800 hover:text-sand-950 border border-sand-700 text-charcoal-900 transition-colors shadow-xs flex items-center gap-1.5 text-xs font-bold shrink-0"
                       >
-                        <ArrowLeft className="w-4 h-4" />
-                        <span className="hidden sm:inline">Back to Resorts</span>
+                        <ArrowLeft className="w-4 h-4 text-pine-800 group-hover:text-sand-950" />
+                        <span>← Back to resorts</span>
                       </button>
 
-                      <div>
-                        <h4 className="text-lg sm:text-xl font-black text-charcoal-950 leading-tight">
-                          {activeHotel.name}
+                      <div className="min-w-0">
+                        <h4 className="text-lg sm:text-xl font-black text-charcoal-950 leading-tight truncate">
+                          {hotel.name}
                         </h4>
-                        <p className="text-xs text-pine-800 font-medium">
-                          {activeHotel.tagline || activeHotel.address}
+                        <p className="text-xs text-pine-800 font-medium truncate">
+                          {hotel.tagline || hotel.address}
                         </p>
                       </div>
                     </div>
@@ -496,15 +699,15 @@ export default function ResortRoomSelector({
                     <div className="flex items-center gap-2 self-end sm:self-center">
                       <button
                         type="button"
-                        onClick={() => onOpenHotelDetails(activeHotel)}
+                        onClick={() => onOpenHotelDetails(hotel)}
                         className="px-3.5 py-1.5 rounded-xl text-xs font-bold text-charcoal-900 hover:text-pine-800 bg-sand-900 hover:bg-sand-800 border border-sand-700 transition-colors flex items-center gap-1.5"
                       >
-                        <Eye className="w-3.5 h-3.5" />
-                        <span>Resort Gallery</span>
+                        <Eye className="w-3.5 h-3.5 text-pine-800" />
+                        <span>View Photos</span>
                       </button>
 
                       <a
-                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${activeHotel.name}, ${activeHotel.address || tourLocation}`)}`}
+                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${hotel.name}, ${hotel.address || tourLocation}`)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="px-3 py-1.5 rounded-xl text-xs font-bold text-charcoal-900 hover:text-pine-800 bg-sand-900 hover:bg-sand-800 border border-sand-700 transition-colors flex items-center gap-1"
@@ -520,27 +723,27 @@ export default function ResortRoomSelector({
                   <div className="p-5 sm:p-6 space-y-4">
                     <div className="flex items-center justify-between">
                       <h5 className="text-xs uppercase font-bold tracking-wider text-charcoal-700">
-                        Available Room Categories ({roomCategories.length})
+                        Available Room Categories ({roomCount})
                       </h5>
                       <span className="text-[11px] text-pine-800 font-semibold">
                         Select one room category to reserve
                       </span>
                     </div>
 
-                    {roomCategories.length > 0 ? (
+                    {roomCount > 0 ? (
                       <div
                         role="radiogroup"
-                        aria-label={`Room categories for ${activeHotel.name}`}
+                        aria-label={`Room categories for ${hotel.name}`}
                         className="grid grid-cols-1 md:grid-cols-2 gap-4"
                       >
                         {roomCategories.map((cat) => (
                           <RoomCategoryCard
                             key={cat.id}
                             category={cat}
-                            hotelName={activeHotel.name}
+                            hotelName={hotel.name}
                             isSelected={selectedRoomCategory?.id === cat.id}
-                            onSelect={onSelectRoomCategory}
-                            onOpenDetails={onOpenRoomGallery}
+                            onSelect={(c) => onSelectRoomCategory(c, hotel)}
+                            onChangeRoom={onChangeRoom}
                           />
                         ))}
                       </div>
@@ -555,14 +758,17 @@ export default function ResortRoomSelector({
                         <button
                           type="button"
                           onClick={() =>
-                            onSelectRoomCategory({
-                              id: `${activeHotel.id}-standard`,
-                              name: 'Standard Wilderness Room',
-                              bedType: '1 King / Double Bed',
-                              roomSize: 'Standard',
-                              view: 'Wilderness View',
-                              images: activeHotel.images,
-                            })
+                            onSelectRoomCategory(
+                              {
+                                id: `${hotel.id}-standard`,
+                                name: 'Standard Wilderness Room',
+                                bedType: '1 King / Double Bed',
+                                roomSize: 'Standard',
+                                view: 'Wilderness View',
+                                images: hotel.images,
+                              },
+                              hotel
+                            )
                           }
                           className="px-5 py-2 rounded-xl bg-pine-800 text-sand-950 font-bold text-xs shadow-md"
                         >
@@ -573,103 +779,106 @@ export default function ResortRoomSelector({
                   </div>
                 </div>
               );
-            })()
-          ) : (
-            /* Grid of Resort Cards (Default view with nothing expanded) */
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {hotels.map((hotel) => {
-                const roomCount = Array.isArray(hotel.roomCategories) ? hotel.roomCategories.length : 0;
+            }
 
-                return (
-                  <div
-                    key={hotel.id}
-                    className="glass-panel rounded-3xl border border-sand-700/80 hover:border-sand-600 bg-sand-900/50 hover:shadow-lg transition-all duration-300 flex flex-col justify-between overflow-hidden"
-                  >
+            /* =================================================================
+               COLLAPSED RESORT CARD
+               ================================================================= */
+            return (
+              <div
+                key={hotel.id}
+                aria-expanded="false"
+                onClick={() => handleResortCardClick(hotel)}
+                className="col-span-1 glass-panel rounded-3xl border border-sand-700/80 hover:border-sand-600 bg-sand-900/50 hover:shadow-lg transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer"
+              >
+                <div>
+                  {/* Thumbnail Carousel */}
+                  <ResortImageCarousel
+                    images={hotel.images}
+                    name={hotel.name}
+                    onOpenDetails={() => onOpenHotelDetails(hotel)}
+                  />
+
+                  {/* Card Info Content */}
+                  <div className="p-5 space-y-3">
                     <div>
-                      {/* Thumbnail carousel */}
-                      <ResortImageCarousel
-                        images={hotel.images}
-                        name={hotel.name}
-                        onOpenDetails={() => onOpenHotelDetails(hotel)}
-                      />
-
-                      {/* Card Info Content */}
-                      <div className="p-5 space-y-3">
-                        <div>
-                          <h4 className="text-base sm:text-lg font-bold text-charcoal-950 leading-snug">
-                            {hotel.name}
-                          </h4>
-                          <div className="flex items-center justify-between gap-2 flex-wrap pt-0.5">
-                            <p className="text-xs text-pine-800 font-medium truncate">
-                              {hotel.tagline || hotel.address}
-                            </p>
-                            <a
-                              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${hotel.name}, ${hotel.address || tourLocation}`)}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={(e) => e.stopPropagation()}
-                              className="inline-flex items-center gap-1 text-[11px] text-pine-800 hover:text-pine-700 hover:underline font-semibold"
-                              title="Open Location on Google Maps"
-                            >
-                              <MapPin className="w-3 h-3 text-pine-800 shrink-0" />
-                              <span>Location</span>
-                            </a>
-                          </div>
-                        </div>
-
-                        {hotel.description && (
-                          <p className="text-xs text-charcoal-700 font-normal leading-relaxed line-clamp-2">
-                            {hotel.description}
-                          </p>
-                        )}
-
-                        {/* Top Amenities */}
-                        {Array.isArray(hotel.amenities) && hotel.amenities.length > 0 && (
-                          <div className="flex flex-wrap gap-1.5 pt-1">
-                            {hotel.amenities.slice(0, 3).map((amenity, i) => (
-                              <span
-                                key={i}
-                                className="text-[10px] px-2 py-0.5 rounded-md bg-sand-950 border border-sand-700 text-charcoal-800 font-medium"
-                              >
-                                {amenity}
-                              </span>
-                            ))}
-                            {roomCount > 0 && (
-                              <span className="text-[10px] px-2 py-0.5 rounded-md bg-pine-800/10 border border-pine-800/20 text-pine-800 font-bold">
-                                {roomCount} {roomCount === 1 ? 'Room Category' : 'Room Categories'}
-                              </span>
-                            )}
-                          </div>
-                        )}
+                      <h4 className="text-base sm:text-lg font-bold text-charcoal-950 leading-snug">
+                        {hotel.name}
+                      </h4>
+                      <div className="flex items-center justify-between gap-2 flex-wrap pt-0.5">
+                        <p className="text-xs text-pine-800 font-medium truncate">
+                          {hotel.tagline || hotel.address}
+                        </p>
+                        <a
+                          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${hotel.name}, ${hotel.address || tourLocation}`)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1 text-[11px] text-pine-800 hover:text-pine-700 hover:underline font-semibold"
+                          title="Open Location on Google Maps"
+                        >
+                          <MapPin className="w-3 h-3 text-pine-800 shrink-0" />
+                          <span>Location</span>
+                        </a>
                       </div>
                     </div>
 
-                    {/* Card Actions */}
-                    <div className="p-5 pt-0 flex items-center justify-between gap-2.5 border-t border-sand-700/60 mt-3 pt-3">
-                      <button
-                        type="button"
-                        onClick={() => onOpenHotelDetails(hotel)}
-                        className="px-3.5 py-2 rounded-xl text-xs font-bold text-charcoal-900 hover:text-pine-800 hover:bg-sand-800 transition-colors flex items-center gap-1"
-                      >
-                        <Eye className="w-3.5 h-3.5" />
-                        <span>View Details</span>
-                      </button>
+                    {hotel.description && (
+                      <p className="text-xs text-charcoal-700 font-normal leading-relaxed line-clamp-2">
+                        {hotel.description}
+                      </p>
+                    )}
 
-                      <button
-                        type="button"
-                        onClick={() => onSelectHotel(hotel)}
-                        className="px-4 py-2 rounded-xl text-xs font-bold bg-sand-950 hover:bg-pine-800 hover:text-sand-950 text-charcoal-900 border border-sand-700 transition-all shadow-md flex items-center gap-1.5"
-                      >
-                        <span>Select Resort</span>
-                        <ChevronRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-
+                    {/* Top Amenities */}
+                    {Array.isArray(hotel.amenities) && hotel.amenities.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {hotel.amenities.slice(0, 3).map((amenity, i) => (
+                          <span
+                            key={i}
+                            className="text-[10px] px-2 py-0.5 rounded-md bg-sand-950 border border-sand-700 text-charcoal-800 font-medium"
+                          >
+                            {amenity}
+                          </span>
+                        ))}
+                        {roomCount > 0 && (
+                          <span className="text-[10px] px-2 py-0.5 rounded-md bg-pine-800/10 border border-pine-800/20 text-pine-800 font-bold">
+                            {roomCount} {roomCount === 1 ? 'Room Category' : 'Room Categories'}
+                          </span>
+                        )}
+                      </div>
+                    )}
                   </div>
-                );
-              })}
-            </div>
-          )}
+                </div>
+
+                {/* Card Actions */}
+                <div className="p-5 pt-0 flex items-center justify-between gap-2.5 border-t border-sand-700/60 mt-3 pt-3">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onOpenHotelDetails(hotel);
+                    }}
+                    className="px-3.5 py-2 rounded-xl text-xs font-bold text-charcoal-900 hover:text-pine-800 hover:bg-sand-800 transition-colors flex items-center gap-1"
+                  >
+                    <Eye className="w-3.5 h-3.5" />
+                    <span>View Photos</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleResortCardClick(hotel);
+                    }}
+                    className="px-4 py-2 rounded-xl text-xs font-bold bg-sand-950 hover:bg-pine-800 hover:text-sand-950 text-charcoal-900 border border-sand-700 transition-all shadow-md flex items-center gap-1.5"
+                  >
+                    <span>Select Resort</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
       )}
     </section>

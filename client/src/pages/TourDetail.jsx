@@ -31,177 +31,6 @@ import { MapPin, Calendar, Users, ShieldCheck, Camera, CheckCircle2, ArrowRight,
 import HotelDetailModal from '../components/tours/HotelDetailModal';
 import ResortRoomSelector from '../components/tours/ResortRoomSelector';
 
-function HotelCardImageCarousel({ images, name, onClick }) {
-  const [currentIdx, setCurrentIdx] = useState(0);
-  const imageList = Array.isArray(images) && images.length > 0 
-    ? images 
-    : ['https://images.unsplash.com/photo-1546182990-dffeafbe841d'];
-  const total = imageList.length;
-
-  useEffect(() => {
-    if (Array.isArray(images)) {
-      images.forEach((src) => {
-        const img = new Image();
-        img.src = src;
-      });
-    }
-  }, [images]);
-
-  const handlePrev = (e) => {
-    e.stopPropagation();
-    setCurrentIdx((prev) => (prev === 0 ? total - 1 : prev - 1));
-  };
-
-  const handleNext = (e) => {
-    e.stopPropagation();
-    setCurrentIdx((prev) => (prev === total - 1 ? 0 : prev + 1));
-  };
-
-  return (
-    <div 
-      onClick={onClick}
-      className="h-52 sm:h-56 w-full bg-sand-950 overflow-hidden relative cursor-pointer group select-none"
-    >
-      {/* Sliding Track for instant, buttery-smooth hardware-accelerated transition */}
-      <div 
-        className="w-full h-full flex transition-transform duration-300 ease-out will-change-transform"
-        style={{ transform: `translateX(-${currentIdx * 100}%)` }}
-      >
-        {imageList.map((imgSrc, idx) => (
-          <div key={idx} className="w-full h-full shrink-0 relative overflow-hidden">
-            <img
-              src={imgSrc}
-              alt={`${name} - Photo ${idx + 1}`}
-              loading={idx === 0 ? "eager" : "lazy"}
-              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-        ))}
-      </div>
-      
-      {/* Subtle overlay gradient on hover */}
-      <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-      {/* Left and Right Navigation Buttons on Hover */}
-      {total > 1 && (
-        <>
-          <button
-            type="button"
-            onClick={handlePrev}
-            aria-label="Previous photo"
-            className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-charcoal-950/80 hover:bg-pine-800 text-sand-950 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-xl backdrop-blur-sm border border-sand-700/50 hover:scale-110 active:scale-95 z-10"
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </button>
-          
-          <button
-            type="button"
-            onClick={handleNext}
-            aria-label="Next photo"
-            className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-charcoal-950/80 hover:bg-pine-800 text-sand-950 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-xl backdrop-blur-sm border border-sand-700/50 hover:scale-110 active:scale-95 z-10"
-          >
-            <ChevronRight className="w-4 h-4" />
-          </button>
-
-          {/* Photo Dots on hover */}
-          <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 pointer-events-none">
-            {imageList.slice(0, Math.min(total, 6)).map((_, i) => (
-              <span
-                key={i}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === currentIdx ? 'w-4 bg-pine-800' : 'w-1.5 bg-sand-950/70'
-                }`}
-              />
-            ))}
-          </div>
-
-          {/* Counter badge on top right */}
-          <div className="absolute top-2.5 right-2.5 bg-charcoal-950/75 text-sand-950 text-[10px] font-semibold px-2 py-0.5 rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 border border-sand-700/40 pointer-events-none">
-            {currentIdx + 1} / {total}
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
-
-function RoomCardImageCarousel({ images, name, onClick }) {
-  const [currentIdx, setCurrentIdx] = useState(0);
-  const imageList = Array.isArray(images) && images.length > 0
-    ? images
-    : ['https://images.unsplash.com/photo-1546182990-dffeafbe841d'];
-  const total = imageList.length;
-
-  useEffect(() => {
-    if (Array.isArray(images)) {
-      images.forEach((src) => {
-        const img = new Image();
-        img.src = src;
-      });
-    }
-  }, [images]);
-
-  const handlePrev = (e) => {
-    e.stopPropagation();
-    setCurrentIdx((prev) => (prev === 0 ? total - 1 : prev - 1));
-  };
-
-  const handleNext = (e) => {
-    e.stopPropagation();
-    setCurrentIdx((prev) => (prev === total - 1 ? 0 : prev + 1));
-  };
-
-  return (
-    <div 
-      onClick={onClick}
-      className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden bg-sand-900 relative shrink-0 group select-none cursor-pointer"
-      title={`${name} - Click to view`}
-    >
-      <div 
-        className="w-full h-full flex transition-transform duration-300 ease-out will-change-transform"
-        style={{ transform: `translateX(-${currentIdx * 100}%)` }}
-      >
-        {imageList.map((imgSrc, idx) => (
-          <div key={idx} className="w-full h-full shrink-0 relative overflow-hidden">
-            <img
-              src={imgSrc}
-              alt={name}
-              loading={idx === 0 ? "eager" : "lazy"}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-        ))}
-      </div>
-      
-      {total > 1 && (
-        <>
-          <button
-            type="button"
-            onClick={handlePrev}
-            aria-label="Previous photo"
-            className="absolute left-0.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-charcoal-950/85 hover:bg-pine-800 text-sand-950 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-md active:scale-90 z-10"
-          >
-            <ChevronLeft className="w-3 h-3" />
-          </button>
-
-          <button
-            type="button"
-            onClick={handleNext}
-            aria-label="Next photo"
-            className="absolute right-0.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-charcoal-950/85 hover:bg-pine-800 text-sand-950 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-md active:scale-90 z-10"
-          >
-            <ChevronRight className="w-3 h-3" />
-          </button>
-
-          <div className="absolute bottom-0.5 right-0.5 bg-charcoal-950/85 text-sand-950 text-[8px] font-semibold px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-            {currentIdx + 1}/{total}
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
-
 export default function TourDetail() {
   const { slug } = useParams();
   const { user, openAuthModal } = useAuth();
@@ -421,6 +250,7 @@ export default function TourDetail() {
     const el = document.getElementById('resort-selection-section');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      el.focus();
     }
   };
 
@@ -725,25 +555,14 @@ export default function TourDetail() {
           <div className="sticky top-28 glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 shadow-2xl space-y-5">
             
             <div>
-              <span className="text-xs uppercase text-pine-800 font-bold block tracking-wider">Reserve Your Seat</span>
-              <div className="flex items-baseline gap-2 pt-1">
-                {hasAccommodation ? (
-                  <>
-                    <span className="text-3xl sm:text-4xl font-black text-charcoal-900">
-                      ₹{perDayStayRate.toLocaleString()}
-                    </span>
-                    <span className="text-xs text-charcoal-600 font-medium">/ room / day</span>
-                  </>
-                ) : (
-                  <span className="text-xl sm:text-2xl font-black text-charcoal-800">
-                    Expedition Reservation
-                  </span>
-                )}
-              </div>
-              <p className="text-[11px] text-pine-800 font-bold pt-0.5">
+              <span className="text-xs uppercase text-pine-800 font-bold block tracking-wider">Reserve Your Expedition</span>
+              <h4 className="text-xl sm:text-2xl font-black text-charcoal-900 pt-1">
+                Expedition Reservation
+              </h4>
+              <p className="text-[11px] text-charcoal-600 font-medium pt-0.5">
                 {hasAccommodation
-                  ? `${selectedRoomCategory.name} · ${selectedHotel.name} · ${mealPlan} Plan`
-                  : `Select resort & room on the left · ${mealPlan} Plan`}
+                  ? `${selectedHotel.name} · ${selectedRoomCategory.name}`
+                  : 'Select resort & room on the left to proceed'}
               </p>
             </div>
 
@@ -768,72 +587,44 @@ export default function TourDetail() {
                 )}
 
                 {/* Read-Only Selected Accommodation Summary Row */}
-                <div className="p-3.5 rounded-2xl bg-sand-950 border border-sand-700 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] uppercase tracking-wider text-charcoal-700 font-bold flex items-center gap-1.5">
-                      <Hotel className="w-3.5 h-3.5 text-pine-800 shrink-0" />
-                      <span>Resort & Room Stay</span>
+                <div className="p-3.5 rounded-2xl bg-sand-950 border border-sand-700 flex items-center justify-between gap-3">
+                  <div className="min-w-0 flex-1">
+                    <span className="text-[10px] uppercase tracking-wider text-charcoal-500 font-bold block">
+                      Resort & Room
                     </span>
-                    <button
-                      type="button"
-                      onClick={handleRightPanelChange}
-                      aria-label="Change resort or room category"
-                      className="text-[11px] font-bold text-pine-800 hover:text-pine-700 hover:underline inline-flex items-center gap-1 transition-colors"
-                    >
-                      <span>{hasAccommodation ? 'Change' : 'Choose'}</span>
-                      <ArrowRight className="w-3 h-3" />
-                    </button>
-                  </div>
-
-                  {hasAccommodation ? (
-                    <div className="flex items-center gap-3 pt-0.5">
-                      <img
-                        src={
-                          selectedRoomCategory.images?.[0] ||
-                          selectedHotel.images?.[0] ||
-                          'https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=200'
-                        }
-                        alt={selectedHotel.name}
-                        className="w-12 h-12 rounded-xl object-cover border border-sand-700 shrink-0"
-                      />
-                      <div className="min-w-0 flex-1">
+                    {selectedHotel && selectedRoomCategory ? (
+                      <div className="pt-0.5">
                         <p className="text-xs font-bold text-charcoal-950 truncate">
                           {selectedHotel.name}
                         </p>
-                        <p className="text-[11px] text-pine-800 font-bold truncate">
+                        <p className="text-[11px] text-pine-800 font-semibold truncate">
                           {selectedRoomCategory.name}
                         </p>
-                        <p className="text-[10px] text-charcoal-500 truncate">
-                          {selectedRoomCategory.bedType || 'Comfort Bed'} · {selectedRoomCategory.view || 'Scenic View'}
+                      </div>
+                    ) : selectedHotel ? (
+                      <div className="pt-0.5">
+                        <p className="text-xs font-bold text-charcoal-950 truncate">
+                          {selectedHotel.name}
+                        </p>
+                        <p className="text-[11px] text-amber-800 font-medium">
+                          No room category selected
                         </p>
                       </div>
-                    </div>
-                  ) : selectedHotel ? (
-                    <div className="p-2.5 rounded-xl bg-sand-900/60 border border-sand-700/60 flex items-center justify-between gap-2">
-                      <div className="min-w-0 flex-1">
-                        <p className="text-xs font-bold text-charcoal-900 truncate">{selectedHotel.name}</p>
-                        <p className="text-[10px] text-amber-800 font-medium">Room category pending selection</p>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={handleScrollToResortSection}
-                        className="px-2.5 py-1 rounded-lg bg-pine-800 text-sand-950 text-[10px] font-bold shrink-0 hover:bg-pine-700 transition-colors"
-                      >
-                        Pick Room
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="p-2.5 rounded-xl bg-sand-900/60 border border-sand-700/60 flex items-center justify-between gap-2">
-                      <p className="text-[11px] text-charcoal-600 font-medium">No resort selected</p>
-                      <button
-                        type="button"
-                        onClick={handleScrollToResortSection}
-                        className="px-3 py-1 rounded-lg bg-pine-800 text-sand-950 text-[10px] font-bold shrink-0 hover:bg-pine-700 transition-colors"
-                      >
-                        Choose Stay
-                      </button>
-                    </div>
-                  )}
+                    ) : (
+                      <p className="text-xs font-medium text-charcoal-600 pt-0.5">
+                        No resort selected
+                      </p>
+                    )}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleRightPanelChange}
+                    aria-label="Change resort or room category"
+                    className="px-3 py-1.5 rounded-xl border border-sand-700 bg-sand-900 hover:bg-pine-800 hover:text-sand-950 text-charcoal-800 text-xs font-bold shrink-0 transition-colors shadow-xs"
+                  >
+                    Change
+                  </button>
                 </div>
 
                 {/* Calendar Date Selection: Check-in & Check-out */}
