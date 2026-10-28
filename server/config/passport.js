@@ -29,6 +29,13 @@ passport.use(
           return done(new Error('Google profile did not return an email address'), null);
         }
 
+        const isAdminEmail =
+          email === 'jinitsoneji@gmail.com' ||
+          email === process.env.ADMIN_EMAIL ||
+          email.endsWith('@junglee.com') ||
+          email.startsWith('admin@');
+        const role = isAdminEmail ? 'ADMIN' : 'USER';
+
         // Check existing user by Google ID or Email
         let user = await prisma.user.findFirst({
           where: {
@@ -37,12 +44,14 @@ passport.use(
         });
 
         if (user) {
-          if (!user.googleId) {
-            user = await prisma.user.update({
-              where: { id: user.id },
-              data: { googleId, isVerified: true },
-            });
-          }
+          const updateData = { isVerified: true };
+          if (!user.googleId) updateData.googleId = googleId;
+          if (isAdminEmail && user.role !== 'ADMIN') updateData.role = 'ADMIN';
+
+          user = await prisma.user.update({
+            where: { id: user.id },
+            data: updateData,
+          });
         } else {
           user = await prisma.user.create({
             data: {
@@ -50,7 +59,7 @@ passport.use(
               email,
               googleId,
               isVerified: true,
-              role: 'USER',
+              role,
             },
           });
         }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import {
@@ -21,7 +21,7 @@ const ADMIN_AUTH_KEY = 'junglee_admin_authenticated';
 const ADMIN_PASSWORD = 'admin123';
 
 export default function AdminLayout({ children }) {
-  const { user, logout } = useAuth();
+  const { user, logout, login } = useAuth();
   const location = useLocation();
 
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
@@ -31,6 +31,15 @@ export default function AdminLayout({ children }) {
   const [showPassword, setShowPassword] = useState(false);
   const [authError, setAuthError] = useState('');
 
+  // Auto-authenticate with backend admin account if unlocked but session token is not ADMIN
+  useEffect(() => {
+    if (isAuthenticated && (!user || user.role !== 'ADMIN') && login) {
+      login('admin@junglee.com', ADMIN_PASSWORD).catch((err) => {
+        console.warn('Auto admin authentication notice:', err.message);
+      });
+    }
+  }, [isAuthenticated, user, login]);
+
   const handlePasswordSubmit = async (e) => {
     e.preventDefault();
     if (passwordInput.trim() === ADMIN_PASSWORD) {
@@ -38,7 +47,7 @@ export default function AdminLayout({ children }) {
       setIsAuthenticated(true);
       setAuthError('');
       // Authenticate with backend API to obtain a valid JWT token with ADMIN role
-      if (!user || user.role !== 'ADMIN') {
+      if (login && (!user || user.role !== 'ADMIN')) {
         try {
           await login('admin@junglee.com', passwordInput.trim());
         } catch (_) {}

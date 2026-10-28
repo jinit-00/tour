@@ -13,8 +13,10 @@ export default function Tours() {
   useEffect(() => {
     let isMounted = true;
 
-    // 1. Initial load
-    fetchTours();
+    // 1. Initial load & sync from database
+    syncHiddenToursFromCloud().finally(() => {
+      if (isMounted) fetchTours();
+    });
 
     // 2. Multi-window / tab event listeners
     const handleVisibilityChange = () => {

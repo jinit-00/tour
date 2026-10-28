@@ -366,12 +366,15 @@ export const toggleTourVisibility = async (tourOrId, explicitHiddenState) => {
   }
   setHiddenTourSlugs(updatedList);
 
-  // Persist directly to PostgreSQL database via API
+  // Persist directly to database via API
   try {
-    if (id) {
-      await API.patch(`/admin/tours/${id}/visibility`, { isHidden: nextHidden });
+    const targetId = id || slug;
+    if (targetId) {
+      await API.patch(`/admin/tours/${targetId}/visibility`, { isHidden: nextHidden });
     }
-  } catch (_) {}
+  } catch (err) {
+    console.warn('Direct tour visibility patch note:', err?.response?.data || err.message);
+  }
 
   await pushAllToCloud({ hidden: updatedList });
   return { isHidden: nextHidden, slugs: updatedList };

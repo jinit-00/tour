@@ -163,8 +163,21 @@ router.patch('/tours/:id/visibility', async (req, res) => {
     const { id } = req.params;
     const { isHidden } = req.body;
 
+    const existingTour = await prisma.tour.findFirst({
+      where: {
+        OR: [
+          { id },
+          { slug: id },
+        ],
+      },
+    });
+
+    if (!existingTour) {
+      return res.status(404).json({ error: 'Tour not found.' });
+    }
+
     const tour = await prisma.tour.update({
-      where: { id },
+      where: { id: existingTour.id },
       data: { isHidden: Boolean(isHidden) },
     });
 

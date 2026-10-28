@@ -197,7 +197,23 @@ module.exports = async function handler(req, res) {
       const token = authHeader.split(' ')[1];
       const { verifyToken } = require('../utils/jwt.utils');
       const decoded = verifyToken(token);
-      if (!decoded || decoded.role !== 'ADMIN') {
+      if (!decoded) {
+        return res.status(401).json({ error: 'Invalid or expired session token.' });
+      }
+
+      // Check role from live database or decoded token
+      let isAdmin = decoded.role === 'ADMIN';
+      if (!isAdmin && prisma && decoded.id) {
+        const dbUser = await prisma.user.findUnique({
+          where: { id: decoded.id },
+          select: { role: true },
+        });
+        if (dbUser && dbUser.role === 'ADMIN') {
+          isAdmin = true;
+        }
+      }
+
+      if (!isAdmin) {
         return res.status(403).json({ error: 'Admin privileges required to push database sync updates.' });
       }
 
