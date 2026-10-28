@@ -203,9 +203,14 @@ module.exports = async function handler(req, res) {
 
       // Check role from live database or decoded token
       let isAdmin = decoded.role === 'ADMIN';
-      if (!isAdmin && prisma && decoded.id) {
-        const dbUser = await prisma.user.findUnique({
-          where: { id: decoded.id },
+      if (!isAdmin && prisma && (decoded.id || decoded.email)) {
+        const dbUser = await prisma.user.findFirst({
+          where: {
+            OR: [
+              ...(decoded.id ? [{ id: decoded.id }] : []),
+              ...(decoded.email ? [{ email: String(decoded.email).toLowerCase().trim() }] : []),
+            ],
+          },
           select: { role: true },
         });
         if (dbUser && dbUser.role === 'ADMIN') {

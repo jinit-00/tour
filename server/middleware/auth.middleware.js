@@ -21,10 +21,18 @@ const requireAuth = async (req, res, next) => {
       return res.status(401).json({ error: 'Invalid or expired session token.' });
     }
 
-    const user = await prisma.user.findUnique({
+    let user = await prisma.user.findUnique({
       where: { id: decoded.id },
       select: { id: true, name: true, email: true, role: true, isVerified: true },
     });
+
+    // Fallback: If database was migrated or user ID re-keyed, match by verified email
+    if (!user && decoded.email) {
+      user = await prisma.user.findUnique({
+        where: { email: String(decoded.email).toLowerCase().trim() },
+        select: { id: true, name: true, email: true, role: true, isVerified: true },
+      });
+    }
 
     if (!user) {
       return res.status(401).json({ error: 'User account no longer exists.' });

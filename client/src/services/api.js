@@ -140,6 +140,12 @@ export const fetchCloudData = async () => {
 
 // Unified Database Push Helper
 export const pushAllToCloud = async (overrides = {}) => {
+  const token = localStorage.getItem('junglee_token') || localStorage.getItem('junglee_auth_token') || localStorage.getItem('silvan_token');
+  // Skip pushing if no authentication token is present in the browser
+  if (!token) {
+    return null;
+  }
+
   const payload = {
     hidden: overrides.hidden !== undefined ? overrides.hidden : getHiddenTourSlugs(),
     safariPricing: overrides.safariPricing !== undefined ? overrides.safariPricing : getSafariPricing(),
@@ -152,7 +158,7 @@ export const pushAllToCloud = async (overrides = {}) => {
     const res = await API.post('/sync', payload, { timeout: 4000 });
     if (res.data) return res.data;
   } catch (err) {
-    console.warn('Database sync push notice:', err.message);
+    console.warn('Database sync push notice:', err?.response?.data || err.message);
   }
 };
 
