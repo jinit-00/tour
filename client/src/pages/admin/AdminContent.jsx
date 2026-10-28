@@ -348,6 +348,11 @@ export default function AdminContent() {
                       <td className="p-4">
                         <p className="font-bold text-slate-900">{m.name}</p>
                         <p className="text-xs font-mono text-slate-500">{m.email}</p>
+                        {m.tourInterest && (
+                          <span className="inline-block mt-1 px-2 py-0.5 bg-sand-200 text-charcoal-800 text-[11px] font-semibold rounded">
+                            {m.tourInterest}
+                          </span>
+                        )}
                       </td>
                       <td className="p-4 text-xs text-slate-700 max-w-md">{m.message}</td>
                       <td className="p-4 text-xs font-mono text-slate-400">{new Date(m.createdAt).toLocaleDateString()}</td>

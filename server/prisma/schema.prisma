@@ -140,12 +140,13 @@ model Booking {
 }
 
 model ContactMessage {
-  id        String   @id @default(uuid())
-  name      String
-  email     String
-  message   String   @db.Text
-  isRead    Boolean  @default(false)
-  createdAt DateTime @default(now())
+  id           String   @id @default(uuid())
+  name         String
+  email        String
+  tourInterest String?
+  message      String   @db.Text
+  isRead       Boolean  @default(false)
+  createdAt    DateTime @default(now())
 }
 
 model BlogPost {

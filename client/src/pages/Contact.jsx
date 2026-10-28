@@ -1,13 +1,30 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { sendContactMessage } from '../services/api';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [serverMsg, setServerMsg] = useState('');
   const [form, setForm] = useState({ name: '', email: '', tourInterest: 'General Inquiry', message: '' });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setError('');
+    setLoading(true);
+
+    try {
+      const res = await sendContactMessage(form);
+      setServerMsg(res.data?.message || 'Thank you for reaching out! Our team will respond within 24 hours.');
+      setSubmitted(true);
+      setForm({ name: '', email: '', tourInterest: 'General Inquiry', message: '' });
+    } catch (err) {
+      console.error('Failed to submit contact query:', err);
+      setError(err.response?.data?.error || 'Unable to send message at this moment. Please try again or reach out directly via email/phone.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -70,15 +87,36 @@ export default function Contact() {
         {/* Contact Form */}
         <div className="lg:col-span-2 glass-panel p-8 sm:p-10 rounded-3xl border border-sand-700 shadow-xl">
           {submitted ? (
-            <div className="text-center py-16 space-y-4">
-              <CheckCircle2 className="w-12 h-12 text-pine-800 mx-auto" />
-              <h3 className="text-2xl font-bold text-charcoal-900">Message Received!</h3>
-              <p className="text-sm text-charcoal-700 max-w-md mx-auto">
-                Thank you for reaching out. Vatsal Dangi & Harsh Barad will get back to you within 24 business hours.
+            <div className="text-center py-16 space-y-5">
+              <div className="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto shadow-sm">
+                <CheckCircle2 className="w-10 h-10" />
+              </div>
+              <div className="inline-block px-3 py-1 bg-emerald-100 border border-emerald-300 text-emerald-800 rounded-full text-xs font-bold font-mono uppercase tracking-wider">
+                ✓ Message Sent Successfully
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-charcoal-900">Message Received!</h3>
+              <p className="text-sm text-charcoal-700 max-w-md mx-auto leading-relaxed">
+                {serverMsg || 'Thank you for reaching out. Vatsal Dangi & Harsh Barad will get back to you within 24 business hours.'}
               </p>
+              <div className="pt-4">
+                <button
+                  type="button"
+                  onClick={() => setSubmitted(false)}
+                  className="px-6 py-2.5 rounded-xl bg-sand-800 hover:bg-sand-700 text-charcoal-900 font-bold text-xs uppercase tracking-wider transition-colors shadow-xs"
+                >
+                  Send Another Message
+                </button>
+              </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
+              {error && (
+                <div className="p-4 bg-rose-50 border border-rose-300 text-rose-800 rounded-xl text-xs flex items-center gap-2.5">
+                  <AlertCircle className="w-4 h-4 shrink-0 text-rose-600" />
+                  <span>{error}</span>
+                </div>
+              )}
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-xs font-mono text-charcoal-700 uppercase mb-1 font-bold">Your Name</label>
@@ -136,10 +174,20 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-pine-800 hover:bg-pine-700 text-sand-950 font-bold text-sm shadow-xl transition-all flex items-center justify-center gap-2"
+                disabled={loading}
+                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-pine-800 hover:bg-pine-700 text-sand-950 font-bold text-sm shadow-xl transition-all flex items-center justify-center gap-2 disabled:opacity-60"
               >
-                <span>Send Message to JungleE Team</span>
-                <Send className="w-4 h-4" />
+                {loading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Sending to JungleE Basecamp...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Send Message to JungleE Team</span>
+                    <Send className="w-4 h-4" />
+                  </>
+                )}
               </button>
             </form>
           )}
