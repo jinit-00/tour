@@ -96,7 +96,13 @@ export default function AdminTours() {
     }).catch(() => {});
 
     refreshHotelsFromDatabase().then((dests) => {
-      if (Array.isArray(dests)) setDestinationsList([...dests]);
+      if (Array.isArray(dests)) {
+        setDestinationsList([...dests]);
+        const dbHidden = dests.flatMap((d) => (d.hotels || []).filter((h) => h.isHidden).map((h) => h.id));
+        if (dbHidden.length > 0) {
+          setHiddenHotelIds((prev) => Array.from(new Set([...prev, ...dbHidden])));
+        }
+      }
     }).catch(() => {});
 
     const handleHotelVisibilityEvt = (e) => {
@@ -179,10 +185,26 @@ export default function AdminTours() {
   };
 
   const handleToggleHotelVisibility = async (hotel) => {
-    const isCurrentlyHidden = hiddenHotelIds.includes(hotel.id);
+    const isCurrentlyHidden = hiddenHotelIds.includes(hotel.id) || hotel.isHidden === true;
     const nextHidden = !isCurrentlyHidden;
+
+    // Immediately update UI state for instant responsiveness
+    setHiddenHotelIds((prev) =>
+      nextHidden ? Array.from(new Set([...prev, hotel.id])) : prev.filter((id) => id !== hotel.id)
+    );
+    setDestinationsList((prev) =>
+      prev.map((dest) => ({
+        ...dest,
+        hotels: (dest.hotels || []).map((h) =>
+          h.id === hotel.id ? { ...h, isHidden: nextHidden } : h
+        ),
+      }))
+    );
+
     const res = await toggleHotelVisibility(hotel.id, nextHidden);
-    setHiddenHotelIds(res.ids);
+    if (res?.ids) {
+      setHiddenHotelIds(res.ids);
+    }
     setToast({
       type: nextHidden ? 'hidden' : 'visible',
       message: `"${hotel.name}" is now ${nextHidden ? 'hidden from' : 'visible on'} the website and booking page.`,
@@ -745,7 +767,7 @@ export default function AdminTours() {
               {/* List of Hotels */}
               <div className="space-y-6">
                 {filteredDestHotels.map((hotel) => {
-                  const isHidden = hiddenHotelIds.includes(hotel.id);
+                  const isHidden = hiddenHotelIds.includes(hotel.id) || hotel.isHidden === true;
                   const isSavingThis = savingHotelId === hotel.id;
 
                   return (

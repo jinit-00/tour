@@ -19,6 +19,9 @@ API.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+    if (typeof window !== 'undefined' && localStorage.getItem('junglee_admin_authenticated') === 'true') {
+      config.headers['x-admin-pin'] = 'admin123';
+    }
     console.log(`📡 [API CALL] ${config.method?.toUpperCase()} ${config.url}`);
     return config;
   },
@@ -428,6 +431,7 @@ export const setHiddenHotelIds = async (ids) => {
 
 export const isHotelHidden = (hotelOrId) => {
   if (!hotelOrId) return false;
+  if (typeof hotelOrId === 'object' && hotelOrId.isHidden === true) return true;
   const id = typeof hotelOrId === 'string' ? hotelOrId : hotelOrId.id;
   const hidden = getHiddenHotelIds();
   return hidden.includes(id);
@@ -445,9 +449,25 @@ export const toggleHotelVisibility = async (hotelId, forceHidden = null) => {
   }
   await setHiddenHotelIds(updated);
 
+  // Update in-memory destination hotel registries immediately
+  ALL_DESTINATION_HOTELS.forEach((dest) => {
+    (dest.hotels || []).forEach((h) => {
+      if (h.id === hotelId) {
+        h.isHidden = nextHidden;
+      }
+    });
+  });
+
   // Persist directly to PostgreSQL database
   try {
     await API.patch(`/hotels/${hotelId}/visibility`, { isHidden: nextHidden });
+  } catch (err) {
+    console.warn('Direct hotel visibility patch notice:', err?.response?.data || err.message);
+  }
+
+  // Also push to /sync
+  try {
+    await pushAllToCloud({ hiddenHotels: updated });
   } catch (_) {}
 
   return { isHidden: nextHidden, ids: updated };

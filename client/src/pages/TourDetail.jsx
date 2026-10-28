@@ -361,7 +361,7 @@ export default function TourDetail() {
     : isTadoba ? TADOBA_HOTELS 
     : [];
 
-  const availableHotels = rawHotels.filter((h) => !hiddenHotels.includes(h.id));
+  const availableHotels = rawHotels.filter((h) => !hiddenHotels.includes(h.id) && !h.isHidden && !isHotelHidden(h));
 
   // If currently selected hotel becomes hidden, immediately switch to the first visible hotel
   useEffect(() => {
@@ -407,7 +407,7 @@ export default function TourDetail() {
           : [];
         
         const currentHidden = getHiddenHotelIds();
-        const hotels = destinationHotels.filter((h) => !currentHidden.includes(h.id));
+        const hotels = destinationHotels.filter((h) => !currentHidden.includes(h.id) && !h.isHidden && !isHotelHidden(h));
 
         if (hotels.length > 0) {
           const firstHotel = hotels[0];

@@ -179,13 +179,20 @@ router.patch('/:id/visibility', requireAuth, requireAdmin, async (req, res) => {
     const { id } = req.params;
     const { isHidden } = req.body;
 
-    const existingHotel = await prisma.hotel.findUnique({ where: { id } });
+    const existingHotel = await prisma.hotel.findFirst({
+      where: {
+        OR: [
+          { id },
+          { id: String(id).toLowerCase().trim() },
+        ],
+      },
+    });
     if (!existingHotel) {
       return res.status(404).json({ error: 'Hotel not found.' });
     }
 
     const updated = await prisma.hotel.update({
-      where: { id },
+      where: { id: existingHotel.id },
       data: { isHidden: Boolean(isHidden) },
       include: { roomCategories: true },
     });

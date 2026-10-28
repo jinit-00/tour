@@ -61,6 +61,7 @@ router.get('/', async (req, res) => {
       include: {
         packages: true,
         hotels: {
+          where: req.query.includeHidden === 'true' ? {} : { isHidden: false },
           include: {
             roomCategories: true,
           },
@@ -91,6 +92,7 @@ router.get('/:slugOrId', async (req, res) => {
       include: {
         packages: true,
         hotels: {
+          where: req.query.includeHidden === 'true' ? {} : { isHidden: false },
           include: {
             roomCategories: true,
           },
