@@ -6,7 +6,10 @@ const prisma = new PrismaClient();
 // Google Sign-In OAuth credentials (separate from Gmail API email sending)
 const clientID = process.env.GOOGLE_SIGNIN_CLIENT_ID || process.env.GOOGLE_CLIENT_ID || 'DUMMY_CLIENT_ID';
 const clientSecret = process.env.GOOGLE_SIGNIN_CLIENT_SECRET || process.env.GOOGLE_CLIENT_SECRET || 'DUMMY_CLIENT_SECRET';
-const callbackURL = process.env.GOOGLE_SIGNIN_CALLBACK_URL || process.env.GOOGLE_CALLBACK_URL || 'http://localhost:5001/api/auth/google/callback';
+const defaultCallback = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}/api/auth/google/callback`
+  : 'http://localhost:5001/api/auth/google/callback';
+const callbackURL = process.env.GOOGLE_SIGNIN_CALLBACK_URL || process.env.GOOGLE_CALLBACK_URL || defaultCallback;
 
 passport.use(
   new GoogleStrategy(

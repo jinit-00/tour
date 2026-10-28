@@ -80,7 +80,8 @@ export default function AuthModal() {
 
   const handleGoogleAuth = () => {
     const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
-    window.location.href = `${apiUrl}/auth/google`;
+    const returnUrl = encodeURIComponent(window.location.origin);
+    window.location.href = `${apiUrl}/auth/google?returnUrl=${returnUrl}`;
   };
 
   return (

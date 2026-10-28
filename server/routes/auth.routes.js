@@ -261,11 +261,43 @@ router.post('/request-otp-login', async (req, res) => {
 });
 
 // Google OAuth routes
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.get('/google', (req, res, next) => {
+  let returnUrl = req.query.returnUrl || req.headers.referer || process.env.CLIENT_URL;
+  if (returnUrl) {
+    try {
+      const parsed = new URL(returnUrl);
+      returnUrl = parsed.origin;
+    } catch (_) {}
+  }
+  const state = returnUrl ? Buffer.from(JSON.stringify({ returnUrl })).toString('base64') : undefined;
+  passport.authenticate('google', {
+    scope: ['profile', 'email'],
+    state,
+  })(req, res, next);
+});
 
-router.get('/google/callback', passport.authenticate('google', { session: false, failureRedirect: `${process.env.CLIENT_URL || 'http://localhost:5173'}/login?error=OAuthFailed` }), (req, res) => {
-  const token = generateToken(req.user);
-  res.redirect(`${process.env.CLIENT_URL || 'http://localhost:5173'}/auth-callback?token=${token}`);
+router.get('/google/callback', (req, res, next) => {
+  // Determine client return URL: priority to state returnUrl, then env CLIENT_URL, fallback localhost
+  let clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
+  if (req.query.state) {
+    try {
+      const decoded = JSON.parse(Buffer.from(req.query.state, 'base64').toString('utf8'));
+      if (decoded && decoded.returnUrl && (decoded.returnUrl.startsWith('http://') || decoded.returnUrl.startsWith('https://'))) {
+        clientUrl = decoded.returnUrl.replace(/\/+$/, '');
+      }
+    } catch (e) {
+      console.warn('Could not parse OAuth state:', e);
+    }
+  }
+
+  passport.authenticate('google', { session: false }, (err, user, info) => {
+    if (err || !user) {
+      console.error('Google OAuth callback error:', err || info);
+      return res.redirect(`${clientUrl}/login?error=OAuthFailed`);
+    }
+    const token = generateToken(user);
+    return res.redirect(`${clientUrl}/auth-callback?token=${token}`);
+  })(req, res, next);
 });
 
 // Get current user profile
