@@ -73,7 +73,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // Live Synchronization Route (Cross-device visibility & pricing database connector)
-const syncHandler = require('../api/sync.js');
+const syncHandler = require('./routes/sync.js');
 app.all('/api/sync', (req, res) => syncHandler(req, res));
 
 // API Routes
@@ -90,7 +90,11 @@ app.use('/api/admin', adminRoutes);
 // Error Middleware
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`🌲 JungleE Wildlife Expeditions Backend Server listening on http://localhost:${PORT}`);
-  console.log(`📡 Terminal API logging active: watching all endpoints and status codes...`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`🌲 JungleE Wildlife Expeditions Backend Server listening on http://localhost:${PORT}`);
+    console.log(`📡 Terminal API logging active: watching all endpoints and status codes...`);
+  });
+}
+
+module.exports = app;
