@@ -40,7 +40,6 @@ export default function TourDetail() {
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [adults, setAdults] = useState(1);
   const [kids, setKids] = useState(0);
-  const [passengerMenuOpen, setPassengerMenuOpen] = useState(false);
   const [checkInDate, setCheckInDate] = useState('2026-10-15');
   const [checkOutDate, setCheckOutDate] = useState('2026-10-18');
   const [bookingLoading, setBookingLoading] = useState(false);
@@ -51,6 +50,7 @@ export default function TourDetail() {
   const [selectedHotel, setSelectedHotel] = useState(null);
   const [selectedRoomCategory, setSelectedRoomCategory] = useState(null);
   const [rooms, setRooms] = useState(1);
+  const [roomsManual, setRoomsManual] = useState(false);
   const [mealPlan, setMealPlan] = useState('APAI');
   const [safariPeople, setSafariPeople] = useState(1);
   const [safariPeopleManual, setSafariPeopleManual] = useState(false);
@@ -143,6 +143,52 @@ export default function TourDetail() {
       window.removeEventListener('hotelPricingChanged', handleHotelPricing);
     };
   }, []);
+
+  const handleAdultsChange = (delta) => {
+    const nextVal = Math.max(1, adults + delta);
+    setAdults(nextVal);
+    setRooms(Math.ceil(nextVal / 2));
+    setRoomsManual(false);
+    if (!safariPeopleManual) {
+      setSafariPeople(Math.max(1, nextVal + kids));
+    }
+  };
+
+  const handleKidsChange = (delta) => {
+    const nextVal = Math.max(0, kids + delta);
+    setKids(nextVal);
+    if (!safariPeopleManual) {
+      setSafariPeople(Math.max(1, adults + nextVal));
+    }
+  };
+
+  const handleRoomsChange = (delta) => {
+    setRoomsManual(true);
+    setRooms((prev) => Math.max(1, prev + delta));
+  };
+
+  const todayStr = new Date().toISOString().split('T')[0];
+  const getNextDay = (dateStr) => {
+    if (!dateStr) return '';
+    const d = new Date(dateStr + 'T00:00:00');
+    d.setDate(d.getDate() + 1);
+    return d.toISOString().split('T')[0];
+  };
+
+  const handleCheckInChange = (newVal) => {
+    setCheckInDate(newVal);
+    if (!checkOutDate || newVal >= checkOutDate) {
+      setCheckOutDate(getNextDay(newVal));
+    }
+  };
+
+  const handleCheckOutChange = (newVal) => {
+    if (!newVal || newVal <= checkInDate) {
+      setCheckOutDate(getNextDay(checkInDate));
+    } else {
+      setCheckOutDate(newVal);
+    }
+  };
 
   // Synchronize safariPeople with total passengers unless manually adjusted by the user
   useEffect(() => {
@@ -328,11 +374,12 @@ export default function TourDetail() {
         dailySafarisSchedule: daysList.map((d, idx) => ({
           day: d.dayIndex,
           date: d.dateStr,
-          safaris: dailySafaris[idx] || 1,
+          safaris: dailySafaris[idx] !== undefined ? Number(dailySafaris[idx]) : 0,
           isWeekend: d.isWeekend,
           rate: d.isWeekend ? weekendRate : weekdayRate,
         })),
         totalSafaris: totalSafarisCount,
+        totalPrice,
       };
       await createBooking(bookingData);
       setBookingSuccess(true);
@@ -359,21 +406,26 @@ export default function TourDetail() {
     );
   }
 
-  // Dynamic day calculation based on check-in and check-out dates
+  // Dynamic stay and days calculation based on check-in and check-out dates
   const calculateStayBreakdown = () => {
-    if (!checkInDate) return { numDays: 1, weekdayDays: 1, weekendDays: 0, daysList: [] };
+    if (!checkInDate || !checkOutDate) {
+      return { numDays: 0, numNights: 0, weekdayDays: 0, weekendDays: 0, daysList: [] };
+    }
     
     const start = new Date(checkInDate + 'T00:00:00');
-    const end = checkOutDate ? new Date(checkOutDate + 'T00:00:00') : new Date(start);
+    const end = new Date(checkOutDate + 'T00:00:00');
     const diffMs = end.getTime() - start.getTime();
-    // Inclusive date calculation (includes both selected start and end dates)
-    const daysCount = Math.max(1, Math.round(diffMs / (1000 * 60 * 60 * 24)) + 1);
+    if (diffMs <= 0) {
+      return { numDays: 0, numNights: 0, weekdayDays: 0, weekendDays: 0, daysList: [] };
+    }
+    const numNights = Math.round(diffMs / (1000 * 60 * 60 * 24));
+    const numDays = numNights + 1;
 
     let weekdayDays = 0;
     let weekendDays = 0;
     const daysList = [];
 
-    for (let i = 0; i < daysCount; i++) {
+    for (let i = 0; i < numDays; i++) {
       const cur = new Date(start);
       cur.setDate(start.getDate() + i);
       const day = cur.getDay(); // 0 = Sunday, 6 = Saturday
@@ -393,22 +445,22 @@ export default function TourDetail() {
       });
     }
 
-    return { numDays: daysCount, weekdayDays, weekendDays, daysList };
+    return { numDays, numNights, weekdayDays, weekendDays, daysList };
   };
 
-  const { numDays, weekdayDays, weekendDays, daysList } = calculateStayBreakdown();
+  const { numDays, numNights, weekdayDays, weekendDays, daysList } = calculateStayBreakdown();
 
   const weekdayRate = Number(safariPricing?.weekday) || 6000;
   const weekendRate = Number(safariPricing?.weekend) || 8000;
 
-  // Rate per vehicle across all selected days based on custom daily safaris (1, 2, or 3)
+  // Rate per vehicle across all selected days based on custom daily safaris (0, 1, 2, or 3 - defaults to 0)
   let perVehicleSafariRate = 0;
   let totalSafarisCount = 0;
   let totalWeekdaySafaris = 0;
   let totalWeekendSafaris = 0;
 
   daysList.forEach((dayItem, idx) => {
-    const safarisOnDay = dailySafaris[idx] || 1;
+    const safarisOnDay = dailySafaris[idx] !== undefined ? Number(dailySafaris[idx]) : 0;
     totalSafarisCount += safarisOnDay;
     if (dayItem.isWeekend) {
       totalWeekendSafaris += safarisOnDay;
@@ -421,28 +473,25 @@ export default function TourDetail() {
 
   const hasAccommodation = Boolean(selectedHotel && selectedRoomCategory);
 
-  // Accommodation pricing based directly on selected hotel, room category, and meal plan (APAI / MAPAI / CPAI)
+  // Accommodation pricing based directly on selected room category rate (meal plan rate removed silently)
   const activeHotelPricing = getHotelPricing(selectedHotel?.id, selectedRoomCategory?.id, selectedRoomCategory);
-  const hotelBaseRate = hasAccommodation ? (activeHotelPricing.price || 0) : 0;
-  const roomMealRates = activeHotelPricing.room || { apai: 6000, mapai: 5000, cpai: 4000 };
-
-  const activeRoomRate = hasAccommodation
-    ? (mealPlan === 'APAI'
-      ? roomMealRates.apai
-      : mealPlan === 'MAPAI'
-      ? roomMealRates.mapai
-      : roomMealRates.cpai)
+  const roomCategoryRate = hasAccommodation
+    ? (Number(activeHotelPricing?.price) || Number(selectedRoomCategory?.price) || Number(selectedHotel?.price) || 0)
     : 0;
 
-  const perDayStayRate = hasAccommodation ? (hotelBaseRate + activeRoomRate) : 0;
-  const accommodationCost = perDayStayRate * rooms * numDays;
+  const accommodationCost = roomCategoryRate * rooms * numDays;
 
   const totalGuests = adults + kids;
   const safariVehicles = Math.max(1, Math.ceil(safariPeople / 6));
   const safariPrice = safariVehicles * perVehicleSafariRate;
 
-  // Total Reservation Cost (Base price is completely removed as requested!)
+  // Total Reservation Cost (one combined figure)
   const totalPrice = accommodationCost + safariPrice;
+
+  // Total is shown ONLY when resort, roomCategory, both dates and adults >= 1 are set
+  const isReadyForTotal = Boolean(
+    hasAccommodation && checkInDate && checkOutDate && numNights > 0 && adults >= 1
+  );
 
 
 
@@ -627,165 +676,226 @@ export default function TourDetail() {
                   </button>
                 </div>
 
-                {/* Calendar Date Selection: Check-in & Check-out */}
+                {/* 1. Dates */}
                 <div className="space-y-2">
                   <div className="grid grid-cols-2 gap-2.5">
                     <div className="space-y-1">
-                      <div className="flex items-center justify-between">
-                        <label className="block text-[11px] uppercase text-charcoal-700 font-bold tracking-wider">
-                          Check-in Date
-                        </label>
-                        <span className="text-[9px] text-pine-800 font-bold">12:00 PM</span>
-                      </div>
+                      <label htmlFor="booking-checkin-date" className="block text-[11px] uppercase text-charcoal-700 font-bold tracking-wider">
+                        Check-in Date
+                      </label>
                       <div className="relative">
                         <Calendar className="w-3.5 h-3.5 text-pine-800 absolute left-2.5 top-2.5 pointer-events-none" />
                         <input
+                          id="booking-checkin-date"
                           type="date"
+                          min={todayStr}
                           value={checkInDate}
-                          onChange={(e) => {
-                            setCheckInDate(e.target.value);
-                            if (e.target.value > checkOutDate) {
-                              setCheckOutDate(e.target.value);
-                            }
-                          }}
+                          onChange={(e) => handleCheckInChange(e.target.value)}
                           className="w-full bg-sand-950 border border-sand-700 rounded-xl pl-8 pr-2 py-2 text-xs text-charcoal-900 focus:outline-none focus:border-pine-800 font-medium"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-1">
-                      <div className="flex items-center justify-between">
-                        <label className="block text-[11px] uppercase text-charcoal-700 font-bold tracking-wider">
-                          Check-out Date
-                        </label>
-                        <span className="text-[9px] text-charcoal-500 font-bold">10:00 AM</span>
-                      </div>
+                      <label htmlFor="booking-checkout-date" className="block text-[11px] uppercase text-charcoal-700 font-bold tracking-wider">
+                        Check-out Date
+                      </label>
                       <div className="relative">
                         <Calendar className="w-3.5 h-3.5 text-pine-800 absolute left-2.5 top-2.5 pointer-events-none" />
                         <input
+                          id="booking-checkout-date"
                           type="date"
-                          min={checkInDate}
+                          min={getNextDay(checkInDate) || todayStr}
                           value={checkOutDate}
-                          onChange={(e) => setCheckOutDate(e.target.value)}
+                          onChange={(e) => handleCheckOutChange(e.target.value)}
                           className="w-full bg-sand-950 border border-sand-700 rounded-xl pl-8 pr-2 py-2 text-xs text-charcoal-900 focus:outline-none focus:border-pine-800 font-medium"
                         />
                       </div>
                     </div>
                   </div>
 
-                  {/* Dynamic Duration and Day Types Pill */}
-                  <div className="flex items-center justify-between px-3 py-1.5 rounded-xl bg-sand-950/80 border border-sand-700/80 text-[11px]">
-                    <span className="text-charcoal-600 font-medium">Expedition Duration:</span>
-                    <span className="text-pine-800 font-bold">
-                      {numDays} {numDays === 1 ? 'Day' : 'Days'} ({weekdayDays > 0 ? `${weekdayDays} Weekday${weekdayDays > 1 ? 's' : ''}` : ''}{weekdayDays > 0 && weekendDays > 0 ? ' · ' : ''}{weekendDays > 0 ? `${weekendDays} Weekend${weekendDays > 1 ? 's' : ''}` : ''})
+                  {/* Duration Badge Only (No rates) */}
+                  <div className="flex items-center justify-center px-3 py-1.5 rounded-xl bg-sand-950/80 border border-sand-700/80 text-[11px] font-bold text-pine-800">
+                    {numDays > 0 ? `${numDays} ${numDays === 1 ? 'Day' : 'Days'} / ${numNights} ${numNights === 1 ? 'Night' : 'Nights'}` : 'Select Dates'}
+                  </div>
+                </div>
+
+                {/* 2. Passengers */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <label className="block text-xs uppercase text-charcoal-700 font-bold tracking-wider">
+                      Passengers
+                    </label>
+                    <span className="text-[11px] text-pine-800 font-bold">
+                      {adults + kids} {adults + kids === 1 ? 'Guest' : 'Guests'} Total
                     </span>
                   </div>
-                </div>
 
-                {/* Interactive Number of Passengers Menu (Adults min 1, Kids min 0) */}
-                <div className="space-y-1 relative">
-                  <label className="block text-xs uppercase text-charcoal-700 font-bold tracking-wider">
-                    Number of Passengers
-                  </label>
-                  <div className="relative">
-                    <button
-                      type="button"
-                      onClick={() => setPassengerMenuOpen(!passengerMenuOpen)}
-                      className="w-full bg-sand-950 border border-sand-700 rounded-xl py-2 px-3 text-xs text-charcoal-900 flex items-center justify-between hover:border-pine-800/60 transition-colors focus:outline-none focus:border-pine-800"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Users className="w-4 h-4 text-pine-800 shrink-0" />
-                        <span className="font-semibold text-charcoal-950">
-                          {adults} {adults === 1 ? 'Adult' : 'Adults'}
-                          {kids > 0 ? `, ${kids} ${kids === 1 ? 'Kid' : 'Kids'}` : ''}
-                        </span>
+                  <div className="p-3 rounded-2xl bg-sand-950 border border-sand-700 space-y-2.5">
+                    {/* Adults Row (12+ yrs, min 1) */}
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="text-xs font-bold text-charcoal-950 block">Adults</span>
+                        <span className="text-[10px] text-charcoal-500 font-medium block">Age 12+ years</span>
                       </div>
-                      <ChevronDown className={`w-4 h-4 text-charcoal-500 transition-transform duration-200 ${passengerMenuOpen ? 'rotate-180' : ''}`} />
-                    </button>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          disabled={adults <= 1}
+                          onClick={() => handleAdultsChange(-1)}
+                          aria-label="Decrease adults"
+                          className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 disabled:opacity-30 disabled:cursor-not-allowed text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
+                        >
+                          <Minus className="w-3.5 h-3.5" />
+                        </button>
+                        <span className="w-5 text-center font-bold text-xs text-charcoal-950">
+                          {adults}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => handleAdultsChange(1)}
+                          aria-label="Increase adults"
+                          className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
+                        >
+                          <Plus className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
 
-                    {passengerMenuOpen && (
-                      <>
-                        <div 
-                          className="fixed inset-0 z-20" 
-                          onClick={() => setPassengerMenuOpen(false)}
-                        />
-                        <div className="absolute left-0 right-0 top-full mt-1.5 z-30 p-4 rounded-2xl bg-sand-950 border border-sand-700 shadow-2xl space-y-3.5">
-                          {/* Adults Row (min 1) */}
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <p className="text-xs font-bold text-charcoal-950">Adults</p>
-                              <p className="text-[10px] text-charcoal-500 font-medium">Age 12+ years</p>
-                            </div>
-                            <div className="flex items-center gap-3">
-                              <button
-                                type="button"
-                                disabled={adults <= 1}
-                                onClick={() => setAdults(Math.max(1, adults - 1))}
-                                className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 disabled:opacity-30 disabled:cursor-not-allowed text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
-                              >
-                                <Minus className="w-3.5 h-3.5" />
-                              </button>
-                              <span className="w-5 text-center font-bold text-xs text-charcoal-950">
-                                {adults}
-                              </span>
-                              <button
-                                type="button"
-                                onClick={() => setAdults(adults + 1)}
-                                className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
-                              >
-                                <Plus className="w-3.5 h-3.5" />
-                              </button>
-                            </div>
-                          </div>
-
-                          {/* Kids Row (min 0) */}
-                          <div className="flex items-center justify-between pt-2 border-t border-sand-700/60">
-                            <div>
-                              <p className="text-xs font-bold text-charcoal-950">Kids</p>
-                              <p className="text-[10px] text-charcoal-500 font-medium">Age 0 - 11 years</p>
-                            </div>
-                            <div className="flex items-center gap-3">
-                              <button
-                                type="button"
-                                disabled={kids <= 0}
-                                onClick={() => setKids(Math.max(0, kids - 1))}
-                                className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 disabled:opacity-30 disabled:cursor-not-allowed text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
-                              >
-                                <Minus className="w-3.5 h-3.5" />
-                              </button>
-                              <span className="w-5 text-center font-bold text-xs text-charcoal-950">
-                                {kids}
-                              </span>
-                              <button
-                                type="button"
-                                onClick={() => setKids(kids + 1)}
-                                className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
-                              >
-                                <Plus className="w-3.5 h-3.5" />
-                              </button>
-                            </div>
-                          </div>
-
-                          {/* Done button */}
-                          <button
-                            type="button"
-                            onClick={() => setPassengerMenuOpen(false)}
-                            className="w-full py-1.5 rounded-lg bg-pine-800 hover:bg-pine-700 text-sand-950 font-bold text-[11px] tracking-wider uppercase transition-colors"
-                          >
-                            Done
-                          </button>
-                        </div>
-                      </>
-                    )}
+                    {/* Kids Row (0-11 yrs, min 0) */}
+                    <div className="flex items-center justify-between pt-2 border-t border-sand-700/60">
+                      <div>
+                        <span className="text-xs font-bold text-charcoal-950 block">Kids</span>
+                        <span className="text-[10px] text-charcoal-500 font-medium block">Age 0 - 11 years</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          disabled={kids <= 0}
+                          onClick={() => handleKidsChange(-1)}
+                          aria-label="Decrease kids"
+                          className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 disabled:opacity-30 disabled:cursor-not-allowed text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
+                        >
+                          <Minus className="w-3.5 h-3.5" />
+                        </button>
+                        <span className="w-5 text-center font-bold text-xs text-charcoal-950">
+                          {kids}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => handleKidsChange(1)}
+                          aria-label="Increase kids"
+                          className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
+                        >
+                          <Plus className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                {/* Number of Rooms */}
+                {/* 3. Safari */}
+                <div className="space-y-2">
+                  <label className="block text-xs uppercase text-charcoal-700 font-bold tracking-wider">
+                    Safari
+                  </label>
+
+                  <div className="p-3 rounded-2xl bg-sand-950 border border-sand-700 space-y-3">
+                    {/* Safari People Counter */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Compass className="w-4 h-4 text-pine-800 shrink-0" />
+                        <span className="text-xs font-bold text-charcoal-950">Safari People</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          disabled={safariPeople <= 1}
+                          onClick={handleDecrementSafariPeople}
+                          aria-label="Decrease safari people"
+                          className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 disabled:opacity-30 disabled:cursor-not-allowed text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
+                        >
+                          <Minus className="w-3.5 h-3.5" />
+                        </button>
+                        <span className="w-5 text-center font-bold text-xs text-charcoal-950">
+                          {safariPeople}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={handleIncrementSafariPeople}
+                          aria-label="Increase safari people"
+                          className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
+                        >
+                          <Plus className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Vehicles line (No cost text) */}
+                    <div className="text-[11px] text-charcoal-700 font-medium px-2.5 py-1.5 rounded-xl bg-sand-900/60 border border-sand-800/60">
+                      {safariVehicles} {safariVehicles === 1 ? 'Safari Vehicle' : 'Safari Vehicles'} (max 6 guests / vehicle)
+                    </div>
+
+                    {/* Daily Safari Schedule */}
+                    <div className="pt-2 border-t border-sand-800/60 space-y-2">
+                      <span className="text-[10px] uppercase font-bold tracking-wider text-charcoal-500 block">
+                        Daily Schedule
+                      </span>
+
+                      {(!checkInDate || !checkOutDate || daysList.length === 0) ? (
+                        <p className="text-xs text-charcoal-600 font-medium py-2 px-3 bg-sand-900/50 rounded-xl border border-sand-800/50 text-center">
+                          Select dates to choose safaris
+                        </p>
+                      ) : (
+                        <div className="space-y-1.5">
+                          {daysList.map((dayItem, idx) => {
+                            const safarisOnDay = dailySafaris[idx] !== undefined ? Number(dailySafaris[idx]) : 0;
+                            return (
+                              <div
+                                key={`${dayItem.dateStr}-${idx}`}
+                                className="p-2.5 rounded-xl bg-sand-900/80 border border-sand-800/80 flex items-center justify-between gap-3"
+                              >
+                                <div className="min-w-0 flex-1 flex items-center gap-2 flex-wrap">
+                                  <span className="font-bold text-charcoal-950 text-xs">
+                                    Day {dayItem.dayIndex} · {dayItem.formattedDate}
+                                  </span>
+                                  <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold ${
+                                    dayItem.isWeekend
+                                      ? 'bg-amber-100 text-amber-900 border border-amber-300/70'
+                                      : 'bg-emerald-100 text-emerald-900 border border-emerald-300/70'
+                                  }`}>
+                                    {dayItem.isWeekend ? 'Weekend' : 'Weekday'}
+                                  </span>
+                                </div>
+
+                                <div className="shrink-0">
+                                  <select
+                                    value={safarisOnDay}
+                                    onChange={(e) => handleDaySafariChange(idx, e.target.value)}
+                                    className="bg-sand-950 border border-sand-700 text-charcoal-950 rounded-lg px-2.5 py-1 text-xs font-bold focus:outline-none focus:border-pine-800 cursor-pointer shadow-xs"
+                                    aria-label={`Select number of safaris for Day ${dayItem.dayIndex}`}
+                                  >
+                                    <option value={0}>No safari</option>
+                                    <option value={1}>1 Safari</option>
+                                    <option value={2}>2 Safaris</option>
+                                    <option value={3}>3 Safaris</option>
+                                  </select>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* 4. Rooms */}
                 <div className="space-y-1">
                   <label className="block text-xs uppercase text-charcoal-700 font-bold tracking-wider">
-                    Number of Rooms
+                    Rooms
                   </label>
-                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-sand-950 border border-sand-700">
+                  <div className="flex items-center justify-between p-3 rounded-2xl bg-sand-950 border border-sand-700">
                     <div className="flex items-center gap-2">
                       <Hotel className="w-4 h-4 text-pine-800 shrink-0" />
                       <span className="text-xs font-semibold text-charcoal-950">
@@ -796,7 +906,8 @@ export default function TourDetail() {
                       <button
                         type="button"
                         disabled={rooms <= 1}
-                        onClick={() => setRooms(Math.max(1, rooms - 1))}
+                        onClick={() => handleRoomsChange(-1)}
+                        aria-label="Decrease rooms"
                         className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 disabled:opacity-30 disabled:cursor-not-allowed text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
                       >
                         <Minus className="w-3.5 h-3.5" />
@@ -806,7 +917,8 @@ export default function TourDetail() {
                       </span>
                       <button
                         type="button"
-                        onClick={() => setRooms(rooms + 1)}
+                        onClick={() => handleRoomsChange(1)}
+                        aria-label="Increase rooms"
                         className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
                       >
                         <Plus className="w-3.5 h-3.5" />
@@ -815,307 +927,42 @@ export default function TourDetail() {
                   </div>
                 </div>
 
-                {/* Safari Selection */}
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between">
-                    <label className="block text-xs uppercase text-charcoal-700 font-bold tracking-wider">
-                      Safari Selection
-                    </label>
-                    <span className="text-[10px] text-pine-800 font-bold">
-                      ₹{safariPrice.toLocaleString()} ({safariVehicles} {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'})
-                    </span>
-                  </div>
-
-                  <div className="p-2.5 rounded-xl bg-sand-950 border border-sand-700 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Compass className="w-4 h-4 text-pine-800 shrink-0" />
-                        <div>
-                          <span className="text-xs font-semibold text-charcoal-950 block">
-                            {safariPeople} {safariPeople === 1 ? 'Person' : 'People'}
-                          </span>
-                          <span className="text-[10px] text-charcoal-500 block">
-                            {safariVehicles} {safariVehicles === 1 ? 'Safari Vehicle' : 'Safari Vehicles'} (Max 6 guests / vehicle)
-                          </span>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <button
-                          type="button"
-                          disabled={safariPeople <= 1}
-                          onClick={handleDecrementSafariPeople}
-                          className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 disabled:opacity-30 disabled:cursor-not-allowed text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
-                          aria-label="Decrease safari people"
-                        >
-                          <Minus className="w-3.5 h-3.5" />
-                        </button>
-                        <span className="w-5 text-center font-bold text-xs text-charcoal-950">
-                          {safariPeople}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={handleIncrementSafariPeople}
-                          className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
-                          aria-label="Increase safari people"
-                        >
-                          <Plus className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* Live Admin Safari Rates Badges */}
-                    <div className="grid grid-cols-2 gap-2 pt-1 pb-1">
-                      <div className="bg-sand-900/70 p-2 rounded-lg border border-sand-800/70 text-center">
-                        <span className="text-[9px] text-charcoal-600 uppercase block font-bold tracking-wider">Weekday Rate</span>
-                        <span className="text-xs font-bold text-pine-800">₹{weekdayRate.toLocaleString()}</span>
-                        <span className="text-[9px] text-charcoal-500 block">/ vehicle / day</span>
-                      </div>
-                      <div className="bg-sand-900/70 p-2 rounded-lg border border-sand-800/70 text-center">
-                        <span className="text-[9px] text-charcoal-600 uppercase block font-bold tracking-wider">Weekend Rate</span>
-                        <span className="text-xs font-bold text-pine-800">₹{weekendRate.toLocaleString()}</span>
-                        <span className="text-[9px] text-charcoal-500 block">/ vehicle / day</span>
-                      </div>
-                    </div>
-
-                    {/* Daily Safari Schedule: Select number of safaris per day */}
-                    <div className="pt-2 border-t border-sand-800/60 space-y-2">
-                      <div className="flex items-center justify-between">
-                        <label className="text-[11px] uppercase text-charcoal-700 font-bold tracking-wider">
-                          Safaris Per Day ({daysList.length} {daysList.length === 1 ? 'Day' : 'Days'})
-                        </label>
-                        <span className="text-[10px] text-pine-800 font-bold">
-                          {totalSafarisCount} {totalSafarisCount === 1 ? 'Safari' : 'Safaris'} Total
-                        </span>
-                      </div>
-
-                      <div className="space-y-1.5">
-                        {daysList.map((dayItem, idx) => {
-                          const safariCount = dailySafaris[idx] || 1;
-                          const dayRate = dayItem.isWeekend ? weekendRate : weekdayRate;
-                          const dayVehicleCost = safariCount * dayRate;
-                          const dayTotalCost = dayVehicleCost * safariVehicles;
-
-                          return (
-                            <div
-                              key={`${dayItem.dateStr}-${idx}`}
-                              className="p-2.5 rounded-xl bg-sand-900/80 border border-sand-800/80 flex items-center justify-between gap-3"
-                            >
-                              <div className="min-w-0 flex-1">
-                                <div className="flex items-center gap-2 flex-wrap">
-                                  <span className="font-bold text-charcoal-950 text-xs">
-                                    Day {dayItem.dayIndex}:
-                                  </span>
-                                  <span className="text-charcoal-800 font-semibold text-xs">
-                                    {dayItem.formattedDate}
-                                  </span>
-                                  <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold ${
-                                    dayItem.isWeekend
-                                      ? 'bg-amber-100 text-amber-900 border border-amber-300/70'
-                                      : 'bg-emerald-100 text-emerald-900 border border-emerald-300/70'
-                                  }`}>
-                                    {dayItem.isWeekend ? 'Weekend' : 'Weekday'}
-                                  </span>
-                                </div>
-                                <div className="text-[10px] text-charcoal-500 pt-0.5">
-                                  ₹{dayRate.toLocaleString()} / safari · Total: ₹{dayTotalCost.toLocaleString()} ({safariCount} {safariCount === 1 ? 'safari' : 'safaris'} × {safariVehicles} {safariVehicles === 1 ? 'veh' : 'vehs'})
-                                </div>
-                              </div>
-
-                              <div className="flex items-center gap-1.5 shrink-0">
-                                <select
-                                  value={safariCount}
-                                  onChange={(e) => handleDaySafariChange(idx, e.target.value)}
-                                  className="bg-sand-950 border border-sand-700 text-charcoal-950 rounded-lg px-2.5 py-1 text-xs font-bold focus:outline-none focus:border-pine-800 cursor-pointer shadow-xs"
-                                  aria-label={`Select number of safaris for Day ${dayItem.dayIndex}`}
-                                >
-                                  <option value={1}>1 Safari</option>
-                                  <option value={2}>2 Safaris</option>
-                                  <option value={3}>3 Safaris</option>
-                                </select>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    <div className="pt-2 border-t border-sand-800/60 space-y-1 text-[11px]">
-                      <div className="flex items-center justify-between">
-                        <span className="text-charcoal-600 font-medium">Vehicle Allocation:</span>
-                        <span className="text-charcoal-900 font-bold">
-                          {safariVehicles} × Safari {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'}
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-charcoal-600 font-medium">Total Safaris Selected:</span>
-                        <span className="text-charcoal-900 font-bold">
-                          {totalSafarisCount} {totalSafarisCount === 1 ? 'Safari' : 'Safaris'} across {numDays} {numDays === 1 ? 'Day' : 'Days'}
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-charcoal-600 font-medium">Date-based Safari Rate:</span>
-                        <span className="text-pine-800 font-bold">
-                          ₹{safariPrice.toLocaleString()} ({safariVehicles} × ₹{perVehicleSafariRate.toLocaleString()}/veh)
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Select Meal Option */}
-                <div className="space-y-1.5 pt-1">
-                  <div className="flex items-center justify-between">
-                    <label className="block text-xs uppercase text-charcoal-700 font-bold tracking-wider">
-                      Select Meal Option
-                    </label>
-                    <span className="text-[10px] text-pine-800 font-bold">
-                      {mealPlan} Plan
-                    </span>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    {/* APAI */}
+                {/* 5. Total Reservation Cost */}
+                <div className="pt-2">
+                  {isReadyForTotal ? (
                     <div
-                      onClick={() => setMealPlan('APAI')}
-                      className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-start gap-2.5 ${
-                        mealPlan === 'APAI'
-                          ? 'border-pine-800 bg-sand-900 ring-2 ring-pine-800/30 shadow-sm'
-                          : 'border-sand-700/80 bg-sand-950/60 hover:border-sand-600 hover:bg-sand-900/40'
-                      }`}
+                      className="p-4 rounded-2xl bg-pine-900/10 border border-pine-800/30 text-center space-y-1"
+                      aria-live="polite"
                     >
-                      <div className={`w-4 h-4 rounded-full border mt-0.5 shrink-0 flex items-center justify-center ${
-                        mealPlan === 'APAI' ? 'border-pine-800 bg-pine-800' : 'border-charcoal-400'
-                      }`}>
-                        {mealPlan === 'APAI' && <div className="w-1.5 h-1.5 rounded-full bg-sand-950" />}
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-center justify-between gap-1">
-                          <p className="text-xs font-bold text-charcoal-950">APAI (All Meals Included)</p>
-                          <span className="text-[11px] text-pine-800 font-bold">
-                            ₹{roomMealRates.apai.toLocaleString()} / day
-                          </span>
-                        </div>
-                        <p className="text-[11px] text-charcoal-700 leading-tight pt-0.5 font-normal">
-                          Lunch, High Tea, Dinner and Breakfast
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* MAPAI */}
-                    <div
-                      onClick={() => setMealPlan('MAPAI')}
-                      className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-start gap-2.5 ${
-                        mealPlan === 'MAPAI'
-                          ? 'border-pine-800 bg-sand-900 ring-2 ring-pine-800/30 shadow-sm'
-                          : 'border-sand-700/80 bg-sand-950/60 hover:border-sand-600 hover:bg-sand-900/40'
-                      }`}
-                    >
-                      <div className={`w-4 h-4 rounded-full border mt-0.5 shrink-0 flex items-center justify-center ${
-                        mealPlan === 'MAPAI' ? 'border-pine-800 bg-pine-800' : 'border-charcoal-400'
-                      }`}>
-                        {mealPlan === 'MAPAI' && <div className="w-1.5 h-1.5 rounded-full bg-sand-950" />}
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-center justify-between gap-1">
-                          <p className="text-xs font-bold text-charcoal-950">MAPAI</p>
-                          <span className="text-[11px] text-pine-800 font-bold">
-                            ₹{roomMealRates.mapai.toLocaleString()} / day
-                          </span>
-                        </div>
-                        <p className="text-[11px] text-charcoal-700 leading-tight pt-0.5 font-normal">
-                          Breakfast and Lunch or Dinner
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* CPAI */}
-                    <div
-                      onClick={() => setMealPlan('CPAI')}
-                      className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-start gap-2.5 ${
-                        mealPlan === 'CPAI'
-                          ? 'border-pine-800 bg-sand-900 ring-2 ring-pine-800/30 shadow-sm'
-                          : 'border-sand-700/80 bg-sand-950/60 hover:border-sand-600 hover:bg-sand-900/40'
-                      }`}
-                    >
-                      <div className={`w-4 h-4 rounded-full border mt-0.5 shrink-0 flex items-center justify-center ${
-                        mealPlan === 'CPAI' ? 'border-pine-800 bg-pine-800' : 'border-charcoal-400'
-                      }`}>
-                        {mealPlan === 'CPAI' && <div className="w-1.5 h-1.5 rounded-full bg-sand-950" />}
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-center justify-between gap-1">
-                          <p className="text-xs font-bold text-charcoal-950">CPAI</p>
-                          <span className="text-[11px] text-pine-800 font-bold">
-                            ₹{roomMealRates.cpai.toLocaleString()} / day
-                          </span>
-                        </div>
-                        <p className="text-[11px] text-charcoal-700 leading-tight pt-0.5 font-normal">
-                          Breakfast only
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Price Summary Breakdown */}
-                <div className="pt-2.5 border-t border-sand-700 space-y-2 text-xs text-charcoal-700">
-                  {hasAccommodation ? (
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <span className="font-semibold text-charcoal-900">
-                          Stay ({selectedRoomCategory ? selectedRoomCategory.name : selectedHotel?.name || 'Resort Stay'})
-                        </span>
-                        <span className="block text-[10px] text-charcoal-500 font-normal">
-                          ₹{perDayStayRate.toLocaleString()} × {rooms} {rooms === 1 ? 'room' : 'rooms'} × {numDays} {numDays === 1 ? 'day' : 'days'} ({mealPlan} Plan)
-                        </span>
-                      </div>
-                      <span className="font-bold text-charcoal-900">₹{accommodationCost.toLocaleString()}</span>
+                      <span className="text-[10px] uppercase font-bold tracking-wider text-pine-800 block">
+                        Total Reservation Cost
+                      </span>
+                      <p className="text-xl sm:text-2xl font-black text-charcoal-900">
+                        ₹{totalPrice.toLocaleString()} <span className="text-xs font-normal text-charcoal-600">(room + safari combined)</span>
+                      </p>
                     </div>
                   ) : (
-                    <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-charcoal-800 text-[11px] flex items-start gap-2">
-                      <AlertCircle className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
-                      <div className="leading-tight">
-                        <span className="font-bold text-amber-900 block">Resort & Room Pending</span>
-                        <span>Select a resort and room category on the left to calculate stay and total cost.</span>
-                      </div>
+                    <div
+                      className="p-3.5 rounded-2xl bg-sand-900/50 border border-sand-700 text-center text-xs font-medium text-charcoal-600"
+                      aria-live="polite"
+                    >
+                      Select details to see your total
                     </div>
                   )}
-
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <span className="font-semibold text-charcoal-900">Safari ({safariVehicles} {safariVehicles === 1 ? 'Vehicle' : 'Vehicles'} · {totalSafarisCount} {totalSafarisCount === 1 ? 'Safari' : 'Safaris'})</span>
-                      <span className="block text-[10px] text-charcoal-500 font-normal">
-                        {totalWeekdaySafaris > 0 && `${totalWeekdaySafaris} weekday safari${totalWeekdaySafaris > 1 ? 's' : ''} @ ₹${weekdayRate.toLocaleString()}`}
-                        {totalWeekdaySafaris > 0 && totalWeekendSafaris > 0 && ' · '}
-                        {totalWeekendSafaris > 0 && `${totalWeekendSafaris} weekend safari${totalWeekendSafaris > 1 ? 's' : ''} @ ₹${weekendRate.toLocaleString()}`}
-                      </span>
-                    </div>
-                    <span className="font-bold text-charcoal-900">+₹{safariPrice.toLocaleString()}</span>
-                  </div>
-
-                  <div className="flex justify-between font-bold text-charcoal-900 text-sm pt-2 border-t border-sand-700 items-baseline">
-                    <span>Total Reservation Cost</span>
-                    {hasAccommodation ? (
-                      <span className="text-pine-800 text-base">₹{totalPrice.toLocaleString()}</span>
-                    ) : (
-                      <span className="text-charcoal-500 text-xs font-semibold">Stay Pending</span>
-                    )}
-                  </div>
                 </div>
 
+                {/* 6. Book Button */}
                 <button
                   type="submit"
-                  disabled={bookingLoading}
-                  className="w-full py-3 rounded-xl bg-pine-800 hover:bg-pine-700 text-sand-950 font-bold text-xs shadow-xl transition-all flex items-center justify-center gap-2"
+                  disabled={!isReadyForTotal || bookingLoading}
+                  className="w-full py-3.5 rounded-xl bg-pine-800 hover:bg-pine-700 disabled:bg-sand-800 disabled:text-charcoal-500 disabled:cursor-not-allowed text-sand-950 font-bold text-xs shadow-xl transition-all flex items-center justify-center gap-2 uppercase tracking-wider"
                 >
                   <span>
                     {bookingLoading
                       ? 'Processing...'
-                      : !hasAccommodation
-                      ? 'Select Resort & Room to Reserve'
-                      : user
-                      ? 'Book Your Safari Now'
-                      : 'Sign In to Reserve'}
+                      : !user
+                      ? 'Sign In to Reserve'
+                      : 'BOOK YOUR SAFARI NOW'}
                   </span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
@@ -1131,10 +978,10 @@ export default function TourDetail() {
       <div className="block lg:hidden fixed inset-x-0 bottom-0 z-40 bg-sand-950/95 backdrop-blur-md border-t border-sand-700 p-3 shadow-2xl safe-area-bottom">
         <div className="flex items-center justify-between gap-3 max-w-7xl mx-auto">
           <div className="min-w-0 flex-1">
-            {hasAccommodation ? (
+            {isReadyForTotal ? (
               <>
-                <p className="text-xs font-black text-charcoal-950 truncate">
-                  ₹{totalPrice.toLocaleString()} <span className="text-[10px] font-normal text-charcoal-600">Total ({numDays} {numDays === 1 ? 'day' : 'days'})</span>
+                <p className="text-xs font-black text-charcoal-950 truncate" aria-live="polite">
+                  ₹{totalPrice.toLocaleString()} <span className="text-[10px] font-normal text-charcoal-600">(room + safari combined)</span>
                 </p>
                 <p className="text-[10px] text-pine-800 font-bold truncate">
                   {selectedHotel.name} · {selectedRoomCategory.name}
@@ -1142,11 +989,11 @@ export default function TourDetail() {
               </>
             ) : (
               <>
-                <p className="text-xs font-black text-charcoal-950 truncate">
-                  Expedition Reservation
+                <p className="text-xs font-bold text-charcoal-700 truncate" aria-live="polite">
+                  Select details to see your total
                 </p>
-                <p className="text-[10px] text-amber-800 font-medium truncate">
-                  Resort & room pending selection
+                <p className="text-[10px] text-charcoal-500 font-medium truncate">
+                  {hasAccommodation ? `${selectedHotel.name} · ${selectedRoomCategory.name}` : 'Resort & room pending selection'}
                 </p>
               </>
             )}
