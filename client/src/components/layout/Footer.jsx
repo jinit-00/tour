@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className="bg-sand-900 text-charcoal-800 border-t border-sand-700 pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-sand-700">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-sand-700">
           
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
@@ -72,18 +72,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Featured Destinations */}
-          <div className="space-y-3">
-            <h4 className="text-xs uppercase font-mono text-pine-800 font-bold tracking-widest">Destinations</h4>
-            <ul className="space-y-2 text-sm text-charcoal-700">
-              <li>Gir Asiatic Lion Sanctuary</li>
-              <li>Jawai Granite Hills</li>
-              <li>Bandhavgarh & Kanha</li>
-              <li>Pench & Tadoba</li>
-              <li>Jim Corbett National Park</li>
-            </ul>
-          </div>
-
           {/* Contact Details */}
           <div className="space-y-3">
             <h4 className="text-xs uppercase font-mono text-pine-800 font-bold tracking-widest">Basecamp Contact</h4>
@@ -118,12 +106,6 @@ export default function Footer() {
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-charcoal-600 gap-4">
           <p>© {new Date().getFullYear()} JungleE Wildlife Expeditions. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <Link
-              to="/admin/tours"
-              className="hover:text-pine-800 transition-colors font-medium cursor-pointer"
-            >
-              Admin Panel
-            </Link>
             <button
               type="button"
               onClick={() => setIsTermsOpen(true)}
