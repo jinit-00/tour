@@ -27,6 +27,8 @@ import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import UserDashboard from './pages/UserDashboard';
 import AuthCallback from './pages/AuthCallback';
+import TermsAndConditions from './pages/TermsAndConditions';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 // Admin Pages
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -58,6 +60,10 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/dashboard" element={<UserDashboard />} />
           <Route path="/auth-callback" element={<AuthCallback />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
           {/* Admin Protected Routes */}
           <Route path="/admin" element={<AdminDashboard />} />

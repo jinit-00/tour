@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, Facebook, Youtube, Mail, Phone, MapPin } from 'lucide-react';
-import TermsModal from '../ui/TermsModal';
 import logoImg from '../../assets/logo.png';
 
 export default function Footer() {
-  const [isTermsOpen, setIsTermsOpen] = useState(false);
   return (
     <footer className="bg-sand-900 text-charcoal-800 border-t border-sand-700 pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -69,6 +67,8 @@ export default function Footer() {
               <li><Link to="/gallery" className="hover:text-pine-800 transition-colors">Photo Gallery</Link></li>
               <li><Link to="/blog" className="hover:text-pine-800 transition-colors">Field Notes & Blog</Link></li>
               <li><Link to="/faq" className="hover:text-pine-800 transition-colors">Expedition FAQ</Link></li>
+              <li><Link to="/terms" className="hover:text-pine-800 transition-colors">Terms & Conditions</Link></li>
+              <li><Link to="/privacy" className="hover:text-pine-800 transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
 
@@ -106,22 +106,21 @@ export default function Footer() {
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-charcoal-600 gap-4">
           <p>© {new Date().getFullYear()} JungleE Wildlife Expeditions. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <button
-              type="button"
-              onClick={() => setIsTermsOpen(true)}
-              className="hover:text-charcoal-900 transition-colors font-medium cursor-pointer"
+            <Link
+              to="/terms"
+              className="hover:text-charcoal-900 transition-colors font-medium"
             >
               Terms & Conditions
-            </button>
+            </Link>
+            <Link
+              to="/privacy"
+              className="hover:text-charcoal-900 transition-colors font-medium"
+            >
+              Privacy Policy
+            </Link>
           </div>
         </div>
       </div>
-
-      {/* Terms & Conditions Modal */}
-      <TermsModal
-        isOpen={isTermsOpen}
-        onClose={() => setIsTermsOpen(false)}
-      />
     </footer>
   );
 }
