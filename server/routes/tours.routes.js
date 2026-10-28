@@ -20,6 +20,46 @@ function formatHotel(hotel) {
   };
 }
 
+const DESIRED_TOUR_ORDER = [
+  'gir-lion-safari',
+  'sanjay-dubri-tiger-safari',
+  'jawai-leopard-safari',
+  'ranthambore-tiger-safari',
+  'velavadar-deer-safari',
+  'pench-tiger-safari',
+  'panna-tiger-safari',
+  'bandhavgarh-tiger-safari',
+  'kanha-tiger-safari',
+  'tadoba-tiger-safari',
+  'chitwan-rhino-safari',
+  'jim-corbett-safari'
+];
+
+function sortTours(toursList) {
+  if (!Array.isArray(toursList)) return toursList;
+  return [...toursList].sort((a, b) => {
+    const getOrder = (item) => {
+      const slug = (item.slug || '').toLowerCase();
+      const title = (item.title || '').toLowerCase();
+      if (slug.includes('gir') || title.includes('gir')) return 0;
+      if (slug.includes('sanjay') || title.includes('sanjay')) return 1;
+      if (slug.includes('jawai') || title.includes('jawai')) return 2;
+      if (slug.includes('ranthambore') || title.includes('ranthambore')) return 3;
+      if (slug.includes('velavadar') || title.includes('velavadar')) return 4;
+      if (slug.includes('pench') || title.includes('pench')) return 5;
+      if (slug.includes('panna') || title.includes('panna')) return 6;
+      if (slug.includes('bandhavgarh') || title.includes('bandhavgarh')) return 7;
+      if (slug.includes('kanha') || title.includes('kanha')) return 8;
+      if (slug.includes('tadoba') || title.includes('tadoba')) return 9;
+      if (slug.includes('chitwan') || title.includes('chitwan')) return 10;
+      if (slug.includes('corbett') || title.includes('corbett')) return 11;
+      const idx = DESIRED_TOUR_ORDER.indexOf(slug);
+      return idx !== -1 ? idx : 999;
+    };
+    return getOrder(a) - getOrder(b);
+  });
+}
+
 function formatTour(tour) {
   return {
     ...tour,
@@ -70,7 +110,7 @@ router.get('/', async (req, res) => {
       orderBy: { createdAt: 'desc' },
     });
 
-    res.json(tours.map(formatTour));
+    res.json(sortTours(tours.map(formatTour)));
   } catch (error) {
     console.error('Error fetching tours:', error);
     res.status(500).json({ error: 'Failed to fetch tours.' });

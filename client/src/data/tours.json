@@ -2481,180 +2481,6 @@
     }
   },
   {
-    "id": "6",
-    "title": "Panna Tiger Reserve & Ken River Expedition",
-    "slug": "panna-tiger-safari",
-    "description": "Panna Tiger Reserve, located in Madhya Pradesh, is a beautiful wilderness shaped by forests, plateaus, rocky terrain, and the Ken River. It is widely recognized for its successful tiger conservation efforts and offers a distinctive safari experience in central India.\n\nPanna is home to Bengal tigers, leopards, sloth bears, chital, sambar, nilgai, gharial, and a wide variety of birds. The Ken River and surrounding landscapes add another dimension to the reserve, supporting a rich and diverse ecosystem.\n\nFor wildlife photographers, Panna offers a combination of wildlife, dramatic landscapes, and riverine habitats. Its conservation story and recovering tiger population make it an especially meaningful destination for experiencing India’s wilderness.",
-    "location": "Panna, India",
-    "region": "Madhya Pradesh",
-    "basePrice": 3200,
-    "duration": "6 Days / 5 Nights",
-    "isFeatured": true,
-    "images": [
-      "https://images.unsplash.com/photo-1591824438708-ce405f36ba3d?auto=format&fit=crop&w=1600&q=80"
-    ],
-    "packages": [
-      {
-        "id": "greetoe-camp-panna",
-        "name": "Greetoe Camp Panna (Standard Package)",
-        "price": 0,
-        "description": "Eco-Luxury Riverside Forest Camp on the Banks of Ken River"
-      }
-    ],
-    "hotels": [
-      {
-        "id": "greetoe-camp-panna",
-        "name": "Greetoe Camp Panna",
-        "tagline": "Eco-Luxury Riverside Forest Camp on the Banks of Ken River",
-        "price": 0,
-        "description": "Greetoe Camp Panna is situated right at the Ken River edge near Panna Tiger Reserve in Village Badata, featuring river-facing cottages, an outdoor swimming pool, lush forest gardens, open-air dining, bonfire nights, and naturalist-led jungle safaris.",
-        "amenities": [
-          "Outdoor Swimming Pool",
-          "Ken Riverfront Views",
-          "Multi-Cuisine Restaurant",
-          "Private Riverfront Verandahs",
-          "Free Wi-Fi",
-          "Jungle Safaris & Nature Trails",
-          "24/7 Front Desk"
-        ],
-        "images": [
-          "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
-          "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
-          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
-          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
-          "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
-          "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
-          "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
-          "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
-          "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
-          "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
-        ],
-        "roomCategories": [
-          {
-            "id": "greetoe-river-facing-deluxe",
-            "name": "River Facing Deluxe",
-            "price": 0,
-            "bedType": "1 Double Bed",
-            "view": "Ken River & Garden View",
-            "roomSize": "100 sq.ft",
-            "description": "River Facing Deluxe room featuring air conditioning, comfortable double bedding, en-suite bathroom, and direct views of the Ken River corridor.",
-            "images": [
-              "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
-              "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
-              "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
-              "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg"
-            ]
-          },
-          {
-            "id": "greetoe-super-deluxe-river-facing",
-            "name": "Super Deluxe - River Facing",
-            "price": 60,
-            "bedType": "1 Double Bed",
-            "view": "Panoramic River View",
-            "roomSize": "100 sq.ft",
-            "description": "Super Deluxe - River Facing room with living and seating area, balcony with unobstructed river views, work desk, sofa, mini fridge, and modern shower cubicle.",
-            "images": [
-              "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
-              "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
-              "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
-              "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg"
-            ]
-          },
-          {
-            "id": "greetoe-cottage-river-facing",
-            "name": "Cottage - River Facing",
-            "price": 110,
-            "bedType": "1 King Bed",
-            "view": "Riverfront & Forest View",
-            "roomSize": "260 sq.ft",
-            "description": "Cottage - River Facing offering expansive 260 sq.ft rustic stone cottage living, private sit-out verandah overlooking the Ken River, luxury bath amenities, and air conditioning.",
-            "images": [
-              "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
-              "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
-              "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
-              "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
-            ]
-          }
-        ]
-      }
-    ],
-    "hotelDetails": {
-      "id": "greetoe-camp-panna",
-      "name": "Greetoe Camp Panna",
-      "tagline": "Eco-Luxury Riverside Forest Camp on the Banks of Ken River",
-      "price": 0,
-      "description": "Greetoe Camp Panna is situated right at the Ken River edge near Panna Tiger Reserve in Village Badata, featuring river-facing cottages, an outdoor swimming pool, lush forest gardens, open-air dining, bonfire nights, and naturalist-led jungle safaris.",
-      "amenities": [
-        "Outdoor Swimming Pool",
-        "Ken Riverfront Views",
-        "Multi-Cuisine Restaurant",
-        "Private Riverfront Verandahs",
-        "Free Wi-Fi",
-        "Jungle Safaris & Nature Trails",
-        "24/7 Front Desk"
-      ],
-      "images": [
-        "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
-        "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
-        "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
-        "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
-        "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
-        "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
-        "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
-        "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
-        "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
-        "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
-      ],
-      "roomCategories": [
-        {
-          "id": "greetoe-river-facing-deluxe",
-          "name": "River Facing Deluxe",
-          "price": 0,
-          "bedType": "1 Double Bed",
-          "view": "Ken River & Garden View",
-          "roomSize": "100 sq.ft",
-          "description": "River Facing Deluxe room featuring air conditioning, comfortable double bedding, en-suite bathroom, and direct views of the Ken River corridor.",
-          "images": [
-            "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
-            "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
-            "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
-            "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg"
-          ]
-        },
-        {
-          "id": "greetoe-super-deluxe-river-facing",
-          "name": "Super Deluxe - River Facing",
-          "price": 60,
-          "bedType": "1 Double Bed",
-          "view": "Panoramic River View",
-          "roomSize": "100 sq.ft",
-          "description": "Super Deluxe - River Facing room with living and seating area, balcony with unobstructed river views, work desk, sofa, mini fridge, and modern shower cubicle.",
-          "images": [
-            "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
-            "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
-            "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
-            "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg"
-          ]
-        },
-        {
-          "id": "greetoe-cottage-river-facing",
-          "name": "Cottage - River Facing",
-          "price": 110,
-          "bedType": "1 King Bed",
-          "view": "Riverfront & Forest View",
-          "roomSize": "260 sq.ft",
-          "description": "Cottage - River Facing offering expansive 260 sq.ft rustic stone cottage living, private sit-out verandah overlooking the Ken River, luxury bath amenities, and air conditioning.",
-          "images": [
-            "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
-            "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
-            "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
-            "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
-          ]
-        }
-      ]
-    }
-  },
-  {
     "id": "7",
     "title": "Pench Tiger Reserve & Mowgli Jungle Safari",
     "slug": "pench-tiger-safari",
@@ -2932,46 +2758,40 @@
     }
   },
   {
-    "id": "8",
-    "title": "Kanha National Park Sal Forest Tiger Expedition",
-    "slug": "kanha-tiger-safari",
-    "description": "Kanha National Park, located in Madhya Pradesh, is one of India’s most celebrated wildlife reserves and a major stronghold for Bengal tigers. Its sal forests, bamboo groves, open meadows, and streams create one of the most beautiful landscapes in central India.\n\nKanha is home to Bengal tigers, leopards, wild dogs, sloth bears, gaur, sambar, chital, and many bird species. The reserve is also known for the hard-ground barasingha, whose conservation has become one of Kanha’s notable success stories.\n\nWith its scenic forests, diverse wildlife, and expansive meadows, Kanha offers an immersive safari experience for photographers and nature enthusiasts. It is a destination where the landscape itself becomes an important part of the wildlife story.",
-    "location": "Kanha, India",
+    "id": "6",
+    "title": "Panna Tiger Reserve & Ken River Expedition",
+    "slug": "panna-tiger-safari",
+    "description": "Panna Tiger Reserve, located in Madhya Pradesh, is a beautiful wilderness shaped by forests, plateaus, rocky terrain, and the Ken River. It is widely recognized for its successful tiger conservation efforts and offers a distinctive safari experience in central India.\n\nPanna is home to Bengal tigers, leopards, sloth bears, chital, sambar, nilgai, gharial, and a wide variety of birds. The Ken River and surrounding landscapes add another dimension to the reserve, supporting a rich and diverse ecosystem.\n\nFor wildlife photographers, Panna offers a combination of wildlife, dramatic landscapes, and riverine habitats. Its conservation story and recovering tiger population make it an especially meaningful destination for experiencing India’s wilderness.",
+    "location": "Panna, India",
     "region": "Madhya Pradesh",
-    "basePrice": 3300,
+    "basePrice": 3200,
     "duration": "6 Days / 5 Nights",
-    "isFeatured": false,
+    "isFeatured": true,
     "images": [
-      "/kanha-safari.png"
+      "https://images.unsplash.com/photo-1591824438708-ce405f36ba3d?auto=format&fit=crop&w=1600&q=80"
     ],
     "packages": [
       {
-        "id": "the-celebration-van-vilas-kanha",
-        "name": "The Celebration Van Vilas Kanha (Standard Package)",
+        "id": "greetoe-camp-panna",
+        "name": "Greetoe Camp Panna (Standard Package)",
         "price": 0,
-        "description": "Eco-Luxury Riverside Safari Resort near Khatia Gate"
-      },
-      {
-        "id": "aranyak-resort-kanha",
-        "name": "Aranyak Resort Kanha (+₹30 Premium)",
-        "price": 30,
-        "description": "Tranquil Forest Resort in the Sal Woodlands near Khatiya Gate"
+        "description": "Eco-Luxury Riverside Forest Camp on the Banks of Ken River"
       }
     ],
     "hotels": [
       {
-        "id": "the-celebration-van-vilas-kanha",
-        "name": "The Celebration Van Vilas Kanha",
-        "tagline": "Eco-Luxury Riverside Safari Resort near Khatia Gate",
+        "id": "greetoe-camp-panna",
+        "name": "Greetoe Camp Panna",
+        "tagline": "Eco-Luxury Riverside Forest Camp on the Banks of Ken River",
         "price": 0,
-        "description": "The Celebration Van Vilas Kanha is situated along the Banjar River near Khatia Gate in Mocha, Mandla, offering tranquil Rajasthani Cottages, Family Cottages, a large swimming pool, riverside dining, Ayurvedic spa, and naturalist-guided tiger safaris across Kanha Tiger Reserve.",
+        "description": "Greetoe Camp Panna is situated right at the Ken River edge near Panna Tiger Reserve in Village Badata, featuring river-facing cottages, an outdoor swimming pool, lush forest gardens, open-air dining, bonfire nights, and naturalist-led jungle safaris.",
         "amenities": [
-          "Swimming Pool",
-          "Ayurvedic Spa & Wellness",
+          "Outdoor Swimming Pool",
+          "Ken Riverfront Views",
           "Multi-Cuisine Restaurant",
-          "Banjar Riverfront Deck",
-          "Jungle Safaris & Nature Trails",
+          "Private Riverfront Verandahs",
           "Free Wi-Fi",
+          "Jungle Safaris & Nature Trails",
           "24/7 Front Desk"
         ],
         "images": [
@@ -2988,13 +2808,13 @@
         ],
         "roomCategories": [
           {
-            "id": "van-vilas-rajasthani-cottage",
-            "name": "Rajasthani Cottage",
+            "id": "greetoe-river-facing-deluxe",
+            "name": "River Facing Deluxe",
             "price": 0,
-            "bedType": "1 King Bed / 1 Double Bed",
-            "view": "Garden & Forest View",
-            "roomSize": "350 sq.ft",
-            "description": "Rajasthani Cottage featuring fresco bathing facilities, air conditioning, attached modern bathroom, and private sit-out verandah.",
+            "bedType": "1 Double Bed",
+            "view": "Ken River & Garden View",
+            "roomSize": "100 sq.ft",
+            "description": "River Facing Deluxe room featuring air conditioning, comfortable double bedding, en-suite bathroom, and direct views of the Ken River corridor.",
             "images": [
               "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
               "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
@@ -3003,95 +2823,51 @@
             ]
           },
           {
-            "id": "van-vilas-family-cottage",
-            "name": "Family Cottage",
-            "price": 40,
-            "bedType": "2 Double Beds / 1 King Bed",
-            "view": "Pool & Garden View",
-            "roomSize": "500 sq.ft",
-            "description": "Family Cottage offering 500 sq.ft of spacious family living, air conditioning, pool and garden views, and premium bath amenities.",
+            "id": "greetoe-super-deluxe-river-facing",
+            "name": "Super Deluxe - River Facing",
+            "price": 60,
+            "bedType": "1 Double Bed",
+            "view": "Panoramic River View",
+            "roomSize": "100 sq.ft",
+            "description": "Super Deluxe - River Facing room with living and seating area, balcony with unobstructed river views, work desk, sofa, mini fridge, and modern shower cubicle.",
             "images": [
+              "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+              "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
               "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
-              "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
-              "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
-              "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "aranyak-resort-kanha",
-        "name": "Aranyak Resort Kanha",
-        "tagline": "Tranquil Forest Resort in the Sal Woodlands near Khatiya Gate",
-        "price": 30,
-        "description": "Aranyak Resort Kanha is situated amidst pristine Sal forests in Village Mocha near Khatiya Gate, offering Premium Cottages and A/C Cottages, swimming pool, bar & barbecue, spa treatments, and expert naturalist-guided safari tracking.",
-        "amenities": [
-          "Swimming Pool",
-          "Multi-Cuisine Dining & Bar",
-          "Spa & Wellness Services",
-          "Bonfire & Nature Walks",
-          "Free Wi-Fi",
-          "24/7 Front Desk"
-        ],
-        "images": [
-          "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png",
-          "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
-          "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
-          "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png",
-          "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
-          "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png",
-          "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
-          "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png",
-          "https://r1imghtlak.mmtcdn.com/b3711454-f4a9-4096-8e3e-7c25183f7b10.png",
-          "https://r1imghtlak.mmtcdn.com/63e7b4b3-8540-44ac-9bf1-ff210318bc32.png"
-        ],
-        "roomCategories": [
-          {
-            "id": "aranyak-kanha-premium-cottage",
-            "name": "Premium Cottage",
-            "price": 0,
-            "bedType": "1 King Bed",
-            "view": "Jungle View",
-            "roomSize": "320 sq.ft",
-            "description": "Premium Cottage offering 320 sq.ft of serene wilderness living, air conditioning, heaters, attached modern bathroom, and private sit-out veranda.",
-            "images": [
-              "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png",
-              "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
-              "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
-              "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png"
+              "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg"
             ]
           },
           {
-            "id": "aranyak-kanha-ac-cottage",
-            "name": "A/C Cottage",
-            "price": 35,
+            "id": "greetoe-cottage-river-facing",
+            "name": "Cottage - River Facing",
+            "price": 110,
             "bedType": "1 King Bed",
-            "view": "Garden & Forest View",
-            "roomSize": "280 sq.ft",
-            "description": "A/C Cottage with climate control, comfortable king bedding, private balcony, tea/coffee maker, and attached bathroom.",
+            "view": "Riverfront & Forest View",
+            "roomSize": "260 sq.ft",
+            "description": "Cottage - River Facing offering expansive 260 sq.ft rustic stone cottage living, private sit-out verandah overlooking the Ken River, luxury bath amenities, and air conditioning.",
             "images": [
-              "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
-              "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png",
-              "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
-              "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png"
+              "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+              "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+              "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+              "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
             ]
           }
         ]
       }
     ],
     "hotelDetails": {
-      "id": "the-celebration-van-vilas-kanha",
-      "name": "The Celebration Van Vilas Kanha",
-      "tagline": "Eco-Luxury Riverside Safari Resort near Khatia Gate",
+      "id": "greetoe-camp-panna",
+      "name": "Greetoe Camp Panna",
+      "tagline": "Eco-Luxury Riverside Forest Camp on the Banks of Ken River",
       "price": 0,
-      "description": "The Celebration Van Vilas Kanha is situated along the Banjar River near Khatia Gate in Mocha, Mandla, offering tranquil Rajasthani Cottages, Family Cottages, a large swimming pool, riverside dining, Ayurvedic spa, and naturalist-guided tiger safaris across Kanha Tiger Reserve.",
+      "description": "Greetoe Camp Panna is situated right at the Ken River edge near Panna Tiger Reserve in Village Badata, featuring river-facing cottages, an outdoor swimming pool, lush forest gardens, open-air dining, bonfire nights, and naturalist-led jungle safaris.",
       "amenities": [
-        "Swimming Pool",
-        "Ayurvedic Spa & Wellness",
+        "Outdoor Swimming Pool",
+        "Ken Riverfront Views",
         "Multi-Cuisine Restaurant",
-        "Banjar Riverfront Deck",
-        "Jungle Safaris & Nature Trails",
+        "Private Riverfront Verandahs",
         "Free Wi-Fi",
+        "Jungle Safaris & Nature Trails",
         "24/7 Front Desk"
       ],
       "images": [
@@ -3108,13 +2884,13 @@
       ],
       "roomCategories": [
         {
-          "id": "van-vilas-rajasthani-cottage",
-          "name": "Rajasthani Cottage",
+          "id": "greetoe-river-facing-deluxe",
+          "name": "River Facing Deluxe",
           "price": 0,
-          "bedType": "1 King Bed / 1 Double Bed",
-          "view": "Garden & Forest View",
-          "roomSize": "350 sq.ft",
-          "description": "Rajasthani Cottage featuring fresco bathing facilities, air conditioning, attached modern bathroom, and private sit-out verandah.",
+          "bedType": "1 Double Bed",
+          "view": "Ken River & Garden View",
+          "roomSize": "100 sq.ft",
+          "description": "River Facing Deluxe room featuring air conditioning, comfortable double bedding, en-suite bathroom, and direct views of the Ken River corridor.",
           "images": [
             "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
             "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
@@ -3123,16 +2899,31 @@
           ]
         },
         {
-          "id": "van-vilas-family-cottage",
-          "name": "Family Cottage",
-          "price": 40,
-          "bedType": "2 Double Beds / 1 King Bed",
-          "view": "Pool & Garden View",
-          "roomSize": "500 sq.ft",
-          "description": "Family Cottage offering 500 sq.ft of spacious family living, air conditioning, pool and garden views, and premium bath amenities.",
+          "id": "greetoe-super-deluxe-river-facing",
+          "name": "Super Deluxe - River Facing",
+          "price": 60,
+          "bedType": "1 Double Bed",
+          "view": "Panoramic River View",
+          "roomSize": "100 sq.ft",
+          "description": "Super Deluxe - River Facing room with living and seating area, balcony with unobstructed river views, work desk, sofa, mini fridge, and modern shower cubicle.",
           "images": [
+            "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+            "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
             "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
-            "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+            "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg"
+          ]
+        },
+        {
+          "id": "greetoe-cottage-river-facing",
+          "name": "Cottage - River Facing",
+          "price": 110,
+          "bedType": "1 King Bed",
+          "view": "Riverfront & Forest View",
+          "roomSize": "260 sq.ft",
+          "description": "Cottage - River Facing offering expansive 260 sq.ft rustic stone cottage living, private sit-out verandah overlooking the Ken River, luxury bath amenities, and air conditioning.",
+          "images": [
+            "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+            "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
             "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
             "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
           ]
@@ -3547,6 +3338,215 @@
     }
   },
   {
+    "id": "8",
+    "title": "Kanha National Park Sal Forest Tiger Expedition",
+    "slug": "kanha-tiger-safari",
+    "description": "Kanha National Park, located in Madhya Pradesh, is one of India’s most celebrated wildlife reserves and a major stronghold for Bengal tigers. Its sal forests, bamboo groves, open meadows, and streams create one of the most beautiful landscapes in central India.\n\nKanha is home to Bengal tigers, leopards, wild dogs, sloth bears, gaur, sambar, chital, and many bird species. The reserve is also known for the hard-ground barasingha, whose conservation has become one of Kanha’s notable success stories.\n\nWith its scenic forests, diverse wildlife, and expansive meadows, Kanha offers an immersive safari experience for photographers and nature enthusiasts. It is a destination where the landscape itself becomes an important part of the wildlife story.",
+    "location": "Kanha, India",
+    "region": "Madhya Pradesh",
+    "basePrice": 3300,
+    "duration": "6 Days / 5 Nights",
+    "isFeatured": false,
+    "images": [
+      "/kanha-safari.png"
+    ],
+    "packages": [
+      {
+        "id": "the-celebration-van-vilas-kanha",
+        "name": "The Celebration Van Vilas Kanha (Standard Package)",
+        "price": 0,
+        "description": "Eco-Luxury Riverside Safari Resort near Khatia Gate"
+      },
+      {
+        "id": "aranyak-resort-kanha",
+        "name": "Aranyak Resort Kanha (+₹30 Premium)",
+        "price": 30,
+        "description": "Tranquil Forest Resort in the Sal Woodlands near Khatiya Gate"
+      }
+    ],
+    "hotels": [
+      {
+        "id": "the-celebration-van-vilas-kanha",
+        "name": "The Celebration Van Vilas Kanha",
+        "tagline": "Eco-Luxury Riverside Safari Resort near Khatia Gate",
+        "price": 0,
+        "description": "The Celebration Van Vilas Kanha is situated along the Banjar River near Khatia Gate in Mocha, Mandla, offering tranquil Rajasthani Cottages, Family Cottages, a large swimming pool, riverside dining, Ayurvedic spa, and naturalist-guided tiger safaris across Kanha Tiger Reserve.",
+        "amenities": [
+          "Swimming Pool",
+          "Ayurvedic Spa & Wellness",
+          "Multi-Cuisine Restaurant",
+          "Banjar Riverfront Deck",
+          "Jungle Safaris & Nature Trails",
+          "Free Wi-Fi",
+          "24/7 Front Desk"
+        ],
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+          "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+          "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+          "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+          "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+          "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+          "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+          "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
+        ],
+        "roomCategories": [
+          {
+            "id": "van-vilas-rajasthani-cottage",
+            "name": "Rajasthani Cottage",
+            "price": 0,
+            "bedType": "1 King Bed / 1 Double Bed",
+            "view": "Garden & Forest View",
+            "roomSize": "350 sq.ft",
+            "description": "Rajasthani Cottage featuring fresco bathing facilities, air conditioning, attached modern bathroom, and private sit-out verandah.",
+            "images": [
+              "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+              "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+              "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+              "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg"
+            ]
+          },
+          {
+            "id": "van-vilas-family-cottage",
+            "name": "Family Cottage",
+            "price": 40,
+            "bedType": "2 Double Beds / 1 King Bed",
+            "view": "Pool & Garden View",
+            "roomSize": "500 sq.ft",
+            "description": "Family Cottage offering 500 sq.ft of spacious family living, air conditioning, pool and garden views, and premium bath amenities.",
+            "images": [
+              "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+              "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+              "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+              "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "aranyak-resort-kanha",
+        "name": "Aranyak Resort Kanha",
+        "tagline": "Tranquil Forest Resort in the Sal Woodlands near Khatiya Gate",
+        "price": 30,
+        "description": "Aranyak Resort Kanha is situated amidst pristine Sal forests in Village Mocha near Khatiya Gate, offering Premium Cottages and A/C Cottages, swimming pool, bar & barbecue, spa treatments, and expert naturalist-guided safari tracking.",
+        "amenities": [
+          "Swimming Pool",
+          "Multi-Cuisine Dining & Bar",
+          "Spa & Wellness Services",
+          "Bonfire & Nature Walks",
+          "Free Wi-Fi",
+          "24/7 Front Desk"
+        ],
+        "images": [
+          "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png",
+          "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+          "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+          "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png",
+          "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
+          "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png",
+          "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+          "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png",
+          "https://r1imghtlak.mmtcdn.com/b3711454-f4a9-4096-8e3e-7c25183f7b10.png",
+          "https://r1imghtlak.mmtcdn.com/63e7b4b3-8540-44ac-9bf1-ff210318bc32.png"
+        ],
+        "roomCategories": [
+          {
+            "id": "aranyak-kanha-premium-cottage",
+            "name": "Premium Cottage",
+            "price": 0,
+            "bedType": "1 King Bed",
+            "view": "Jungle View",
+            "roomSize": "320 sq.ft",
+            "description": "Premium Cottage offering 320 sq.ft of serene wilderness living, air conditioning, heaters, attached modern bathroom, and private sit-out veranda.",
+            "images": [
+              "https://r1imghtlak.mmtcdn.com/1c94f143-1476-4a45-bb23-82f1d8ad232e.png",
+              "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+              "https://r1imghtlak.mmtcdn.com/e1be5d30-fcc4-4b99-91ce-e603888411f5.png",
+              "https://r1imghtlak.mmtcdn.com/4d4377a1-70f1-4475-862a-d9a4f85de685.png"
+            ]
+          },
+          {
+            "id": "aranyak-kanha-ac-cottage",
+            "name": "A/C Cottage",
+            "price": 35,
+            "bedType": "1 King Bed",
+            "view": "Garden & Forest View",
+            "roomSize": "280 sq.ft",
+            "description": "A/C Cottage with climate control, comfortable king bedding, private balcony, tea/coffee maker, and attached bathroom.",
+            "images": [
+              "https://r1imghtlak.mmtcdn.com/bf830333-dd6c-4859-aa21-06bc97e9aa28.png",
+              "https://r1imghtlak.mmtcdn.com/d0c39c62-0827-4171-8758-9a4212de25e6.png",
+              "https://r1imghtlak.mmtcdn.com/4989c154-32dd-4b54-a1fb-7da00509809e.png",
+              "https://r1imghtlak.mmtcdn.com/9b609148-6280-4f5a-8b59-c93eeec5ff8e.png"
+            ]
+          }
+        ]
+      }
+    ],
+    "hotelDetails": {
+      "id": "the-celebration-van-vilas-kanha",
+      "name": "The Celebration Van Vilas Kanha",
+      "tagline": "Eco-Luxury Riverside Safari Resort near Khatia Gate",
+      "price": 0,
+      "description": "The Celebration Van Vilas Kanha is situated along the Banjar River near Khatia Gate in Mocha, Mandla, offering tranquil Rajasthani Cottages, Family Cottages, a large swimming pool, riverside dining, Ayurvedic spa, and naturalist-guided tiger safaris across Kanha Tiger Reserve.",
+      "amenities": [
+        "Swimming Pool",
+        "Ayurvedic Spa & Wellness",
+        "Multi-Cuisine Restaurant",
+        "Banjar Riverfront Deck",
+        "Jungle Safaris & Nature Trails",
+        "Free Wi-Fi",
+        "24/7 Front Desk"
+      ],
+      "images": [
+        "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+        "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+        "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+        "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+        "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+        "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+        "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+        "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+        "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+        "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
+      ],
+      "roomCategories": [
+        {
+          "id": "van-vilas-rajasthani-cottage",
+          "name": "Rajasthani Cottage",
+          "price": 0,
+          "bedType": "1 King Bed / 1 Double Bed",
+          "view": "Garden & Forest View",
+          "roomSize": "350 sq.ft",
+          "description": "Rajasthani Cottage featuring fresco bathing facilities, air conditioning, attached modern bathroom, and private sit-out verandah.",
+          "images": [
+            "https://r1imghtlak.mmtcdn.com/ecf18ee4c72811ee94030a58a9feac02.webp",
+            "https://r1imghtlak.mmtcdn.com/5b7ff988-8a7d-4b55-8f84-c0f2808ba2da.jpeg",
+            "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+            "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg"
+          ]
+        },
+        {
+          "id": "van-vilas-family-cottage",
+          "name": "Family Cottage",
+          "price": 40,
+          "bedType": "2 Double Beds / 1 King Bed",
+          "view": "Pool & Garden View",
+          "roomSize": "500 sq.ft",
+          "description": "Family Cottage offering 500 sq.ft of spacious family living, air conditioning, pool and garden views, and premium bath amenities.",
+          "images": [
+            "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+            "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+            "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+            "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
+          ]
+        }
+      ]
+    }
+  },
+  {
     "id": "10",
     "title": "Tadoba National Park Bamboo Forest Tiger Safari",
     "slug": "tadoba-tiger-safari",
@@ -3657,150 +3657,6 @@
           "description": "Elevated wooden machan suite with private balcony offering panoramic forest canopy views and luxury naturalist amenities.",
           "images": [
             "/tadoba-safari.jpg"
-          ]
-        }
-      ]
-    }
-  },
-  {
-    "id": "11",
-    "title": "Jim Corbett National Park Himalayan Foothills Safari",
-    "slug": "jim-corbett-safari",
-    "description": "Jim Corbett National Park, located in Uttarakhand, is one of India’s oldest and most renowned wildlife destinations. Established in 1936, the park is known for its forests, grasslands, rivers, and Himalayan foothills, creating a diverse habitat for wildlife.\n\nThe park is famous for Bengal tigers and is also home to leopards, elephants, sloth bears, sambar, chital, barking deer, crocodiles, and hundreds of bird species. Its varied landscapes provide opportunities to experience wildlife across forests, riverbeds, and open grasslands.\n\nCorbett offers a classic Indian jungle safari experience, combining rich biodiversity with beautiful Himalayan landscapes. For photographers and wildlife enthusiasts, the park provides opportunities to observe and capture some of the country’s most iconic wildlife in a remarkable natural setting.",
-    "location": "Jim Corbett, India",
-    "region": "Uttarakhand",
-    "basePrice": 2950,
-    "duration": "6 Days / 5 Nights",
-    "isFeatured": false,
-    "images": [
-      "/corbett-safari.png"
-    ],
-    "packages": [
-      {
-        "id": "paatlidun-safari-lodge",
-        "name": "Paatlidun Safari Lodge Jim Corbett (Standard Package)",
-        "price": 0,
-        "description": "5-Star Luxury Wilderness Resort with Private Plunge Pools & Sky Beds"
-      }
-    ],
-    "hotels": [
-      {
-        "id": "paatlidun-safari-lodge",
-        "name": "Paatlidun Safari Lodge Jim Corbett",
-        "tagline": "5-Star Luxury Wilderness Resort with Private Plunge Pools & Sky Beds",
-        "price": 0,
-        "description": "Paatlidun Safari Lodge Jim Corbett offers vintage luxury cottages nestled in the foothills of Corbett National Park in Mohaan, Ramnagar, featuring open-air showers, private plunge pools, star-viewing sky beds, BrahmaKamal Spa, and fine wilderness dining at Risya.",
-        "amenities": [
-          "Private Plunge Pool",
-          "BrahmaKamal Spa",
-          "Risya Multi-Cuisine Dining",
-          "Private Sit-out Verandah",
-          "Free Wi-Fi",
-          "Guided Jungle Safaris & Nature Walks",
-          "24/7 Front Desk"
-        ],
-        "images": [
-          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg",
-          "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
-          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
-          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
-          "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
-          "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
-          "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
-          "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
-          "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
-          "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
-        ],
-        "roomCategories": [
-          {
-            "id": "paatlidun-bush-cottage",
-            "name": "Bush Cottage",
-            "price": 0,
-            "bedType": "1 Double Bed",
-            "view": "Forest & Foothills View",
-            "roomSize": "900 sq.ft",
-            "description": "Bush Cottage featuring an open-to-sky sky bed, Jacuzzi, private sit-out deck, service window, rustic stone architecture, and serene Himalayan foothill views.",
-            "images": [
-              "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg",
-              "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
-              "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
-              "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg"
-            ]
-          },
-          {
-            "id": "paatlidun-luxury-cottage",
-            "name": "Luxury Cottage",
-            "price": 120,
-            "bedType": "1 Double Bed / 1 King Bed",
-            "view": "Private Plunge Pool & Forest View",
-            "roomSize": "1496 sq.ft",
-            "description": "Luxury Cottage featuring an expansive master bedroom, living room, star window, private plunge pool, claw-footed copper bathtub, open-air shower, and private sit-out.",
-            "images": [
-              "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
-              "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg",
-              "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
-              "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png"
-            ]
-          }
-        ]
-      }
-    ],
-    "hotelDetails": {
-      "id": "paatlidun-safari-lodge",
-      "name": "Paatlidun Safari Lodge Jim Corbett",
-      "tagline": "5-Star Luxury Wilderness Resort with Private Plunge Pools & Sky Beds",
-      "price": 0,
-      "description": "Paatlidun Safari Lodge Jim Corbett offers vintage luxury cottages nestled in the foothills of Corbett National Park in Mohaan, Ramnagar, featuring open-air showers, private plunge pools, star-viewing sky beds, BrahmaKamal Spa, and fine wilderness dining at Risya.",
-      "amenities": [
-        "Private Plunge Pool",
-        "BrahmaKamal Spa",
-        "Risya Multi-Cuisine Dining",
-        "Private Sit-out Verandah",
-        "Free Wi-Fi",
-        "Guided Jungle Safaris & Nature Walks",
-        "24/7 Front Desk"
-      ],
-      "images": [
-        "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg",
-        "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
-        "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
-        "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
-        "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
-        "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
-        "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
-        "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
-        "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
-        "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
-      ],
-      "roomCategories": [
-        {
-          "id": "paatlidun-bush-cottage",
-          "name": "Bush Cottage",
-          "price": 0,
-          "bedType": "1 Double Bed",
-          "view": "Forest & Foothills View",
-          "roomSize": "900 sq.ft",
-          "description": "Bush Cottage featuring an open-to-sky sky bed, Jacuzzi, private sit-out deck, service window, rustic stone architecture, and serene Himalayan foothill views.",
-          "images": [
-            "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg",
-            "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
-            "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
-            "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg"
-          ]
-        },
-        {
-          "id": "paatlidun-luxury-cottage",
-          "name": "Luxury Cottage",
-          "price": 120,
-          "bedType": "1 Double Bed / 1 King Bed",
-          "view": "Private Plunge Pool & Forest View",
-          "roomSize": "1496 sq.ft",
-          "description": "Luxury Cottage featuring an expansive master bedroom, living room, star window, private plunge pool, claw-footed copper bathtub, open-air shower, and private sit-out.",
-          "images": [
-            "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
-            "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg",
-            "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
-            "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png"
           ]
         }
       ]
@@ -4074,6 +3930,150 @@
             "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
             "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
             "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "11",
+    "title": "Jim Corbett National Park Himalayan Foothills Safari",
+    "slug": "jim-corbett-safari",
+    "description": "Jim Corbett National Park, located in Uttarakhand, is one of India’s oldest and most renowned wildlife destinations. Established in 1936, the park is known for its forests, grasslands, rivers, and Himalayan foothills, creating a diverse habitat for wildlife.\n\nThe park is famous for Bengal tigers and is also home to leopards, elephants, sloth bears, sambar, chital, barking deer, crocodiles, and hundreds of bird species. Its varied landscapes provide opportunities to experience wildlife across forests, riverbeds, and open grasslands.\n\nCorbett offers a classic Indian jungle safari experience, combining rich biodiversity with beautiful Himalayan landscapes. For photographers and wildlife enthusiasts, the park provides opportunities to observe and capture some of the country’s most iconic wildlife in a remarkable natural setting.",
+    "location": "Jim Corbett, India",
+    "region": "Uttarakhand",
+    "basePrice": 2950,
+    "duration": "6 Days / 5 Nights",
+    "isFeatured": false,
+    "images": [
+      "/corbett-safari.png"
+    ],
+    "packages": [
+      {
+        "id": "paatlidun-safari-lodge",
+        "name": "Paatlidun Safari Lodge Jim Corbett (Standard Package)",
+        "price": 0,
+        "description": "5-Star Luxury Wilderness Resort with Private Plunge Pools & Sky Beds"
+      }
+    ],
+    "hotels": [
+      {
+        "id": "paatlidun-safari-lodge",
+        "name": "Paatlidun Safari Lodge Jim Corbett",
+        "tagline": "5-Star Luxury Wilderness Resort with Private Plunge Pools & Sky Beds",
+        "price": 0,
+        "description": "Paatlidun Safari Lodge Jim Corbett offers vintage luxury cottages nestled in the foothills of Corbett National Park in Mohaan, Ramnagar, featuring open-air showers, private plunge pools, star-viewing sky beds, BrahmaKamal Spa, and fine wilderness dining at Risya.",
+        "amenities": [
+          "Private Plunge Pool",
+          "BrahmaKamal Spa",
+          "Risya Multi-Cuisine Dining",
+          "Private Sit-out Verandah",
+          "Free Wi-Fi",
+          "Guided Jungle Safaris & Nature Walks",
+          "24/7 Front Desk"
+        ],
+        "images": [
+          "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg",
+          "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+          "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+          "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+          "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+          "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+          "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+          "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+          "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+          "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
+        ],
+        "roomCategories": [
+          {
+            "id": "paatlidun-bush-cottage",
+            "name": "Bush Cottage",
+            "price": 0,
+            "bedType": "1 Double Bed",
+            "view": "Forest & Foothills View",
+            "roomSize": "900 sq.ft",
+            "description": "Bush Cottage featuring an open-to-sky sky bed, Jacuzzi, private sit-out deck, service window, rustic stone architecture, and serene Himalayan foothill views.",
+            "images": [
+              "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg",
+              "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+              "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+              "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg"
+            ]
+          },
+          {
+            "id": "paatlidun-luxury-cottage",
+            "name": "Luxury Cottage",
+            "price": 120,
+            "bedType": "1 Double Bed / 1 King Bed",
+            "view": "Private Plunge Pool & Forest View",
+            "roomSize": "1496 sq.ft",
+            "description": "Luxury Cottage featuring an expansive master bedroom, living room, star window, private plunge pool, claw-footed copper bathtub, open-air shower, and private sit-out.",
+            "images": [
+              "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+              "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg",
+              "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+              "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png"
+            ]
+          }
+        ]
+      }
+    ],
+    "hotelDetails": {
+      "id": "paatlidun-safari-lodge",
+      "name": "Paatlidun Safari Lodge Jim Corbett",
+      "tagline": "5-Star Luxury Wilderness Resort with Private Plunge Pools & Sky Beds",
+      "price": 0,
+      "description": "Paatlidun Safari Lodge Jim Corbett offers vintage luxury cottages nestled in the foothills of Corbett National Park in Mohaan, Ramnagar, featuring open-air showers, private plunge pools, star-viewing sky beds, BrahmaKamal Spa, and fine wilderness dining at Risya.",
+      "amenities": [
+        "Private Plunge Pool",
+        "BrahmaKamal Spa",
+        "Risya Multi-Cuisine Dining",
+        "Private Sit-out Verandah",
+        "Free Wi-Fi",
+        "Guided Jungle Safaris & Nature Walks",
+        "24/7 Front Desk"
+      ],
+      "images": [
+        "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg",
+        "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+        "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+        "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg",
+        "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+        "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+        "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png",
+        "https://r1imghtlak.mmtcdn.com/b59b60aa-ce05-4d7e-b6e2-b57e987cb7f6.jpeg",
+        "https://r1imghtlak.mmtcdn.com/8cbfe298-7114-4ba1-acfa-43f4da5fd200.png",
+        "https://r1imghtlak.mmtcdn.com/ed9853b8-7f9a-48ad-ac3a-68708d0e82c7.png"
+      ],
+      "roomCategories": [
+        {
+          "id": "paatlidun-bush-cottage",
+          "name": "Bush Cottage",
+          "price": 0,
+          "bedType": "1 Double Bed",
+          "view": "Forest & Foothills View",
+          "roomSize": "900 sq.ft",
+          "description": "Bush Cottage featuring an open-to-sky sky bed, Jacuzzi, private sit-out deck, service window, rustic stone architecture, and serene Himalayan foothill views.",
+          "images": [
+            "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg",
+            "https://r1imghtlak.mmtcdn.com/3f886ca2fbce11e9b4e30242ac110003.jpg",
+            "https://r1imghtlak.mmtcdn.com/0f99f742-36cb-4ee9-ab78-257d624b316e.jpg",
+            "https://r1imghtlak.mmtcdn.com/fa3c5f80-2519-4c32-bb73-f097a8f8d14f.jpeg"
+          ]
+        },
+        {
+          "id": "paatlidun-luxury-cottage",
+          "name": "Luxury Cottage",
+          "price": 120,
+          "bedType": "1 Double Bed / 1 King Bed",
+          "view": "Private Plunge Pool & Forest View",
+          "roomSize": "1496 sq.ft",
+          "description": "Luxury Cottage featuring an expansive master bedroom, living room, star window, private plunge pool, claw-footed copper bathtub, open-air shower, and private sit-out.",
+          "images": [
+            "https://r1imghtlak.mmtcdn.com/31267558-abdb-4638-92a1-faa51253e7a6.png",
+            "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201411071825289313-a4a31664-7f07-4b2a-afbf-efaed242c2dd.jpg",
+            "https://r1imghtlak.mmtcdn.com/45bb1735-653b-46b3-b069-a13d8f9a60c9.jpeg",
+            "https://r1imghtlak.mmtcdn.com/9de35c94-dd5e-487e-891b-d1e25555c709.png"
           ]
         }
       ]

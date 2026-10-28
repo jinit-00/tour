@@ -566,18 +566,58 @@ export const syncHotelDataFromCloud = async () => {
 // -------------------------------------------------------------
 // TOURS & HOTELS API (Directly from PostgreSQL Database)
 // -------------------------------------------------------------
+export const DESIRED_TOUR_ORDER = [
+  'gir-lion-safari',
+  'sanjay-dubri-tiger-safari',
+  'jawai-leopard-safari',
+  'ranthambore-tiger-safari',
+  'velavadar-deer-safari',
+  'pench-tiger-safari',
+  'panna-tiger-safari',
+  'bandhavgarh-tiger-safari',
+  'kanha-tiger-safari',
+  'tadoba-tiger-safari',
+  'chitwan-rhino-safari',
+  'jim-corbett-safari'
+];
+
+export const sortToursByDesiredOrder = (toursList) => {
+  if (!Array.isArray(toursList)) return toursList;
+  return [...toursList].sort((a, b) => {
+    const getOrder = (item) => {
+      const slug = (item.slug || '').toLowerCase();
+      const title = (item.title || '').toLowerCase();
+      if (slug.includes('gir') || title.includes('gir')) return 0;
+      if (slug.includes('sanjay') || title.includes('sanjay')) return 1;
+      if (slug.includes('jawai') || title.includes('jawai')) return 2;
+      if (slug.includes('ranthambore') || title.includes('ranthambore')) return 3;
+      if (slug.includes('velavadar') || title.includes('velavadar')) return 4;
+      if (slug.includes('pench') || title.includes('pench')) return 5;
+      if (slug.includes('panna') || title.includes('panna')) return 6;
+      if (slug.includes('bandhavgarh') || title.includes('bandhavgarh')) return 7;
+      if (slug.includes('kanha') || title.includes('kanha')) return 8;
+      if (slug.includes('tadoba') || title.includes('tadoba')) return 9;
+      if (slug.includes('chitwan') || title.includes('chitwan')) return 10;
+      if (slug.includes('corbett') || title.includes('corbett')) return 11;
+      const idx = DESIRED_TOUR_ORDER.indexOf(slug);
+      return idx !== -1 ? idx : 999;
+    };
+    return getOrder(a) - getOrder(b);
+  });
+};
+
 export const getTours = async (params) => {
   try {
     const res = await API.get('/tours', { params });
     if (Array.isArray(res.data) && res.data.length > 0) {
       const visible = res.data.filter((t) => !isTourHidden(t));
-      return { data: visible };
+      return { data: sortToursByDesiredOrder(visible) };
     }
     const filteredFallback = filterFallbackTours(params).filter((t) => !isTourHidden(t));
-    return { data: filteredFallback };
+    return { data: sortToursByDesiredOrder(filteredFallback) };
   } catch (err) {
     const filteredFallback = filterFallbackTours(params).filter((t) => !isTourHidden(t));
-    return { data: filteredFallback };
+    return { data: sortToursByDesiredOrder(filteredFallback) };
   }
 };
 
@@ -644,7 +684,7 @@ export const getAdminTours = async () => {
         ...t,
         isHidden: isTourHidden(t),
       }));
-      return { data: mapped };
+      return { data: sortToursByDesiredOrder(mapped) };
     }
   } catch (err) {
     console.warn('Admin tours API unavailable, returning fallback tours inventory:', err.message);
@@ -653,7 +693,7 @@ export const getAdminTours = async () => {
     ...t,
     isHidden: isTourHidden(t),
   }));
-  return { data: toursWithVisibility };
+  return { data: sortToursByDesiredOrder(toursWithVisibility) };
 };
 
 export const createAdminTour = (data) => API.post('/admin/tours', data);

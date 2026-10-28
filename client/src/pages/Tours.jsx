@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getTours, isTourHidden, syncHiddenToursFromCloud } from '../services/api';
+import { getTours, isTourHidden, syncHiddenToursFromCloud, sortToursByDesiredOrder } from '../services/api';
 import { Search } from 'lucide-react';
 import SafariCard from '../components/tours/SafariCard';
 import girToursCardImg from '../assets/gir-tours-card.jpg';
@@ -58,7 +58,7 @@ export default function Tours() {
         }
         return t;
       });
-      setTours(mapped);
+      setTours(sortToursByDesiredOrder(mapped));
     } catch (err) {
       console.error(err);
     } finally {
@@ -79,7 +79,7 @@ export default function Tours() {
           Wildlife Photography Safaris
         </h1>
         <p className="text-xs sm:text-sm text-charcoal-700 max-w-2xl mx-auto font-normal">
-          Explore our signature small-group departures featuring Gir, Sanjay Dubri, Jawai, Ranthambore, Velavadar, Panna, Pench, Kanha, Bandhavgarh, Tadoba, Jim Corbett, and Chitwan. Select any safari card to explore each destination.
+          Explore our signature small-group departures featuring Gir, Sanjay Dubri, Jawai, Ranthambore, Velavadar, Pench, Panna, Bandhavgarh, Kanha, Tadoba, Chitwan, and Jim Corbett. Select any safari card to explore each destination.
         </p>
       </div>
 
