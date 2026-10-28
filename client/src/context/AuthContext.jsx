@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [pendingEmail, setPendingEmail] = useState('');
 
   const fetchUser = async () => {
-    const token = localStorage.getItem('junglee_token') || localStorage.getItem('silvan_token');
+    const token = localStorage.getItem('junglee_token') || localStorage.getItem('junglee_auth_token') || localStorage.getItem('silvan_token');
     if (!token) {
       setUser(null);
       setLoading(false);
@@ -31,6 +31,7 @@ export const AuthProvider = ({ children }) => {
       }
       console.error('Failed to fetch user:', err);
       localStorage.removeItem('junglee_token');
+      localStorage.removeItem('junglee_auth_token');
       localStorage.removeItem('silvan_token');
       setUser(null);
     } finally {
@@ -47,6 +48,7 @@ export const AuthProvider = ({ children }) => {
       const res = await loginUser({ email, password });
       if (res.data.token) {
         localStorage.setItem('junglee_token', res.data.token);
+        localStorage.setItem('junglee_auth_token', res.data.token);
         setUser(res.data.user);
         setIsAuthModalOpen(false);
         return { success: true };
@@ -67,6 +69,7 @@ export const AuthProvider = ({ children }) => {
           isVerified: true,
         };
         localStorage.setItem('junglee_token', 'demo_admin_jwt_token');
+        localStorage.setItem('junglee_auth_token', 'demo_admin_jwt_token');
         localStorage.setItem('junglee_demo_user', JSON.stringify(adminUser));
         setUser(adminUser);
         setIsAuthModalOpen(false);
@@ -87,6 +90,7 @@ export const AuthProvider = ({ children }) => {
     const res = await verifyOtp({ email: pendingEmail, code });
     if (res.data.token) {
       localStorage.setItem('junglee_token', res.data.token);
+      localStorage.setItem('junglee_auth_token', res.data.token);
       setUser(res.data.user);
       setIsAuthModalOpen(false);
       return res.data;
@@ -99,12 +103,14 @@ export const AuthProvider = ({ children }) => {
 
   const handleOAuthToken = (token) => {
     localStorage.setItem('junglee_token', token);
+    localStorage.setItem('junglee_auth_token', token);
     fetchUser();
     setIsAuthModalOpen(false);
   };
 
   const logout = () => {
     localStorage.removeItem('junglee_token');
+    localStorage.removeItem('junglee_auth_token');
     localStorage.removeItem('silvan_token');
     localStorage.removeItem('junglee_demo_user');
     setUser(null);

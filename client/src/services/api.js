@@ -15,7 +15,7 @@ const API = axios.create({
 // Request interceptor to attach bearer token & log outgoing API call
 API.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('junglee_auth_token');
+    const token = localStorage.getItem('junglee_token') || localStorage.getItem('junglee_auth_token') || localStorage.getItem('silvan_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
