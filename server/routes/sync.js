@@ -187,9 +187,20 @@ module.exports = async function handler(req, res) {
     return res.status(200).end();
   }
 
-  // WRITE (POST or PUT)
+  // WRITE (POST or PUT) - Restricted to authenticated Admins
   if (req.method === 'POST' || req.method === 'PUT') {
     try {
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ error: 'Authentication required to push sync updates.' });
+      }
+      const token = authHeader.split(' ')[1];
+      const { verifyToken } = require('../utils/jwt.utils');
+      const decoded = verifyToken(token);
+      if (!decoded || decoded.role !== 'ADMIN') {
+        return res.status(403).json({ error: 'Admin privileges required to push database sync updates.' });
+      }
+
       let data = req.body;
       if (typeof data === 'string') {
         try {

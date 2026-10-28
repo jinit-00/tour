@@ -31,12 +31,18 @@ export default function AdminLayout({ children }) {
   const [showPassword, setShowPassword] = useState(false);
   const [authError, setAuthError] = useState('');
 
-  const handlePasswordSubmit = (e) => {
+  const handlePasswordSubmit = async (e) => {
     e.preventDefault();
     if (passwordInput.trim() === ADMIN_PASSWORD) {
       localStorage.setItem(ADMIN_AUTH_KEY, 'true');
       setIsAuthenticated(true);
       setAuthError('');
+      // Authenticate with backend API to obtain a valid JWT token with ADMIN role
+      if (!user || user.role !== 'ADMIN') {
+        try {
+          await login('admin@junglee.com', passwordInput.trim());
+        } catch (_) {}
+      }
     } else {
       setAuthError('Incorrect password. Please enter the valid admin password.');
     }

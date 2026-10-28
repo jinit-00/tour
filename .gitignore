@@ -8,6 +8,9 @@ server/node_modules/
 .env.local
 .env.*.local
 server/.env
+client/.env
+*.env
+**/.env
 
 # Production build outputs
 dist/

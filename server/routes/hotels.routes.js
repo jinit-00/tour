@@ -1,5 +1,7 @@
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
+const { requireAuth, requireAdmin } = require('../middleware/auth.middleware');
+const { isValidPrice } = require('../utils/validation.utils');
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -171,11 +173,16 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// 5. Toggle hotel visibility (Show / Hide)
-router.patch('/:id/visibility', async (req, res) => {
+// 5. Toggle hotel visibility (Show / Hide) - Restricted to authenticated Admins
+router.patch('/:id/visibility', requireAuth, requireAdmin, async (req, res) => {
   try {
     const { id } = req.params;
     const { isHidden } = req.body;
+
+    const existingHotel = await prisma.hotel.findUnique({ where: { id } });
+    if (!existingHotel) {
+      return res.status(404).json({ error: 'Hotel not found.' });
+    }
 
     const updated = await prisma.hotel.update({
       where: { id },
@@ -190,14 +197,22 @@ router.patch('/:id/visibility', async (req, res) => {
   }
 });
 
-// 6. Update hotel pricing (hotel price & room APAI / MAPAI / CPAI)
-router.put('/:id/pricing', async (req, res) => {
+// 6. Update hotel pricing (hotel price & room APAI / MAPAI / CPAI) - Restricted to authenticated Admins
+router.put('/:id/pricing', requireAuth, requireAdmin, async (req, res) => {
   try {
     const { id } = req.params;
     const { price, roomCategories } = req.body;
 
+    const existingHotel = await prisma.hotel.findUnique({ where: { id } });
+    if (!existingHotel) {
+      return res.status(404).json({ error: 'Hotel not found.' });
+    }
+
     const updateHotelData = {};
     if (price !== undefined) {
+      if (!isValidPrice(price)) {
+        return res.status(400).json({ error: 'Invalid price value.' });
+      }
       updateHotelData.price = parseFloat(price);
     }
 
@@ -211,10 +226,18 @@ router.put('/:id/pricing', async (req, res) => {
     if (roomCategories && typeof roomCategories === 'object') {
       for (const [roomId, catPricing] of Object.entries(roomCategories)) {
         const updateRoomData = {};
-        if (catPricing.price !== undefined) updateRoomData.price = parseFloat(catPricing.price);
-        if (catPricing.apai !== undefined) updateRoomData.apaiPrice = parseFloat(catPricing.apai);
-        if (catPricing.mapai !== undefined) updateRoomData.mapaiPrice = parseFloat(catPricing.mapai);
-        if (catPricing.cpai !== undefined) updateRoomData.cpaiPrice = parseFloat(catPricing.cpai);
+        if (catPricing.price !== undefined && isValidPrice(catPricing.price)) {
+          updateRoomData.price = parseFloat(catPricing.price);
+        }
+        if (catPricing.apai !== undefined && isValidPrice(catPricing.apai)) {
+          updateRoomData.apaiPrice = parseFloat(catPricing.apai);
+        }
+        if (catPricing.mapai !== undefined && isValidPrice(catPricing.mapai)) {
+          updateRoomData.mapaiPrice = parseFloat(catPricing.mapai);
+        }
+        if (catPricing.cpai !== undefined && isValidPrice(catPricing.cpai)) {
+          updateRoomData.cpaiPrice = parseFloat(catPricing.cpai);
+        }
 
         if (Object.keys(updateRoomData).length > 0) {
           await prisma.roomCategory.updateMany({

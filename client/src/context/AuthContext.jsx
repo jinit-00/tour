@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { getCurrentUser, loginUser, signupUser, verifyOtp, resendOtp } from '../services/api';
+import { getCurrentUser, loginUser, signupUser, verifyOtp, resendOtp, forgotPassword as apiForgotPassword, resetPassword as apiResetPassword } from '../services/api';
 
 const AuthContext = createContext();
 
@@ -101,6 +101,17 @@ export const AuthProvider = ({ children }) => {
     return await resendOtp({ email: pendingEmail });
   };
 
+  const requestPasswordReset = async (email) => {
+    const res = await apiForgotPassword({ email });
+    setPendingEmail(email);
+    return res.data;
+  };
+
+  const submitPasswordReset = async (code, newPassword) => {
+    const res = await apiResetPassword({ email: pendingEmail, code, newPassword });
+    return res.data;
+  };
+
   const handleOAuthToken = (token) => {
     localStorage.setItem('junglee_token', token);
     localStorage.setItem('junglee_auth_token', token);
@@ -134,6 +145,8 @@ export const AuthProvider = ({ children }) => {
         signup,
         verify,
         resendCode,
+        requestPasswordReset,
+        submitPasswordReset,
         logout,
         handleOAuthToken,
         isAuthModalOpen,

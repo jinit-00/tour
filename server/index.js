@@ -1,9 +1,11 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
 const morgan = require('morgan');
 const passport = require('./config/passport');
 const errorHandler = require('./middleware/error.middleware');
+const { apiLimiter } = require('./middleware/rateLimiter.middleware');
 
 const authRoutes = require('./routes/auth.routes');
 const toursRoutes = require('./routes/tours.routes');
@@ -18,13 +20,41 @@ const adminRoutes = require('./routes/admin.routes');
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-// Middleware
+// Trust reverse proxy (Vercel, Cloudflare, AWS, Nginx) so req.ip and rate limits work correctly
+app.set('trust proxy', 1);
+
+// Security Headers via Helmet (disables X-Powered-By, adds X-Content-Type-Options, HSTS, etc.)
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: 'cross-origin' },
+  contentSecurityPolicy: false,
+}));
+
+// CORS Configuration
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  'http://localhost:5173',
+  'http://localhost:3000',
+].filter(Boolean);
+
 app.use(cors({
-  origin: true,
+  origin: (origin, callback) => {
+    // Allow server-to-server or non-browser tools (e.g. Postman, mobile)
+    if (!origin) return callback(null, true);
+    // Allow configured origins or any vercel.app preview domain
+    if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app') || process.env.NODE_ENV !== 'production') {
+      return callback(null, true);
+    }
+    return callback(new Error('CORS blocked origin: ' + origin));
+  },
   credentials: true,
 }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
+// Payload size limit to prevent Denial of Service via large JSON payloads
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: true, limit: '1mb' }));
+
+// Apply broad API rate limiting across all /api routes
+app.use('/api', apiLimiter);
 
 // 1. Log incoming API call immediately when it arrives in terminal
 app.use((req, res, next) => {

@@ -266,6 +266,22 @@ router.patch('/users/:id/role', async (req, res) => {
       return res.status(400).json({ error: 'Invalid role.' });
     }
 
+    // Security: Prevent an admin from demoting themselves and locking themselves out
+    if (req.user.id === id && role !== 'ADMIN') {
+      return res.status(400).json({ error: 'You cannot demote your own administrator account.' });
+    }
+
+    // Security: Ensure at least one admin always remains in the system
+    if (role !== 'ADMIN') {
+      const targetUser = await prisma.user.findUnique({ where: { id } });
+      if (targetUser && targetUser.role === 'ADMIN') {
+        const adminCount = await prisma.user.count({ where: { role: 'ADMIN' } });
+        if (adminCount <= 1) {
+          return res.status(400).json({ error: 'Cannot demote the only remaining administrator in the system.' });
+        }
+      }
+    }
+
     const user = await prisma.user.update({
       where: { id },
       data: { role },

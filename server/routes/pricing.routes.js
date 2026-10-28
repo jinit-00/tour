@@ -1,5 +1,7 @@
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
+const { requireAuth, requireAdmin } = require('../middleware/auth.middleware');
+const { isValidPrice } = require('../utils/validation.utils');
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -36,14 +38,20 @@ router.get('/safari', async (req, res) => {
   }
 });
 
-// 2. Update Safari Pricing
-router.put('/safari', async (req, res) => {
+// 2. Update Safari Pricing - Restricted to authenticated Admins
+router.put('/safari', requireAuth, requireAdmin, async (req, res) => {
   try {
     const { weekday, weekend, bySlug, resetBySlug } = req.body;
 
     const defaultUpdate = {};
-    if (weekday !== undefined) defaultUpdate.weekdayPrice = parseFloat(weekday);
-    if (weekend !== undefined) defaultUpdate.weekendPrice = parseFloat(weekend);
+    if (weekday !== undefined) {
+      if (!isValidPrice(weekday)) return res.status(400).json({ error: 'Invalid weekday price.' });
+      defaultUpdate.weekdayPrice = parseFloat(weekday);
+    }
+    if (weekend !== undefined) {
+      if (!isValidPrice(weekend)) return res.status(400).json({ error: 'Invalid weekend price.' });
+      defaultUpdate.weekendPrice = parseFloat(weekend);
+    }
 
     if (Object.keys(defaultUpdate).length > 0) {
       await prisma.safariPricing.upsert({
@@ -63,16 +71,18 @@ router.put('/safari', async (req, res) => {
       });
     } else if (bySlug && typeof bySlug === 'object') {
       for (const [slug, rates] of Object.entries(bySlug)) {
+        const wk = rates.weekday !== undefined && isValidPrice(rates.weekday) ? parseFloat(rates.weekday) : 6000;
+        const we = rates.weekend !== undefined && isValidPrice(rates.weekend) ? parseFloat(rates.weekend) : 8000;
         await prisma.safariPricing.upsert({
           where: { slug },
           create: {
             slug,
-            weekdayPrice: parseFloat(rates.weekday || 6000),
-            weekendPrice: parseFloat(rates.weekend || 8000),
+            weekdayPrice: wk,
+            weekendPrice: we,
           },
           update: {
-            weekdayPrice: parseFloat(rates.weekday || 6000),
-            weekendPrice: parseFloat(rates.weekend || 8000),
+            weekdayPrice: wk,
+            weekendPrice: we,
           },
         });
       }
