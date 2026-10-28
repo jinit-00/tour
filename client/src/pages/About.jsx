@@ -80,12 +80,6 @@ export default function About() {
     { name: 'Maasai Mara', region: 'Kenya, Africa', desc: 'Endless open savannah, apex predators and the Great Migration ecosystem' }
   ];
 
-  const audiences = [
-    'Wildlife Enthusiasts', 'Photographers', 'Families', 
-    'First-Time Safari Travellers', 'Nature Lovers', 'Birdwatchers', 
-    'Adventure Travellers', 'Conservation Advocates'
-  ];
-
   const responsibleRules = [
     'No baiting or intentional disturbance',
     'No chasing or harassing animals for photographs',
@@ -282,13 +276,6 @@ export default function About() {
               <p className="text-xs text-charcoal-700 leading-relaxed">
                 You don't need a ₹5 lakh camera. You don't need to know the difference between a leopard and a langur. You don't even need to have been on safari before. If you're curious about wildlife and fascinated by nature, JungleE is for you.
               </p>
-              <div className="flex flex-wrap gap-1.5 pt-1">
-                {audiences.map((aud, i) => (
-                  <span key={i} className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-sand-900 border border-sand-700 text-charcoal-800">
-                    {aud}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
         </div>
