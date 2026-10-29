@@ -79,15 +79,18 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signup = async (name, email, password) => {
-    const res = await signupUser({ name, email, password });
+  const signup = async (name, email, password, confirmPassword) => {
+    const payload = { name, email, password };
+    if (confirmPassword !== undefined) payload.confirmPassword = confirmPassword;
+    const res = await signupUser(payload);
     setPendingEmail(email);
     setAuthModalTab('otp');
     return res.data;
   };
 
-  const verify = async (code) => {
-    const res = await verifyOtp({ email: pendingEmail, code });
+  const verify = async (code, emailOverride) => {
+    const targetEmail = emailOverride || pendingEmail;
+    const res = await verifyOtp({ email: targetEmail, code });
     if (res.data.token) {
       localStorage.setItem('junglee_token', res.data.token);
       localStorage.setItem('junglee_auth_token', res.data.token);
@@ -95,10 +98,12 @@ export const AuthProvider = ({ children }) => {
       setIsAuthModalOpen(false);
       return res.data;
     }
+    return res.data;
   };
 
-  const resendCode = async () => {
-    return await resendOtp({ email: pendingEmail });
+  const resendCode = async (emailOverride) => {
+    const targetEmail = emailOverride || pendingEmail;
+    return await resendOtp({ email: targetEmail });
   };
 
   const requestPasswordReset = async (email) => {
@@ -155,6 +160,7 @@ export const AuthProvider = ({ children }) => {
         authModalTab,
         setAuthModalTab,
         pendingEmail,
+        setPendingEmail,
       }}
     >
       {children}

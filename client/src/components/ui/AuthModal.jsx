@@ -19,6 +19,7 @@ export default function AuthModal() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [otpCode, setOtpCode] = useState('');
 
   const [loading, setLoading] = useState(false);
@@ -43,12 +44,24 @@ export default function AuthModal() {
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setSuccessMsg('');
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match. Please ensure both passwords match.');
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      return;
+    }
+
     setLoading(true);
     try {
-      await signup(name, email, password);
-      setSuccessMsg('Account created! Enter the 6-digit verification code.');
+      await signup(name, email, password, confirmPassword);
+      setSuccessMsg(`OTP sent to ${email}. Enter the 6-digit code to verify and create your account.`);
     } catch (err) {
-      setError(err.response?.data?.error || 'Failed to create account.');
+      setError(err.response?.data?.error || 'Failed to send OTP.');
     } finally {
       setLoading(false);
     }
@@ -57,12 +70,13 @@ export default function AuthModal() {
   const handleOtpSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setSuccessMsg('');
     setLoading(true);
     try {
       await verify(otpCode);
-      setSuccessMsg('Verified successfully! Logging in...');
+      setSuccessMsg('Account verified successfully! Logging you in...');
     } catch (err) {
-      setError(err.response?.data?.error || 'Invalid verification code.');
+      setError(err.response?.data?.error || 'Invalid or expired verification code.');
     } finally {
       setLoading(false);
     }
@@ -257,12 +271,27 @@ export default function AuthModal() {
               </div>
             </div>
 
+            <div>
+              <label className="block text-xs font-sans text-charcoal-700 uppercase mb-1">Confirm Password</label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-3 w-4 h-4 text-charcoal-500" />
+                <input
+                  type="password"
+                  required
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="w-full bg-sand-950 border border-sand-700 rounded-lg py-2.5 pl-10 pr-4 text-sm text-charcoal-900 focus:outline-none focus:border-pine-800"
+                />
+              </div>
+            </div>
+
             <button
               type="submit"
               disabled={loading}
               className="w-full py-3 rounded-lg bg-pine-850 hover:bg-pine-700 text-sand-950 font-bold text-sm shadow-lg transition-colors mt-2 disabled:opacity-50"
             >
-              {loading ? 'Creating Account...' : 'Register Account'}
+              {loading ? 'Sending OTP...' : 'Send OTP'}
             </button>
 
             <div className="relative my-4 text-center">
@@ -317,16 +346,28 @@ export default function AuthModal() {
               disabled={loading}
               className="w-full py-3 rounded-lg bg-pine-850 hover:bg-pine-700 text-sand-950 font-bold text-sm shadow-lg transition-colors disabled:opacity-50"
             >
-              {loading ? 'Verifying...' : 'Verify Code & Sign In'}
+              {loading ? 'Verifying...' : 'Verify OTP & Create Account'}
             </button>
 
-            <button
-              type="button"
-              onClick={handleResend}
-              className="text-xs text-charcoal-500 hover:text-pine-800 transition-colors block mx-auto pt-1"
-            >
-              Didn't receive a code? Click to resend
-            </button>
+            <div className="flex items-center justify-between text-xs pt-1 px-1">
+              <button
+                type="button"
+                onClick={() => {
+                  setAuthModalTab('signup');
+                  setError('');
+                }}
+                className="text-charcoal-600 hover:text-pine-800 transition-colors underline"
+              >
+                Change details
+              </button>
+              <button
+                type="button"
+                onClick={handleResend}
+                className="text-pine-800 font-semibold hover:underline transition-colors"
+              >
+                Resend OTP
+              </button>
+            </div>
           </form>
         )}
 

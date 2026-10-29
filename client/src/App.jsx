@@ -25,6 +25,7 @@ import Gallery from './pages/Gallery';
 import Blog from './pages/Blog';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
+import Register from './pages/Register';
 import UserDashboard from './pages/UserDashboard';
 import AuthCallback from './pages/AuthCallback';
 import TermsAndConditions from './pages/TermsAndConditions';
@@ -58,6 +59,8 @@ export default function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/signup" element={<Register />} />
           <Route path="/dashboard" element={<UserDashboard />} />
           <Route path="/auth-callback" element={<AuthCallback />} />
           <Route path="/terms" element={<TermsAndConditions />} />

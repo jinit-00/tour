@@ -28,12 +28,17 @@ router.post('/signup', signupLimiter, async (req, res) => {
     const rawName = req.body.name;
     const rawEmail = req.body.email;
     const password = req.body.password;
+    const confirmPassword = req.body.confirmPassword;
 
     const name = sanitizeString(rawName, 80);
     const email = rawEmail ? rawEmail.toLowerCase().trim() : '';
 
     if (!name || !email || !password) {
       return res.status(400).json({ error: 'Name, email, and password are required.' });
+    }
+
+    if (confirmPassword !== undefined && confirmPassword !== password) {
+      return res.status(400).json({ error: 'Passwords do not match.' });
     }
 
     if (!isValidEmail(email)) {

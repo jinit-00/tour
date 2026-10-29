@@ -146,12 +146,20 @@ export default function Navbar() {
               </AnimatePresence>
             </div>
           ) : (
-            <button
-              onClick={() => openAuthModal('login')}
-              className="text-sm xl:text-base font-extrabold text-charcoal-950 hover:text-pine-800 transition-colors px-2.5 py-1.5 whitespace-nowrap"
-            >
-              Sign In
-            </button>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => openAuthModal('login')}
+                className="text-sm xl:text-base font-extrabold text-charcoal-950 hover:text-pine-800 transition-colors px-2 py-1.5 whitespace-nowrap cursor-pointer"
+              >
+                Sign In
+              </button>
+              <Link
+                to="/register"
+                className="text-sm xl:text-base font-extrabold text-charcoal-700 hover:text-pine-800 transition-colors px-2 py-1.5 whitespace-nowrap cursor-pointer"
+              >
+                Register
+              </Link>
+            </div>
           )}
 
           <Link
@@ -222,12 +230,24 @@ export default function Navbar() {
                     </button>
                   </>
                 ) : (
-                  <button
-                    onClick={() => openAuthModal('login')}
-                    className="w-full text-center py-3 rounded-xl border border-sand-700 text-charcoal-950 font-bold text-base hover:bg-sand-900"
-                  >
-                    Sign In / Register
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        openAuthModal('login');
+                      }}
+                      className="flex-1 text-center py-2.5 rounded-xl border border-sand-700 text-charcoal-950 font-bold text-sm hover:bg-sand-900 transition-colors"
+                    >
+                      Sign In
+                    </button>
+                    <Link
+                      to="/register"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex-1 text-center py-2.5 rounded-xl bg-sand-900 border border-sand-700 text-pine-850 font-bold text-sm hover:bg-sand-800 transition-colors"
+                    >
+                      Register
+                    </Link>
+                  </div>
                 )}
 
                 <Link
