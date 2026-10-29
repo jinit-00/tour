@@ -97,9 +97,6 @@ export default function Contact() {
               </svg>
               <span>Connect on WhatsApp</span>
             </a>
-            <span className="text-[11px] text-charcoal-500 block text-center pt-1.5 font-sans">
-              Instant reply · +91 9664665873
-            </span>
           </div>
 
           <div className="pt-4 border-t border-sand-700 flex items-center gap-2 text-xs text-charcoal-700 font-sans font-medium">
