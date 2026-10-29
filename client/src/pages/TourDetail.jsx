@@ -147,8 +147,9 @@ export default function TourDetail() {
   const handleAdultsChange = (delta) => {
     const nextVal = Math.max(1, adults + delta);
     setAdults(nextVal);
-    setRooms(Math.ceil(nextVal / 2));
-    setRoomsManual(false);
+    const totalG = nextVal + kids;
+    const requiredRooms = Math.ceil(totalG / 3);
+    setRooms((prev) => Math.max(prev, requiredRooms));
     if (!safariPeopleManual) {
       setSafariPeople(Math.max(1, nextVal + kids));
     }
@@ -157,14 +158,19 @@ export default function TourDetail() {
   const handleKidsChange = (delta) => {
     const nextVal = Math.max(0, kids + delta);
     setKids(nextVal);
+    const totalG = adults + nextVal;
+    const requiredRooms = Math.ceil(totalG / 3);
+    setRooms((prev) => Math.max(prev, requiredRooms));
     if (!safariPeopleManual) {
       setSafariPeople(Math.max(1, adults + nextVal));
     }
   };
 
+  const minRequiredRooms = Math.ceil((adults + kids) / 3);
+
   const handleRoomsChange = (delta) => {
     setRoomsManual(true);
-    setRooms((prev) => Math.max(1, prev + delta));
+    setRooms((prev) => Math.max(minRequiredRooms, prev + delta));
   };
 
   const todayStr = new Date().toISOString().split('T')[0];
@@ -905,7 +911,7 @@ export default function TourDetail() {
                     <div className="flex items-center gap-2">
                       <button
                         type="button"
-                        disabled={rooms <= 1}
+                        disabled={rooms <= minRequiredRooms}
                         onClick={() => handleRoomsChange(-1)}
                         aria-label="Decrease rooms"
                         className="w-7 h-7 rounded-lg bg-sand-900 border border-sand-700 hover:bg-sand-800 disabled:opacity-30 disabled:cursor-not-allowed text-charcoal-950 flex items-center justify-center font-bold text-sm transition-colors"
