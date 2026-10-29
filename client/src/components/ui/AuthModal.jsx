@@ -58,8 +58,13 @@ export default function AuthModal() {
 
     setLoading(true);
     try {
-      await signup(name, email, password, confirmPassword);
-      setSuccessMsg(`OTP sent to ${email}. Enter the 6-digit code to verify and create your account.`);
+      const data = await signup(name, email, password, confirmPassword);
+      if (data?.devOtp) {
+        setSuccessMsg(`OTP generated! ${data.emailError ? '(Email token expired — code: ' + data.devOtp + ')' : 'Enter code to verify.'}`);
+        setOtpCode(data.devOtp);
+      } else {
+        setSuccessMsg(`OTP sent to ${email}. Enter the 6-digit code to verify and create your account.`);
+      }
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to send OTP.');
     } finally {

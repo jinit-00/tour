@@ -88,13 +88,16 @@ router.post('/signup', signupLimiter, async (req, res) => {
       },
     });
 
-    await sendOtpEmail(user.email, otpCode);
+    const mailResult = await sendOtpEmail(user.email, otpCode);
 
     res.status(201).json({
-      message: 'Account created. Verification code sent to email.',
+      message: mailResult?.error
+        ? 'Account registered, but email delivery encountered an issue. Please verify your OTP to finish.'
+        : 'Account created. Verification code sent to email.',
       email: user.email,
       userId: user.id,
       requiresOtp: true,
+      ...(process.env.NODE_ENV !== 'production' || mailResult?.mock || mailResult?.error ? { devOtp: otpCode, emailError: mailResult?.error } : {}),
     });
   } catch (error) {
     console.error('Signup error:', error.message);
@@ -193,9 +196,12 @@ router.post('/resend-otp', otpLimiter, async (req, res) => {
       },
     });
 
-    await sendOtpEmail(user.email, otpCode);
+    const mailResult = await sendOtpEmail(user.email, otpCode);
 
-    res.json({ message: 'A new verification code has been sent to your email.' });
+    res.json({
+      message: 'A new verification code has been sent.',
+      ...(process.env.NODE_ENV !== 'production' || mailResult?.mock || mailResult?.error ? { devOtp: otpCode, emailError: mailResult?.error } : {}),
+    });
   } catch (error) {
     console.error('Resend OTP error:', error.message);
     res.status(500).json({ error: 'Failed to resend OTP.' });

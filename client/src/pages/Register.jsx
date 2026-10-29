@@ -87,8 +87,13 @@ export default function Register() {
 
     setLoading(true);
     try {
-      await signup(trimmedName, trimmedEmail, password, confirmPassword);
-      setSuccessMsg(`OTP sent successfully to ${trimmedEmail}!`);
+      const data = await signup(trimmedName, trimmedEmail, password, confirmPassword);
+      if (data?.devOtp) {
+        setSuccessMsg(`OTP generated! ${data.emailError ? '(Gmail OAuth expired — test code: ' + data.devOtp + ')' : 'Verification code sent!'}`);
+        setOtpCode(data.devOtp);
+      } else {
+        setSuccessMsg(`OTP sent successfully to ${trimmedEmail}!`);
+      }
       setStep('otp');
       setResendCooldown(60);
     } catch (err) {
@@ -132,8 +137,13 @@ export default function Register() {
     setError('');
     try {
       const targetEmail = pendingEmail || email.trim().toLowerCase();
-      await resendCode(targetEmail);
-      setSuccessMsg(`A new 6-digit OTP has been sent to ${targetEmail}.`);
+      const res = await resendCode(targetEmail);
+      if (res?.data?.devOtp) {
+        setSuccessMsg(`New OTP generated (dev mode): ${res.data.devOtp}`);
+        setOtpCode(res.data.devOtp);
+      } else {
+        setSuccessMsg(`A new 6-digit OTP has been sent to ${targetEmail}.`);
+      }
       setResendCooldown(60);
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to resend OTP. Please try again in a moment.');
