@@ -78,9 +78,6 @@ export default function Tours() {
         <h1 className="text-3xl sm:text-5xl font-black text-charcoal-900 tracking-tight uppercase">
           Wildlife Photography Safaris
         </h1>
-        <p className="text-xs sm:text-sm text-charcoal-700 max-w-2xl mx-auto font-normal">
-          Explore our signature small-group departures featuring Gir, Sanjay Dubri, Jawai, Ranthambore, Velavadar, Pench, Panna, Bandhavgarh, Kanha, Tadoba, Chitwan, and Jim Corbett. Select any safari card to explore each destination.
-        </p>
       </div>
 
       {/* Apple-Style Minimal Filter & Search Bar */}
