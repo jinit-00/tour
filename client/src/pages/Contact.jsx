@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Loader2, Clock } from 'lucide-react';
 import { sendContactMessage } from '../services/api';
 
 export default function Contact() {
@@ -79,8 +79,9 @@ export default function Contact() {
             </li>
           </ul>
 
-          <div className="pt-4 border-t border-sand-700 text-xs text-charcoal-600 font-mono">
-            ⏱️ Office hours: Monday – Saturday, 9:00 AM – 7:00 PM IST
+          <div className="pt-4 border-t border-sand-700 flex items-center gap-2 text-xs text-charcoal-700 font-sans font-medium">
+            <Clock className="w-4 h-4 text-pine-800 shrink-0" />
+            <span>Office hours: Monday – Saturday, 9:00 AM – 7:00 PM IST</span>
           </div>
         </div>
 
