@@ -63,7 +63,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center space-y-3 mb-16"
           >
-            <p className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">The JungleE Difference</p>
+            <p className="text-xs font-sans uppercase tracking-widest text-pine-800 font-bold">The JungleE Difference</p>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-charcoal-900">Wildlife, Done Differently</h2>
           </motion.div>
 

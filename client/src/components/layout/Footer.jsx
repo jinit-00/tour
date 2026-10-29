@@ -19,7 +19,7 @@ export default function Footer() {
                 <span className="font-sans font-black tracking-wider text-lg text-charcoal-900 uppercase">
                   JungleE
                 </span>
-                <span className="text-[10px] tracking-widest uppercase text-pine-800 font-mono font-bold">
+                <span className="text-[10px] tracking-widest uppercase text-pine-800 font-sans font-bold">
                   WILDLIFE EXPEDITIONS
                 </span>
               </div>
@@ -60,7 +60,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-3">
-            <h4 className="text-xs uppercase font-mono text-pine-800 font-bold tracking-widest">Navigation</h4>
+            <h4 className="text-xs uppercase font-sans text-pine-800 font-bold tracking-widest">Navigation</h4>
             <ul className="space-y-2 text-sm">
               <li><Link to="/tours" className="hover:text-pine-800 transition-colors">Expedition Tours</Link></li>
               <li><Link to="/about" className="hover:text-pine-800 transition-colors">About Our Guides</Link></li>
@@ -74,7 +74,7 @@ export default function Footer() {
 
           {/* Contact Details */}
           <div className="space-y-3">
-            <h4 className="text-xs uppercase font-mono text-pine-800 font-bold tracking-widest">Basecamp Contact</h4>
+            <h4 className="text-xs uppercase font-sans text-pine-800 font-bold tracking-widest">Basecamp Contact</h4>
             <ul className="space-y-3 text-sm text-charcoal-700">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-pine-800 shrink-0 mt-1" />
@@ -85,17 +85,17 @@ export default function Footer() {
                 <div className="flex flex-col gap-1 text-xs">
                   <div>
                     <span className="font-bold text-charcoal-900">Vatsal Dangi: </span>
-                    <a href="tel:+919665129435" className="hover:text-pine-800 font-mono">+91-9665129435</a>
+                    <a href="tel:+919665129435" className="hover:text-pine-800 font-sans">+91-9665129435</a>
                   </div>
                   <div>
                     <span className="font-bold text-charcoal-900">Harsh Barad: </span>
-                    <a href="tel:+917096392919" className="hover:text-pine-800 font-mono">+91-7096392919</a>
+                    <a href="tel:+917096392919" className="hover:text-pine-800 font-sans">+91-7096392919</a>
                   </div>
                 </div>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-pine-800 shrink-0" />
-                <a href="mailto:safari@jungleewildlife.co.in" className="hover:text-pine-800 text-xs font-mono font-bold">safari@jungleewildlife.co.in</a>
+                <a href="mailto:safari@jungleewildlife.co.in" className="hover:text-pine-800 text-xs font-sans font-bold">safari@jungleewildlife.co.in</a>
               </li>
             </ul>
           </div>

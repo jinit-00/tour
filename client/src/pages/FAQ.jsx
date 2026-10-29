@@ -678,7 +678,7 @@ We'll help you build the right wildlife experience for your trip.`,
       
       {/* Header */}
       <div className="text-center space-y-4">
-        <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Frequently Asked Questions</span>
+        <span className="text-xs font-sans uppercase tracking-widest text-pine-800 font-bold">Frequently Asked Questions</span>
         <h1 className="text-4xl sm:text-6xl font-extrabold text-charcoal-900 tracking-tight">Expedition Knowledgebase</h1>
         <p className="text-sm sm:text-base text-charcoal-700 max-w-2xl mx-auto font-normal">
           Explore complete answers covering safaris, permits, accommodation, cancellation rules, safety protocols, and personalized bookings.
@@ -699,7 +699,7 @@ We'll help you build the right wildlife experience for your trip.`,
           {searchTerm && (
             <button
               onClick={() => setSearchTerm('')}
-              className="absolute right-4 text-xs font-mono text-charcoal-700 hover:text-charcoal-950 bg-sand-800 px-2.5 py-1 rounded-full"
+              className="absolute right-4 text-xs font-sans text-charcoal-700 hover:text-charcoal-950 bg-sand-800 px-2.5 py-1 rounded-full"
             >
               Clear
             </button>
@@ -713,7 +713,7 @@ We'll help you build the right wildlife experience for your trip.`,
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-bold transition-all ${
+            className={`px-3.5 py-1.5 rounded-full text-xs font-sans font-bold transition-all ${
               activeCategory === cat
                 ? 'bg-pine-800 text-sand-950 shadow-md scale-105'
                 : 'glass-panel text-charcoal-800 hover:bg-sand-900 border border-sand-700/80'
@@ -737,7 +737,7 @@ We'll help you build the right wildlife experience for your trip.`,
             <div key={group.category} className="space-y-4">
               <div className="flex items-center gap-3 border-b border-sand-700/80 pb-2">
                 <span className="w-2 h-2 rounded-full bg-pine-800"></span>
-                <h2 className="text-xs sm:text-sm font-mono font-bold tracking-widest text-pine-800 uppercase">
+                <h2 className="text-xs sm:text-sm font-sans font-bold tracking-widest text-pine-800 uppercase">
                   {group.category}
                 </h2>
               </div>
@@ -759,7 +759,7 @@ We'll help you build the right wildlife experience for your trip.`,
                         className="w-full p-5 sm:p-6 text-left flex items-start justify-between gap-4 focus:outline-none"
                       >
                         <div className="flex items-start gap-3">
-                          <span className="text-xs font-mono font-bold text-pine-800 mt-1 shrink-0 bg-sand-900 border border-sand-700 px-2 py-0.5 rounded-md">
+                          <span className="text-xs font-sans font-bold text-pine-800 mt-1 shrink-0 bg-sand-900 border border-sand-700 px-2 py-0.5 rounded-md">
                             {faq.id}
                           </span>
                           <span className="text-base sm:text-lg font-bold text-charcoal-900 leading-snug">
@@ -797,7 +797,7 @@ We'll help you build the right wildlife experience for your trip.`,
         <div className="pt-2">
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center px-7 py-3 rounded-full bg-pine-800 hover:bg-pine-900 text-sand-950 font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-md hover:scale-105"
+            className="inline-flex items-center justify-center px-7 py-3 rounded-full bg-pine-800 hover:bg-pine-900 text-sand-950 font-sans text-xs font-bold uppercase tracking-wider transition-all shadow-md hover:scale-105"
           >
             Connect with us
           </Link>

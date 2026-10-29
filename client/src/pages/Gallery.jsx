@@ -61,7 +61,7 @@ export default function Gallery() {
       
       {/* Header */}
       <div className="text-center space-y-4 mb-12">
-        <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Field Masterpieces</span>
+        <span className="text-xs font-sans uppercase tracking-widest text-pine-800 font-bold">Field Masterpieces</span>
         <h1 className="text-4xl sm:text-6xl font-extrabold text-charcoal-900">Expedition Gallery</h1>
         <p className="text-sm sm:text-base text-charcoal-700 max-w-2xl mx-auto font-normal">
           Explore captured moments by guests and lead masterclass photographers across premier wildlife sanctuaries.

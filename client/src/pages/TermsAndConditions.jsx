@@ -10,7 +10,7 @@ export default function TermsAndConditions() {
       <div>
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-pine-800 hover:text-pine-900 transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-sans font-bold uppercase tracking-wider text-pine-800 hover:text-pine-900 transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to Home</span>
@@ -19,7 +19,7 @@ export default function TermsAndConditions() {
 
       {/* Header Banner */}
       <div className="glass-panel p-8 sm:p-10 rounded-3xl border border-sand-700 bg-sand-950/80 shadow-xl space-y-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pine-800/10 border border-pine-800/20 text-pine-800 text-xs font-mono font-bold uppercase tracking-widest">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pine-800/10 border border-pine-800/20 text-pine-800 text-xs font-sans font-bold uppercase tracking-widest">
           <FileText className="w-3.5 h-3.5" />
           <span>Terms of Service</span>
         </div>
@@ -49,7 +49,7 @@ export default function TermsAndConditions() {
         {/* 1. BOOKING & PAYMENT */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               01
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -79,7 +79,7 @@ export default function TermsAndConditions() {
         {/* 2. SAFARI PACKAGE BOOKINGS */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               02
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -101,7 +101,7 @@ export default function TermsAndConditions() {
         {/* 3. SAFARI PACKAGE CANCELLATION & REFUND POLICY */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               03
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -114,17 +114,17 @@ export default function TermsAndConditions() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
             <div className="p-4 rounded-2xl bg-sand-900 border border-sand-700">
-              <span className="font-bold text-charcoal-950 block text-xs uppercase font-mono">30+ Days Before Travel</span>
+              <span className="font-bold text-charcoal-950 block text-xs uppercase font-sans">30+ Days Before Travel</span>
               <p className="text-pine-800 font-bold text-base pt-1">40% Refund</p>
               <p className="text-charcoal-600 text-xs pt-0.5">60% non-refundable</p>
             </div>
             <div className="p-4 rounded-2xl bg-sand-900 border border-sand-700">
-              <span className="font-bold text-charcoal-950 block text-xs uppercase font-mono">15–29 Days Before Travel</span>
+              <span className="font-bold text-charcoal-950 block text-xs uppercase font-sans">15–29 Days Before Travel</span>
               <p className="text-pine-800 font-bold text-base pt-1">30% Refund</p>
               <p className="text-charcoal-600 text-xs pt-0.5">70% non-refundable</p>
             </div>
             <div className="p-4 rounded-2xl bg-sand-900 border border-sand-700">
-              <span className="font-bold text-charcoal-950 block text-xs uppercase font-mono">Less Than 15 Days</span>
+              <span className="font-bold text-charcoal-950 block text-xs uppercase font-sans">Less Than 15 Days</span>
               <p className="text-rose-700 font-bold text-base pt-1">0% Refund</p>
               <p className="text-charcoal-600 text-xs pt-0.5">100% non-refundable</p>
             </div>
@@ -149,7 +149,7 @@ export default function TermsAndConditions() {
         {/* 4. SAFARI CANCELLATION BY AUTHORITIES / PARK CLOSURE */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               04
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -169,7 +169,7 @@ export default function TermsAndConditions() {
         {/* 5. WILDLIFE SIGHTINGS & SAFARI EXPERIENCE */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               05
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -188,7 +188,7 @@ export default function TermsAndConditions() {
         {/* 6. ACCOMMODATION / HOTEL BOOKINGS */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               06
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -209,7 +209,7 @@ export default function TermsAndConditions() {
         {/* 7. ACCOMMODATION CANCELLATION POLICY */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               07
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -228,7 +228,7 @@ export default function TermsAndConditions() {
         {/* 8. PACKAGE BOOKINGS */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               08
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -250,7 +250,7 @@ export default function TermsAndConditions() {
         {/* 9. TRANSPORTATION */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               09
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -269,7 +269,7 @@ export default function TermsAndConditions() {
         {/* 10. GUEST RESPONSIBILITIES */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               10
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -297,7 +297,7 @@ export default function TermsAndConditions() {
         {/* 11. DELAYS & MISSED SAFARIS */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               11
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -315,7 +315,7 @@ export default function TermsAndConditions() {
         {/* 12. HEALTH, SAFETY & MEDICAL CONDITIONS */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               12
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -333,7 +333,7 @@ export default function TermsAndConditions() {
         {/* 13. FORCE MAJEURE */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-3">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               13
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -351,7 +351,7 @@ export default function TermsAndConditions() {
         {/* 14. PHOTOGRAPHY, VIDEO & CONTENT */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               14
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -369,7 +369,7 @@ export default function TermsAndConditions() {
         {/* 15. WEBSITE INFORMATION */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               15
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -386,7 +386,7 @@ export default function TermsAndConditions() {
         {/* 16. THIRD-PARTY SERVICE PROVIDERS */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-3">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               16
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -407,7 +407,7 @@ export default function TermsAndConditions() {
         {/* 17. AMENDMENTS TO BOOKINGS */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-3">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               17
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -422,7 +422,7 @@ export default function TermsAndConditions() {
         {/* 18. REFUND PROCESSING */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               18
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -441,7 +441,7 @@ export default function TermsAndConditions() {
         {/* 19. DISPUTES & GOVERNING LAW */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               19
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -458,7 +458,7 @@ export default function TermsAndConditions() {
         {/* 20. ACCEPTANCE OF TERMS */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 bg-sand-950 space-y-4 shadow-lg">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               20
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">

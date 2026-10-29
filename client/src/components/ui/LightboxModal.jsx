@@ -44,7 +44,7 @@ export default function LightboxModal({ isOpen, onClose, images, currentIndex, o
         >
           <div className="flex items-center space-x-2 bg-charcoal-900/80 border border-sand-700/40 rounded-full px-4 py-1.5 backdrop-blur-md">
             <Compass className="w-3.5 h-3.5 text-pine-800" />
-            <span className="text-xs font-mono font-bold text-sand-800 tracking-wider">
+            <span className="text-xs font-sans font-bold text-sand-800 tracking-wider">
               {currentIndex + 1} / {images.length}
             </span>
           </div>
@@ -54,7 +54,7 @@ export default function LightboxModal({ isOpen, onClose, images, currentIndex, o
             title="Close"
             className="flex items-center space-x-1 text-sand-800 hover:text-sand-950 p-2.5 sm:px-4 sm:py-2 rounded-full bg-charcoal-900/80 border border-sand-700/40 hover:bg-pine-800 hover:border-pine-800 transition-all shadow-lg group"
           >
-            <span className="hidden sm:inline text-xs font-mono font-bold text-sand-800 group-hover:text-sand-950">Close</span>
+            <span className="hidden sm:inline text-xs font-sans font-bold text-sand-800 group-hover:text-sand-950">Close</span>
             <X className="w-5 h-5 text-sand-800 group-hover:text-sand-950" />
           </button>
         </div>

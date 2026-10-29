@@ -45,13 +45,13 @@ export default function SafariCard({ tour, index = 0 }) {
 
       {/* 3. Top-Left Headline Typography */}
       <div className="relative z-10 space-y-2 max-w-md">
-        <span className="text-xs font-mono uppercase tracking-[0.25em] text-sand-900/80 font-bold block">
+        <span className="text-xs font-sans uppercase tracking-[0.25em] text-sand-900/80 font-bold block">
           {regionLabel}
         </span>
         <h2 className="text-4xl sm:text-5xl font-black text-sand-950 uppercase tracking-tight leading-[1.05] drop-shadow-lg">
           {primaryTitle}
         </h2>
-        <p className="text-xs font-mono text-sand-900/70 tracking-wide font-normal pt-1">
+        <p className="text-xs font-sans text-sand-900/70 tracking-wide font-normal pt-1">
           {tour.title}
         </p>
       </div>

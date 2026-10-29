@@ -93,15 +93,15 @@ export default function AdminBookings() {
             </thead>
             <tbody className="divide-y divide-slate-100 text-slate-700">
               {loading ? (
-                <tr><td colSpan="7" className="p-8 text-center text-slate-400 font-mono">Loading bookings queue...</td></tr>
+                <tr><td colSpan="7" className="p-8 text-center text-slate-400 font-sans">Loading bookings queue...</td></tr>
               ) : filteredBookings.length === 0 ? (
-                <tr><td colSpan="7" className="p-8 text-center text-slate-400 font-mono">No bookings found for this filter.</td></tr>
+                <tr><td colSpan="7" className="p-8 text-center text-slate-400 font-sans">No bookings found for this filter.</td></tr>
               ) : (
                 filteredBookings.map((b) => (
                   <tr key={b.id} className="hover:bg-slate-50 transition-colors">
                     <td className="p-4">
                       <p className="font-bold text-slate-900">{b.user?.name || 'Explorer'}</p>
-                      <p className="text-xs font-mono text-slate-500">{b.user?.email}</p>
+                      <p className="text-xs font-sans text-slate-500">{b.user?.email}</p>
                     </td>
 
                     <td className="p-4">
@@ -109,12 +109,12 @@ export default function AdminBookings() {
                       <p className="text-xs text-slate-500">{b.tour?.location}</p>
                     </td>
 
-                    <td className="p-4 text-xs font-mono text-slate-600">
+                    <td className="p-4 text-xs font-sans text-slate-600">
                       <p>{new Date(b.bookingDate).toLocaleDateString()}</p>
                       <p className="text-slate-400">{b.numPeople} {b.numPeople === 1 ? 'Guest' : 'Guests'}</p>
                     </td>
 
-                    <td className="p-4 text-xs font-mono text-slate-600">
+                    <td className="p-4 text-xs font-sans text-slate-600">
                       {b.tourPackage ? `${b.tourPackage.name} (+₹${b.tourPackage.price})` : 'Standard'}
                     </td>
 
@@ -124,7 +124,7 @@ export default function AdminBookings() {
                       <select
                         value={b.status}
                         onChange={(e) => handleStatusChange(b.id, e.target.value)}
-                        className={`text-xs font-bold font-mono py-1 px-2 rounded border focus:outline-none ${
+                        className={`text-xs font-bold font-sans py-1 px-2 rounded border focus:outline-none ${
                           b.status === 'CONFIRMED'
                             ? 'bg-emerald-50 text-emerald-700 border-emerald-300'
                             : b.status === 'PENDING'

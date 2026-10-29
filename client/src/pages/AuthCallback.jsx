@@ -18,7 +18,7 @@ export default function AuthCallback() {
   }, [searchParams, handleOAuthToken, navigate]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center text-center text-cream-300 font-mono">
+    <div className="min-h-screen flex items-center justify-center text-center text-cream-300 font-sans">
       Authenticating with Google OAuth...
     </div>
   );

@@ -17,7 +17,7 @@ export default function FullWidthSafariBlock({ tour, index = 0 }) {
       {/* TOP HEADER ROW: Fixed Height Header for 100% Equal Alignment */}
       <div className="relative z-10 h-32 sm:h-36 md:h-40 flex flex-col justify-start space-y-2 shrink-0 overflow-hidden">
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1.5 text-xs text-charcoal-700 font-mono bg-sand-900/80 px-3.5 py-1.5 rounded-full border border-sand-700/80">
+          <div className="flex items-center gap-1.5 text-xs text-charcoal-700 font-sans bg-sand-900/80 px-3.5 py-1.5 rounded-full border border-sand-700/80">
             <MapPin className="w-4 h-4 text-pine-800 shrink-0" />
             <span>{tour.location}</span>
           </div>

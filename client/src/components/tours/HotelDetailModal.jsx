@@ -34,7 +34,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
           {/* Header Bar */}
           <div className="flex items-center justify-between p-6 border-b border-sand-700/80 bg-sand-900/90 shrink-0">
             <div className="flex items-center gap-3">
-              <span className="bg-pine-800 text-sand-950 text-xs font-mono font-bold px-3.5 py-1 rounded-full uppercase tracking-wider">
+              <span className="bg-pine-800 text-sand-950 text-xs font-sans font-bold px-3.5 py-1 rounded-full uppercase tracking-wider">
                 Official Safari Stay
               </span>
             </div>
@@ -60,7 +60,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${hotel.name}, ${hotel.address || ''}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-sand-900 border border-sand-700 hover:border-pine-800 text-xs font-mono font-bold text-pine-800 hover:bg-sand-800 transition-all shadow-sm"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-sand-900 border border-sand-700 hover:border-pine-800 text-xs font-sans font-bold text-pine-800 hover:bg-sand-800 transition-all shadow-sm"
                   title="Open Location on Google Maps"
                 >
                   <MapPin className="w-3.5 h-3.5 text-pine-800" />
@@ -68,7 +68,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
                 </a>
               </div>
               {hotel.tagline && (
-                <p className="text-sm font-semibold text-pine-800 font-mono">
+                <p className="text-sm font-semibold text-pine-800 font-sans">
                   {hotel.tagline}
                 </p>
               )}
@@ -82,7 +82,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
                   alt={`${hotel.name} Photo ${activeImageIndex + 1}`}
                   className="w-full h-full object-cover transition-all duration-500"
                 />
-                <div className="absolute bottom-3 right-3 bg-charcoal-950/80 backdrop-blur-md text-sand-950 text-xs font-mono font-bold px-3 py-1 rounded-full border border-sand-700">
+                <div className="absolute bottom-3 right-3 bg-charcoal-950/80 backdrop-blur-md text-sand-950 text-xs font-sans font-bold px-3 py-1 rounded-full border border-sand-700">
                   {activeImageIndex + 1} / {images.length} Photos
                 </div>
               </div>
@@ -137,7 +137,7 @@ export default function HotelDetailModal({ hotel, isOpen, onClose }) {
             </div>
 
             {/* Check-in & Policy Info */}
-            <div className="p-4 rounded-xl bg-sand-900 border border-sand-700 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-charcoal-700">
+            <div className="p-4 rounded-xl bg-sand-900 border border-sand-700 flex flex-wrap items-center justify-between gap-4 text-xs font-sans text-charcoal-700">
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-pine-800" />
                 <span>Check-in: <strong>12:00 PM</strong> | Check-out: <strong>10:00 AM</strong></span>

@@ -39,7 +39,7 @@ export default function Blog() {
       
       {/* Header */}
       <div className="text-center space-y-4 max-w-2xl mx-auto">
-        <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Field Notes & Insights</span>
+        <span className="text-xs font-sans uppercase tracking-widest text-pine-800 font-bold">Field Notes & Insights</span>
         <h1 className="text-4xl sm:text-6xl font-extrabold text-charcoal-900">Wilderness Journal</h1>
         <p className="text-sm sm:text-base text-charcoal-700 font-normal">
           Technical photography guides, camera settings breakdowns, and conservation stories straight from our expedition leaders.
@@ -61,7 +61,7 @@ export default function Blog() {
               </div>
 
               <div className="p-6 space-y-3">
-                <div className="flex items-center gap-4 text-xs font-mono text-charcoal-600">
+                <div className="flex items-center gap-4 text-xs font-sans text-charcoal-600">
                   <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-pine-800" /> {post.date}</span>
                   <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-pine-800" /> {post.readTime}</span>
                 </div>

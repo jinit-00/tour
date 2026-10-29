@@ -59,7 +59,7 @@ export default function AdminDashboard() {
   if (loading) {
     return (
       <AdminLayout>
-        <div className="py-12 text-center text-slate-500 font-mono">Loading analytics telemetry...</div>
+        <div className="py-12 text-center text-slate-500 font-sans">Loading analytics telemetry...</div>
       </AdminLayout>
     );
   }
@@ -173,10 +173,10 @@ export default function AdminDashboard() {
               {data?.topTours?.map((tour) => (
                 <tr key={tour.id} className="hover:bg-slate-50 transition-colors">
                   <td className="p-4 font-bold text-slate-900">{tour.title}</td>
-                  <td className="p-4 text-xs font-mono text-slate-500">{tour.location}</td>
+                  <td className="p-4 text-xs font-sans text-slate-500">{tour.location}</td>
                   <td className="p-4 font-semibold text-emerald-700">₹{tour.price.toLocaleString()}</td>
                   <td className="p-4">
-                    <span className="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold font-mono">
+                    <span className="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold font-sans">
                       {tour.bookingCount} bookings
                     </span>
                   </td>
@@ -199,10 +199,10 @@ export default function AdminDashboard() {
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <span className="px-3 py-1 bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold rounded-lg font-mono">
+              <span className="px-3 py-1 bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold rounded-lg font-sans">
                 {messages.filter((m) => !m.isRead).length} Unread
               </span>
-              <span className="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded-lg font-mono">
+              <span className="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded-lg font-sans">
                 {messages.length} Total
               </span>
             </div>
@@ -222,7 +222,7 @@ export default function AdminDashboard() {
               <tbody className="divide-y divide-slate-100 text-slate-700">
                 {messages.length === 0 ? (
                   <tr>
-                    <td colSpan="5" className="p-12 text-center text-slate-400 font-mono text-sm">
+                    <td colSpan="5" className="p-12 text-center text-slate-400 font-sans text-sm">
                       <MessageSquare className="w-8 h-8 text-slate-300 mx-auto mb-2" />
                       No contact inquiries or feedback messages received yet.
                     </td>
@@ -239,7 +239,7 @@ export default function AdminDashboard() {
                         <p className="font-bold text-slate-900">{m.name}</p>
                         <a
                           href={`mailto:${m.email}`}
-                          className="text-xs font-mono text-pine-800 hover:underline block mt-0.5"
+                          className="text-xs font-sans text-pine-800 hover:underline block mt-0.5"
                         >
                           {m.email}
                         </a>
@@ -252,7 +252,7 @@ export default function AdminDashboard() {
                       <td className="p-4 align-top text-xs text-slate-700 max-w-md leading-relaxed whitespace-pre-wrap">
                         {m.message}
                       </td>
-                      <td className="p-4 align-top text-xs font-mono text-slate-400 whitespace-nowrap">
+                      <td className="p-4 align-top text-xs font-sans text-slate-400 whitespace-nowrap">
                         <div className="flex items-center gap-1.5">
                           <Clock className="w-3.5 h-3.5 text-slate-400" />
                           <span>{new Date(m.createdAt).toLocaleDateString()}</span>

@@ -33,6 +33,8 @@ export default {
       },
       fontFamily: {
         sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+        serif: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+        mono: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
       },
       backgroundImage: {
         'sand-gradient': 'linear-gradient(135deg, #E8E3D5 0%, #E1DBC9 50%, #D5CEBA 100%)',

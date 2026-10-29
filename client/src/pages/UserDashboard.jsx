@@ -43,7 +43,7 @@ export default function UserDashboard() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 glass-panel p-8 rounded-3xl border border-sand-700 shadow-xl">
         <div className="space-y-1">
-          <span className="text-xs font-mono uppercase text-pine-800 font-bold">Explorer Portal</span>
+          <span className="text-xs font-sans uppercase text-pine-800 font-bold">Explorer Portal</span>
           <h1 className="text-3xl font-extrabold text-charcoal-900">Welcome, {user?.name || 'Photographer'}</h1>
           <p className="text-xs text-charcoal-700 font-normal">{user?.email}</p>
         </div>
@@ -56,7 +56,7 @@ export default function UserDashboard() {
       </div>
 
       {actionMsg && (
-        <div className="p-4 bg-sand-900 border border-sand-700 text-pine-800 rounded-2xl text-xs font-mono">
+        <div className="p-4 bg-sand-900 border border-sand-700 text-pine-800 rounded-2xl text-xs font-sans">
           ✅ {actionMsg}
         </div>
       )}
@@ -66,7 +66,7 @@ export default function UserDashboard() {
         <h2 className="text-xl font-bold text-charcoal-900">My Safari Expeditions</h2>
 
         {loading ? (
-          <div className="text-center py-16 font-mono text-charcoal-700">Loading your reservations...</div>
+          <div className="text-center py-16 font-sans text-charcoal-700">Loading your reservations...</div>
         ) : bookings.length === 0 ? (
           <div className="glass-panel p-12 rounded-3xl text-center space-y-4 max-w-md mx-auto border border-sand-700">
             <Calendar className="w-10 h-10 text-pine-800 mx-auto" />
@@ -88,7 +88,7 @@ export default function UserDashboard() {
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <span
-                      className={`px-2.5 py-0.5 rounded text-[10px] uppercase font-mono font-bold ${
+                      className={`px-2.5 py-0.5 rounded text-[10px] uppercase font-sans font-bold ${
                         b.status === 'CONFIRMED'
                           ? 'bg-pine-800/10 text-pine-800 border border-pine-800/20'
                           : b.status === 'CANCELLED'
@@ -98,12 +98,12 @@ export default function UserDashboard() {
                     >
                       {b.status}
                     </span>
-                    <span className="text-xs font-mono text-charcoal-500">Ref: #{b.id.slice(0, 8)}</span>
+                    <span className="text-xs font-sans text-charcoal-500">Ref: #{b.id.slice(0, 8)}</span>
                   </div>
 
                   <h3 className="text-lg font-bold text-charcoal-900">{b.tour?.title || 'Wildlife Expedition'}</h3>
 
-                  <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-charcoal-700">
+                  <div className="flex flex-wrap items-center gap-4 text-xs font-sans text-charcoal-700">
                     <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-pine-800" /> {b.tour?.location}</span>
                     <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-pine-800" /> {new Date(b.startDate).toLocaleDateString()}</span>
                     <span className="flex items-center gap-1"><Users className="w-3.5 h-3.5 text-pine-800" /> {b.guests} Guests</span>
@@ -112,7 +112,7 @@ export default function UserDashboard() {
 
                 <div className="flex items-center gap-6 border-t md:border-t-0 border-sand-700 pt-4 md:pt-0">
                   <div className="text-right">
-                    <span className="text-[10px] font-mono text-charcoal-500 uppercase block">Total Cost</span>
+                    <span className="text-[10px] font-sans text-charcoal-500 uppercase block">Total Cost</span>
                     <span className="text-xl font-extrabold text-charcoal-900">₹{(b.totalPrice || b.totalAmount || 0).toLocaleString()}</span>
                   </div>
 

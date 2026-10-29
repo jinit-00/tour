@@ -127,17 +127,17 @@ export default function TermsModal({ isOpen, onClose }) {
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
                 <div className="p-4 rounded-xl bg-sand-900 border border-sand-700">
-                  <span className="font-bold text-charcoal-950 block text-xs uppercase font-mono">30+ Days Before Travel</span>
+                  <span className="font-bold text-charcoal-950 block text-xs uppercase font-sans">30+ Days Before Travel</span>
                   <p className="text-pine-800 font-bold text-sm pt-1">40% Refund</p>
                   <p className="text-charcoal-600 text-xs pt-0.5">60% non-refundable</p>
                 </div>
                 <div className="p-4 rounded-xl bg-sand-900 border border-sand-700">
-                  <span className="font-bold text-charcoal-950 block text-xs uppercase font-mono">15–29 Days Before Travel</span>
+                  <span className="font-bold text-charcoal-950 block text-xs uppercase font-sans">15–29 Days Before Travel</span>
                   <p className="text-pine-800 font-bold text-sm pt-1">30% Refund</p>
                   <p className="text-charcoal-600 text-xs pt-0.5">70% non-refundable</p>
                 </div>
                 <div className="p-4 rounded-xl bg-sand-900 border border-sand-700">
-                  <span className="font-bold text-charcoal-950 block text-xs uppercase font-mono">Less Than 15 Days</span>
+                  <span className="font-bold text-charcoal-950 block text-xs uppercase font-sans">Less Than 15 Days</span>
                   <p className="text-red-700 font-bold text-sm pt-1">0% Refund</p>
                   <p className="text-charcoal-600 text-xs pt-0.5">100% non-refundable</p>
                 </div>
@@ -417,7 +417,7 @@ export default function TermsModal({ isOpen, onClose }) {
           <div className="p-4 sm:p-5 border-t border-sand-700/80 bg-sand-900/90 flex justify-end shrink-0">
             <button
               onClick={onClose}
-              className="px-6 py-2.5 rounded-full bg-pine-800 hover:bg-pine-700 text-sand-950 text-xs font-bold font-mono uppercase tracking-wider transition-colors shadow-md"
+              className="px-6 py-2.5 rounded-full bg-pine-800 hover:bg-pine-700 text-sand-950 text-xs font-bold font-sans uppercase tracking-wider transition-colors shadow-md"
             >
               Close Terms
             </button>

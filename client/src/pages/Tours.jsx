@@ -72,7 +72,7 @@ export default function Tours() {
     <div className="pt-24 sm:pt-28 pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-sand-gradient min-h-screen">
       {/* Editorial Header */}
       <div className="text-center space-y-3 mb-8">
-        <span className="text-xs font-mono uppercase tracking-[0.25em] text-pine-800 font-bold">
+        <span className="text-xs font-sans uppercase tracking-[0.25em] text-pine-800 font-bold">
           Masterclass Expeditions
         </span>
         <h1 className="text-3xl sm:text-5xl font-black text-charcoal-900 tracking-tight uppercase">
@@ -96,7 +96,7 @@ export default function Tours() {
 
         {/* Region Filter Tabs */}
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs font-mono uppercase text-charcoal-600 mr-2 hidden sm:inline font-bold">Region:</span>
+          <span className="text-xs font-sans uppercase text-charcoal-600 mr-2 hidden sm:inline font-bold">Region:</span>
           {locations.map((loc) => (
             <button
               key={loc}
@@ -115,7 +115,7 @@ export default function Tours() {
 
       {/* Large 2-Column Editorial Grid */}
       {loading ? (
-        <div className="text-center py-20 text-charcoal-700 font-mono">Loading signature safaris...</div>
+        <div className="text-center py-20 text-charcoal-700 font-sans">Loading signature safaris...</div>
       ) : tours.length === 0 ? (
         <div className="glass-panel p-12 rounded-3xl text-center space-y-3 max-w-md mx-auto my-12 border border-sand-700">
           <p className="text-lg font-bold text-charcoal-900">No safaris match your criteria.</p>

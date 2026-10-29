@@ -44,7 +44,7 @@ export default function SafariStory() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-sand-gradient flex items-center justify-center text-charcoal-700 font-mono">
+      <div className="min-h-screen bg-sand-gradient flex items-center justify-center text-charcoal-700 font-sans">
         Initializing safari story...
       </div>
     );
@@ -236,11 +236,11 @@ export default function SafariStory() {
               {tour?.title || storyData.animalName}
             </h1>
 
-            <p className="text-lg sm:text-xl text-sand-900 font-mono tracking-wide drop-shadow-lg">
+            <p className="text-lg sm:text-xl text-sand-900 font-sans tracking-wide drop-shadow-lg">
               {storyData.tagline}
             </p>
 
-            <div className="pt-6 flex flex-col items-center gap-2 text-xs font-mono text-sand-900">
+            <div className="pt-6 flex flex-col items-center gap-2 text-xs font-sans text-sand-900">
               <ChevronDown className="w-5 h-5 text-sand-950 animate-bounce" />
             </div>
           </motion.div>
@@ -254,7 +254,7 @@ export default function SafariStory() {
           
           {/* Header */}
           <div className="text-center space-y-2.5 max-w-3xl mx-auto">
-            <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Field Dossier</span>
+            <span className="text-xs font-sans uppercase tracking-widest text-pine-800 font-bold">Field Dossier</span>
             <h2 className="text-3xl sm:text-4xl font-black text-charcoal-900 uppercase tracking-tight">
               Expedition Overview & Masterclass Highlights
             </h2>
@@ -266,7 +266,7 @@ export default function SafariStory() {
           {/* Gir National Park Narrative */}
           {isGir && (
             <div className="glass-panel p-6 sm:p-10 rounded-3xl border border-sand-700/80 space-y-4 max-w-4xl mx-auto shadow-xl bg-sand-900/40">
-              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">
+              <div className="flex items-center gap-2 text-xs font-sans uppercase tracking-widest text-pine-800 font-bold">
                 <Sparkles className="w-4 h-4 text-pine-800" />
                 <span>The Sanctuary Narrative</span>
               </div>
@@ -287,7 +287,7 @@ export default function SafariStory() {
           {/* Jawai Granite Hills Narrative */}
           {isJawai && (
             <div className="glass-panel p-6 sm:p-10 rounded-3xl border border-sand-700/80 space-y-4 max-w-4xl mx-auto shadow-xl bg-sand-900/40">
-              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">
+              <div className="flex items-center gap-2 text-xs font-sans uppercase tracking-widest text-pine-800 font-bold">
                 <Sparkles className="w-4 h-4 text-pine-800" />
                 <span>The Sanctuary Narrative</span>
               </div>
@@ -309,7 +309,7 @@ export default function SafariStory() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {storyData.highlights.map((item, idx) => (
               <div key={idx} className="glass-panel p-6 sm:p-8 rounded-2xl border border-sand-700 space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-sm shadow-md">
+                <div className="w-10 h-10 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-sm shadow-md">
                   0{idx + 1}
                 </div>
                 <h3 className="text-base sm:text-lg font-bold text-charcoal-900">{item}</h3>
@@ -324,7 +324,7 @@ export default function SafariStory() {
                 <Sun className="w-6 h-6" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-charcoal-900">Best Time to Visit</h3>
-              <p className="text-sm font-mono text-pine-800 font-bold">{storyData.bestSeason}</p>
+              <p className="text-sm font-sans text-pine-800 font-bold">{storyData.bestSeason}</p>
               <p className="text-xs text-charcoal-700 leading-relaxed font-normal">
                 Optimized for maximum daylight, clear tracking conditions, and predictable animal behavior around key water sources.
               </p>
@@ -338,7 +338,7 @@ export default function SafariStory() {
       <section className="py-16 bg-sand-gradient relative border-t border-sand-700 z-30">
         <div className="max-w-4xl mx-auto px-4 text-center glass-panel p-10 sm:p-14 rounded-3xl border-2 border-pine-800/40 shadow-2xl space-y-6">
           <div className="space-y-2">
-            <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Secure Your Departure</span>
+            <span className="text-xs font-sans uppercase tracking-widest text-pine-800 font-bold">Secure Your Departure</span>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-charcoal-900">
               Ready to Join the {storyData.animalName} Expedition?
             </h2>
@@ -349,7 +349,7 @@ export default function SafariStory() {
 
           <div className="inline-flex items-center justify-center gap-6 bg-sand-900 px-6 py-3 rounded-2xl border border-sand-700">
             <div className="text-center">
-              <span className="text-[10px] font-mono text-charcoal-600 uppercase block">Expedition Destination</span>
+              <span className="text-[10px] font-sans text-charcoal-600 uppercase block">Expedition Destination</span>
               <span className="text-sm sm:text-base font-bold text-charcoal-900">{tour?.location}</span>
             </div>
           </div>

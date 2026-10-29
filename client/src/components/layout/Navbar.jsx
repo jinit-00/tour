@@ -57,7 +57,7 @@ export default function Navbar() {
             <span className="font-sans font-black tracking-wider text-lg sm:text-2xl text-charcoal-950 uppercase group-hover:text-pine-800 transition-colors leading-none">
               JungleE
             </span>
-            <span className="text-[9px] sm:text-xs tracking-[0.18em] uppercase text-pine-800 font-mono font-bold pt-1">
+            <span className="text-[9px] sm:text-xs tracking-[0.18em] uppercase text-pine-800 font-sans font-bold pt-1">
               WILDLIFE EXPEDITIONS
             </span>
           </div>
@@ -107,7 +107,7 @@ export default function Navbar() {
                     className="absolute right-0 mt-2 w-56 glass-panel rounded-xl shadow-2xl py-2 z-50 border border-sand-700"
                   >
                     <div className="px-4 py-2 border-b border-sand-700">
-                      <p className="text-xs text-charcoal-500 font-mono">Logged in as</p>
+                      <p className="text-xs text-charcoal-500 font-sans">Logged in as</p>
                       <p className="text-sm font-semibold text-charcoal-900 truncate">{user.email}</p>
                       {user.role === 'ADMIN' && (
                         <span className="inline-block mt-1 px-2 py-0.5 text-[10px] uppercase font-bold bg-pine-800/10 text-pine-800 border border-pine-800/20 rounded">

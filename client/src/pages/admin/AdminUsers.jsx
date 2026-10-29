@@ -66,14 +66,14 @@ export default function AdminUsers() {
             </thead>
             <tbody className="divide-y divide-slate-100 text-slate-700">
               {loading ? (
-                <tr><td colSpan="7" className="p-8 text-center text-slate-400 font-mono">Loading user directory...</td></tr>
+                <tr><td colSpan="7" className="p-8 text-center text-slate-400 font-sans">Loading user directory...</td></tr>
               ) : (
                 users.map((u) => (
                   <tr key={u.id} className="hover:bg-slate-50 transition-colors">
                     <td className="p-4 font-bold text-slate-900">{u.name}</td>
-                    <td className="p-4 font-mono text-xs text-slate-600">{u.email}</td>
+                    <td className="p-4 font-sans text-xs text-slate-600">{u.email}</td>
                     <td className="p-4">
-                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase ${
+                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-sans font-bold uppercase ${
                         u.role === 'ADMIN' ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-700'
                       }`}>
                         {u.role}
@@ -90,8 +90,8 @@ export default function AdminUsers() {
                         <span>{u.isVerified ? 'Verified' : 'Unverified'}</span>
                       </button>
                     </td>
-                    <td className="p-4 font-mono text-xs font-bold text-slate-800">{u._count?.bookings || 0}</td>
-                    <td className="p-4 text-xs font-mono text-slate-400">{new Date(u.createdAt).toLocaleDateString()}</td>
+                    <td className="p-4 font-sans text-xs font-bold text-slate-800">{u._count?.bookings || 0}</td>
+                    <td className="p-4 text-xs font-sans text-slate-400">{new Date(u.createdAt).toLocaleDateString()}</td>
                     <td className="p-4 text-right">
                       <button
                         onClick={() => handleRoleToggle(u.id, u.role)}

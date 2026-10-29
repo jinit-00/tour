@@ -31,7 +31,7 @@ export default function Contact() {
     <div className="pt-36 sm:pt-40 lg:pt-44 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-sand-gradient min-h-screen space-y-16">
       
       <div className="text-center space-y-4 max-w-2xl mx-auto">
-        <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Get in Touch</span>
+        <span className="text-xs font-sans uppercase tracking-widest text-pine-800 font-bold">Get in Touch</span>
         <h1 className="text-4xl sm:text-6xl font-extrabold text-charcoal-900">Contact Expedition Basecamp</h1>
         <p className="text-sm sm:text-base text-charcoal-700 font-normal">
           Have questions about trip dates, lens recommendations, or custom private departures? Reach out to our expedition team directly.
@@ -48,15 +48,15 @@ export default function Contact() {
             <li className="flex items-start gap-3">
               <MapPin className="w-5 h-5 text-pine-800 shrink-0 mt-0.5" />
               <div>
-                <span className="text-xs font-mono text-charcoal-500 block uppercase font-bold">Address</span>
+                <span className="text-xs font-sans text-charcoal-500 block uppercase font-bold">Address</span>
                 <span className="leading-snug block pt-0.5">A-803, Money Plant High Street, Gota, Ahmedabad, Gujarat, India</span>
               </div>
             </li>
             <li className="flex items-start gap-3">
               <Phone className="w-5 h-5 text-pine-800 shrink-0 mt-0.5" />
               <div>
-                <span className="text-xs font-mono text-charcoal-500 block uppercase font-bold">Expedition Directors</span>
-                <div className="pt-1 space-y-1 text-sm font-mono">
+                <span className="text-xs font-sans text-charcoal-500 block uppercase font-bold">Expedition Directors</span>
+                <div className="pt-1 space-y-1 text-sm font-sans">
                   <div>
                     <span className="font-sans font-bold text-charcoal-900">Vatsal Dangi: </span>
                     <a href="tel:+919665129435" className="hover:text-pine-800 font-bold">+91-9665129435</a>
@@ -71,8 +71,8 @@ export default function Contact() {
             <li className="flex items-start gap-3">
               <Mail className="w-5 h-5 text-pine-800 shrink-0 mt-0.5" />
               <div>
-                <span className="text-xs font-mono text-charcoal-500 block uppercase font-bold">Email</span>
-                <a href="mailto:safari@jungleewildlife.co.in" className="hover:text-pine-800 text-sm font-mono font-bold pt-0.5 block">
+                <span className="text-xs font-sans text-charcoal-500 block uppercase font-bold">Email</span>
+                <a href="mailto:safari@jungleewildlife.co.in" className="hover:text-pine-800 text-sm font-sans font-bold pt-0.5 block">
                   safari@jungleewildlife.co.in
                 </a>
               </div>
@@ -92,7 +92,7 @@ export default function Contact() {
               <div className="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto shadow-sm">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
-              <div className="inline-block px-3 py-1 bg-emerald-100 border border-emerald-300 text-emerald-800 rounded-full text-xs font-bold font-mono uppercase tracking-wider">
+              <div className="inline-block px-3 py-1 bg-emerald-100 border border-emerald-300 text-emerald-800 rounded-full text-xs font-bold font-sans uppercase tracking-wider">
                 ✓ Message Sent Successfully
               </div>
               <h3 className="text-2xl sm:text-3xl font-extrabold text-charcoal-900">Message Received!</h3>
@@ -120,7 +120,7 @@ export default function Contact() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-mono text-charcoal-700 uppercase mb-1 font-bold">Your Name</label>
+                  <label className="block text-xs font-sans text-charcoal-700 uppercase mb-1 font-bold">Your Name</label>
                   <input
                     type="text"
                     required
@@ -131,7 +131,7 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-mono text-charcoal-700 uppercase mb-1 font-bold">Email Address</label>
+                  <label className="block text-xs font-sans text-charcoal-700 uppercase mb-1 font-bold">Email Address</label>
                   <input
                     type="email"
                     required
@@ -144,7 +144,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-charcoal-700 uppercase mb-1 font-bold">Expedition Interest</label>
+                <label className="block text-xs font-sans text-charcoal-700 uppercase mb-1 font-bold">Expedition Interest</label>
                 <select
                   value={form.tourInterest}
                   onChange={(e) => setForm({ ...form, tourInterest: e.target.value })}
@@ -162,7 +162,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-charcoal-700 uppercase mb-1 font-bold">Message / Gear Inquiries</label>
+                <label className="block text-xs font-sans text-charcoal-700 uppercase mb-1 font-bold">Message / Gear Inquiries</label>
                 <textarea
                   rows={5}
                   required

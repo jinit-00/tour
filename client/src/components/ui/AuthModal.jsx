@@ -151,7 +151,7 @@ export default function AuthModal() {
         {authModalTab === 'login' && (
           <form onSubmit={handleLoginSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-mono text-charcoal-700 uppercase mb-1">Email Address</label>
+              <label className="block text-xs font-sans text-charcoal-700 uppercase mb-1">Email Address</label>
               <div className="relative">
                 <Mail className="absolute left-3 top-3 w-4 h-4 text-charcoal-500" />
                 <input
@@ -166,7 +166,7 @@ export default function AuthModal() {
             </div>
 
             <div>
-              <label className="block text-xs font-mono text-charcoal-700 uppercase mb-1">Password</label>
+              <label className="block text-xs font-sans text-charcoal-700 uppercase mb-1">Password</label>
               <div className="relative">
                 <Lock className="absolute left-3 top-3 w-4 h-4 text-charcoal-500" />
                 <input
@@ -190,7 +190,7 @@ export default function AuthModal() {
 
             <div className="relative my-4 text-center">
               <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-sand-700"></div></div>
-              <span className="relative bg-sand-900 px-3 text-[11px] font-mono text-charcoal-500 uppercase">or</span>
+              <span className="relative bg-sand-900 px-3 text-[11px] font-sans text-charcoal-500 uppercase">or</span>
             </div>
 
             <button
@@ -213,7 +213,7 @@ export default function AuthModal() {
         {authModalTab === 'signup' && (
           <form onSubmit={handleSignupSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-mono text-charcoal-700 uppercase mb-1">Full Name</label>
+              <label className="block text-xs font-sans text-charcoal-700 uppercase mb-1">Full Name</label>
               <div className="relative">
                 <User className="absolute left-3 top-3 w-4 h-4 text-charcoal-500" />
                 <input
@@ -228,7 +228,7 @@ export default function AuthModal() {
             </div>
 
             <div>
-              <label className="block text-xs font-mono text-charcoal-700 uppercase mb-1">Email Address</label>
+              <label className="block text-xs font-sans text-charcoal-700 uppercase mb-1">Email Address</label>
               <div className="relative">
                 <Mail className="absolute left-3 top-3 w-4 h-4 text-charcoal-500" />
                 <input
@@ -243,7 +243,7 @@ export default function AuthModal() {
             </div>
 
             <div>
-              <label className="block text-xs font-mono text-charcoal-700 uppercase mb-1">Create Password</label>
+              <label className="block text-xs font-sans text-charcoal-700 uppercase mb-1">Create Password</label>
               <div className="relative">
                 <Lock className="absolute left-3 top-3 w-4 h-4 text-charcoal-500" />
                 <input
@@ -267,7 +267,7 @@ export default function AuthModal() {
 
             <div className="relative my-4 text-center">
               <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-sand-700"></div></div>
-              <span className="relative bg-sand-900 px-3 text-[11px] font-mono text-charcoal-500 uppercase">or</span>
+              <span className="relative bg-sand-900 px-3 text-[11px] font-sans text-charcoal-500 uppercase">or</span>
             </div>
 
             <button
@@ -296,7 +296,7 @@ export default function AuthModal() {
             <div>
               <h3 className="text-xl font-bold text-charcoal-900">Verify Your Email</h3>
               <p className="text-xs text-charcoal-700 mt-1">
-                We sent a 6-digit verification code to <span className="text-pine-800 font-mono font-bold">{pendingEmail}</span>
+                We sent a 6-digit verification code to <span className="text-pine-800 font-sans font-bold">{pendingEmail}</span>
               </p>
             </div>
 
@@ -308,7 +308,7 @@ export default function AuthModal() {
                 value={otpCode}
                 onChange={(e) => setOtpCode(e.target.value)}
                 placeholder="123456"
-                className="w-full bg-sand-950 border border-pine-800/40 rounded-xl py-3 text-center text-2xl font-mono tracking-[10px] text-pine-800 focus:outline-none focus:border-pine-800"
+                className="w-full bg-sand-950 border border-pine-800/40 rounded-xl py-3 text-center text-2xl font-sans tracking-[10px] text-pine-800 focus:outline-none focus:border-pine-800"
               />
             </div>
 

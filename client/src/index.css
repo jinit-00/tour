@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  *, ::before, ::after {
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  }
+
   body {
     background: linear-gradient(135deg, #E8E3D5 0%, #E1DBC9 50%, #D5CEBA 100%);
     background-attachment: fixed;

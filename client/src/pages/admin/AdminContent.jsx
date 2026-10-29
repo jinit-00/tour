@@ -219,7 +219,7 @@ export default function AdminContent() {
                 <div key={item.id} className="relative bg-white rounded-xl overflow-hidden border border-slate-200 shadow-xs group">
                   <img src={item.imageUrl} alt={item.title} className="w-full h-40 object-cover" />
                   <div className="p-3">
-                    <span className="text-[10px] font-mono font-bold text-emerald-700 uppercase">{item.category}</span>
+                    <span className="text-[10px] font-sans font-bold text-emerald-700 uppercase">{item.category}</span>
                     <h4 className="text-xs font-bold text-slate-900 truncate">{item.title}</h4>
                   </div>
                   <button
@@ -310,7 +310,7 @@ export default function AdminContent() {
                   <div className="flex items-center gap-4">
                     <img src={b.coverImage} alt={b.title} className="w-16 h-16 rounded-lg object-cover border" />
                     <div>
-                      <span className="text-[10px] font-mono font-bold text-emerald-700 uppercase">{b.category}</span>
+                      <span className="text-[10px] font-sans font-bold text-emerald-700 uppercase">{b.category}</span>
                       <h4 className="text-sm font-bold text-slate-900">{b.title}</h4>
                       <p className="text-xs text-slate-500 line-clamp-1">{b.summary}</p>
                     </div>
@@ -341,13 +341,13 @@ export default function AdminContent() {
               </thead>
               <tbody className="divide-y divide-slate-100 text-slate-700">
                 {messages.length === 0 ? (
-                  <tr><td colSpan="4" className="p-8 text-center text-slate-400 font-mono">No contact messages received yet.</td></tr>
+                  <tr><td colSpan="4" className="p-8 text-center text-slate-400 font-sans">No contact messages received yet.</td></tr>
                 ) : (
                   messages.map((m) => (
                     <tr key={m.id} className={`hover:bg-slate-50 transition-colors ${!m.isRead ? 'bg-amber-50/40 font-medium' : ''}`}>
                       <td className="p-4">
                         <p className="font-bold text-slate-900">{m.name}</p>
-                        <p className="text-xs font-mono text-slate-500">{m.email}</p>
+                        <p className="text-xs font-sans text-slate-500">{m.email}</p>
                         {m.tourInterest && (
                           <span className="inline-block mt-1 px-2 py-0.5 bg-sand-200 text-charcoal-800 text-[11px] font-semibold rounded">
                             {m.tourInterest}
@@ -355,7 +355,7 @@ export default function AdminContent() {
                         )}
                       </td>
                       <td className="p-4 text-xs text-slate-700 max-w-md">{m.message}</td>
-                      <td className="p-4 text-xs font-mono text-slate-400">{new Date(m.createdAt).toLocaleDateString()}</td>
+                      <td className="p-4 text-xs font-sans text-slate-400">{new Date(m.createdAt).toLocaleDateString()}</td>
                       <td className="p-4 text-right">
                         {!m.isRead ? (
                           <button

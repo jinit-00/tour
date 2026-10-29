@@ -101,7 +101,7 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="space-y-3"
         >
-          <span className="text-xs font-mono uppercase tracking-[0.25em] text-pine-800 font-bold">
+          <span className="text-xs font-sans uppercase tracking-[0.25em] text-pine-800 font-bold">
             About Us · Our Ethos & Story
           </span>
           <h1 className="text-4xl sm:text-6xl font-black text-charcoal-950 uppercase tracking-tight leading-tight">
@@ -135,7 +135,7 @@ export default function About() {
         className="glass-panel p-8 sm:p-12 rounded-3xl border border-sand-700/90 shadow-xl space-y-6 relative overflow-hidden"
       >
         <div className="space-y-2">
-          <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Our Story</span>
+          <span className="text-xs font-sans uppercase tracking-widest text-pine-800 font-bold">Our Story</span>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-charcoal-950">Born From a Love for the Wild</h2>
         </div>
 
@@ -152,7 +152,7 @@ export default function About() {
           <p className="text-charcoal-700">
             Our trips are designed around the rhythm of the wild — early mornings, long drives, unexpected sightings, quiet forests, dramatic landscapes and the moments that cannot be planned.
           </p>
-          <div className="p-4 sm:p-6 rounded-2xl bg-sand-900/80 border border-sand-700 font-serif italic text-charcoal-900 text-base sm:text-lg">
+          <div className="p-4 sm:p-6 rounded-2xl bg-sand-900/80 border border-sand-700 font-sans italic text-charcoal-900 text-base sm:text-lg">
             “Because sometimes, the most memorable part of a safari isn't the animal you came to see. It's everything that happens while you're looking for it.”
           </div>
         </div>
@@ -161,7 +161,7 @@ export default function About() {
       {/* 3. What We Do */}
       <section className="space-y-8">
         <div className="text-center space-y-2 max-w-2xl mx-auto">
-          <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">What We Do</span>
+          <span className="text-xs font-sans uppercase tracking-widest text-pine-800 font-bold">What We Do</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-charcoal-950">More Than Just Safari Bookings</h2>
           <p className="text-sm text-charcoal-700">
             We curate complete wildlife journeys rather than simply arranging a safari permit or hotel.
@@ -196,7 +196,7 @@ export default function About() {
       {/* 4. The JungleE Difference */}
       <section className="space-y-8">
         <div className="text-center space-y-2 max-w-2xl mx-auto">
-          <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">The JungleE Difference</span>
+          <span className="text-xs font-sans uppercase tracking-widest text-pine-800 font-bold">The JungleE Difference</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-charcoal-950">Wildlife, Done Differently</h2>
         </div>
 
@@ -210,7 +210,7 @@ export default function About() {
               transition={{ delay: idx * 0.08 }}
               className="glass-panel p-6 sm:p-7 rounded-2xl border border-sand-700 space-y-2.5 hover:border-pine-800/40 transition-all"
             >
-              <div className="text-xs font-mono font-bold text-pine-800 uppercase tracking-widest">
+              <div className="text-xs font-sans font-bold text-pine-800 uppercase tracking-widest">
                 0{idx + 1}
               </div>
               <h3 className="text-lg font-bold text-charcoal-950">{pillar.title}</h3>
@@ -230,7 +230,7 @@ export default function About() {
         className="glass-panel p-8 sm:p-12 rounded-3xl border border-sand-700/90 shadow-xl space-y-6"
       >
         <div className="space-y-2">
-          <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Our Philosophy</span>
+          <span className="text-xs font-sans uppercase tracking-widest text-pine-800 font-bold">Our Philosophy</span>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-charcoal-950">
             We Don't Chase Wildlife. We Learn to Read It.
           </h2>
@@ -239,7 +239,7 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="space-y-4 text-sm sm:text-base text-charcoal-800 leading-relaxed">
             <p className="font-semibold text-charcoal-950">A forest is constantly communicating.</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-charcoal-800 bg-sand-900/80 p-4 rounded-xl border border-sand-700">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-sans text-charcoal-800 bg-sand-900/80 p-4 rounded-xl border border-sand-700">
               <div className="flex items-center gap-2"><span>🐾</span><span>Fresh pugmarks on a trail</span></div>
               <div className="flex items-center gap-2"><span>🦌</span><span>A sudden alarm call</span></div>
               <div className="flex items-center gap-2"><span>🌿</span><span>A movement in the grass</span></div>
@@ -261,7 +261,7 @@ export default function About() {
                 <Camera className="w-4 h-4 text-pine-800" />
                 <span>For Photographers</span>
               </h4>
-              <h5 className="text-xs font-mono text-pine-800 font-bold uppercase">When the Experience Matters as Much as the Photograph</h5>
+              <h5 className="text-xs font-sans text-pine-800 font-bold uppercase">When the Experience Matters as Much as the Photograph</h5>
               <p className="text-xs text-charcoal-700 leading-relaxed">
                 Wildlife photography is an important part of JungleE, but we don't believe a successful expedition is measured only by the number of photographs you bring home. We create conditions where photographers can work patiently and responsibly — with appropriate field time, thoughtful positioning and guides who understand that sometimes the best decision is simply to wait.
               </p>
@@ -272,7 +272,7 @@ export default function About() {
                 <Users className="w-4 h-4 text-pine-800" />
                 <span>For Everyone</span>
               </h4>
-              <h5 className="text-xs font-mono text-pine-800 font-bold uppercase">You Don't Have to Be a Photographer to Belong Here</h5>
+              <h5 className="text-xs font-sans text-pine-800 font-bold uppercase">You Don't Have to Be a Photographer to Belong Here</h5>
               <p className="text-xs text-charcoal-700 leading-relaxed">
                 You don't need a ₹5 lakh camera. You don't need to know the difference between a leopard and a langur. You don't even need to have been on safari before. If you're curious about wildlife and fascinated by nature, JungleE is for you.
               </p>
@@ -289,7 +289,7 @@ export default function About() {
         className="glass-panel p-8 sm:p-12 rounded-3xl border border-pine-800/30 shadow-xl space-y-6 bg-gradient-to-br from-sand-900/90 to-sand-850/90"
       >
         <div className="space-y-2">
-          <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold flex items-center gap-1.5">
+          <span className="text-xs font-sans uppercase tracking-widest text-pine-800 font-bold flex items-center gap-1.5">
             <ShieldCheck className="w-4 h-4 text-pine-800" />
             <span>Responsible Wildlife Tourism</span>
           </span>
@@ -311,7 +311,7 @@ export default function About() {
           ))}
         </div>
 
-        <div className="pt-4 border-t border-sand-700/80 text-center sm:text-left font-mono font-bold text-xs uppercase tracking-widest text-pine-800">
+        <div className="pt-4 border-t border-sand-700/80 text-center sm:text-left font-sans font-bold text-xs uppercase tracking-widest text-pine-800">
           🌲 The forest comes first. Always.
         </div>
       </motion.section>
@@ -319,7 +319,7 @@ export default function About() {
       {/* 7. Destinations */}
       <section className="space-y-8">
         <div className="text-center space-y-2 max-w-2xl mx-auto">
-          <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Destinations</span>
+          <span className="text-xs font-sans uppercase tracking-widest text-pine-800 font-bold">Destinations</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-charcoal-950">
             From India's Jungles to Africa's Great Wilderness
           </h2>
@@ -333,7 +333,7 @@ export default function About() {
             <div key={idx} className="glass-panel p-5 rounded-2xl border border-sand-700 space-y-2 hover:border-pine-800/40 transition-all">
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-bold text-charcoal-950">{dest.name}</h3>
-                <span className="text-[10px] font-mono text-pine-800 font-bold uppercase bg-sand-900 px-2 py-0.5 rounded border border-sand-700">
+                <span className="text-[10px] font-sans text-pine-800 font-bold uppercase bg-sand-900 px-2 py-0.5 rounded border border-sand-700">
                   {dest.region}
                 </span>
               </div>
@@ -344,7 +344,7 @@ export default function About() {
           ))}
         </div>
 
-        <div className="text-center font-mono text-xs text-charcoal-600 font-bold">
+        <div className="text-center font-sans text-xs text-charcoal-600 font-bold">
           ✨ And we're constantly exploring the next wilderness worth experiencing.
         </div>
       </section>
@@ -352,7 +352,7 @@ export default function About() {
       {/* 8. The People Behind JungleE (Expedition Directors - No Photos of People) */}
       <section className="space-y-10">
         <div className="text-center space-y-3 max-w-3xl mx-auto">
-          <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">
+          <span className="text-xs font-sans uppercase tracking-widest text-pine-800 font-bold">
             The People Behind JungleE · Expedition Masters
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal-950">
@@ -378,7 +378,7 @@ export default function About() {
               <div className="flex items-center justify-between gap-3 border-b border-sand-700/80 pb-4">
                 <div>
                   <h3 className="text-2xl font-black text-charcoal-950 tracking-tight">Ar. Vatsal Dangi</h3>
-                  <p className="text-xs font-mono text-pine-800 font-bold uppercase tracking-wider pt-0.5">
+                  <p className="text-xs font-sans text-pine-800 font-bold uppercase tracking-wider pt-0.5">
                     Co-Founder · Expedition Director
                   </p>
                 </div>
@@ -402,7 +402,7 @@ export default function About() {
 
             <div className="p-4 rounded-2xl bg-sand-900/90 border border-sand-700/80 flex items-start gap-3">
               <Quote className="w-4 h-4 text-pine-800 shrink-0 mt-0.5" />
-              <p className="text-xs font-serif italic text-charcoal-950">
+              <p className="text-xs font-sans italic text-charcoal-950">
                 “The best encounters are the ones you didn't try to force.”
               </p>
             </div>
@@ -419,7 +419,7 @@ export default function About() {
               <div className="flex items-center justify-between gap-3 border-b border-sand-700/80 pb-4">
                 <div>
                   <h3 className="text-2xl font-black text-charcoal-950 tracking-tight">Ar. Harsh Barad</h3>
-                  <p className="text-xs font-mono text-pine-800 font-bold uppercase tracking-wider pt-0.5">
+                  <p className="text-xs font-sans text-pine-800 font-bold uppercase tracking-wider pt-0.5">
                     Co-Founder · Expedition Director
                   </p>
                 </div>
@@ -443,7 +443,7 @@ export default function About() {
 
             <div className="p-4 rounded-2xl bg-sand-900/90 border border-sand-700/80 flex items-start gap-3">
               <Quote className="w-4 h-4 text-pine-800 shrink-0 mt-0.5" />
-              <p className="text-xs font-serif italic text-charcoal-950">
+              <p className="text-xs font-sans italic text-charcoal-950">
                 “You can plan the journey. The wilderness writes the story.”
               </p>
             </div>
@@ -459,7 +459,7 @@ export default function About() {
           <p className="text-xs sm:text-sm text-charcoal-700 leading-relaxed">
             That approach also aligns with responsible wildlife tourism: good safari experiences depend on trained guides, respect for regulations, low-impact behaviour and meaningful engagement with local communities.
           </p>
-          <p className="font-mono text-xs uppercase tracking-widest text-pine-800 font-bold pt-1">
+          <p className="font-sans text-xs uppercase tracking-widest text-pine-800 font-bold pt-1">
             The result? Not a packaged holiday. An expedition built around the wild.
           </p>
         </div>
@@ -472,7 +472,7 @@ export default function About() {
         viewport={{ once: true }}
         className="glass-panel p-8 sm:p-12 rounded-3xl border border-sand-700 text-center space-y-6 max-w-4xl mx-auto shadow-xl"
       >
-        <span className="text-xs font-mono uppercase tracking-widest text-pine-800 font-bold">Our Promise</span>
+        <span className="text-xs font-sans uppercase tracking-widest text-pine-800 font-bold">Our Promise</span>
         <h2 className="text-2xl sm:text-4xl font-black text-charcoal-950 uppercase tracking-tight">
           We Can't Promise What You'll See. <br />
           <span className="text-pine-800">We Can Promise How We'll Take You There.</span>

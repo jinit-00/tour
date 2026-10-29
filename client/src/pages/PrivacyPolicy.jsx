@@ -10,7 +10,7 @@ export default function PrivacyPolicy() {
       <div>
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-pine-800 hover:text-pine-900 transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-sans font-bold uppercase tracking-wider text-pine-800 hover:text-pine-900 transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to Home</span>
@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
 
       {/* Header Banner */}
       <div className="glass-panel p-8 sm:p-10 rounded-3xl border border-sand-700 bg-sand-950/80 shadow-xl space-y-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pine-800/10 border border-pine-800/20 text-pine-800 text-xs font-mono font-bold uppercase tracking-widest">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pine-800/10 border border-pine-800/20 text-pine-800 text-xs font-sans font-bold uppercase tracking-widest">
           <Shield className="w-3.5 h-3.5" />
           <span>Legal Documentation</span>
         </div>
@@ -45,7 +45,7 @@ export default function PrivacyPolicy() {
         {/* 1. Information We Collect */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               01
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -88,7 +88,7 @@ export default function PrivacyPolicy() {
         {/* 2. How We Use Your Information */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               02
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -139,7 +139,7 @@ export default function PrivacyPolicy() {
         {/* 3. Sharing of Information */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               03
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -170,7 +170,7 @@ export default function PrivacyPolicy() {
         {/* 4. Cookies and Website Analytics */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-3">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               04
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -194,7 +194,7 @@ export default function PrivacyPolicy() {
         {/* 5. Data Storage and Security */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-3">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               05
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -214,7 +214,7 @@ export default function PrivacyPolicy() {
         {/* 6. Data Retention */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-3">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               06
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -234,7 +234,7 @@ export default function PrivacyPolicy() {
         {/* 7. Your Privacy Rights */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-4">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               07
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -262,7 +262,7 @@ export default function PrivacyPolicy() {
         {/* 8. Third-Party Links and Services */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-3">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               08
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -278,7 +278,7 @@ export default function PrivacyPolicy() {
         {/* 9. Children’s Privacy */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-3">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               09
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -294,7 +294,7 @@ export default function PrivacyPolicy() {
         {/* 10. Changes to This Privacy Policy */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 space-y-3">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               10
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -314,7 +314,7 @@ export default function PrivacyPolicy() {
         {/* 11. Contact Us */}
         <section className="glass-panel p-6 sm:p-8 rounded-3xl border border-sand-700 bg-sand-950 space-y-5 shadow-lg">
           <div className="flex items-center gap-3 border-b border-sand-700/80 pb-3">
-            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-mono font-bold text-xs shrink-0 shadow-sm">
+            <span className="w-8 h-8 rounded-xl bg-pine-800 text-sand-950 flex items-center justify-center font-sans font-bold text-xs shrink-0 shadow-sm">
               11
             </span>
             <h2 className="text-lg sm:text-xl font-bold text-charcoal-950">
@@ -334,19 +334,19 @@ export default function PrivacyPolicy() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-xs sm:text-sm text-charcoal-800">
               <div className="flex items-center gap-2">
                 <Globe className="w-4 h-4 text-pine-800 shrink-0" />
-                <span>Website: <a href="https://jungleewildlife.co.in" target="_blank" rel="noopener noreferrer" className="font-mono text-pine-800 font-bold hover:underline">https://jungleewildlife.co.in</a></span>
+                <span>Website: <a href="https://jungleewildlife.co.in" target="_blank" rel="noopener noreferrer" className="font-sans text-pine-800 font-bold hover:underline">https://jungleewildlife.co.in</a></span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-pine-800 shrink-0" />
-                <span>Email: <a href="mailto:safari@jungleewildlife.co.in" className="font-mono text-pine-800 font-bold hover:underline">safari@jungleewildlife.co.in</a></span>
+                <span>Email: <a href="mailto:safari@jungleewildlife.co.in" className="font-sans text-pine-800 font-bold hover:underline">safari@jungleewildlife.co.in</a></span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-pine-800 shrink-0" />
-                <span>Contact: <strong>Vatsal Dangi</strong> — <a href="tel:+919664665873" className="font-mono text-pine-800 font-bold hover:underline">+91 96646 65873</a></span>
+                <span>Contact: <strong>Vatsal Dangi</strong> — <a href="tel:+919664665873" className="font-sans text-pine-800 font-bold hover:underline">+91 96646 65873</a></span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-pine-800 shrink-0" />
-                <span>Additional Contact: <strong>Harsh Barad</strong> — <a href="tel:+916354999899" className="font-mono text-pine-800 font-bold hover:underline">+91 63549 99899</a></span>
+                <span>Additional Contact: <strong>Harsh Barad</strong> — <a href="tel:+916354999899" className="font-sans text-pine-800 font-bold hover:underline">+91 63549 99899</a></span>
               </div>
             </div>
           </div>
