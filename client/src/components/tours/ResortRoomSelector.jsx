@@ -1320,8 +1320,7 @@ export default function ResortRoomSelector({
                   handleSelectHotelClick(hotel);
                 }
               }}
-              onClick={() => handleSelectHotelClick(hotel)}
-              className={`glass-panel rounded-3xl border border-sand-700/80 hover:border-sand-600 bg-sand-900/50 hover:shadow-lg flex flex-col justify-between overflow-hidden cursor-pointer transition-all duration-200 outline-none focus:ring-2 focus:ring-pine-800/60 ${
+              className={`glass-panel rounded-3xl border border-sand-700/80 hover:border-sand-600 bg-sand-900/50 hover:shadow-lg flex flex-col justify-between overflow-hidden transition-all duration-200 outline-none focus:ring-2 focus:ring-pine-800/60 ${
                 isExiting ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100 animate-fadeIn'
               }`}
             >
