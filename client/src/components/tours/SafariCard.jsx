@@ -18,6 +18,8 @@ export default function SafariCard({ tour, index = 0 }) {
     navigate(`/tours/${tour.slug}/story`);
   };
 
+  const isGir = tour.slug === 'gir-lion-safari' || tour.slug?.includes('gir');
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -37,7 +39,9 @@ export default function SafariCard({ tour, index = 0 }) {
         }}
         whileHover={{ scale: 1.04 }}
         transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
-        className="absolute inset-0 w-full h-full object-cover object-center filter contrast-105 pointer-events-none"
+        className={`absolute inset-0 w-full h-full object-cover filter contrast-105 pointer-events-none ${
+          isGir ? 'object-[28%_center]' : 'object-center'
+        }`}
       />
 
       {/* 2. Apple-Style Subtle Dark Gradient Overlays for Readability */}
