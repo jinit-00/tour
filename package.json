@@ -6,11 +6,19 @@
     "client",
     "server"
   ],
+  "engines": {
+    "node": ">=18.0.0 <=22.x"
+  },
   "scripts": {
     "dev:server": "npm run dev --prefix server",
     "dev:client": "npm run dev --prefix client",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "build": "npm run build --prefix client",
+    "build": "npm run build:client:godaddy && npm run build:server",
+    "build:client": "npm run build --prefix client",
+    "build:client:godaddy": "npm run build:godaddy --prefix client",
+    "build:server": "npm run build --prefix server",
+    "start": "node server/index.js",
+    "install:all": "npm install && npm install --prefix client && npm install --prefix server",
     "seed": "npm run seed --prefix server",
     "prisma:push": "npm run db:push --prefix server"
   },

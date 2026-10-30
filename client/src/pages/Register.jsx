@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { API_BASE_URL } from '../services/api';
 import { Mail, Lock, User, KeyRound, AlertCircle, CheckCircle2, ArrowRight, Eye, EyeOff, ShieldCheck } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -152,9 +153,8 @@ export default function Register() {
 
   // 4. Google Auth
   const handleGoogleAuth = () => {
-    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
     const returnUrl = encodeURIComponent(`${window.location.origin}/dashboard`);
-    window.location.href = `${apiUrl}/auth/google?returnUrl=${returnUrl}`;
+    window.location.href = `${API_BASE_URL}/auth/google?returnUrl=${returnUrl}`;
   };
 
   return (

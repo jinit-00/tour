@@ -1,4 +1,6 @@
 require('dotenv').config();
+const path = require('path');
+const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -32,6 +34,7 @@ app.use(helmet({
 // CORS Configuration
 const allowedOrigins = [
   process.env.CLIENT_URL,
+  ...(process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',').map(s => s.trim()) : []),
   'http://localhost:5173',
   'http://localhost:3000',
 ].filter(Boolean);
@@ -116,6 +119,33 @@ app.use('/api/gallery', galleryRoutes);
 app.use('/api/blog', blogRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/admin', adminRoutes);
+
+// Catch-all for unmatched /api routes (ensures unknown API endpoints always return JSON 404, never index.html)
+app.all('/api/*', (req, res) => {
+  res.status(404).json({ error: 'API route not found', path: req.originalUrl });
+});
+
+// Conditionally serve built React frontend if client/dist exists in production (GoDaddy / Monolithic deployment)
+const distPath = path.join(__dirname, '../client/dist');
+const shouldServeFrontend = process.env.NODE_ENV === 'production' && !process.env.VERCEL && fs.existsSync(distPath);
+
+if (shouldServeFrontend) {
+  // Serve static assets with Cache-Control
+  app.use(express.static(distPath, {
+    maxAge: '1d',
+    setHeaders: (res, filePath) => {
+      // Don't cache index.html so frontend code releases take effect immediately
+      if (filePath.endsWith('index.html')) {
+        res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      }
+    },
+  }));
+
+  // Non-API catch-all route: return index.html for client-side React Router navigation
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
+}
 
 // Error Middleware
 app.use(errorHandler);

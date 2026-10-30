@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { API_BASE_URL } from '../../services/api';
 import { X, Mail, Lock, User, KeyRound, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -98,9 +99,8 @@ export default function AuthModal() {
   };
 
   const handleGoogleAuth = () => {
-    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
     const returnUrl = encodeURIComponent(window.location.origin);
-    window.location.href = `${apiUrl}/auth/google?returnUrl=${returnUrl}`;
+    window.location.href = `${API_BASE_URL}/auth/google?returnUrl=${returnUrl}`;
   };
 
   return (
