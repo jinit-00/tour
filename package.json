@@ -17,6 +17,7 @@
     "build:client": "npm run build --prefix client",
     "build:client:godaddy": "npm run build:godaddy --prefix client",
     "build:server": "npm run build --prefix server",
+    "postinstall": "npm run build:server",
     "start": "node server/index.js",
     "install:all": "npm install && npm install --prefix client && npm install --prefix server",
     "seed": "npm run seed --prefix server",
