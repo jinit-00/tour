@@ -1,10 +1,4 @@
-let prisma;
-try {
-  const { PrismaClient } = require('@prisma/client');
-  prisma = new PrismaClient();
-} catch (e) {
-  prisma = null;
-}
+const prisma = require('../config/prisma');
 
 // In-memory cache for ultra-fast reads
 let globalCache = null;

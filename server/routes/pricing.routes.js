@@ -1,10 +1,9 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
+const prisma = require('../config/prisma');
 const { requireAuth, requireAdmin } = require('../middleware/auth.middleware');
 const { isValidPrice } = require('../utils/validation.utils');
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
 // 1. Get Safari Pricing
 router.get('/safari', async (req, res) => {

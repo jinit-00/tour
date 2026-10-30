@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getTours, isTourHidden, syncHiddenToursFromCloud, sortToursByDesiredOrder } from '../services/api';
 import { Search } from 'lucide-react';
 import SafariCard from '../components/tours/SafariCard';
-import girToursCardImg from '../assets/gir-tours-card.jpg';
+import girToursCardImg from '../assets/gir-tours-card.webp';
 
 export default function Tours() {
   const [tours, setTours] = useState([]);
@@ -13,10 +13,38 @@ export default function Tours() {
   useEffect(() => {
     let isMounted = true;
 
-    // 1. Initial load & sync from database
-    syncHiddenToursFromCloud().finally(() => {
-      if (isMounted) fetchTours();
-    });
+    // 1. Initial load & sync from database (Run in parallel to eliminate waterfall)
+    const loadToursData = async () => {
+      try {
+        setLoading(true);
+        const params = {};
+        if (search) params.search = search;
+        if (selectedLocation !== 'All') params.location = selectedLocation;
+
+        const [, res] = await Promise.all([
+          syncHiddenToursFromCloud().catch(() => {}),
+          getTours(params).catch((err) => {
+            console.error(err);
+            return { data: [] };
+          }),
+        ]);
+
+        if (!isMounted) return;
+
+        const visible = (res?.data || []).filter((t) => !isTourHidden(t));
+        const mapped = visible.map((t) => {
+          if (t.slug === 'gir-lion-safari') {
+            return { ...t, images: [girToursCardImg, ...(t.images || []).slice(1)] };
+          }
+          return t;
+        });
+        setTours(sortToursByDesiredOrder(mapped));
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+
+    loadToursData();
 
     // 2. Multi-window / tab event listeners
     const handleVisibilityChange = () => {

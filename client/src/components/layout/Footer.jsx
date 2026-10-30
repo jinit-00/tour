@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-4">
             <Link to="/" className="flex items-center gap-3">
               <div className="w-12 h-12 shrink-0 flex items-center justify-center">
-                <img src={logoImg} alt="JungleE Wildlife Expeditions Logo" className="w-full h-full object-contain" />
+                <img src={logoImg} alt="JungleE Wildlife Expeditions Logo" width="48" height="48" loading="lazy" decoding="async" className="w-full h-full object-contain" />
               </div>
               <div className="flex flex-col">
                 <span className="font-sans font-black tracking-wider text-lg text-charcoal-900 uppercase">

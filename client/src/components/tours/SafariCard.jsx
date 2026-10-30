@@ -34,6 +34,7 @@ export default function SafariCard({ tour, index = 0 }) {
         src={imageUrl}
         alt={tour.title}
         loading="lazy"
+        decoding="async"
         onError={(e) => {
           e.target.src = 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1600&q=80';
         }}

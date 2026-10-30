@@ -14,13 +14,26 @@ export default function SafariStory() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    syncHiddenToursFromCloud().then(() => {
-      getTourDetail(slug).then((res) => setTour(res.data)).catch(() => {});
-    }).catch(() => {});
-    getTourDetail(slug)
-      .then((res) => setTour(res.data))
-      .catch((err) => console.error(err))
-      .finally(() => setLoading(false));
+    let isMounted = true;
+    setLoading(true);
+
+    Promise.all([
+      syncHiddenToursFromCloud().catch(() => {}),
+      getTourDetail(slug).catch((err) => {
+        console.error(err);
+        return { data: null };
+      }),
+    ]).then(([, res]) => {
+      if (isMounted && res?.data) {
+        setTour(res.data);
+      }
+    }).finally(() => {
+      if (isMounted) setLoading(false);
+    });
+
+    return () => {
+      isMounted = false;
+    };
   }, [slug]);
 
   // Framer Motion Scroll Progress for Fullscreen Story Track
@@ -108,7 +121,7 @@ export default function SafariStory() {
     ? {
         animalName: 'Pench Leopard & Royal Bengal Tiger',
         tagline: 'The Legendary Mowgli Wilderness of Pench',
-        photo: '/pench-safari.jpg',
+        photo: '/pench-safari.webp',
         highlights: [
           'Photograph tree-dwelling leopards and Bengal tigers in teak forest canopies',
           'Track wild dholes (Asiatic wild dogs), sloth bears, and gaur herds',
@@ -120,7 +133,7 @@ export default function SafariStory() {
     ? {
         animalName: 'Royal Bengal Tiger & Hardground Barasingha',
         tagline: 'The Sal Meadows & Bamboo Forest Wilderness of Kanha',
-        photo: '/kanha-safari.png',
+        photo: '/kanha-safari.webp',
         highlights: [
           'Track dominant Bengal Tigers across open sal meadows and bamboo groves',
           'Photograph rare southern hardground Barasingha swamp deer and Indian Gaurs',
@@ -132,7 +145,7 @@ export default function SafariStory() {
     ? {
         animalName: 'Royal Bengal Tiger',
         tagline: 'The Ancient Fort & High-Density Tiger Realm of Bandhavgarh',
-        photo: '/bandhavgarh-safari.png',
+        photo: '/bandhavgarh-safari.webp',
         highlights: [
           'Track dominant territorial tigers across Tala, Magdhi, and Khitauli zones',
           'Photograph tigers resting against ancient sandstone cliffs and fort ruins',
@@ -144,7 +157,7 @@ export default function SafariStory() {
     ? {
         animalName: 'Royal Bengal Tiger & Sloth Bear',
         tagline: 'The Teak, Bamboo & Waterhole Wilderness of Tadoba',
-        photo: '/tadoba-safari.jpg',
+        photo: '/tadoba-safari.webp',
         highlights: [
           'Photograph tigers and sloth bears patrolling natural waterholes and lakes',
           'Track wildlife across dense teak forests and bamboo groves in Moharli & Kolara',
@@ -168,7 +181,7 @@ export default function SafariStory() {
     ? {
         animalName: 'Spotted Deer & Royal Bengal Tiger',
         tagline: 'The Himalayan Foothills & Sal Forest Wilderness of Jim Corbett',
-        photo: '/corbett-safari.png',
+        photo: '/corbett-safari.webp',
         highlights: [
           'Photograph wild Asiatic elephant herds and tigers along the Ramganga river',
           'Explore the iconic Dhikala and Bijrani grasslands framed by Himalayan foothills',

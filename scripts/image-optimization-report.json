@@ -1,0 +1,390 @@
+{
+  "beforeTotal": 45447144,
+  "afterTotal": 12016733,
+  "files": [
+    {
+      "file": "client/src/assets/logo.png",
+      "beforeKB": 915,
+      "afterKB": 35,
+      "webpKB": 26
+    },
+    {
+      "file": "client/public/logo.png",
+      "beforeKB": 915,
+      "afterKB": 35,
+      "webpKB": 26
+    },
+    {
+      "file": "client/src/assets/hero-bg.jpg",
+      "beforeKB": 671,
+      "afterKB": 241,
+      "webpKB": 223
+    },
+    {
+      "file": "client/public/hero-bg.jpg",
+      "beforeKB": 671,
+      "afterKB": 241,
+      "webpKB": 223
+    },
+    {
+      "file": "client/public/hero-banner.jpg",
+      "beforeKB": 671,
+      "afterKB": 241,
+      "webpKB": 223
+    },
+    {
+      "file": "client/src/assets/panna-home.jpg",
+      "beforeKB": 1172,
+      "afterKB": 96,
+      "webpKB": 80
+    },
+    {
+      "file": "client/public/panna-home.jpg",
+      "beforeKB": 1172,
+      "afterKB": 96,
+      "webpKB": 80
+    },
+    {
+      "file": "client/public/panna-home.png",
+      "beforeKB": 5481,
+      "afterKB": 446,
+      "webpKB": null
+    },
+    {
+      "file": "client/src/assets/panna-home.png",
+      "beforeKB": 5481,
+      "afterKB": 446,
+      "webpKB": null
+    },
+    {
+      "file": "client/public/hero-bg.png",
+      "beforeKB": 2637,
+      "afterKB": 805,
+      "webpKB": null
+    },
+    {
+      "file": "client/src/assets/hero-bg.png",
+      "beforeKB": 2637,
+      "afterKB": 805,
+      "webpKB": null
+    },
+    {
+      "file": "client/src/assets/gir-tours-card.jpg",
+      "beforeKB": 1496,
+      "afterKB": 153,
+      "webpKB": 166
+    },
+    {
+      "file": "client/public/gir-tours-card.jpg",
+      "beforeKB": 1496,
+      "afterKB": 153,
+      "webpKB": 166
+    },
+    {
+      "file": "client/public/gir-safari.png",
+      "beforeKB": 1237,
+      "afterKB": 315,
+      "webpKB": 52
+    },
+    {
+      "file": "client/public/gir-home.jpg",
+      "beforeKB": 231,
+      "afterKB": 65,
+      "webpKB": 68
+    },
+    {
+      "file": "client/public/gir-home.png",
+      "beforeKB": 634,
+      "afterKB": 254,
+      "webpKB": 68
+    },
+    {
+      "file": "client/public/corbett-safari.png",
+      "beforeKB": 850,
+      "afterKB": 231,
+      "webpKB": 72
+    },
+    {
+      "file": "client/public/bandhavgarh-safari.png",
+      "beforeKB": 631,
+      "afterKB": 181,
+      "webpKB": 48
+    },
+    {
+      "file": "client/public/kanha-safari.png",
+      "beforeKB": 500,
+      "afterKB": 157,
+      "webpKB": 32
+    },
+    {
+      "file": "client/public/pench-safari.jpg",
+      "beforeKB": 279,
+      "afterKB": 69,
+      "webpKB": 64
+    },
+    {
+      "file": "client/public/tadoba-safari.jpg",
+      "beforeKB": 326,
+      "afterKB": 78,
+      "webpKB": 75
+    },
+    {
+      "file": "client/src/assets/gir-home.jpg",
+      "beforeKB": 231,
+      "afterKB": 65,
+      "webpKB": 68
+    },
+    {
+      "file": "client/src/assets/gir-home.png",
+      "beforeKB": 634,
+      "afterKB": 254,
+      "webpKB": null
+    },
+    {
+      "file": "client/public/gallery/gallery-01.jpg",
+      "beforeKB": 144,
+      "afterKB": 54,
+      "webpKB": 40
+    },
+    {
+      "file": "client/public/gallery/gallery-02.jpg",
+      "beforeKB": 228,
+      "afterKB": 83,
+      "webpKB": 68
+    },
+    {
+      "file": "client/public/gallery/gallery-03.jpg",
+      "beforeKB": 209,
+      "afterKB": 83,
+      "webpKB": 63
+    },
+    {
+      "file": "client/public/gallery/gallery-04.jpg",
+      "beforeKB": 154,
+      "afterKB": 59,
+      "webpKB": 46
+    },
+    {
+      "file": "client/public/gallery/gallery-05.jpg",
+      "beforeKB": 403,
+      "afterKB": 152,
+      "webpKB": 147
+    },
+    {
+      "file": "client/public/gallery/gallery-06.jpg",
+      "beforeKB": 260,
+      "afterKB": 96,
+      "webpKB": 86
+    },
+    {
+      "file": "client/public/gallery/gallery-07.jpg",
+      "beforeKB": 99,
+      "afterKB": 35,
+      "webpKB": 25
+    },
+    {
+      "file": "client/public/gallery/gallery-08.jpg",
+      "beforeKB": 230,
+      "afterKB": 98,
+      "webpKB": 76
+    },
+    {
+      "file": "client/public/gallery/gallery-09.jpg",
+      "beforeKB": 133,
+      "afterKB": 49,
+      "webpKB": 33
+    },
+    {
+      "file": "client/public/gallery/gallery-10.jpg",
+      "beforeKB": 320,
+      "afterKB": 118,
+      "webpKB": 119
+    },
+    {
+      "file": "client/public/gallery/gallery-11.jpg",
+      "beforeKB": 233,
+      "afterKB": 96,
+      "webpKB": 82
+    },
+    {
+      "file": "client/public/gallery/gallery-12.jpg",
+      "beforeKB": 180,
+      "afterKB": 71,
+      "webpKB": 55
+    },
+    {
+      "file": "client/public/gallery/gallery-13.jpg",
+      "beforeKB": 157,
+      "afterKB": 57,
+      "webpKB": 47
+    },
+    {
+      "file": "client/public/gallery/gallery-14.jpg",
+      "beforeKB": 364,
+      "afterKB": 148,
+      "webpKB": 142
+    },
+    {
+      "file": "client/public/gallery/gallery-15.jpg",
+      "beforeKB": 337,
+      "afterKB": 214,
+      "webpKB": 207
+    },
+    {
+      "file": "client/public/gallery/gallery-16.jpg",
+      "beforeKB": 384,
+      "afterKB": 211,
+      "webpKB": 199
+    },
+    {
+      "file": "client/public/gallery/gallery-17.jpg",
+      "beforeKB": 400,
+      "afterKB": 240,
+      "webpKB": 205
+    },
+    {
+      "file": "client/public/gallery/gallery-18.jpg",
+      "beforeKB": 505,
+      "afterKB": 209,
+      "webpKB": 222
+    },
+    {
+      "file": "client/public/gallery/gallery-19.jpg",
+      "beforeKB": 203,
+      "afterKB": 106,
+      "webpKB": 81
+    },
+    {
+      "file": "client/public/gallery/gallery-20.jpg",
+      "beforeKB": 486,
+      "afterKB": 262,
+      "webpKB": 258
+    },
+    {
+      "file": "client/public/gallery/gallery-21.jpg",
+      "beforeKB": 312,
+      "afterKB": 127,
+      "webpKB": 114
+    },
+    {
+      "file": "client/public/gallery/gallery-22.jpg",
+      "beforeKB": 343,
+      "afterKB": 203,
+      "webpKB": 170
+    },
+    {
+      "file": "client/public/gallery/gallery-23.jpg",
+      "beforeKB": 460,
+      "afterKB": 189,
+      "webpKB": 211
+    },
+    {
+      "file": "client/public/gallery/gallery-24.jpg",
+      "beforeKB": 250,
+      "afterKB": 153,
+      "webpKB": 133
+    },
+    {
+      "file": "client/public/gallery/gallery-25.jpg",
+      "beforeKB": 255,
+      "afterKB": 100,
+      "webpKB": 97
+    },
+    {
+      "file": "client/public/gallery/gallery-26.jpg",
+      "beforeKB": 461,
+      "afterKB": 230,
+      "webpKB": 246
+    },
+    {
+      "file": "client/public/gallery/gallery-27.jpg",
+      "beforeKB": 292,
+      "afterKB": 92,
+      "webpKB": 94
+    },
+    {
+      "file": "client/public/gallery/gallery-28.jpg",
+      "beforeKB": 406,
+      "afterKB": 134,
+      "webpKB": 139
+    },
+    {
+      "file": "client/public/gallery/gallery-29.jpg",
+      "beforeKB": 431,
+      "afterKB": 232,
+      "webpKB": 240
+    },
+    {
+      "file": "client/public/gallery/gallery-30.jpg",
+      "beforeKB": 436,
+      "afterKB": 207,
+      "webpKB": 228
+    },
+    {
+      "file": "client/public/gallery/gallery-31.jpg",
+      "beforeKB": 503,
+      "afterKB": 263,
+      "webpKB": 305
+    },
+    {
+      "file": "client/public/gallery/gallery-32.jpg",
+      "beforeKB": 403,
+      "afterKB": 220,
+      "webpKB": 200
+    },
+    {
+      "file": "client/public/gallery/gallery-33.jpg",
+      "beforeKB": 317,
+      "afterKB": 123,
+      "webpKB": 128
+    },
+    {
+      "file": "client/public/gallery/gallery-34.jpg",
+      "beforeKB": 500,
+      "afterKB": 234,
+      "webpKB": 301
+    },
+    {
+      "file": "client/public/gallery/gallery-35.jpg",
+      "beforeKB": 541,
+      "afterKB": 288,
+      "webpKB": 324
+    },
+    {
+      "file": "client/public/gallery/gallery-36.jpg",
+      "beforeKB": 556,
+      "afterKB": 288,
+      "webpKB": 333
+    },
+    {
+      "file": "client/public/gallery/gallery-37.jpg",
+      "beforeKB": 315,
+      "afterKB": 209,
+      "webpKB": 192
+    },
+    {
+      "file": "client/public/gallery/gallery-38.jpg",
+      "beforeKB": 269,
+      "afterKB": 110,
+      "webpKB": 97
+    },
+    {
+      "file": "client/public/gallery/gallery-39.jpg",
+      "beforeKB": 441,
+      "afterKB": 250,
+      "webpKB": 245
+    },
+    {
+      "file": "client/public/gallery/gallery-40.jpg",
+      "beforeKB": 322,
+      "afterKB": 120,
+      "webpKB": 119
+    },
+    {
+      "file": "client/public/gallery/gallery-41.jpg",
+      "beforeKB": 172,
+      "afterKB": 64,
+      "webpKB": 51
+    }
+  ]
+}

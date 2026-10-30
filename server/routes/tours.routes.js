@@ -1,7 +1,6 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
+const prisma = require('../config/prisma');
 const router = express.Router();
-const prisma = new PrismaClient();
 
 function formatHotel(hotel) {
   return {
@@ -76,6 +75,11 @@ function formatTour(tour) {
 // Get all tours
 router.get('/', async (req, res) => {
   try {
+    if (req.query.includeHidden !== 'true') {
+      res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
+    } else {
+      res.setHeader('Cache-Control', 'no-store');
+    }
     const { featured, search, location } = req.query;
 
     const where = {};
@@ -120,6 +124,11 @@ router.get('/', async (req, res) => {
 // Get tour by slug or ID
 router.get('/:slugOrId', async (req, res) => {
   try {
+    if (req.query.includeHidden !== 'true') {
+      res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
+    } else {
+      res.setHeader('Cache-Control', 'no-store');
+    }
     const { slugOrId } = req.params;
 
     const tour = await prisma.tour.findFirst({

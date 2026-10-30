@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-const { PrismaClient } = require('@prisma/client');
+const prisma = require('../config/prisma');
 const { generateToken } = require('../utils/jwt.utils');
 const { sendOtpEmail } = require('../utils/email.utils');
 const { requireAuth } = require('../middleware/auth.middleware');
@@ -17,7 +17,6 @@ const {
 } = require('../utils/validation.utils');
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
 // Helper to generate cryptographically secure 6-digit OTP code
 const generateOtp = () => Math.floor(100000 + Math.random() * 900000).toString();

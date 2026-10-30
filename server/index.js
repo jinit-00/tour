@@ -2,9 +2,11 @@ require('dotenv').config();
 const path = require('path');
 const fs = require('fs');
 const express = require('express');
+const compression = require('compression');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const prisma = require('./config/prisma');
 const passport = require('./config/passport');
 const errorHandler = require('./middleware/error.middleware');
 const { apiLimiter } = require('./middleware/rateLimiter.middleware');
@@ -24,6 +26,9 @@ const PORT = process.env.PORT || 5001;
 
 // Trust reverse proxy (Vercel, Cloudflare, AWS, Nginx) so req.ip and rate limits work correctly
 app.set('trust proxy', 1);
+
+// Response compression (gzip/brotli) for reduced payload transfer sizes
+app.use(compression());
 
 // Security Headers via Helmet (disables X-Powered-By, adds X-Content-Type-Options, HSTS, etc.)
 app.use(helmet({
@@ -100,9 +105,22 @@ app.use(morgan((tokens, req, res) => {
 
 app.use(passport.initialize());
 
-// Health Check
+// Health Check (Lightweight, no DB)
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', name: 'JungleE Wildlife Expeditions API', time: new Date() });
+});
+
+// Database Health Check (SELECT 1 ping for uptime checks and latency profiling)
+app.get('/api/health/db', async (req, res) => {
+  const start = Date.now();
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+    const latencyMs = Date.now() - start;
+    res.json({ status: 'ok', database: 'connected', latencyMs, time: new Date() });
+  } catch (err) {
+    const latencyMs = Date.now() - start;
+    res.status(500).json({ status: 'error', database: 'disconnected', latencyMs, error: err.message });
+  }
 });
 
 // Live Synchronization Route (Cross-device visibility & pricing database connector)

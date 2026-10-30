@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Camera, ArrowRight, Users, ShieldCheck } from 'lucide-react';
-import heroBgImg from '../assets/hero-bg.jpg';
+import heroBgImg from '../assets/hero-bg.webp';
 
 export default function Home() {
   // Hero Parallax setup using Framer Motion useScroll and useTransform
@@ -22,6 +22,7 @@ export default function Home() {
           <img
             src={heroBgImg}
             alt="JungleE Wildlife Expeditions"
+            decoding="async"
             className="w-full h-full object-cover scale-105 object-center"
           />
           {/* Subtle Contrast & Vignette Overlay Gradient */}

@@ -1,11 +1,11 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
+const prisma = require('../config/prisma');
 const router = express.Router();
-const prisma = new PrismaClient();
 
 // Get all gallery items
 router.get('/', async (req, res) => {
   try {
+    res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
     const { category } = req.query;
     const where = {};
     if (category && category !== 'All') {

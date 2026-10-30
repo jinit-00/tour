@@ -1,10 +1,9 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
+const prisma = require('../config/prisma');
 const { requireAuth, requireAdmin } = require('../middleware/auth.middleware');
 const { isValidPrice } = require('../utils/validation.utils');
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
 const DESTINATION_NAMES = {
   gir: 'Gir National Park',
@@ -42,6 +41,11 @@ function formatHotel(hotel) {
 router.get('/destinations', async (req, res) => {
   try {
     const includeHidden = req.query.includeHidden === 'true';
+    if (!includeHidden) {
+      res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
+    } else {
+      res.setHeader('Cache-Control', 'no-store');
+    }
     const where = includeHidden ? {} : { isHidden: false };
 
     const hotels = await prisma.hotel.findMany({

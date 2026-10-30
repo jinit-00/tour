@@ -23,6 +23,10 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# Image optimization backups
+backup/
+scripts/image-backups/
+
 # OS metadata
 .DS_Store
 Thumbs.db

@@ -1,10 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { PrismaClient } = require('@prisma/client');
+const prisma = require('../config/prisma');
 const { contactLimiter } = require('../middleware/rateLimiter.middleware');
 const { isValidEmail, sanitizeString } = require('../utils/validation.utils');
-
-const prisma = new PrismaClient();
 
 // POST /api/contact - Submit contact query (Protected by contactLimiter & sanitization)
 router.post('/', contactLimiter, async (req, res, next) => {

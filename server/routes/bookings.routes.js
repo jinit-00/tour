@@ -1,5 +1,5 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
+const prisma = require('../config/prisma');
 const { requireAuth } = require('../middleware/auth.middleware');
 const {
   isValidPositiveInt,
@@ -8,7 +8,6 @@ const {
 } = require('../utils/validation.utils');
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
 // 1. Create a new booking (Protected with input validation & authentic user binding)
 router.post('/', requireAuth, async (req, res) => {

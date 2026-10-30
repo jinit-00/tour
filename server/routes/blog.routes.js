@@ -1,11 +1,11 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
+const prisma = require('../config/prisma');
 const router = express.Router();
-const prisma = new PrismaClient();
 
 // Get all blog posts
 router.get('/', async (req, res) => {
   try {
+    res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
     const posts = await prisma.blogPost.findMany({
       orderBy: { createdAt: 'desc' },
     });
@@ -19,6 +19,7 @@ router.get('/', async (req, res) => {
 // Get single blog post by slug
 router.get('/:slug', async (req, res) => {
   try {
+    res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
     const { slug } = req.params;
     const post = await prisma.blogPost.findFirst({
       where: {
